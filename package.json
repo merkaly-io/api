@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsx build.ts",
     "prepack": "pnpm build",
-    "prebuild": "bash scripts/sync-from-api-app.sh"
+    "sync": "bash scripts/sync-from-api-app.sh"
   },
   "dependencies": {
     "class-transformer": "^0.5.1",
