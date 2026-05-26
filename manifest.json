@@ -1,0 +1,151 @@
+{
+  "sourceRoot": "../../apps/api.merkaly.io/dist/src",
+  "paths": {
+    "@": [
+      "app.types",
+      "app.schemas",
+      "infrastructure/plugins/status.plugin",
+      "infrastructure/validators/address.validator",
+      "infrastructure/entities/address.entity",
+      "infrastructure/entities/transaction.entity",
+      "infrastructure/abstracts/abstract.entity",
+      "infrastructure/abstracts/abstract.transition",
+      "infrastructure/abstracts/abstract.validator"
+    ],
+    "@/account": {
+      "address": [
+        "entities/address.entity",
+        "validators/address/request.validator"
+      ],
+      "payment": [
+        "entities/payment.entity",
+        "validators/payment/request.validator"
+      ],
+      "user": [
+        "entities/user.entity",
+        "validators/user/request.validator"
+      ]
+    },
+    "@/assets": {
+      "asset": [
+        "entities/asset.entity",
+        "enums/asset.enum"
+      ]
+    },
+    "@/finance": {
+      "invoice": [
+        "entities/invoice.entity",
+        "enums/invoice.enum",
+        "validators/invoice/request.validator"
+      ],
+      "payment": [
+        "entities/payment.entity",
+        "enums/payment.enum",
+        "validators/payment/request.validator",
+        "transitions/payment.transition"
+      ],
+      "refund": [
+        "entities/refund.entity",
+        "enums/refund.enum",
+        "validators/refund/request.validator",
+        "transitions/refund.transition"
+      ]
+    },
+    "@/inventory": {
+      "catalog": {
+        "attribute": [
+          "catalog/entities/attribute.entity",
+          "catalog/validators/attribute/request.validator"
+        ],
+        "brand": [
+          "catalog/entities/brand.entity",
+          "catalog/validators/brand/request.validator"
+        ],
+        "category": [
+          "catalog/entities/category.entity",
+          "catalog/validators/category/request.validator"
+        ],
+        "collection": [
+          "catalog/entities/collection.entity",
+          "catalog/validators/collection/request.validator"
+        ],
+        "product": [
+          "catalog/entities/product.entity",
+          "catalog/validators/product/request.validator"
+        ],
+        "variant": [
+          "catalog/entities/variant.entity",
+          "catalog/validators/variant/request.validator"
+        ]
+      },
+      "configuration": {
+        "measurement": [
+          "configuration/entities/measurement.entity",
+          "configuration/validators/measurement/request.validator"
+        ],
+        "unit": [
+          "configuration/entities/unit.entity"
+        ]
+      },
+      "stock": {
+        "balance": [
+          "stock/entities/balance.entity",
+          "stock/enums/balance.status.enum"
+        ],
+        "transfer": [
+          "stock/entities/transfer.entity",
+          "stock/entities/transfer.item.entity",
+          "stock/enums/transfer.enum",
+          "stock/validators/transfer/request.validator",
+          "stock/transitions/transfer.transition"
+        ],
+        "warehouse": [
+          "stock/entities/warehouse.entity",
+          "stock/validators/warehouse/request.validator"
+        ]
+      }
+    },
+    "@/order": {
+      "purchase": {
+        "item": [
+          "infrastructure/entities/item.entity",
+          "purchase/validators/item/request.validator"
+        ],
+        "transaction": [
+          "purchase/entities/transaction.entity",
+          "purchase/validators/transaction/request.validator",
+          "purchase/enums/transaction.enum",
+          "purchase/transitions/transaction.transition"
+        ],
+        "vendor": [
+          "purchase/entities/vendor.entity",
+          "purchase/validators/vendor/request.validator"
+        ]
+      },
+      "sale": {
+        "customer": [
+          "sale/entities/customer.entity",
+          "sale/enums/customer.enum",
+          "sale/validators/customer/request.validator"
+        ],
+        "item": [
+          "infrastructure/entities/item.entity",
+          "sale/validators/item/request.validator"
+        ],
+        "transaction": [
+          "sale/entities/transaction.entity",
+          "sale/validators/transaction/request.validator",
+          "sale/enums/transaction.enum",
+          "sale/transitions/transaction.transition"
+        ]
+      }
+    },
+    "@/settings": {
+      "organization": [
+        "entities/organization.entity",
+        "enums/organization.enum",
+        "validators/organization/request.validator"
+      ]
+    }
+  }
+}
