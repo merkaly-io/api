@@ -3,6 +3,10 @@
   "version": "0.6.2",
   "type": "module",
   "description": "Shared TypeScript interfaces and enums for Merkaly API",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/merkaly-io/api"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
