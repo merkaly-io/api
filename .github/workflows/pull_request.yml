@@ -1,0 +1,35 @@
+name: PullRequest & Push master
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node 24
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck tooling
+        run: pnpm exec tsc --noEmit --pretty false
+
+      - name: Build package
+        run: pnpm build
+
+      - name: Inspect package contents
+        run: npm pack --dry-run
