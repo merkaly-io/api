@@ -5,6 +5,7 @@
       "app.types",
       "app.schemas",
       "infrastructure/plugins/status.plugin",
+      "infrastructure/decorators/not-equal-to.decorator",
       "infrastructure/validators/address.validator",
       "infrastructure/entities/address.entity",
       "infrastructure/entities/transaction.entity",

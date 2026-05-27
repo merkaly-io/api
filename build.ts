@@ -77,6 +77,12 @@ function getRelativeModulePath(fromFile: string, toDir: string): string {
   return fromFile.endsWith('.js') ? `${relative}/index.js` : relative;
 }
 
+function getRelativeFilePath(fromFile: string, toFile: string): string {
+  const fromDir = path.dirname(fromFile);
+  const relative = path.relative(fromDir, toFile).replace(/\\/g, '/');
+  return relative.startsWith('.') ? relative : './' + relative;
+}
+
 function isEnumExport(name: string): boolean {
   return name.endsWith('Enum') || name.endsWith('Status') || name.endsWith('Type');
 }
@@ -287,6 +293,8 @@ function sanitizeAbstractTransitionDts(): string {
 }
 
 function transformCjsToEsm(content: string): string {
+  const needsReflectMetadata = content.includes('__metadata(');
+
   // Step 1: Extract all exported names from "exports.Name = Name;"
   const exportedNames = new Set<string>();
   const exportPattern = /exports\.(\w+)\s*=\s*\1;/g;
@@ -332,6 +340,10 @@ function transformCjsToEsm(content: string): string {
 
   // Step 9: Remove sourcemap comments
   result = result.replace(/\/\/# sourceMappingURL=.+$/gm, '');
+
+  if (needsReflectMetadata && !result.includes("from 'reflect-metadata'") && !result.includes('from "reflect-metadata"')) {
+    result = `import 'reflect-metadata';\n${result}`;
+  }
 
   return result.trim() + '\n';
 }
@@ -471,14 +483,33 @@ function rewriteRelativeImport(
   const targetDir = importMap.get(normalizedPath);
   const destDir = targetDir || commonDir;
   const destFileDir = path.dirname(destFile);
+  const fileName = path.basename(normalizedPath);
 
   // If same directory, return direct file path to avoid circular import via index.js
   if (path.resolve(destFileDir) === path.resolve(destDir)) {
-    const fileName = path.basename(normalizedPath);
     return `from './${fileName}.js'`;
   }
 
+  // Root-level shared files must be imported directly. Importing the root barrel
+  // executes every public module and can trigger unrelated decorator side effects.
+  if (targetDir && path.resolve(targetDir) === path.resolve(commonDir)) {
+    return `from '${getRelativeFilePath(destFile, path.join(commonDir, `${fileName}.js`))}'`;
+  }
+
   return `from '${getRelativeModulePath(destFile, destDir)}'`;
+}
+
+function rewriteMappedImport(
+  srcPath: string,
+  targetDir: string,
+  destFile: string,
+  commonDir: string,
+): string {
+  if (path.resolve(targetDir) === path.resolve(commonDir)) {
+    return `from '${getRelativeFilePath(destFile, path.join(commonDir, `${path.basename(srcPath)}.js`))}'`;
+  }
+
+  return `from '${getRelativeModulePath(destFile, targetDir)}'`;
 }
 
 function rewriteImports(
@@ -499,7 +530,7 @@ function rewriteImports(
   // Pass 2: Rewrite absolute src/ imports from importMap
   for (const [srcPath, targetDir] of importMap.entries()) {
     const regex = new RegExp(`from ['"]${escapeRegex(srcPath)}['"]`, 'g');
-    result = result.replace(regex, `from '${getRelativeModulePath(destFile, targetDir)}'`);
+    result = result.replace(regex, rewriteMappedImport(srcPath, targetDir, destFile, commonDir));
   }
 
   // Pass 3: Rewrite remaining src/ imports to root
