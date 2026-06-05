@@ -1,9 +1,9 @@
-import { AccountUserEntity } from 'src/domain/account/entities/user.entity';
-import { StockWarehouseEntity } from 'src/domain/inventory/stock/entities/warehouse.entity';
-import { TransferStatusEnum, TransferTypeEnum } from 'src/domain/inventory/stock/enums/transfer.enum';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
+import { AccountUserEntity } from '../../../account/user/user.entity';
+import { StockWarehouseEntity } from '../warehouse/warehouse.entity';
+import { TransferStatusEnum, TransferTypeEnum } from './transfer.enum';
+import { AbstractEntity } from '../../../abstract.entity';
 import { StockTransferItemEntity } from './transfer.item.entity';
-import type { StatusEntity } from 'src/infrastructure/plugins/status.plugin';
+import type { StatusEntity } from '../../../status.plugin';
 export declare class StockTransferEntity extends AbstractEntity {
     origin: StockWarehouseEntity;
     destination: StockWarehouseEntity;

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddressEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const abstract_entity_1 = require("../abstracts/abstract.entity");
+const abstract_entity_1 = require("./abstract.entity");
 class AddressEntity extends abstract_entity_1.AbstractEntity {
     line1;
     line2;

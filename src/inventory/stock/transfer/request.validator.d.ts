@@ -1,7 +1,7 @@
-import { TransferStatusEnum } from 'src/domain/inventory/stock/enums/transfer.enum';
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { StockTransferEntity } from 'src/domain/inventory/stock/entities/transfer.entity';
-import type { StockTransferItemEntity } from 'src/domain/inventory/stock/entities/transfer.item.entity';
+import { TransferStatusEnum } from './transfer.enum';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { StockTransferEntity } from './transfer.entity';
+import type { StockTransferItemEntity } from './transfer.item.entity';
 export declare class StockTransferItemRequestValidator extends AbstractRequestValidator {
     product: string;
     variant: string;

@@ -13,12 +13,12 @@ exports.ItemEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const schema_decorator_1 = require("@nestjs/mongoose/dist/decorators/schema.decorator");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../app.schemas");
-const product_entity_1 = require("../../domain/inventory/catalog/entities/product.entity");
-const variant_entity_1 = require("../../domain/inventory/catalog/entities/variant.entity");
-const balance_entity_1 = require("../../domain/inventory/stock/entities/balance.entity");
-const warehouse_entity_1 = require("../../domain/inventory/stock/entities/warehouse.entity");
-const abstract_entity_1 = require("../abstracts/abstract.entity");
+const app_schemas_1 = require("../../../app.schemas");
+const product_entity_1 = require("../../../inventory/catalog/product/product.entity");
+const variant_entity_1 = require("../../../inventory/catalog/variant/variant.entity");
+const balance_entity_1 = require("../../../inventory/stock/balance/balance.entity");
+const warehouse_entity_1 = require("../../../inventory/stock/warehouse/warehouse.entity");
+const abstract_entity_1 = require("../../../abstract.entity");
 let ItemEntity = class ItemEntity extends abstract_entity_1.AbstractEntity {
     product;
     variant;

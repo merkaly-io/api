@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SettingsOrganizationEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const organization_enum_1 = require("../enums/organization.enum");
-const abstract_entity_1 = require("../../../infrastructure/abstracts/abstract.entity");
+const organization_enum_1 = require("./organization.enum");
+const abstract_entity_1 = require("../../abstract.entity");
 let SettingsOrganizationEntity = class SettingsOrganizationEntity extends abstract_entity_1.AbstractEntity {
     value;
 };

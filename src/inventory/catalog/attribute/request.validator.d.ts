@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { CatalogAttributeEntity } from 'src/domain/inventory/catalog/entities/attribute.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { CatalogAttributeEntity } from './attribute.entity';
 export declare class CreateAttributeRequestValidator extends AbstractRequestValidator {
     name: string;
     values?: string[];

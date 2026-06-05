@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdatePurchaseVendorRequestValidator = exports.CreatePurchaseVendorRequestValidator = void 0;
 const class_validator_1 = require("class-validator");
-const abstract_validator_1 = require("../../../../../infrastructure/abstracts/abstract.validator");
+const abstract_validator_1 = require("../../../abstract.validator");
 class CreatePurchaseVendorRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     description;

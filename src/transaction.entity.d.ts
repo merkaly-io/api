@@ -1,10 +1,10 @@
-import { AccountUserEntity } from 'src/domain/account/entities/user.entity';
-import { FinancePaymentEntity } from 'src/domain/finance/entities/payment.entity';
-import { StockWarehouseEntity } from 'src/domain/inventory/stock/entities/warehouse.entity';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import { StatusEntity } from '../plugins/status.plugin';
-import { ITransitionable } from '../types/transitionable.interface';
-import { ItemEntity } from './item.entity';
+import { AccountUserEntity } from './account/user/user.entity';
+import { FinancePaymentEntity } from './finance/payment/payment.entity';
+import { StockWarehouseEntity } from './inventory/stock/warehouse/warehouse.entity';
+import { AbstractEntity } from './abstract.entity';
+import { StatusEntity } from './status.plugin';
+import { ITransitionable } from './transitionable.interface';
+import { ItemEntity } from './order/sale/item/item.entity';
 export declare class TransactionEntity<S extends string> extends AbstractEntity implements ITransitionable<S> {
     user: AccountUserEntity;
     warehouse: StockWarehouseEntity;

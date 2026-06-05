@@ -1,6 +1,6 @@
-import { SaleCustomerTypeEnum } from 'src/domain/order/sale/enums/customer.enum';
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { SaleCustomerEntity } from 'src/domain/order/sale/entities/customer.entity';
+import { SaleCustomerTypeEnum } from './customer.enum';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { SaleCustomerEntity } from './customer.entity';
 export declare class CreateSaleCustomerRequestValidator extends AbstractRequestValidator {
     name: string;
     type: SaleCustomerTypeEnum;

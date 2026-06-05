@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StockWarehouseEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
-const address_entity_1 = require("../../../../infrastructure/entities/address.entity");
+const abstract_entity_1 = require("../../../abstract.entity");
+const address_entity_1 = require("../../../address.entity");
 let StockWarehouseEntity = class StockWarehouseEntity extends abstract_entity_1.AbstractEntity {
     name;
     code;

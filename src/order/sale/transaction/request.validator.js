@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateSaleTransactionRequestValidator = exports.CreateSaleTransactionRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const payment_enum_1 = require("../../../../finance/enums/payment.enum");
-const transaction_enum_1 = require("../../enums/transaction.enum");
-const abstract_validator_1 = require("../../../../../infrastructure/abstracts/abstract.validator");
+const payment_enum_1 = require("../../../finance/payment/payment.enum");
+const transaction_enum_1 = require("./transaction.enum");
+const abstract_validator_1 = require("../../../abstract.validator");
 const request_validator_1 = require("../item/request.validator");
 class CreateSaleTransactionRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     items = [];

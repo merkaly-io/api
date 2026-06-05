@@ -12,11 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseTransactionEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../../app.schemas");
+const app_schemas_1 = require("../../../app.schemas");
 const item_schema_1 = require("../schemas/item.schema");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
-const transaction_entity_1 = require("../../../../infrastructure/entities/transaction.entity");
-const vendor_entity_1 = require("./vendor.entity");
+const abstract_entity_1 = require("../../../abstract.entity");
+const transaction_entity_1 = require("../../../transaction.entity");
+const vendor_entity_1 = require("../vendor/vendor.entity");
 let PurchaseTransactionEntity = class PurchaseTransactionEntity extends transaction_entity_1.TransactionEntity {
     vendor;
     items = [];

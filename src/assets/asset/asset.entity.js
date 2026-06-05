@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssetEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const asset_enum_1 = require("../enums/asset.enum");
-const abstract_entity_1 = require("../../../infrastructure/abstracts/abstract.entity");
+const asset_enum_1 = require("./asset.enum");
+const abstract_entity_1 = require("../../abstract.entity");
 let AssetEntity = class AssetEntity extends abstract_entity_1.AbstractEntity {
     name;
     url;

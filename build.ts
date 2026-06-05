@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import * as ts from 'typescript';
 
 // =============================================================================
 // Configuration
@@ -13,9 +12,6 @@ const __dirname = path.dirname(__filename);
 const API_DIST = path.resolve(__dirname, 'src');
 const PKG_DIST = path.resolve(__dirname, 'dist');
 const MANIFEST_FILE = path.resolve(__dirname, 'manifest.json');
-
-const TRANSITION_SOURCE_PATTERN = /^src\/.+\/transitions\/[^/]+\.transition$/;
-const ABSTRACT_TRANSITION_SOURCE = 'src/infrastructure/abstracts/abstract.transition';
 
 // =============================================================================
 // Types
@@ -97,199 +93,6 @@ function isTransitionExport(name: string): boolean {
 
 function isRuntimeExport(name: string): boolean {
   return isEnumExport(name) || isValidatorExport(name) || isTransitionExport(name);
-}
-
-function isTransitionSource(sourcePath: string): boolean {
-  return TRANSITION_SOURCE_PATTERN.test(sourcePath);
-}
-
-function isAbstractTransitionSource(sourcePath: string): boolean {
-  return sourcePath === ABSTRACT_TRANSITION_SOURCE;
-}
-
-function findMatchingBraceIndex(content: string, openIndex: number): number {
-  let depth = 0;
-
-  for (let i = openIndex; i < content.length; i++) {
-    const char = content[i];
-
-    if (char === '{') {
-      depth++;
-      continue;
-    }
-
-    if (char === '}') {
-      depth--;
-      if (depth === 0) return i;
-    }
-  }
-
-  return -1;
-}
-
-function extractMethodBlock(content: string, methodPattern: RegExp): string | null {
-  const match = methodPattern.exec(content);
-  if (!match) return null;
-
-  const openIndex = content.indexOf('{', match.index);
-  if (openIndex === -1) return null;
-
-  const closeIndex = findMatchingBraceIndex(content, openIndex);
-  if (closeIndex === -1) return null;
-
-  return content.slice(match.index, closeIndex + 1).trim();
-}
-
-function sanitizeTransitionJs(content: string): string {
-  const classMatch = content.match(/class\s+(\w+)\s+extends\s+[^{]+\{/);
-  const statesIndex = content.indexOf('$states =');
-
-  if (!classMatch || statesIndex === -1) return transformCjsToEsm(content);
-
-  const className = classMatch[1];
-  const statesStart = content.indexOf('{', statesIndex);
-  const statesEnd = findMatchingBraceIndex(content, statesStart);
-  if (statesStart === -1 || statesEnd === -1) return transformCjsToEsm(content);
-
-  const statesObject = content.slice(statesStart, statesEnd + 1);
-
-  const constructorBlock = extractMethodBlock(content, /constructor\s*\([^)]*\)\s*\{/);
-  const initialStatesBlock = extractMethodBlock(content, /get\s+initialStates\s*\(\)\s*\{/);
-
-  const requireMap = new Map<string, string>();
-  const requiredAliasRegex = /const\s+(\w+)\s*=\s*require\("([^"]+)"\);/g;
-  let requireMatch: RegExpExecArray | null;
-
-  while ((requireMatch = requiredAliasRegex.exec(content)) !== null) {
-    requireMap.set(requireMatch[1], requireMatch[2]);
-  }
-
-  const runtimeBlocks = [statesObject, constructorBlock, initialStatesBlock]
-    .filter(Boolean)
-    .join('\n');
-
-  const importAliases = new Set<string>();
-  const aliasUsageRegex = /([A-Za-z_]\w*)\.[A-Za-z_]\w*/g;
-  let aliasMatch: RegExpExecArray | null;
-
-  while ((aliasMatch = aliasUsageRegex.exec(runtimeBlocks)) !== null) {
-    const alias = aliasMatch[1];
-    const importPath = requireMap.get(alias);
-    if (!importPath) continue;
-    if (importPath.includes('abstract.transition')) continue;
-    importAliases.add(alias);
-  }
-
-  const importLines = [
-    "import { AbstractTransition } from 'src/infrastructure/abstracts/abstract.transition';",
-    ...Array.from(importAliases)
-      .sort()
-      .map((alias) => `import * as ${alias} from '${requireMap.get(alias)}';`),
-  ];
-
-  const classBlocks = [
-    `  $states = ${statesObject};`,
-    constructorBlock ? `  ${constructorBlock}` : null,
-    initialStatesBlock ? `  ${initialStatesBlock}` : null,
-  ].filter(Boolean);
-
-  return `${importLines.join('\n')}
-
-export class ${className} extends AbstractTransition {
-${classBlocks.join('\n\n')}
-}
-`;
-}
-
-function sanitizeTransitionDts(content: string): string {
-  const classMatch = content.match(
-    /export\s+declare\s+class\s+(\w+)\s+extends\s+AbstractTransition<([^,>]+),[^>]+>\s*\{/,
-  );
-  if (!classMatch) return content;
-
-  const className = classMatch[1];
-  const statusType = classMatch[2].trim();
-  const abstractImportPathMatch = content.match(/from ['"]([^'"]*abstract\.transition[^'"]*)['"]/);
-  const abstractImportPath = abstractImportPathMatch?.[1] ?? ABSTRACT_TRANSITION_SOURCE;
-
-  const importLines = content.match(/^import[^;]+;$/gm) ?? [];
-  const statusImports: string[] = [];
-
-  for (const line of importLines) {
-    const pathMatch = line.match(/from ['"]([^'"]+)['"]/);
-    if (!pathMatch) continue;
-
-    const importPath = pathMatch[1];
-    if (importPath.includes('abstract.transition') || importPath.includes('/entities/')) continue;
-    if (line.includes('TransitionContext')) continue;
-
-    const namedImportsMatch = line.match(/\{([^}]+)\}/);
-    if (!namedImportsMatch) continue;
-
-    const localNames = namedImportsMatch[1]
-      .split(',')
-      .map((name) => name.trim())
-      .filter(Boolean)
-      .map((name) => {
-        const [original, alias] = name.split(/\s+as\s+/).map((part) => part.trim());
-        return alias || original;
-      });
-
-    if (localNames.includes(statusType)) {
-      statusImports.push(line.replace(/^import\s+type\s+/, 'import '));
-    }
-  }
-
-  return `import { AbstractTransition } from '${abstractImportPath}';
-${Array.from(new Set(statusImports)).join('\n')}
-
-export declare class ${className} extends AbstractTransition<${statusType}, unknown> {
-  protected readonly $states: Readonly<Record<${statusType}, readonly ${statusType}[]>>;
-  constructor(status?: ${statusType});
-  readonly initialStates: readonly ${statusType}[];
-}
-`;
-}
-
-function sanitizeAbstractTransitionJs(): string {
-  return `export class AbstractTransition {
-  constructor(current) {
-    this.$current = current;
-  }
-
-  canTransition(from, to) {
-    const allowed = this.$states[from] ?? [];
-    return allowed.includes(to);
-  }
-
-  get nextStates() {
-    return this.$states[this.$current] ?? [];
-  }
-
-  get prevStates() {
-    return Object.entries(this.$states)
-      .filter(([, next]) => next.includes(this.$current))
-      .map(([prev]) => prev);
-  }
-
-  get isTerminal() {
-    return (this.$states[this.$current] ?? []).length === 0;
-  }
-}
-`;
-}
-
-function sanitizeAbstractTransitionDts(): string {
-  return `export declare abstract class AbstractTransition<S extends string, E = unknown> {
-  private $current: S;
-  constructor(current: S);
-  protected abstract readonly $states: Readonly<Record<S, readonly S[]>>;
-  canTransition(from: S, to: S): boolean;
-  readonly nextStates: readonly S[];
-  readonly prevStates: S[];
-  readonly isTerminal: boolean;
-}
-`;
 }
 
 function transformCjsToEsm(content: string): string {
@@ -456,6 +259,7 @@ function buildImportRewriteMap(modules: ModuleExports[]): Map<string, string> {
 
     for (const exp of module.exports) {
       map.set(exp.sourcePath, destDir);
+      map.set(exp.snapshotPath, destDir);
     }
   }
 
@@ -474,7 +278,11 @@ function rewriteRelativeImport(
   commonDir: string,
 ): string {
   const resolvedSrcPath = path.normalize(path.join(srcDir, relativeSrcImport));
-  let normalizedPath = resolvedSrcPath.replace(/\\/g, '/');
+  let normalizedPath = resolvedSrcPath
+    .replace(/\\/g, '/')
+    .replace(/\.d\.ts$/, '')
+    .replace(/\.js$/, '')
+    .replace(/\.ts$/, '');
 
   if (!normalizedPath.startsWith('src/')) {
     normalizedPath = 'src/' + normalizedPath.replace(/^(\.\.\/)+/, '');
@@ -540,12 +348,6 @@ function rewriteImports(
   return result;
 }
 
-function rewriteTransitionAbstractImport(content: string, destFile: string): string {
-  const rootRelative = getRelativePath(destFile, PKG_DIST);
-  const rootImportRegex = new RegExp(`from ['"]${escapeRegex(rootRelative)}['"]`, 'g');
-  return content.replace(rootImportRegex, `from '${rootRelative}/abstract.transition.js'`);
-}
-
 function normalizeEsmJs(content: string): string {
   return (
     content
@@ -568,7 +370,7 @@ function ensureDir(dir: string): void {
 function copyFile(
   src: string,
   dest: string,
-  srcPath: string,
+  importContextPath: string,
   importMap: Map<string, string>,
   commonDir: string,
   rewrite = false,
@@ -583,29 +385,12 @@ function copyFile(
   const content = fs.readFileSync(src, 'utf-8');
 
   if (rewrite && dest.endsWith('.d.ts')) {
-    const transformed = isAbstractTransitionSource(srcPath)
-      ? sanitizeAbstractTransitionDts()
-      : isTransitionSource(srcPath)
-        ? sanitizeTransitionDts(content)
-        : content;
-
-    const rewritten = rewriteImports(transformed, srcPath, dest, importMap, commonDir);
-    const fixed = isTransitionSource(srcPath)
-      ? rewriteTransitionAbstractImport(rewritten, dest)
-      : rewritten;
-    fs.writeFileSync(dest, fixed);
+    const rewritten = rewriteImports(content, importContextPath, dest, importMap, commonDir);
+    fs.writeFileSync(dest, rewritten);
   } else if (dest.endsWith('.js')) {
-    const transformed = isAbstractTransitionSource(srcPath)
-      ? sanitizeAbstractTransitionJs()
-      : isTransitionSource(srcPath)
-        ? sanitizeTransitionJs(content)
-        : transformCjsToEsm(content);
-
-    const rewritten = rewriteImports(transformed, srcPath, dest, importMap, commonDir);
-    const fixed = isTransitionSource(srcPath)
-      ? rewriteTransitionAbstractImport(rewritten, dest)
-      : rewritten;
-    fs.writeFileSync(dest, normalizeEsmJs(fixed));
+    const transformed = transformCjsToEsm(content);
+    const rewritten = rewriteImports(transformed, importContextPath, dest, importMap, commonDir);
+    fs.writeFileSync(dest, normalizeEsmJs(rewritten));
   } else {
     fs.copyFileSync(src, dest);
   }
@@ -680,22 +465,10 @@ function createBarrel(destDir: string, exports: ParsedExport[]): void {
 // =============================================================================
 
 function generateRepositoryTypes(): void {
-  const content = `import type { AbstractEntity } from './abstract.entity';
-import type { Document } from 'mongoose';
-
-type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? true : false;
-type SystemKeys = '_id' | 'createdAt' | 'updatedAt' | 'deletedAt' | keyof Document;
-
-export type SaveEntityArgs<T> = {
-  [K in keyof T as K extends SystemKeys ? never : T[K] extends Function ? never : Equal<{
-    [Q in K]: T[K];
-  }, {
-    -readonly [Q in K]: T[K];
-  }> extends true ? K : never]: T[K] extends AbstractEntity ? SaveEntityArgs<T[K]> : T[K];
-};
-`;
-
-  fs.writeFileSync(path.join(PKG_DIST, 'repository.types.d.ts'), content);
+  fs.copyFileSync(
+    path.join(API_DIST, 'repository.types.d.ts'),
+    path.join(PKG_DIST, 'repository.types.d.ts'),
+  );
   console.log(`  ✓ repository.types.d.ts`);
 
   // Append export to root index
@@ -741,7 +514,7 @@ function buildModule(module: ModuleExports, importMap: Map<string, string>): voi
       copyFile(
         getSourceDtsPath(exp.snapshotPath),
         path.join(destDir, dtsFileName),
-        exp.sourcePath,
+        exp.snapshotPath,
         importMap,
         PKG_DIST,
         true,
@@ -764,7 +537,14 @@ function buildModule(module: ModuleExports, importMap: Map<string, string>): voi
 
     if (copiedFiles.has(jsFileName) || !fs.existsSync(srcJs)) continue;
 
-    copyFile(srcJs, path.join(destDir, jsFileName), exp.sourcePath, importMap, PKG_DIST, false);
+    copyFile(
+      srcJs,
+      path.join(destDir, jsFileName),
+      exp.snapshotPath,
+      importMap,
+      PKG_DIST,
+      false,
+    );
     copiedFiles.add(jsFileName);
   }
 

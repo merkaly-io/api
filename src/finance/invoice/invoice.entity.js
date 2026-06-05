@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FinanceInvoiceEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const abstract_entity_1 = require("../../../infrastructure/abstracts/abstract.entity");
-const invoice_enum_1 = require("../enums/invoice.enum");
+const abstract_entity_1 = require("../../abstract.entity");
+const invoice_enum_1 = require("./invoice.enum");
 let FinanceInvoiceEntity = class FinanceInvoiceEntity extends abstract_entity_1.AbstractEntity {
     order;
     orderModel;

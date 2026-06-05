@@ -1,5 +1,5 @@
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import { ConfigurationUnitEntity } from './unit.entity';
+import { AbstractEntity } from '../../../abstract.entity';
+import { ConfigurationUnitEntity } from '../unit/unit.entity';
 export declare class ConfigurationMeasurementEntity extends AbstractEntity {
     name: string;
     description?: string;

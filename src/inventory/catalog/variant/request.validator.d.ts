@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { CatalogVariantEntity } from 'src/domain/inventory/catalog/entities/variant.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { CatalogVariantEntity } from './variant.entity';
 export declare class VariantOptionRequestValidator extends AbstractRequestValidator {
     type: string;
     value: string;

@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ConfigurationMeasurementEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
-const unit_entity_1 = require("./unit.entity");
+const abstract_entity_1 = require("../../../abstract.entity");
+const unit_entity_1 = require("../unit/unit.entity");
 let ConfigurationMeasurementEntity = class ConfigurationMeasurementEntity extends abstract_entity_1.AbstractEntity {
     name;
     description;

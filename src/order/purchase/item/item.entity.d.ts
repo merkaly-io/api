@@ -1,8 +1,8 @@
-import { CatalogProductEntity } from 'src/domain/inventory/catalog/entities/product.entity';
-import { CatalogVariantEntity } from 'src/domain/inventory/catalog/entities/variant.entity';
-import { StockBalanceEntity } from 'src/domain/inventory/stock/entities/balance.entity';
-import { StockWarehouseEntity } from 'src/domain/inventory/stock/entities/warehouse.entity';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
+import { CatalogProductEntity } from '../../../inventory/catalog/product/product.entity';
+import { CatalogVariantEntity } from '../../../inventory/catalog/variant/variant.entity';
+import { StockBalanceEntity } from '../../../inventory/stock/balance/balance.entity';
+import { StockWarehouseEntity } from '../../../inventory/stock/warehouse/warehouse.entity';
+import { AbstractEntity } from '../../../abstract.entity';
 interface ItemPricing {
     product: number;
     readonly total: number;

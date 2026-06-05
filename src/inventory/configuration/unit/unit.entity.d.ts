@@ -1,4 +1,4 @@
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
+import { AbstractEntity } from '../../../abstract.entity';
 export declare class ConfigurationUnitEntity extends AbstractEntity {
     name: string;
     symbol: string;

@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountUserEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const abstract_entity_1 = require("../../../infrastructure/abstracts/abstract.entity");
+const abstract_entity_1 = require("../../abstract.entity");
 let AccountUserEntity = class AccountUserEntity extends abstract_entity_1.AbstractEntity {
     name;
     picture;

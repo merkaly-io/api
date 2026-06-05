@@ -1,7 +1,7 @@
-import { CatalogProductEntity } from 'src/domain/inventory/catalog/entities/product.entity';
-import { CatalogVariantEntity } from 'src/domain/inventory/catalog/entities/variant.entity';
-import { StockWarehouseEntity } from 'src/domain/inventory/stock/entities/warehouse.entity';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
+import { CatalogProductEntity } from '../../catalog/product/product.entity';
+import { CatalogVariantEntity } from '../../catalog/variant/variant.entity';
+import { StockWarehouseEntity } from '../warehouse/warehouse.entity';
+import { AbstractEntity } from '../../../abstract.entity';
 export declare class StockBalanceEntity extends AbstractEntity {
     warehouse: StockWarehouseEntity;
     variant: CatalogVariantEntity;

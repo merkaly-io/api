@@ -1,6 +1,6 @@
-import { FinancePaymentMethodEnum, FinancePaymentStatusEnum, FinancePaymentTypeEnum } from 'src/domain/finance/enums/payment.enum';
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { FinancePaymentEntity } from 'src/domain/finance/entities/payment.entity';
+import { FinancePaymentMethodEnum, FinancePaymentStatusEnum, FinancePaymentTypeEnum } from './payment.enum';
+import { AbstractRequestValidator } from '../../abstract.validator';
+import type { FinancePaymentEntity } from './payment.entity';
 export declare class CreateFinancePaymentRequestValidator extends AbstractRequestValidator {
     type: FinancePaymentTypeEnum;
     order?: string;

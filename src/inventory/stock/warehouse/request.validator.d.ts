@@ -1,6 +1,6 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import { AddressValidator } from 'src/infrastructure/validators/address.validator';
-import type { StockWarehouseEntity } from 'src/domain/inventory/stock/entities/warehouse.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import { AddressValidator } from '../../../address.validator';
+import type { StockWarehouseEntity } from './warehouse.entity';
 export declare class CreateStockWarehouseRequestValidator extends AbstractRequestValidator {
     name: string;
     description?: string;

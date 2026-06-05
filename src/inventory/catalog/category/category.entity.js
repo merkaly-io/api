@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatalogCategoryEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../../app.schemas");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
-const relation_status_enum_1 = require("../enums/relation.status.enum");
+const app_schemas_1 = require("../../../app.schemas");
+const abstract_entity_1 = require("../../../abstract.entity");
+const relation_status_enum_1 = require("../../../relation.status.enum");
 const productsRef = app_schemas_1.AppSchemas.inventory.catalog.products;
 const categoriesRef = app_schemas_1.AppSchemas.inventory.catalog.categories;
 let CatalogCategoryEntity = class CatalogCategoryEntity extends abstract_entity_1.AbstractEntity {

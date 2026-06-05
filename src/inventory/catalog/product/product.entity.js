@@ -12,11 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatalogProductEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../../app.schemas");
-const asset_entity_1 = require("../../../assets/entities/asset.entity");
-const balance_entity_1 = require("../../stock/entities/balance.entity");
-const balance_status_enum_1 = require("../../stock/enums/balance.status.enum");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
+const app_schemas_1 = require("../../../app.schemas");
+const asset_entity_1 = require("../../../assets/asset/asset.entity");
+const balance_entity_1 = require("../../stock/balance/balance.entity");
+const balance_status_enum_1 = require("../../stock/balance/balance.status.enum");
+const abstract_entity_1 = require("../../../abstract.entity");
 let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.AbstractEntity {
     sku;
     name;

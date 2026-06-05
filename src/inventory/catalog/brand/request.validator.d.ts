@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { CatalogBrandEntity } from 'src/domain/inventory/catalog/entities/brand.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { CatalogBrandEntity } from './brand.entity';
 export declare class CreateBrandRequestValidator extends AbstractRequestValidator {
     name: string;
     description?: string;

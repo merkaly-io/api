@@ -1,13 +1,13 @@
-import { AssetEntity } from 'src/domain/assets/entities/asset.entity';
-import { StockBalanceEntity } from 'src/domain/inventory/stock/entities/balance.entity';
-import { StockBalanceStatusEnum } from 'src/domain/inventory/stock/enums/balance.status.enum';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import { CatalogAttributeEntity } from './attribute.entity';
-import type { CatalogBrandEntity } from './brand.entity';
-import type { CatalogCategoryEntity } from './category.entity';
-import type { CatalogVariantEntity } from './variant.entity';
-import type { ConfigurationMeasurementEntity } from 'src/domain/inventory/configuration/entities/measurement.entity';
-import type { ConfigurationUnitEntity } from 'src/domain/inventory/configuration/entities/unit.entity';
+import { AssetEntity } from '../../../assets/asset/asset.entity';
+import { StockBalanceEntity } from '../../stock/balance/balance.entity';
+import { StockBalanceStatusEnum } from '../../stock/balance/balance.status.enum';
+import { AbstractEntity } from '../../../abstract.entity';
+import { CatalogAttributeEntity } from '../attribute/attribute.entity';
+import type { CatalogBrandEntity } from '../brand/brand.entity';
+import type { CatalogCategoryEntity } from '../category/category.entity';
+import type { CatalogVariantEntity } from '../variant/variant.entity';
+import type { ConfigurationMeasurementEntity } from '../../configuration/measurement/measurement.entity';
+import type { ConfigurationUnitEntity } from '../../configuration/unit/unit.entity';
 export declare class CatalogProductEntity extends AbstractEntity {
     sku?: string;
     name: string;

@@ -1,8 +1,8 @@
-import { AbstractEntity, MongoEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import { StatusEntity } from 'src/infrastructure/plugins/status.plugin';
-import { ITransitionable } from 'src/infrastructure/types/transitionable.interface';
-import { FinanceRefundReasonEnum, FinanceRefundStatusEnum } from '../enums/refund.enum';
-import type { FinancePaymentEntity } from './payment.entity';
+import { AbstractEntity, MongoEntity } from '../../abstract.entity';
+import { StatusEntity } from '../../status.plugin';
+import { ITransitionable } from '../../transitionable.interface';
+import { FinanceRefundReasonEnum, FinanceRefundStatusEnum } from './refund.enum';
+import type { FinancePaymentEntity } from '../payment/payment.entity';
 export declare class FinanceRefundEntity extends AbstractEntity implements ITransitionable<FinanceRefundStatusEnum> {
     payment: MongoEntity<FinancePaymentEntity>;
     amount: number;

@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateFinancePaymentRequestValidator = exports.CreateFinancePaymentRequestValidator = void 0;
 const class_validator_1 = require("class-validator");
-const payment_enum_1 = require("../../enums/payment.enum");
-const abstract_validator_1 = require("../../../../infrastructure/abstracts/abstract.validator");
+const payment_enum_1 = require("./payment.enum");
+const abstract_validator_1 = require("../../abstract.validator");
 class CreateFinancePaymentRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     type;
     order;

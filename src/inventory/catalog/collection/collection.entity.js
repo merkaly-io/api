@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatalogCollectionEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../../app.schemas");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
+const app_schemas_1 = require("../../../app.schemas");
+const abstract_entity_1 = require("../../../abstract.entity");
 let CatalogCollectionEntity = class CatalogCollectionEntity extends abstract_entity_1.AbstractEntity {
     name;
     description;

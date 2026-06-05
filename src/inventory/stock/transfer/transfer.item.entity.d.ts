@@ -1,7 +1,7 @@
-import { CatalogProductEntity } from 'src/domain/inventory/catalog/entities/product.entity';
-import { CatalogVariantEntity } from 'src/domain/inventory/catalog/entities/variant.entity';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import type { StockBalanceEntity } from './balance.entity';
+import { CatalogProductEntity } from '../../catalog/product/product.entity';
+import { CatalogVariantEntity } from '../../catalog/variant/variant.entity';
+import { AbstractEntity } from '../../../abstract.entity';
+import type { StockBalanceEntity } from '../balance/balance.entity';
 export declare class StockTransferItemEntity extends AbstractEntity {
     product: CatalogProductEntity;
     variant: CatalogVariantEntity;

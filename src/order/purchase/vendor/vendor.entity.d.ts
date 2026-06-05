@@ -1,4 +1,4 @@
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
+import { AbstractEntity } from '../../../abstract.entity';
 export declare class PurchaseVendorEntity extends AbstractEntity {
     name: string;
     description: string;

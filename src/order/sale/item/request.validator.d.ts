@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { ItemEntity } from 'src/infrastructure/entities/item.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { ItemEntity } from './item.entity';
 export declare class SaleItemRequestValidator extends AbstractRequestValidator {
     product: string;
     variant: string;

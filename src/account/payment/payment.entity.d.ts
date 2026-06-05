@@ -1,6 +1,6 @@
-import { AccountUserEntity } from 'src/domain/account/entities/user.entity';
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import type { MongoEntity } from 'src/infrastructure/abstracts/abstract.entity';
+import { AccountUserEntity } from '../user/user.entity';
+import { AbstractEntity } from '../../abstract.entity';
+import type { MongoEntity } from '../../abstract.entity';
 export declare class AccountPaymentEntity extends AbstractEntity {
     user: MongoEntity<AccountUserEntity>;
     hash: string;

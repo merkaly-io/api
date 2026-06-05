@@ -1,6 +1,6 @@
-import { FinanceInvoiceStatusEnum, FinanceInvoiceTypeEnum } from 'src/domain/finance/enums/invoice.enum';
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { FinanceInvoiceEntity } from 'src/domain/finance/entities/invoice.entity';
+import { FinanceInvoiceStatusEnum, FinanceInvoiceTypeEnum } from './invoice.enum';
+import { AbstractRequestValidator } from '../../abstract.validator';
+import type { FinanceInvoiceEntity } from './invoice.entity';
 export declare class CreateFinanceInvoiceRequestValidator extends AbstractRequestValidator {
     order: string;
     orderModel: string;

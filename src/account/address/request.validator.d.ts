@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { AccountAddressEntity } from 'src/domain/account/entities/address.entity';
+import { AbstractRequestValidator } from '../../abstract.validator';
+import type { AccountAddressEntity } from './address.entity';
 export declare class CreateAddressRequestValidator extends AbstractRequestValidator {
     street: string;
     name: string;

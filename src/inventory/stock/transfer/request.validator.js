@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateStockTransferRequestValidator = exports.CreateStockTransferRequestValidator = exports.StockTransferItemRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const transfer_enum_1 = require("../../enums/transfer.enum");
-const abstract_validator_1 = require("../../../../../infrastructure/abstracts/abstract.validator");
-const not_equal_to_decorator_1 = require("../../../../../infrastructure/decorators/not-equal-to.decorator");
+const transfer_enum_1 = require("./transfer.enum");
+const abstract_validator_1 = require("../../../abstract.validator");
+const not_equal_to_decorator_1 = require("../../../not-equal-to.decorator");
 class StockTransferItemRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     product;
     variant;

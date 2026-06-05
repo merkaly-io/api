@@ -1,8 +1,8 @@
-import { FinancePaymentStatusEnum, FinancePaymentMethodEnum } from 'src/domain/finance/enums/payment.enum';
-import { SaleTransactionStatusEnum } from 'src/domain/order/sale/enums/transaction.enum';
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
+import { FinancePaymentStatusEnum, FinancePaymentMethodEnum } from '../../../finance/payment/payment.enum';
+import { SaleTransactionStatusEnum } from './transaction.enum';
+import { AbstractRequestValidator } from '../../../abstract.validator';
 import { SaleItemRequestValidator } from '../item/request.validator';
-import type { SaleTransactionEntity } from '../../entities/transaction.entity';
+import type { SaleTransactionEntity } from './transaction.entity';
 export declare class CreateSaleTransactionRequestValidator extends AbstractRequestValidator {
     items: SaleItemRequestValidator[];
     method: FinancePaymentMethodEnum;

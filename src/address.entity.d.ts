@@ -1,4 +1,4 @@
-import { AbstractEntity } from '../abstracts/abstract.entity';
+import { AbstractEntity } from './abstract.entity';
 export declare abstract class AddressEntity extends AbstractEntity {
     line1: string;
     line2?: string;

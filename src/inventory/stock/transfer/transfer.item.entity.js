@@ -12,11 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StockTransferItemEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../../app.schemas");
-const product_entity_1 = require("../../catalog/entities/product.entity");
-const variant_entity_1 = require("../../catalog/entities/variant.entity");
-const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
-const transfer_enum_1 = require("../enums/transfer.enum");
+const app_schemas_1 = require("../../../app.schemas");
+const product_entity_1 = require("../../catalog/product/product.entity");
+const variant_entity_1 = require("../../catalog/variant/variant.entity");
+const abstract_entity_1 = require("../../../abstract.entity");
+const transfer_enum_1 = require("./transfer.enum");
 let StockTransferItemEntity = class StockTransferItemEntity extends abstract_entity_1.AbstractEntity {
     product;
     variant;

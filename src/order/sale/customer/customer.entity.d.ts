@@ -1,5 +1,5 @@
-import { AbstractEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import { SaleCustomerTypeEnum } from '../enums/customer.enum';
+import { AbstractEntity } from '../../../abstract.entity';
+import { SaleCustomerTypeEnum } from './customer.enum';
 export declare class SaleCustomerEntity extends AbstractEntity {
     name: string;
     type: SaleCustomerTypeEnum;

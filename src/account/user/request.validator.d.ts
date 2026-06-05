@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { AccountUserEntity } from 'src/domain/account/entities/user.entity';
+import { AbstractRequestValidator } from '../../abstract.validator';
+import type { AccountUserEntity } from './user.entity';
 export declare class UpdateUserRequestValidator extends AbstractRequestValidator {
     name: string;
     picture: string;

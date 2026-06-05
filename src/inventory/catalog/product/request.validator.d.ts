@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { CatalogProductEntity } from 'src/domain/inventory/catalog/entities/product.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { CatalogProductEntity } from './product.entity';
 type CatalogProductRequestSource = CatalogProductEntity & {
     minStockLevel?: number;
     policy?: {

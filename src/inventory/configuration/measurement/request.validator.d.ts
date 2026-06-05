@@ -1,6 +1,6 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { ConfigurationMeasurementEntity } from 'src/domain/inventory/configuration/entities/measurement.entity';
-import type { ConfigurationUnitEntity } from 'src/domain/inventory/configuration/entities/unit.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { ConfigurationMeasurementEntity } from './measurement.entity';
+import type { ConfigurationUnitEntity } from '../unit/unit.entity';
 export declare class ConfigurationUnitRequestValidator extends AbstractRequestValidator {
     active?: boolean;
     description?: string;

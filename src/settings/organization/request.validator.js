@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateOrganizationProfileRequestValidator = exports.UpdateOrganizationBillingRequestValidator = exports.UpdateOrganizationBrandingRequestValidator = exports.UpdateOrganizationIdentityRequestValidator = exports.UpdateOrganizationLocalizationRequestValidator = exports.UpdateOrganizationContactRequestValidator = exports.UpdateOrganizationAddressRequestValidator = exports.UpdateOrganizationLocationRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const abstract_validator_1 = require("../../../../infrastructure/abstracts/abstract.validator");
+const abstract_validator_1 = require("../../abstract.validator");
 class UpdateOrganizationLocationRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     lat;
     lng;

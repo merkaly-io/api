@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateProductRequestValidator = exports.CreateProductRequestValidator = exports.ProductAttributeRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const abstract_validator_1 = require("../../../../../infrastructure/abstracts/abstract.validator");
+const abstract_validator_1 = require("../../../abstract.validator");
 class ProductAttributeRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     type;
     values = [];

@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { PurchaseVendorEntity } from 'src/domain/order/purchase/entities/vendor.entity';
+import { AbstractRequestValidator } from '../../../abstract.validator';
+import type { PurchaseVendorEntity } from './vendor.entity';
 export declare class CreatePurchaseVendorRequestValidator extends AbstractRequestValidator {
     name: string;
     description?: string;

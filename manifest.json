@@ -9,9 +9,11 @@
       "infrastructure/validators/address.validator",
       "infrastructure/entities/address.entity",
       "infrastructure/entities/transaction.entity",
+      "infrastructure/types/transitionable.interface",
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
-      "infrastructure/abstracts/abstract.validator"
+      "infrastructure/abstracts/abstract.validator",
+      "domain/inventory/catalog/enums/relation.status.enum"
     ],
     "@/account": {
       "address": [
@@ -76,6 +78,8 @@
         ],
         "variant": [
           "catalog/entities/variant.entity",
+          "catalog/entities/variant.identifier.entity",
+          "catalog/entities/variant.policy.entity",
           "catalog/validators/variant/request.validator"
         ]
       },
@@ -143,6 +147,7 @@
     },
     "@/settings": {
       "organization": [
+        "contracts/organization.contract",
         "entities/organization.entity",
         "enums/organization.enum",
         "validators/organization/request.validator"

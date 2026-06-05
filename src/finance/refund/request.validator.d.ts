@@ -1,6 +1,6 @@
-import { FinanceRefundReasonEnum, FinanceRefundStatusEnum } from 'src/domain/finance/enums/refund.enum';
-import { AbstractRequestValidator } from 'src/infrastructure/abstracts/abstract.validator';
-import type { FinanceRefundEntity } from 'src/domain/finance/entities/refund.entity';
+import { FinanceRefundReasonEnum, FinanceRefundStatusEnum } from './refund.enum';
+import { AbstractRequestValidator } from '../../abstract.validator';
+import type { FinanceRefundEntity } from './refund.entity';
 export declare class CreateFinanceRefundRequestValidator extends AbstractRequestValidator {
     payment: string;
     reason: FinanceRefundReasonEnum;

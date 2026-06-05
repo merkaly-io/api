@@ -1,5 +1,5 @@
-import { AbstractEntity, MongoEntity } from 'src/infrastructure/abstracts/abstract.entity';
-import { FinanceInvoiceStatusEnum, FinanceInvoiceTypeEnum } from '../enums/invoice.enum';
+import { AbstractEntity, MongoEntity } from '../../abstract.entity';
+import { FinanceInvoiceStatusEnum, FinanceInvoiceTypeEnum } from './invoice.enum';
 export declare class FinanceInvoiceEntity extends AbstractEntity {
     order: MongoEntity<any>;
     orderModel: string;
