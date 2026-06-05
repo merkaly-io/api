@@ -13,6 +13,7 @@ exports.CatalogVariantEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../../app.schemas");
+const asset_entity_1 = require("../../../assets/entities/asset.entity");
 const balance_status_enum_1 = require("../../stock/enums/balance.status.enum");
 const abstract_entity_1 = require("../../../../infrastructure/abstracts/abstract.entity");
 const variant_identifier_entity_1 = require("./variant.identifier.entity");
@@ -25,6 +26,7 @@ let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.
     options = [];
     active;
     pictures = [];
+    picture;
     total;
     stock;
     status;
@@ -73,6 +75,14 @@ __decorate([
     (0, mongoose_1.Prop)({ default: [], ref: app_schemas_1.AppSchemas.assets.files, type: [{ type: mongoose_2.Schema.Types.ObjectId }] }),
     __metadata("design:type", Array)
 ], CatalogVariantEntity.prototype, "pictures", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.pictures?.at(0);
+        },
+    }),
+    __metadata("design:type", asset_entity_1.AssetEntity)
+], CatalogVariantEntity.prototype, "picture", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {

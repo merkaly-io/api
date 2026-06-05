@@ -38,8 +38,7 @@ class CreatePurchaseTransactionRequestValidator extends abstract_validator_1.Abs
         if (order.payment?.status !== undefined) {
             this.payment = order.payment.status;
         }
-        const [warehouse] = [...new Set(order.items?.map((item) => item.warehouse).filter(Boolean))];
-        this.warehouse = (warehouse?._id || warehouse);
+        this.warehouse = (order.warehouse?._id || order.warehouse);
         this.items = order.items?.map((it) => new request_validator_1.PurchaseItemRequestValidator(it)) ?? this.items;
     }
     get total() {

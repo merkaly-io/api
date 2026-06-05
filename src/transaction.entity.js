@@ -11,12 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TransactionEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
 const user_entity_1 = require("../../domain/account/entities/user.entity");
 const payment_entity_1 = require("../../domain/finance/entities/payment.entity");
+const warehouse_entity_1 = require("../../domain/inventory/stock/entities/warehouse.entity");
 const abstract_entity_1 = require("../abstracts/abstract.entity");
 class TransactionEntity extends abstract_entity_1.AbstractEntity {
     user;
+    warehouse;
     notes;
     status;
     items = [];
@@ -32,6 +35,14 @@ __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.account.users, required: true, type: String }),
     __metadata("design:type", user_entity_1.AccountUserEntity)
 ], TransactionEntity.prototype, "user", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        ref: app_schemas_1.AppSchemas.inventory.stock.warehouses,
+        required: true,
+        type: mongoose_2.Schema.Types.ObjectId,
+    }),
+    __metadata("design:type", warehouse_entity_1.StockWarehouseEntity)
+], TransactionEntity.prototype, "warehouse", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String, trim: true }),
     __metadata("design:type", String)
