@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import"
+  ],
+  "options": {
+    "denyWarnings": true
+  },
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "no-cond-assign": "off",
+    "no-unused-vars": "off",
+    "no-useless-empty-export": "off",
+    "no-useless-fallback-in-spread": "off"
+  },
+  "env": {
+    "builtin": true
+  }
+}

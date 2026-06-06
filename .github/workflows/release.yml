@@ -44,6 +44,9 @@ jobs:
       - name: Typecheck tooling
         run: pnpm exec tsc --noEmit --pretty false
 
+      - name: Lint source
+        run: pnpm lint
+
       - name: Build package
         run: pnpm build
 
