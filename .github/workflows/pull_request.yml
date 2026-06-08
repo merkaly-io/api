@@ -11,28 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - uses: merkaly-io/actions/setup@master
 
-      - name: Setup Node 24
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
+      - run: pnpm exec tsc --noEmit --pretty false
 
-      - name: Enable Corepack
-        run: corepack enable
+      - run: pnpm lint
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - run: pnpm build
 
-      - name: Typecheck tooling
-        run: pnpm exec tsc --noEmit --pretty false
-
-      - name: Lint source
-        run: pnpm lint
-
-      - name: Build package
-        run: pnpm build
-
-      - name: Inspect package contents
-        run: npm pack --dry-run
+      - run: npm pack --dry-run
