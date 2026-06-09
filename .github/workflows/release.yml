@@ -24,7 +24,7 @@ jobs:
       - run: pnpm build
         shell: bash
 
-      - run: npm pack --dry-run
+      - run: pnpm pack --dry-run
         shell: bash
 
       - uses: merkaly-io/actions/publish@master
