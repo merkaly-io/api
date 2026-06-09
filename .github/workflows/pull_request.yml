@@ -23,6 +23,6 @@ jobs:
 
       - run: pnpm build
 
-      - run: npm pack --dry-run
+      - run: pnpm pack --dry-run
 
       - uses: merkaly-io/actions/dependabot@master
