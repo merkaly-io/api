@@ -15,7 +15,6 @@ const abstract_entity_1 = require("../../../abstract.entity");
 const address_entity_1 = require("../../../address.entity");
 let StockWarehouseEntity = class StockWarehouseEntity extends abstract_entity_1.AbstractEntity {
     name;
-    code;
     description;
     address;
     isDefault;
@@ -23,13 +22,9 @@ let StockWarehouseEntity = class StockWarehouseEntity extends abstract_entity_1.
 };
 exports.StockWarehouseEntity = StockWarehouseEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, unique: true }),
+    (0, mongoose_1.Prop)({ required: true, trim: true }),
     __metadata("design:type", String)
 ], StockWarehouseEntity.prototype, "name", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ sparse: true, trim: true, unique: true }),
-    __metadata("design:type", String)
-], StockWarehouseEntity.prototype, "code", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)

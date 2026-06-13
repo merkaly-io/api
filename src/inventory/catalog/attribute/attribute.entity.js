@@ -19,7 +19,7 @@ let CatalogAttributeEntity = class CatalogAttributeEntity extends abstract_entit
 };
 exports.CatalogAttributeEntity = CatalogAttributeEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, unique: true }),
+    (0, mongoose_1.Prop)({ required: true, trim: true }),
     __metadata("design:type", String)
 ], CatalogAttributeEntity.prototype, "name", void 0);
 __decorate([

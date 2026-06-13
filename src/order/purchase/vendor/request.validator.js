@@ -10,8 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdatePurchaseVendorRequestValidator = exports.CreatePurchaseVendorRequestValidator = void 0;
+const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
+const emptyToUndefined = ({ value }) => (value === '' ? undefined : value);
 class CreatePurchaseVendorRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     description;
@@ -50,12 +52,14 @@ __decorate([
     __metadata("design:type", String)
 ], CreatePurchaseVendorRequestValidator.prototype, "description", void 0);
 __decorate([
+    (0, class_transformer_1.Transform)(emptyToUndefined),
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.Length)(0, 254),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreatePurchaseVendorRequestValidator.prototype, "email", void 0);
 __decorate([
+    (0, class_transformer_1.Transform)(emptyToUndefined),
     (0, class_validator_1.IsUrl)(),
     (0, class_validator_1.Length)(0, 2048),
     (0, class_validator_1.IsOptional)(),

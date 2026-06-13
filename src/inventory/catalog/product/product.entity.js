@@ -31,7 +31,6 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     picture;
     pictures;
     variants;
-    stock;
     status;
     balance;
     balances;
@@ -39,7 +38,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
 };
 exports.CatalogProductEntity = CatalogProductEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ trim: true, unique: true, sparse: true }),
+    (0, mongoose_1.Prop)({ trim: true }),
     __metadata("design:type", String)
 ], CatalogProductEntity.prototype, "sku", void 0);
 __decorate([

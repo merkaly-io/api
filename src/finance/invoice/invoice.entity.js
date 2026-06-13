@@ -36,15 +36,15 @@ __decorate([
     __metadata("design:type", String)
 ], FinanceInvoiceEntity.prototype, "orderModel", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, type: Number }),
+    (0, mongoose_1.Prop)({ required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Object)
 ], FinanceInvoiceEntity.prototype, "total", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: 0, type: Number }),
+    (0, mongoose_1.Prop)({ default: 0, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Object)
 ], FinanceInvoiceEntity.prototype, "subtotal", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: 0, type: Number }),
+    (0, mongoose_1.Prop)({ default: 0, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Object)
 ], FinanceInvoiceEntity.prototype, "tax", void 0);
 __decorate([

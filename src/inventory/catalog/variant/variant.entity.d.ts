@@ -19,7 +19,6 @@ export declare class CatalogVariantEntity extends AbstractEntity {
     pictures: AssetEntity[];
     readonly picture: AssetEntity;
     readonly total: number;
-    readonly stock: number;
     readonly status: StockBalanceStatusEnum;
     readonly balance: StockBalanceEntity;
     readonly balances: StockBalanceEntity[];

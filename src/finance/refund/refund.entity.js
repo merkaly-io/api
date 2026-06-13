@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", Object)
 ], FinanceRefundEntity.prototype, "payment", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, type: Number }),
+    (0, mongoose_1.Prop)({ required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Object)
 ], FinanceRefundEntity.prototype, "amount", void 0);
 __decorate([

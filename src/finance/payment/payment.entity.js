@@ -39,11 +39,11 @@ __decorate([
     __metadata("design:type", Object)
 ], FinancePaymentEntity.prototype, "order", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, type: Number, default: 0 }),
+    (0, mongoose_1.Prop)({ required: true, type: Number, default: 0, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
 ], FinancePaymentEntity.prototype, "amount", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number }),
+    (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
 ], FinancePaymentEntity.prototype, "fee", void 0);
 __decorate([

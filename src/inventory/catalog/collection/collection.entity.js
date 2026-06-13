@@ -21,7 +21,7 @@ let CatalogCollectionEntity = class CatalogCollectionEntity extends abstract_ent
 };
 exports.CatalogCollectionEntity = CatalogCollectionEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ length: 32, required: true, trim: true, type: String, unique: true }),
+    (0, mongoose_1.Prop)({ length: 32, required: true, trim: true, type: String }),
     __metadata("design:type", String)
 ], CatalogCollectionEntity.prototype, "name", void 0);
 __decorate([

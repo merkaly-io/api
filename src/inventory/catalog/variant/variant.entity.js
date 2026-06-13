@@ -28,7 +28,6 @@ let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.
     pictures = [];
     picture;
     total;
-    stock;
     status;
     balance;
     balances;

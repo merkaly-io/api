@@ -22,7 +22,7 @@ let CatalogBrandEntity = class CatalogBrandEntity extends abstract_entity_1.Abst
 };
 exports.CatalogBrandEntity = CatalogBrandEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ length: 32, required: true, trim: true, type: String, unique: true }),
+    (0, mongoose_1.Prop)({ length: 32, required: true, trim: true, type: String }),
     __metadata("design:type", String)
 ], CatalogBrandEntity.prototype, "name", void 0);
 __decorate([
