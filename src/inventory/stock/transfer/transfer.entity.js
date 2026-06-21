@@ -28,6 +28,7 @@ let StockTransferEntity = class StockTransferEntity extends abstract_entity_1.Ab
     status;
     type;
     number;
+    capabilities;
     isProcessable;
 };
 exports.StockTransferEntity = StockTransferEntity;
@@ -83,6 +84,21 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], StockTransferEntity.prototype, "type", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            const pending = this.status === transfer_enum_1.TransferStatusEnum.PENDING;
+            return {
+                addItems: pending,
+                cancel: pending,
+                complete: pending && this.isProcessable,
+                deleteItems: pending && this.items.length > 1,
+                editItems: pending,
+            };
+        },
+    }),
+    __metadata("design:type", Object)
+], StockTransferEntity.prototype, "capabilities", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {

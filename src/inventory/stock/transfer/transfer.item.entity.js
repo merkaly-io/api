@@ -21,8 +21,10 @@ let StockTransferItemEntity = class StockTransferItemEntity extends abstract_ent
     product;
     variant;
     quantity;
+    reservedQuantity;
     notes;
     balance;
+    availability;
     isProcessable;
 };
 exports.StockTransferItemEntity = StockTransferItemEntity;
@@ -47,6 +49,10 @@ __decorate([
     __metadata("design:type", Number)
 ], StockTransferItemEntity.prototype, "quantity", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ type: Number, min: 0 }),
+    __metadata("design:type", Number)
+], StockTransferItemEntity.prototype, "reservedQuantity", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ type: String, trim: true }),
     __metadata("design:type", String)
 ], StockTransferItemEntity.prototype, "notes", void 0);
@@ -68,10 +74,37 @@ __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
             const transfer = this.$parent();
+            const remaining = Number(this.get('balance')?.available ?? 0);
             if (transfer.type === transfer_enum_1.TransferTypeEnum.ENTRY) {
-                return true;
+                return {
+                    allocatable: null,
+                    mode: 'incoming',
+                    processable: true,
+                    remaining,
+                    reserved: null,
+                    unreserved: null,
+                };
             }
-            return this.get('balance')?.available >= this.quantity;
+            const legacyReservation = transfer.status === transfer_enum_1.TransferStatusEnum.PENDING ? this.quantity : 0;
+            const reserved = Math.min(Number(this.reservedQuantity ?? legacyReservation), this.quantity);
+            const unreserved = Math.max(this.quantity - reserved, 0);
+            const allocatable = remaining + reserved;
+            return {
+                allocatable,
+                mode: 'reservation',
+                processable: unreserved === 0,
+                remaining,
+                reserved,
+                unreserved,
+            };
+        },
+    }),
+    __metadata("design:type", Object)
+], StockTransferItemEntity.prototype, "availability", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.get('availability')?.processable === true;
         },
     }),
     __metadata("design:type", Boolean)
