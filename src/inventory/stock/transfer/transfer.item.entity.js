@@ -75,7 +75,7 @@ __decorate([
         get: function () {
             const transfer = this.$parent();
             const remaining = Number(this.get('balance')?.available ?? 0);
-            if (transfer.type === transfer_enum_1.TransferTypeEnum.ENTRY) {
+            if (!transfer.origin) {
                 return {
                     allocatable: null,
                     mode: 'incoming',

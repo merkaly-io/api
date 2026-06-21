@@ -3,8 +3,3 @@ export declare enum TransferStatusEnum {
     COMPLETED = "COMPLETED",
     CANCELLED = "CANCELLED"
 }
-export declare enum TransferTypeEnum {
-    ENTRY = "ENTRY",
-    EXIT = "EXIT",
-    INTERNAL = "INTERNAL"
-}

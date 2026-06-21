@@ -26,7 +26,6 @@ let StockTransferEntity = class StockTransferEntity extends abstract_entity_1.Ab
     user;
     history = [];
     status;
-    type;
     number;
     capabilities;
     isProcessable;
@@ -67,23 +66,6 @@ __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.account.users, type: String }),
     __metadata("design:type", user_entity_1.AccountUserEntity)
 ], StockTransferEntity.prototype, "user", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            if (!this.origin && this.destination) {
-                return transfer_enum_1.TransferTypeEnum.ENTRY;
-            }
-            if (this.origin && !this.destination) {
-                return transfer_enum_1.TransferTypeEnum.EXIT;
-            }
-            if (this.origin && this.destination) {
-                return transfer_enum_1.TransferTypeEnum.INTERNAL;
-            }
-            return 'unknown';
-        },
-    }),
-    __metadata("design:type", String)
-], StockTransferEntity.prototype, "type", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
