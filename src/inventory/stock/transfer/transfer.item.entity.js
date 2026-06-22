@@ -85,6 +85,16 @@ __decorate([
                     unreserved: null,
                 };
             }
+            if (transfer.status === transfer_enum_1.TransferStatusEnum.COMPLETED) {
+                return {
+                    allocatable: remaining + this.quantity,
+                    mode: 'reservation',
+                    processable: true,
+                    remaining,
+                    reserved: this.quantity,
+                    unreserved: 0,
+                };
+            }
             const legacyReservation = transfer.status === transfer_enum_1.TransferStatusEnum.PENDING ? this.quantity : 0;
             const reserved = Math.min(Number(this.reservedQuantity ?? legacyReservation), this.quantity);
             const unreserved = Math.max(this.quantity - reserved, 0);

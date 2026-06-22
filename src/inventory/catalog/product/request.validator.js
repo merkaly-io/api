@@ -39,6 +39,7 @@ __decorate([
 class CreateProductRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     sku;
+    gtin;
     description;
     sellPrice;
     buyPrice;
@@ -54,8 +55,10 @@ class CreateProductRequestValidator extends abstract_validator_1.AbstractRequest
         if (!product) {
             return;
         }
+        const identifier = product.variants?.[0]?.identifier;
         this.name = product.name;
-        this.sku = product.sku;
+        this.sku = identifier?.sku ?? product.sku;
+        this.gtin = identifier?.gtin;
         this.description = product.description;
         this.sellPrice = product.sellPrice ?? product.price;
         this.buyPrice = product.buyPrice ?? product.cost;
@@ -91,6 +94,12 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateProductRequestValidator.prototype, "sku", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(0, 50),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateProductRequestValidator.prototype, "gtin", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 1000),

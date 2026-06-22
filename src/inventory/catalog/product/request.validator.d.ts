@@ -14,6 +14,7 @@ export declare class ProductAttributeRequestValidator extends AbstractRequestVal
 export declare class CreateProductRequestValidator extends AbstractRequestValidator {
     name: string;
     sku?: string;
+    gtin?: string;
     description?: string;
     sellPrice?: number;
     buyPrice?: number;
