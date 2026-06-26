@@ -6,6 +6,7 @@ var FinancePaymentStatusEnum;
     FinancePaymentStatusEnum["PENDING"] = "PENDING";
     FinancePaymentStatusEnum["PAID"] = "PAID";
     FinancePaymentStatusEnum["CANCELLED"] = "CANCELLED";
+    FinancePaymentStatusEnum["REFUNDED"] = "REFUNDED";
 })(FinancePaymentStatusEnum || (exports.FinancePaymentStatusEnum = FinancePaymentStatusEnum = {}));
 var FinancePaymentMethodEnum;
 (function (FinancePaymentMethodEnum) {
