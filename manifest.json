@@ -143,7 +143,10 @@
           "sale/enums/transaction.enum",
           "sale/transitions/transaction.transition"
         ]
-      }
+      },
+      "type": [
+        "enums/order.enum"
+      ]
     },
     "@/settings": {
       "organization": [
