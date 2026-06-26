@@ -1,7 +1,8 @@
 export declare enum FinancePaymentStatusEnum {
     PENDING = "PENDING",
     PAID = "PAID",
-    CANCELLED = "CANCELLED"
+    CANCELLED = "CANCELLED",
+    REFUNDED = "REFUNDED"
 }
 export declare enum FinancePaymentMethodEnum {
     CARD = "CARD",

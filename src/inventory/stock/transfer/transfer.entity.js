@@ -44,6 +44,16 @@ __decorate([
         default: null,
         ref: app_schemas_1.AppSchemas.inventory.stock.warehouses,
         type: mongoose_2.Schema.Types.ObjectId,
+        validate: {
+            message: 'Transfer origin and destination must be different warehouses',
+            validator: function (destination) {
+                const isInternalMovement = Boolean(destination) && Boolean(this.origin);
+                if (!isInternalMovement) {
+                    return true;
+                }
+                return String(destination) !== String(this.origin);
+            },
+        },
     }),
     __metadata("design:type", warehouse_entity_1.StockWarehouseEntity)
 ], StockTransferEntity.prototype, "destination", void 0);
