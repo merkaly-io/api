@@ -7,6 +7,7 @@ var SaleTransactionStatusEnum;
     SaleTransactionStatusEnum["IN_PROGRESS"] = "IN_PROGRESS";
     SaleTransactionStatusEnum["COMPLETED"] = "COMPLETED";
     SaleTransactionStatusEnum["CANCELLED"] = "CANCELLED";
+    SaleTransactionStatusEnum["RETURNED"] = "RETURNED";
 })(SaleTransactionStatusEnum || (exports.SaleTransactionStatusEnum = SaleTransactionStatusEnum = {}));
 exports.SALE_PRE_FULFILLMENT_TRANSACTION_STATUSES = [
     SaleTransactionStatusEnum.OPEN,
