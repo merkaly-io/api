@@ -9,6 +9,7 @@
       "infrastructure/validators/address.validator",
       "infrastructure/entities/address.entity",
       "infrastructure/entities/transaction.entity",
+      "infrastructure/entities/item.availability",
       "infrastructure/types/transitionable.interface",
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",

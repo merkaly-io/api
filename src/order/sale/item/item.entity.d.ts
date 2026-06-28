@@ -3,6 +3,8 @@ import { CatalogVariantEntity } from '../../../inventory/catalog/variant/variant
 import { StockBalanceEntity } from '../../../inventory/stock/balance/balance.entity';
 import { StockWarehouseEntity } from '../../../inventory/stock/warehouse/warehouse.entity';
 import { AbstractEntity } from '../../../abstract.entity';
+import type { ItemAvailability } from '../../../item.availability';
+export type { ItemAvailability, ItemAvailabilityMode } from '../../../item.availability';
 interface ItemPricing {
     product: number;
     readonly total: number;
@@ -19,6 +21,6 @@ export declare class ItemEntity extends AbstractEntity {
     readonly 'price.unit': number;
     readonly 'price.total': number;
     readonly balance?: StockBalanceEntity;
+    readonly availability: ItemAvailability;
     readonly isProcessable: boolean;
 }
-export {};

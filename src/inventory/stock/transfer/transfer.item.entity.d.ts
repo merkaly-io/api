@@ -1,15 +1,9 @@
 import { CatalogProductEntity } from '../../catalog/product/product.entity';
 import { CatalogVariantEntity } from '../../catalog/variant/variant.entity';
 import { AbstractEntity } from '../../../abstract.entity';
+import { type ItemAvailability } from '../../../item.availability';
 import type { StockBalanceEntity } from '../balance/balance.entity';
-export interface StockTransferItemAvailability {
-    mode: 'incoming' | 'reservation';
-    remaining: number;
-    allocatable: number | null;
-    reserved: number | null;
-    unreserved: number | null;
-    processable: boolean;
-}
+export type StockTransferItemAvailability = ItemAvailability;
 export declare class StockTransferItemEntity extends AbstractEntity {
     product: CatalogProductEntity;
     variant: CatalogVariantEntity;

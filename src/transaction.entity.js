@@ -17,6 +17,7 @@ const user_entity_1 = require("./account/user/user.entity");
 const payment_entity_1 = require("./finance/payment/payment.entity");
 const warehouse_entity_1 = require("./inventory/stock/warehouse/warehouse.entity");
 const abstract_entity_1 = require("./abstract.entity");
+const OPEN_TRANSACTION_STATUS = 'OPEN';
 class TransactionEntity extends abstract_entity_1.AbstractEntity {
     user;
     warehouse;
@@ -28,6 +29,7 @@ class TransactionEntity extends abstract_entity_1.AbstractEntity {
     pricing;
     payment;
     isProcessable;
+    capabilities;
     history = [];
 }
 exports.TransactionEntity = TransactionEntity;
@@ -91,4 +93,17 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], TransactionEntity.prototype, "isProcessable", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            const editable = this.status === OPEN_TRANSACTION_STATUS;
+            return {
+                addItems: editable,
+                deleteItems: editable && this.items.length > 1,
+                editItems: editable,
+            };
+        },
+    }),
+    __metadata("design:type", Object)
+], TransactionEntity.prototype, "capabilities", void 0);
 //# sourceMappingURL=transaction.entity.js.map

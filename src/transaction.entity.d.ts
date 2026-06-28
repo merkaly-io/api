@@ -5,6 +5,11 @@ import { AbstractEntity } from './abstract.entity';
 import { StatusEntity } from './status.plugin';
 import { ITransitionable } from './transitionable.interface';
 import { ItemEntity } from './order/sale/item/item.entity';
+export interface TransactionCapabilities {
+    addItems: boolean;
+    editItems: boolean;
+    deleteItems: boolean;
+}
 export declare class TransactionEntity<S extends string> extends AbstractEntity implements ITransitionable<S> {
     user: AccountUserEntity;
     warehouse: StockWarehouseEntity;
@@ -20,5 +25,6 @@ export declare class TransactionEntity<S extends string> extends AbstractEntity 
     };
     readonly payment: FinancePaymentEntity;
     readonly isProcessable: boolean;
+    readonly capabilities: TransactionCapabilities;
     readonly history: StatusEntity<S>[];
 }
