@@ -100,11 +100,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const balance = this.get('balance');
-            if (!balance) {
-                return false;
-            }
-            return balance.available >= this.quantity;
+            return this.get('availability')?.processable === true;
         },
     }),
     __metadata("design:type", Boolean)

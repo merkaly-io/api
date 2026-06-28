@@ -9,6 +9,15 @@ interface ItemPricing {
     readonly unit: number;
     variant: number;
 }
+export type ItemAvailabilityMode = 'incoming' | 'reservation';
+export interface ItemAvailability {
+    mode: ItemAvailabilityMode;
+    remaining: number;
+    reserved: number | null;
+    unreserved: number | null;
+    allocatable: number | null;
+    processable: boolean;
+}
 export declare class ItemEntity extends AbstractEntity {
     product?: CatalogProductEntity;
     variant: CatalogVariantEntity;
@@ -19,6 +28,7 @@ export declare class ItemEntity extends AbstractEntity {
     readonly 'price.unit': number;
     readonly 'price.total': number;
     readonly balance?: StockBalanceEntity;
+    readonly availability: ItemAvailability;
     readonly isProcessable: boolean;
 }
 export {};
