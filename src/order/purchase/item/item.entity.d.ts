@@ -3,20 +3,13 @@ import { CatalogVariantEntity } from '../../../inventory/catalog/variant/variant
 import { StockBalanceEntity } from '../../../inventory/stock/balance/balance.entity';
 import { StockWarehouseEntity } from '../../../inventory/stock/warehouse/warehouse.entity';
 import { AbstractEntity } from '../../../abstract.entity';
+import type { ItemAvailability } from '../../../item.availability';
+export type { ItemAvailability, ItemAvailabilityMode } from '../../../item.availability';
 interface ItemPricing {
     product: number;
     readonly total: number;
     readonly unit: number;
     variant: number;
-}
-export type ItemAvailabilityMode = 'incoming' | 'reservation';
-export interface ItemAvailability {
-    mode: ItemAvailabilityMode;
-    remaining: number;
-    reserved: number | null;
-    unreserved: number | null;
-    allocatable: number | null;
-    processable: boolean;
 }
 export declare class ItemEntity extends AbstractEntity {
     product?: CatalogProductEntity;
@@ -31,4 +24,3 @@ export declare class ItemEntity extends AbstractEntity {
     readonly availability: ItemAvailability;
     readonly isProcessable: boolean;
 }
-export {};

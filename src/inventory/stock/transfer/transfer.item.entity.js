@@ -16,6 +16,7 @@ const app_schemas_1 = require("../../../app.schemas");
 const product_entity_1 = require("../../catalog/product/product.entity");
 const variant_entity_1 = require("../../catalog/variant/variant.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
+const item_availability_1 = require("../../../item.availability");
 const transfer_enum_1 = require("./transfer.enum");
 let StockTransferItemEntity = class StockTransferItemEntity extends abstract_entity_1.AbstractEntity {
     product;
@@ -76,37 +77,23 @@ __decorate([
             const transfer = this.$parent();
             const remaining = Number(this.get('balance')?.available ?? 0);
             if (!transfer.origin) {
-                return {
-                    allocatable: null,
+                return (0, item_availability_1.computeItemAvailability)({
                     mode: 'incoming',
-                    processable: true,
+                    quantity: this.quantity,
                     remaining,
                     reserved: null,
-                    unreserved: null,
-                };
-            }
-            if (transfer.status === transfer_enum_1.TransferStatusEnum.COMPLETED) {
-                return {
-                    allocatable: remaining + this.quantity,
-                    mode: 'reservation',
-                    processable: true,
-                    remaining,
-                    reserved: this.quantity,
-                    unreserved: 0,
-                };
+                });
             }
             const legacyReservation = transfer.status === transfer_enum_1.TransferStatusEnum.PENDING ? this.quantity : 0;
-            const reserved = Math.min(Number(this.reservedQuantity ?? legacyReservation), this.quantity);
-            const unreserved = Math.max(this.quantity - reserved, 0);
-            const allocatable = remaining + reserved;
-            return {
-                allocatable,
+            const reserved = transfer.status === transfer_enum_1.TransferStatusEnum.COMPLETED
+                ? this.quantity
+                : Number(this.reservedQuantity ?? legacyReservation);
+            return (0, item_availability_1.computeItemAvailability)({
                 mode: 'reservation',
-                processable: unreserved === 0,
+                quantity: this.quantity,
                 remaining,
                 reserved,
-                unreserved,
-            };
+            });
         },
     }),
     __metadata("design:type", Object)
