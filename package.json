@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/node": "^26.6.1",
     "changelogen": "^0.6.2",
-    "oxlint": "^1.86.0",
+    "oxlint": "^1.87.0",
     "tsx": "^4.23.0",
     "typescript": "^7.0.2"
   },
