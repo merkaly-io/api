@@ -8,7 +8,6 @@ export declare class CreatePurchaseTransactionRequestValidator extends AbstractR
     method: FinancePaymentMethodEnum;
     notes?: string;
     vendor?: string;
-    warehouse?: string;
     payment: FinancePaymentStatusEnum;
     status?: PurchaseTransactionStatusEnum;
     constructor(order?: PurchaseTransactionEntity);

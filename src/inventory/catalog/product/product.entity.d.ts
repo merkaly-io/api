@@ -1,6 +1,4 @@
 import { AssetEntity } from '../../../assets/asset/asset.entity';
-import { StockBalanceEntity } from '../../stock/balance/balance.entity';
-import { StockBalanceStatusEnum } from '../../stock/balance/balance.status.enum';
 import { AbstractEntity } from '../../../abstract.entity';
 import { CatalogAttributeEntity } from '../attribute/attribute.entity';
 import type { CatalogBrandEntity } from '../brand/brand.entity';
@@ -32,8 +30,5 @@ export declare class CatalogProductEntity extends AbstractEntity {
     readonly picture: AssetEntity;
     readonly pictures: AssetEntity[];
     readonly variants: CatalogVariantEntity[];
-    readonly status: StockBalanceStatusEnum;
-    readonly balance: StockBalanceEntity;
-    readonly balances: StockBalanceEntity[];
     readonly 'measure.selected': ConfigurationUnitEntity;
 }

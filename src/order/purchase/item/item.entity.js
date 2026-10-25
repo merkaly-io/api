@@ -16,20 +16,15 @@ const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const product_entity_1 = require("../../../inventory/catalog/product/product.entity");
 const variant_entity_1 = require("../../../inventory/catalog/variant/variant.entity");
-const balance_entity_1 = require("../../../inventory/stock/balance/balance.entity");
-const warehouse_entity_1 = require("../../../inventory/stock/warehouse/warehouse.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
 let ItemEntity = class ItemEntity extends abstract_entity_1.AbstractEntity {
     product;
     variant;
-    warehouse;
     quantity;
     notes;
     price;
     'price.unit';
     'price.total';
-    balance;
-    isProcessable;
 };
 exports.ItemEntity = ItemEntity;
 __decorate([
@@ -45,15 +40,6 @@ __decorate([
     }),
     __metadata("design:type", variant_entity_1.CatalogVariantEntity)
 ], ItemEntity.prototype, "variant", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({
-        default: null,
-        ref: app_schemas_1.AppSchemas.inventory.stock.warehouses,
-        required: true,
-        type: mongoose_2.Schema.Types.ObjectId,
-    }),
-    __metadata("design:type", warehouse_entity_1.StockWarehouseEntity)
-], ItemEntity.prototype, "warehouse", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: Number, min: 1, default: 1 }),
     __metadata("design:type", Number)
@@ -86,25 +72,6 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], ItemEntity.prototype, "price.total", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            const warehouseId = (this.warehouse?._id || this.warehouse).toString();
-            return this.variant.balances?.find((it) => {
-                return (it.warehouse._id || it.warehouse).toString() === warehouseId;
-            });
-        },
-    }),
-    __metadata("design:type", balance_entity_1.StockBalanceEntity)
-], ItemEntity.prototype, "balance", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            return this.get('availability')?.processable === true;
-        },
-    }),
-    __metadata("design:type", Boolean)
-], ItemEntity.prototype, "isProcessable", void 0);
 exports.ItemEntity = ItemEntity = __decorate([
     (0, schema_decorator_1.Schema)({ ...abstract_entity_1.$collection, timestamps: false })
 ], ItemEntity);

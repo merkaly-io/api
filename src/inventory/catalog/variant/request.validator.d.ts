@@ -9,7 +9,6 @@ export declare class CreateVariantRequestValidator extends AbstractRequestValida
     product?: string;
     sku?: string;
     price?: number;
-    minStockLevel?: number;
     options?: VariantOptionRequestValidator[];
     active?: boolean;
     gtin?: string;
