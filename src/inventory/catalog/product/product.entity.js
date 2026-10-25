@@ -17,7 +17,12 @@ const asset_entity_1 = require("../../../assets/asset/asset.entity");
 const balance_entity_1 = require("../../stock/balance/balance.entity");
 const balance_status_enum_1 = require("../../stock/balance/balance.status.enum");
 const abstract_entity_1 = require("../../../abstract.entity");
+const provider_reference_entity_1 = require("../../../provider-reference.entity");
+const content_entity_1 = require("./content.entity");
 let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.AbstractEntity {
+    source;
+    sourceContent;
+    commercialOverrides;
     sku;
     name;
     description;
@@ -37,6 +42,18 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     'measure.selected';
 };
 exports.CatalogProductEntity = CatalogProductEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ _id: false, type: provider_reference_entity_1.ProviderProductReferenceEntity }),
+    __metadata("design:type", provider_reference_entity_1.ProviderProductReferenceEntity)
+], CatalogProductEntity.prototype, "source", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ _id: false, type: content_entity_1.CatalogContentEntity }),
+    __metadata("design:type", content_entity_1.CatalogContentEntity)
+], CatalogProductEntity.prototype, "sourceContent", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ _id: false, type: content_entity_1.CatalogContentEntity }),
+    __metadata("design:type", content_entity_1.CatalogContentEntity)
+], CatalogProductEntity.prototype, "commercialOverrides", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ trim: true }),
     __metadata("design:type", String)

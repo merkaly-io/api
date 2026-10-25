@@ -14,7 +14,10 @@
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
       "infrastructure/abstracts/abstract.validator",
-      "domain/inventory/catalog/enums/relation.status.enum"
+      "domain/inventory/catalog/enums/relation.status.enum",
+      "infrastructure/entities/money.entity",
+      "infrastructure/entities/provider-reference.entity",
+      "infrastructure/entities/order-snapshot.entity"
     ],
     "@/account": {
       "address": [
@@ -75,13 +78,16 @@
         ],
         "product": [
           "catalog/entities/product.entity",
-          "catalog/validators/product/request.validator"
+          "catalog/validators/product/request.validator",
+          "catalog/entities/content.entity"
         ],
         "variant": [
           "catalog/entities/variant.entity",
           "catalog/entities/variant.identifier.entity",
           "catalog/entities/variant.policy.entity",
-          "catalog/validators/variant/request.validator"
+          "catalog/validators/variant/request.validator",
+          "catalog/entities/supplier-offer.entity",
+          "catalog/enums/supplier-availability.enum"
         ]
       },
       "configuration": {
@@ -121,7 +127,10 @@
           "purchase/entities/transaction.entity",
           "purchase/validators/transaction/request.validator",
           "purchase/enums/transaction.enum",
-          "purchase/transitions/transaction.transition"
+          "purchase/transitions/transaction.transition",
+          "purchase/entities/approval.entity",
+          "purchase/entities/sourcing.entity",
+          "purchase/enums/approval.enum"
         ],
         "vendor": [
           "purchase/entities/vendor.entity",
@@ -142,7 +151,9 @@
           "sale/entities/transaction.entity",
           "sale/validators/transaction/request.validator",
           "sale/enums/transaction.enum",
-          "sale/transitions/transaction.transition"
+          "sale/transitions/transaction.transition",
+          "sale/entities/delivery.entity",
+          "sale/enums/delivery.enum"
         ]
       },
       "type": [

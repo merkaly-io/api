@@ -64,6 +64,7 @@ class AppSchemas {
     static get settings() {
         return {
             organizations: 'settings.organizations',
+            providerConnections: 'settings.provider-connections',
         };
     }
 }

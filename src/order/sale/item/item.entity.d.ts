@@ -3,6 +3,7 @@ import { CatalogVariantEntity } from '../../../inventory/catalog/variant/variant
 import { StockBalanceEntity } from '../../../inventory/stock/balance/balance.entity';
 import { StockWarehouseEntity } from '../../../inventory/stock/warehouse/warehouse.entity';
 import { AbstractEntity } from '../../../abstract.entity';
+import { OrderLineSnapshotEntity } from '../../../order-snapshot.entity';
 import type { ItemAvailability } from '../../../item.availability';
 export type { ItemAvailability, ItemAvailabilityMode } from '../../../item.availability';
 interface ItemPricing {
@@ -12,6 +13,7 @@ interface ItemPricing {
     variant: number;
 }
 export declare class ItemEntity extends AbstractEntity {
+    snapshot?: OrderLineSnapshotEntity;
     product?: CatalogProductEntity;
     variant: CatalogVariantEntity;
     warehouse: StockWarehouseEntity;

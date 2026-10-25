@@ -50,5 +50,6 @@ export declare abstract class AppSchemas {
     };
     static get settings(): {
         organizations: string;
+        providerConnections: string;
     };
 }

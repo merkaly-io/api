@@ -16,12 +16,24 @@ const app_schemas_1 = require("../../../app.schemas");
 const item_schema_1 = require("../schemas/item.schema");
 const abstract_entity_1 = require("../../../abstract.entity");
 const transaction_entity_1 = require("../../../transaction.entity");
+const approval_entity_1 = require("./approval.entity");
+const sourcing_entity_1 = require("./sourcing.entity");
 const vendor_entity_1 = require("../vendor/vendor.entity");
 let PurchaseTransactionEntity = class PurchaseTransactionEntity extends transaction_entity_1.TransactionEntity {
+    approval;
+    sourcing;
     vendor;
     items = [];
 };
 exports.PurchaseTransactionEntity = PurchaseTransactionEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ _id: false, type: approval_entity_1.PurchaseApprovalEntity }),
+    __metadata("design:type", approval_entity_1.PurchaseApprovalEntity)
+], PurchaseTransactionEntity.prototype, "approval", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ _id: false, type: sourcing_entity_1.PurchaseSourcingEntity }),
+    __metadata("design:type", sourcing_entity_1.PurchaseSourcingEntity)
+], PurchaseTransactionEntity.prototype, "sourcing", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.order.purchase.vendors, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", vendor_entity_1.PurchaseVendorEntity)

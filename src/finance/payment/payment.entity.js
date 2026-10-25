@@ -19,6 +19,7 @@ let FinancePaymentEntity = class FinancePaymentEntity extends abstract_entity_1.
     target;
     order;
     amount;
+    currency;
     fee;
     method;
     status;
@@ -42,6 +43,10 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number, default: 0, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
 ], FinancePaymentEntity.prototype, "amount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: String, match: /^[A-Z]{3}$/ }),
+    __metadata("design:type", String)
+], FinancePaymentEntity.prototype, "currency", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
