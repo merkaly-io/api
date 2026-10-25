@@ -10,7 +10,6 @@ export declare class FinancePaymentEntity extends AbstractEntity implements ITra
     target: string;
     order: OrderEntity;
     amount: number;
-    currency?: string;
     fee: number;
     method?: FinancePaymentMethodEnum;
     status: FinancePaymentStatusEnum;

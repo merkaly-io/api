@@ -2,18 +2,13 @@ import { AssetEntity } from '../../../assets/asset/asset.entity';
 import { StockBalanceEntity } from '../../stock/balance/balance.entity';
 import { StockBalanceStatusEnum } from '../../stock/balance/balance.status.enum';
 import { AbstractEntity } from '../../../abstract.entity';
-import { ProviderProductReferenceEntity } from '../../../provider-reference.entity';
 import { CatalogAttributeEntity } from '../attribute/attribute.entity';
-import { CatalogContentEntity } from './content.entity';
 import type { CatalogBrandEntity } from '../brand/brand.entity';
 import type { CatalogCategoryEntity } from '../category/category.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
 import type { ConfigurationMeasurementEntity } from '../../configuration/measurement/measurement.entity';
 import type { ConfigurationUnitEntity } from '../../configuration/unit/unit.entity';
 export declare class CatalogProductEntity extends AbstractEntity {
-    source?: ProviderProductReferenceEntity;
-    sourceContent?: CatalogContentEntity;
-    commercialOverrides?: CatalogContentEntity;
     sku?: string;
     name: string;
     description?: string;

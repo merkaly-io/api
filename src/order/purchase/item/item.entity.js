@@ -19,9 +19,7 @@ const variant_entity_1 = require("../../../inventory/catalog/variant/variant.ent
 const balance_entity_1 = require("../../../inventory/stock/balance/balance.entity");
 const warehouse_entity_1 = require("../../../inventory/stock/warehouse/warehouse.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
-const order_snapshot_entity_1 = require("../../../order-snapshot.entity");
 let ItemEntity = class ItemEntity extends abstract_entity_1.AbstractEntity {
-    snapshot;
     product;
     variant;
     warehouse;
@@ -34,10 +32,6 @@ let ItemEntity = class ItemEntity extends abstract_entity_1.AbstractEntity {
     isProcessable;
 };
 exports.ItemEntity = ItemEntity;
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, type: order_snapshot_entity_1.OrderLineSnapshotEntity }),
-    __metadata("design:type", order_snapshot_entity_1.OrderLineSnapshotEntity)
-], ItemEntity.prototype, "snapshot", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.inventory.catalog.products, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", product_entity_1.CatalogProductEntity)

@@ -16,15 +16,9 @@ const app_schemas_1 = require("../../../app.schemas");
 const asset_entity_1 = require("../../../assets/asset/asset.entity");
 const balance_status_enum_1 = require("../../stock/balance/balance.status.enum");
 const abstract_entity_1 = require("../../../abstract.entity");
-const money_entity_1 = require("../../../money.entity");
-const provider_reference_entity_1 = require("../../../provider-reference.entity");
-const supplier_offer_entity_1 = require("./supplier-offer.entity");
 const variant_identifier_entity_1 = require("./variant.identifier.entity");
 const variant_policy_entity_1 = require("./variant.policy.entity");
 let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.AbstractEntity {
-    source;
-    retailPrice;
-    supplierOffer;
     product;
     price;
     policy;
@@ -39,18 +33,6 @@ let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.
     balances;
 };
 exports.CatalogVariantEntity = CatalogVariantEntity;
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, type: provider_reference_entity_1.ProviderSkuReferenceEntity }),
-    __metadata("design:type", provider_reference_entity_1.ProviderSkuReferenceEntity)
-], CatalogVariantEntity.prototype, "source", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, type: money_entity_1.MoneyEntity }),
-    __metadata("design:type", money_entity_1.MoneyEntity)
-], CatalogVariantEntity.prototype, "retailPrice", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, type: supplier_offer_entity_1.SupplierOfferEntity, select: false }),
-    __metadata("design:type", supplier_offer_entity_1.SupplierOfferEntity)
-], CatalogVariantEntity.prototype, "supplierOffer", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.inventory.catalog.products, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)

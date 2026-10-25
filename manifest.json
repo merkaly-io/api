@@ -14,10 +14,7 @@
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
       "infrastructure/abstracts/abstract.validator",
-      "domain/inventory/catalog/enums/relation.status.enum",
-      "infrastructure/entities/money.entity",
-      "infrastructure/entities/provider-reference.entity",
-      "infrastructure/entities/order-snapshot.entity"
+      "domain/inventory/catalog/enums/relation.status.enum"
     ],
     "@/account": {
       "address": [
@@ -78,16 +75,13 @@
         ],
         "product": [
           "catalog/entities/product.entity",
-          "catalog/validators/product/request.validator",
-          "catalog/entities/content.entity"
+          "catalog/validators/product/request.validator"
         ],
         "variant": [
           "catalog/entities/variant.entity",
           "catalog/entities/variant.identifier.entity",
           "catalog/entities/variant.policy.entity",
-          "catalog/validators/variant/request.validator",
-          "catalog/entities/supplier-offer.entity",
-          "catalog/enums/supplier-availability.enum"
+          "catalog/validators/variant/request.validator"
         ]
       },
       "configuration": {
@@ -127,10 +121,7 @@
           "purchase/entities/transaction.entity",
           "purchase/validators/transaction/request.validator",
           "purchase/enums/transaction.enum",
-          "purchase/transitions/transaction.transition",
-          "purchase/entities/approval.entity",
-          "purchase/entities/sourcing.entity",
-          "purchase/enums/approval.enum"
+          "purchase/transitions/transaction.transition"
         ],
         "vendor": [
           "purchase/entities/vendor.entity",
@@ -151,9 +142,7 @@
           "sale/entities/transaction.entity",
           "sale/validators/transaction/request.validator",
           "sale/enums/transaction.enum",
-          "sale/transitions/transaction.transition",
-          "sale/entities/delivery.entity",
-          "sale/enums/delivery.enum"
+          "sale/transitions/transaction.transition"
         ]
       },
       "type": [

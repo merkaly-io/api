@@ -15,25 +15,13 @@ const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const item_schema_1 = require("../schemas/item.schema");
 const abstract_entity_1 = require("../../../abstract.entity");
-const order_snapshot_entity_1 = require("../../../order-snapshot.entity");
 const transaction_entity_1 = require("../../../transaction.entity");
 const customer_entity_1 = require("../customer/customer.entity");
-const delivery_entity_1 = require("./delivery.entity");
 let SaleTransactionEntity = class SaleTransactionEntity extends transaction_entity_1.TransactionEntity {
-    destinationSnapshot;
-    delivery;
     customer;
     items = [];
 };
 exports.SaleTransactionEntity = SaleTransactionEntity;
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, type: order_snapshot_entity_1.OrderDestinationSnapshotEntity }),
-    __metadata("design:type", order_snapshot_entity_1.OrderDestinationSnapshotEntity)
-], SaleTransactionEntity.prototype, "destinationSnapshot", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, type: delivery_entity_1.SaleDeliveryEntity }),
-    __metadata("design:type", delivery_entity_1.SaleDeliveryEntity)
-], SaleTransactionEntity.prototype, "delivery", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.sale.customers, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", customer_entity_1.SaleCustomerEntity)
