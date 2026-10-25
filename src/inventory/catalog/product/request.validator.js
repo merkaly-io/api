@@ -43,7 +43,6 @@ class CreateProductRequestValidator extends abstract_validator_1.AbstractRequest
     description;
     sellPrice;
     buyPrice;
-    minStockLevel;
     measure = { amount: null, kind: null, unit: null };
     pictures = [];
     category;
@@ -62,7 +61,6 @@ class CreateProductRequestValidator extends abstract_validator_1.AbstractRequest
         this.description = product.description;
         this.sellPrice = product.sellPrice ?? product.price;
         this.buyPrice = product.buyPrice ?? product.cost;
-        this.minStockLevel = product.minStockLevel ?? product.policy?.minStock;
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
         this.hashtags = product.hashtags ?? [];
@@ -118,12 +116,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateProductRequestValidator.prototype, "buyPrice", void 0);
-__decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.Min)(0),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreateProductRequestValidator.prototype, "minStockLevel", void 0);
 __decorate([
     (0, class_validator_1.IsObject)(),
     __metadata("design:type", Object)

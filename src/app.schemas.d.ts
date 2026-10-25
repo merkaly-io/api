@@ -26,11 +26,6 @@ export declare abstract class AppSchemas {
         configuration: {
             measurements: string;
         };
-        stock: {
-            balances: string;
-            transfers: string;
-            warehouses: string;
-        };
     };
     static get order(): {
         purchase: {

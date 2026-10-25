@@ -8,7 +8,6 @@ export declare class CreateSaleTransactionRequestValidator extends AbstractReque
     method: FinancePaymentMethodEnum;
     notes?: string;
     customer?: string;
-    warehouse?: string;
     payment: FinancePaymentStatusEnum;
     status?: SaleTransactionStatusEnum;
     constructor(order?: SaleTransactionEntity);

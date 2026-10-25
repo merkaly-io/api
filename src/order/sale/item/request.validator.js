@@ -15,7 +15,6 @@ const abstract_validator_1 = require("../../../abstract.validator");
 class SaleItemRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     product;
     variant;
-    warehouse;
     quantity = 1;
     notes;
     price = 0;
@@ -26,7 +25,6 @@ class SaleItemRequestValidator extends abstract_validator_1.AbstractRequestValid
         }
         this.product = (item.product?._id || item.product);
         this.variant = (item.variant?._id || item.variant);
-        this.warehouse = (item.warehouse?._id || item.warehouse);
         if (item.quantity !== undefined) {
             this.quantity = item.quantity;
         }
@@ -47,11 +45,6 @@ __decorate([
     (0, class_validator_1.IsMongoId)(),
     __metadata("design:type", String)
 ], SaleItemRequestValidator.prototype, "variant", void 0);
-__decorate([
-    (0, class_validator_1.IsMongoId)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], SaleItemRequestValidator.prototype, "warehouse", void 0);
 __decorate([
     (0, class_validator_1.IsPositive)(),
     (0, class_validator_1.IsInt)(),

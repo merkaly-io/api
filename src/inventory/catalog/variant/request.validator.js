@@ -40,7 +40,6 @@ class CreateVariantRequestValidator extends abstract_validator_1.AbstractRequest
     product;
     sku;
     price;
-    minStockLevel;
     options = [];
     active;
     gtin;
@@ -52,7 +51,6 @@ class CreateVariantRequestValidator extends abstract_validator_1.AbstractRequest
         this.product = (variant.product?._id || variant.product);
         this.sku = variant.identifier?.sku;
         this.price = variant.price;
-        this.minStockLevel = variant.policy?.minStock;
         this.active = variant.active;
         this.gtin = variant.identifier?.gtin;
         this.options =
@@ -76,12 +74,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateVariantRequestValidator.prototype, "price", void 0);
-__decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.Min)(0),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreateVariantRequestValidator.prototype, "minStockLevel", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),

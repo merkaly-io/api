@@ -1,11 +1,6 @@
 import { AbstractRequestValidator } from '../../../abstract.validator';
 import type { CatalogProductEntity } from './product.entity';
-type CatalogProductRequestSource = CatalogProductEntity & {
-    minStockLevel?: number;
-    policy?: {
-        minStock?: number;
-    };
-};
+type CatalogProductRequestSource = CatalogProductEntity;
 export declare class ProductAttributeRequestValidator extends AbstractRequestValidator {
     type: string;
     values: string[];
@@ -18,7 +13,6 @@ export declare class CreateProductRequestValidator extends AbstractRequestValida
     description?: string;
     sellPrice?: number;
     buyPrice?: number;
-    minStockLevel?: number;
     measure: {
         amount: any;
         kind: any;

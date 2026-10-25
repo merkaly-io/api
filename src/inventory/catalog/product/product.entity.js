@@ -14,8 +14,6 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const asset_entity_1 = require("../../../assets/asset/asset.entity");
-const balance_entity_1 = require("../../stock/balance/balance.entity");
-const balance_status_enum_1 = require("../../stock/balance/balance.status.enum");
 const abstract_entity_1 = require("../../../abstract.entity");
 let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.AbstractEntity {
     sku;
@@ -31,9 +29,6 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     picture;
     pictures;
     variants;
-    status;
-    balance;
-    balances;
     'measure.selected';
 };
 exports.CatalogProductEntity = CatalogProductEntity;
@@ -152,63 +147,6 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], CatalogProductEntity.prototype, "variants", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            const variants = this.get('variants') ?? [];
-            if (!variants.length) {
-                return balance_status_enum_1.StockBalanceStatusEnum.NOT_CONFIGURED;
-            }
-            const statuses = variants.map((variant) => variant.status);
-            if (statuses.some((status) => status === balance_status_enum_1.StockBalanceStatusEnum.OUT_STOCK)) {
-                return balance_status_enum_1.StockBalanceStatusEnum.OUT_STOCK;
-            }
-            if (statuses.some((status) => status === balance_status_enum_1.StockBalanceStatusEnum.LOW_STOCK)) {
-                return balance_status_enum_1.StockBalanceStatusEnum.LOW_STOCK;
-            }
-            if (statuses.every((status) => status === balance_status_enum_1.StockBalanceStatusEnum.NOT_CONFIGURED)) {
-                return balance_status_enum_1.StockBalanceStatusEnum.NOT_CONFIGURED;
-            }
-            return balance_status_enum_1.StockBalanceStatusEnum.HEALTHY;
-        },
-    }),
-    __metadata("design:type", String)
-], CatalogProductEntity.prototype, "status", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            const balances = this.balances || [];
-            const emptyBalance = {
-                available: 0,
-                expected: 0,
-                incoming: 0,
-                projected: 0,
-                reserved: 0,
-                stock: 0,
-            };
-            return balances.reduce((acc, balance) => {
-                acc.reserved += balance.reserved;
-                acc.stock += balance.stock;
-                acc.incoming += balance.incoming;
-                acc.available += balance.available;
-                acc.expected += balance.expected;
-                acc.projected += balance.projected;
-                return acc;
-            }, emptyBalance);
-        },
-    }),
-    __metadata("design:type", balance_entity_1.StockBalanceEntity)
-], CatalogProductEntity.prototype, "balance", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        options: {
-            foreignField: 'product',
-            localField: '_id',
-            ref: app_schemas_1.AppSchemas.inventory.stock.balances,
-        },
-    }),
-    __metadata("design:type", Array)
-], CatalogProductEntity.prototype, "balances", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {

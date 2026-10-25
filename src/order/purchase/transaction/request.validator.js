@@ -21,7 +21,6 @@ class CreatePurchaseTransactionRequestValidator extends abstract_validator_1.Abs
     method;
     notes;
     vendor;
-    warehouse;
     payment = payment_enum_1.FinancePaymentStatusEnum.PENDING;
     status = transaction_enum_1.PurchaseTransactionStatusEnum.OPEN;
     constructor(order) {
@@ -38,7 +37,6 @@ class CreatePurchaseTransactionRequestValidator extends abstract_validator_1.Abs
         if (order.payment?.status !== undefined) {
             this.payment = order.payment.status;
         }
-        this.warehouse = (order.warehouse?._id || order.warehouse);
         this.items = order.items?.map((it) => new request_validator_1.PurchaseItemRequestValidator(it)) ?? this.items;
     }
     get total() {
@@ -71,11 +69,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreatePurchaseTransactionRequestValidator.prototype, "vendor", void 0);
-__decorate([
-    (0, class_validator_1.IsMongoId)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreatePurchaseTransactionRequestValidator.prototype, "warehouse", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(payment_enum_1.FinancePaymentStatusEnum),
     (0, class_validator_1.IsDefined)(),

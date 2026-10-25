@@ -14,23 +14,17 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const asset_entity_1 = require("../../../assets/asset/asset.entity");
-const balance_status_enum_1 = require("../../stock/balance/balance.status.enum");
 const abstract_entity_1 = require("../../../abstract.entity");
 const variant_identifier_entity_1 = require("./variant.identifier.entity");
-const variant_policy_entity_1 = require("./variant.policy.entity");
 let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.AbstractEntity {
     product;
     price;
-    policy;
     identifier;
     options = [];
     active;
     pictures = [];
     picture;
     total;
-    status;
-    balance;
-    balances;
 };
 exports.CatalogVariantEntity = CatalogVariantEntity;
 __decorate([
@@ -41,10 +35,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: 0, type: Number }),
     __metadata("design:type", Number)
 ], CatalogVariantEntity.prototype, "price", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ _id: false, default: () => new variant_policy_entity_1.VariantPolicyEntity(), type: variant_policy_entity_1.VariantPolicyEntity }),
-    __metadata("design:type", variant_policy_entity_1.VariantPolicyEntity)
-], CatalogVariantEntity.prototype, "policy", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ _id: false, default: () => new variant_identifier_entity_1.VariantIdentifierEntity(), type: variant_identifier_entity_1.VariantIdentifierEntity }),
     __metadata("design:type", variant_identifier_entity_1.VariantIdentifierEntity)
@@ -90,60 +80,6 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], CatalogVariantEntity.prototype, "total", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            const available = Number(this.get('balance')?.available ?? 0);
-            const minStock = Number(this.policy?.minStock);
-            if (!minStock) {
-                return balance_status_enum_1.StockBalanceStatusEnum.NOT_CONFIGURED;
-            }
-            if (available <= 0) {
-                return balance_status_enum_1.StockBalanceStatusEnum.OUT_STOCK;
-            }
-            if (available <= minStock) {
-                return balance_status_enum_1.StockBalanceStatusEnum.LOW_STOCK;
-            }
-            return balance_status_enum_1.StockBalanceStatusEnum.HEALTHY;
-        },
-    }),
-    __metadata("design:type", String)
-], CatalogVariantEntity.prototype, "status", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            const balances = this.balances || [];
-            const emptyBalance = {
-                available: 0,
-                expected: 0,
-                incoming: 0,
-                projected: 0,
-                reserved: 0,
-                stock: 0,
-            };
-            return balances.reduce((acc, balance) => {
-                acc.reserved += balance.reserved;
-                acc.stock += balance.stock;
-                acc.incoming += balance.incoming;
-                acc.available += balance.available;
-                acc.expected += balance.expected;
-                acc.projected += balance.projected;
-                return acc;
-            }, emptyBalance);
-        },
-    }),
-    __metadata("design:type", Function)
-], CatalogVariantEntity.prototype, "balance", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        options: {
-            foreignField: 'variant',
-            localField: '_id',
-            ref: app_schemas_1.AppSchemas.inventory.stock.balances,
-        },
-    }),
-    __metadata("design:type", Array)
-], CatalogVariantEntity.prototype, "balances", void 0);
 exports.CatalogVariantEntity = CatalogVariantEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], CatalogVariantEntity);

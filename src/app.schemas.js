@@ -36,11 +36,6 @@ class AppSchemas {
             configuration: {
                 measurements: 'inventory.configuration.measurements',
             },
-            stock: {
-                balances: 'inventory.stock.balances',
-                transfers: 'inventory.stock.transfers',
-                warehouses: 'inventory.stock.warehouses',
-            },
         };
     }
     static get order() {
