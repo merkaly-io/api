@@ -26,10 +26,8 @@ class AppSchemas {
     static get inventory() {
         return {
             catalog: {
-                attributes: 'inventory.catalog.attributes',
                 brands: 'inventory.catalog.brands',
                 categories: 'inventory.catalog.categories',
-                collections: 'inventory.catalog.collections',
                 products: 'inventory.catalog.products',
                 variants: 'inventory.catalog.variants',
             },

@@ -56,10 +56,6 @@
     },
     "@/inventory": {
       "catalog": {
-        "attribute": [
-          "domain/catalog/entities/attribute.entity",
-          "domain/catalog/validators/attribute/request.validator"
-        ],
         "brand": [
           "domain/catalog/entities/brand.entity",
           "domain/catalog/validators/brand/request.validator"
@@ -68,17 +64,12 @@
           "domain/catalog/entities/category.entity",
           "domain/catalog/validators/category/request.validator"
         ],
-        "collection": [
-          "domain/catalog/entities/collection.entity",
-          "domain/catalog/validators/collection/request.validator"
-        ],
         "product": [
           "domain/catalog/entities/product.entity",
           "domain/catalog/validators/product/request.validator"
         ],
         "variant": [
           "domain/catalog/entities/variant.entity",
-          "domain/catalog/entities/variant.identifier.entity",
           "domain/catalog/validators/variant/request.validator"
         ]
       }
