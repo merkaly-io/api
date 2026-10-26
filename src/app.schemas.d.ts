@@ -8,9 +8,7 @@ export declare abstract class AppSchemas {
         files: string;
     };
     static get finance(): {
-        invoices: string;
         payments: string;
-        refunds: string;
         subscriptions: string;
         taxes: string;
     };

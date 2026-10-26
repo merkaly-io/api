@@ -36,22 +36,11 @@
       ]
     },
     "@/finance": {
-      "invoice": [
-        "entities/invoice.entity",
-        "enums/invoice.enum",
-        "validators/invoice/request.validator"
-      ],
       "payment": [
         "entities/payment.entity",
         "enums/payment.enum",
         "validators/payment/request.validator",
         "transitions/payment.transition"
-      ],
-      "refund": [
-        "entities/refund.entity",
-        "enums/refund.enum",
-        "validators/refund/request.validator",
-        "transitions/refund.transition"
       ]
     },
     "@/inventory": {
@@ -107,10 +96,7 @@
           "sale/enums/transaction.enum",
           "sale/transitions/transaction.transition"
         ]
-      },
-      "type": [
-        "enums/order.enum"
-      ]
+      }
     },
     "@/settings": {
       "organization": [
