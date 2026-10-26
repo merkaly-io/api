@@ -19,8 +19,8 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     sku;
     name;
     description;
-    price;
-    cost;
+    sellPrice;
+    buyPrice;
     category;
     brand;
     hashtags;
@@ -43,24 +43,22 @@ __decorate([
 ], CatalogProductEntity.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
-        alias: 'sellPrice',
         default: 0,
         min: 0,
         type: Number,
         validate: { validator: Number.isInteger },
     }),
     __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "price", void 0);
+], CatalogProductEntity.prototype, "sellPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
-        alias: 'buyPrice',
         default: 0,
         min: 0,
         type: Number,
         validate: { validator: Number.isInteger },
     }),
     __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "cost", void 0);
+], CatalogProductEntity.prototype, "buyPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: null,

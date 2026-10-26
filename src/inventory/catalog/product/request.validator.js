@@ -30,8 +30,8 @@ class CreateProductRequestValidator extends abstract_validator_1.AbstractRequest
         this.name = product.name;
         this.sku = product.sku;
         this.description = product.description;
-        this.sellPrice = product.sellPrice ?? product.price;
-        this.buyPrice = product.buyPrice ?? product.cost;
+        this.sellPrice = product.sellPrice;
+        this.buyPrice = product.buyPrice;
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
         this.hashtags = product.hashtags ?? [];

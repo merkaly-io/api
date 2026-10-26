@@ -14,7 +14,7 @@ const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
 class CreateVariantRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     product;
-    price;
+    sellPrice;
     active;
     constructor(variant) {
         super();
@@ -22,7 +22,7 @@ class CreateVariantRequestValidator extends abstract_validator_1.AbstractRequest
             return;
         }
         this.product = (variant.product?._id || variant.product);
-        this.price = variant.price;
+        this.sellPrice = variant.sellPrice;
         this.active = variant.active;
     }
 }
@@ -36,7 +36,7 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], CreateVariantRequestValidator.prototype, "price", void 0);
+], CreateVariantRequestValidator.prototype, "sellPrice", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),

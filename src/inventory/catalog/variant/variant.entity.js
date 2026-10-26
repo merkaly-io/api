@@ -17,7 +17,7 @@ const asset_entity_1 = require("../../../assets/asset/asset.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
 let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.AbstractEntity {
     product;
-    price;
+    sellPrice;
     active;
     pictures = [];
     picture;
@@ -31,7 +31,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ default: 0, type: Number }),
     __metadata("design:type", Number)
-], CatalogVariantEntity.prototype, "price", void 0);
+], CatalogVariantEntity.prototype, "sellPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: true }),
     __metadata("design:type", Boolean)
@@ -51,7 +51,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.product?._id ? this.get('price') + this.product.sellPrice : this.get('price');
+            return this.product?._id ? this.get('sellPrice') + this.product.sellPrice : this.get('sellPrice');
         },
     }),
     __metadata("design:type", Number)
