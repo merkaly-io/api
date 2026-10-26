@@ -23,13 +23,10 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     cost;
     category;
     brand;
-    attributes;
-    measure;
     hashtags;
     picture;
     pictures;
     variants;
-    'measure.selected';
 };
 exports.CatalogProductEntity = CatalogProductEntity;
 __decorate([
@@ -81,39 +78,6 @@ __decorate([
     __metadata("design:type", Function)
 ], CatalogProductEntity.prototype, "brand", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({
-        _id: false,
-        default: [],
-        type: [
-            {
-                type: {
-                    ref: app_schemas_1.AppSchemas.inventory.catalog.attributes,
-                    required: true,
-                    type: mongoose_2.Schema.Types.ObjectId,
-                },
-                values: { type: [String], default: [] },
-            },
-        ],
-    }),
-    __metadata("design:type", Array)
-], CatalogProductEntity.prototype, "attributes", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({
-        _id: false,
-        default: () => ({}),
-        type: {
-            amount: { default: null, min: 0, type: Number },
-            kind: {
-                default: null,
-                ref: app_schemas_1.AppSchemas.inventory.configuration.measurements,
-                type: mongoose_2.Schema.Types.ObjectId,
-            },
-            unit: { default: null, type: mongoose_2.Schema.Types.ObjectId },
-        },
-    }),
-    __metadata("design:type", Object)
-], CatalogProductEntity.prototype, "measure", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
 ], CatalogProductEntity.prototype, "hashtags", void 0);
@@ -147,20 +111,6 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], CatalogProductEntity.prototype, "variants", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            const measure = this.measure;
-            const units = measure?.kind?.units ?? [];
-            const unitId = measure?.unit;
-            if (!unitId || !Array.isArray(units)) {
-                return null;
-            }
-            return units.find((unit) => unit?._id?.toString() === unitId.toString()) ?? null;
-        },
-    }),
-    __metadata("design:type", Function)
-], CatalogProductEntity.prototype, "measure.selected", void 0);
 exports.CatalogProductEntity = CatalogProductEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], CatalogProductEntity);

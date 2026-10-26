@@ -9,74 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateProductRequestValidator = exports.CreateProductRequestValidator = exports.ProductAttributeRequestValidator = void 0;
-const class_transformer_1 = require("class-transformer");
+exports.UpdateProductRequestValidator = exports.CreateProductRequestValidator = void 0;
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
-class ProductAttributeRequestValidator extends abstract_validator_1.AbstractRequestValidator {
-    type;
-    values = [];
-    constructor(attribute) {
-        super();
-        if (!attribute) {
-            return;
-        }
-        this.type = (attribute.type?._id || attribute.type);
-        this.values = attribute.values ?? [];
-    }
-}
-exports.ProductAttributeRequestValidator = ProductAttributeRequestValidator;
-__decorate([
-    (0, class_validator_1.IsMongoId)(),
-    __metadata("design:type", String)
-], ProductAttributeRequestValidator.prototype, "type", void 0);
-__decorate([
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsString)({ each: true }),
-    (0, class_validator_1.Length)(0, 100, { each: true }),
-    __metadata("design:type", Array)
-], ProductAttributeRequestValidator.prototype, "values", void 0);
 class CreateProductRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     sku;
-    gtin;
     description;
     sellPrice;
     buyPrice;
-    measure = { amount: null, kind: null, unit: null };
     pictures = [];
     category;
     brand;
     hashtags = [];
-    attributes = [];
     constructor(product) {
         super();
         if (!product) {
             return;
         }
-        const identifier = product.variants?.[0]?.identifier;
         this.name = product.name;
-        this.sku = identifier?.sku ?? product.sku;
-        this.gtin = identifier?.gtin;
+        this.sku = product.sku;
         this.description = product.description;
         this.sellPrice = product.sellPrice ?? product.price;
         this.buyPrice = product.buyPrice ?? product.cost;
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
         this.hashtags = product.hashtags ?? [];
-        if (product.measure !== undefined) {
-            const measureUnit = product.measure?.unit;
-            this.measure = {
-                amount: product.measure?.amount ?? null,
-                kind: (product.measure?.kind?._id || product.measure?.kind),
-                unit: (measureUnit?._id || measureUnit),
-            };
-        }
         this.pictures =
             product.pictures?.map((picture) => (picture?._id || picture)) ?? this.pictures;
-        this.attributes =
-            product.attributes?.map((attribute) => new ProductAttributeRequestValidator(attribute)) ??
-                this.attributes;
     }
 }
 exports.CreateProductRequestValidator = CreateProductRequestValidator;
@@ -92,12 +52,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateProductRequestValidator.prototype, "sku", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(0, 50),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateProductRequestValidator.prototype, "gtin", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 1000),
@@ -116,10 +70,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], CreateProductRequestValidator.prototype, "buyPrice", void 0);
-__decorate([
-    (0, class_validator_1.IsObject)(),
-    __metadata("design:type", Object)
-], CreateProductRequestValidator.prototype, "measure", void 0);
 __decorate([
     (0, class_validator_1.IsMongoId)({ each: true }),
     (0, class_validator_1.IsArray)(),
@@ -143,13 +93,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
 ], CreateProductRequestValidator.prototype, "hashtags", void 0);
-__decorate([
-    (0, class_validator_1.IsArray)(),
-    (0, class_transformer_1.Type)(() => ProductAttributeRequestValidator),
-    (0, class_validator_1.ValidateNested)({ each: true }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
-], CreateProductRequestValidator.prototype, "attributes", void 0);
 class UpdateProductRequestValidator extends CreateProductRequestValidator {
 }
 exports.UpdateProductRequestValidator = UpdateProductRequestValidator;
@@ -157,8 +100,4 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateProductRequestValidator.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
-], UpdateProductRequestValidator.prototype, "measure", void 0);
 //# sourceMappingURL=request.validator.js.map

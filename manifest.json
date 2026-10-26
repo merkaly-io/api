@@ -13,7 +13,7 @@
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
       "infrastructure/abstracts/abstract.validator",
-      "domain/inventory/catalog/enums/relation.status.enum"
+      "domain/catalog/enums/relation.status.enum"
     ],
     "@/account": {
       "address": [
@@ -56,39 +56,21 @@
     },
     "@/inventory": {
       "catalog": {
-        "attribute": [
-          "catalog/entities/attribute.entity",
-          "catalog/validators/attribute/request.validator"
-        ],
         "brand": [
-          "catalog/entities/brand.entity",
-          "catalog/validators/brand/request.validator"
+          "domain/catalog/entities/brand.entity",
+          "domain/catalog/validators/brand/request.validator"
         ],
         "category": [
-          "catalog/entities/category.entity",
-          "catalog/validators/category/request.validator"
-        ],
-        "collection": [
-          "catalog/entities/collection.entity",
-          "catalog/validators/collection/request.validator"
+          "domain/catalog/entities/category.entity",
+          "domain/catalog/validators/category/request.validator"
         ],
         "product": [
-          "catalog/entities/product.entity",
-          "catalog/validators/product/request.validator"
+          "domain/catalog/entities/product.entity",
+          "domain/catalog/validators/product/request.validator"
         ],
         "variant": [
-          "catalog/entities/variant.entity",
-          "catalog/entities/variant.identifier.entity",
-          "catalog/validators/variant/request.validator"
-        ]
-      },
-      "configuration": {
-        "measurement": [
-          "configuration/entities/measurement.entity",
-          "configuration/validators/measurement/request.validator"
-        ],
-        "unit": [
-          "configuration/entities/unit.entity"
+          "domain/catalog/entities/variant.entity",
+          "domain/catalog/validators/variant/request.validator"
         ]
       }
     },

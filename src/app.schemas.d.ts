@@ -16,15 +16,10 @@ export declare abstract class AppSchemas {
     };
     static get inventory(): {
         catalog: {
-            attributes: string;
             brands: string;
             categories: string;
-            collections: string;
             products: string;
             variants: string;
-        };
-        configuration: {
-            measurements: string;
         };
     };
     static get order(): {
