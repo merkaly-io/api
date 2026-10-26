@@ -23,9 +23,6 @@ export declare abstract class AppSchemas {
             products: string;
             variants: string;
         };
-        configuration: {
-            measurements: string;
-        };
     };
     static get order(): {
         purchase: {

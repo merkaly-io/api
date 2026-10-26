@@ -13,11 +13,6 @@ export declare class CreateProductRequestValidator extends AbstractRequestValida
     description?: string;
     sellPrice?: number;
     buyPrice?: number;
-    measure: {
-        amount: any;
-        kind: any;
-        unit: any;
-    };
     pictures?: string[];
     category?: string;
     brand?: string;
@@ -27,6 +22,5 @@ export declare class CreateProductRequestValidator extends AbstractRequestValida
 }
 export declare class UpdateProductRequestValidator extends CreateProductRequestValidator {
     name: string;
-    measure: CreateProductRequestValidator['measure'];
 }
 export {};

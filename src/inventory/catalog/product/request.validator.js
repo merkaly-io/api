@@ -43,7 +43,6 @@ class CreateProductRequestValidator extends abstract_validator_1.AbstractRequest
     description;
     sellPrice;
     buyPrice;
-    measure = { amount: null, kind: null, unit: null };
     pictures = [];
     category;
     brand;
@@ -64,14 +63,6 @@ class CreateProductRequestValidator extends abstract_validator_1.AbstractRequest
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
         this.hashtags = product.hashtags ?? [];
-        if (product.measure !== undefined) {
-            const measureUnit = product.measure?.unit;
-            this.measure = {
-                amount: product.measure?.amount ?? null,
-                kind: (product.measure?.kind?._id || product.measure?.kind),
-                unit: (measureUnit?._id || measureUnit),
-            };
-        }
         this.pictures =
             product.pictures?.map((picture) => (picture?._id || picture)) ?? this.pictures;
         this.attributes =
@@ -117,10 +108,6 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateProductRequestValidator.prototype, "buyPrice", void 0);
 __decorate([
-    (0, class_validator_1.IsObject)(),
-    __metadata("design:type", Object)
-], CreateProductRequestValidator.prototype, "measure", void 0);
-__decorate([
     (0, class_validator_1.IsMongoId)({ each: true }),
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
@@ -157,8 +144,4 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateProductRequestValidator.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
-], UpdateProductRequestValidator.prototype, "measure", void 0);
 //# sourceMappingURL=request.validator.js.map

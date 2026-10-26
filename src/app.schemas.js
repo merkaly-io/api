@@ -33,9 +33,6 @@ class AppSchemas {
                 products: 'inventory.catalog.products',
                 variants: 'inventory.catalog.variants',
             },
-            configuration: {
-                measurements: 'inventory.configuration.measurements',
-            },
         };
     }
     static get order() {

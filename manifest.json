@@ -81,15 +81,6 @@
           "domain/catalog/entities/variant.identifier.entity",
           "domain/catalog/validators/variant/request.validator"
         ]
-      },
-      "configuration": {
-        "measurement": [
-          "domain/catalog/configuration/entities/measurement.entity",
-          "domain/catalog/configuration/validators/measurement/request.validator"
-        ],
-        "unit": [
-          "domain/catalog/configuration/entities/unit.entity"
-        ]
       }
     },
     "@/order": {
