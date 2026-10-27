@@ -21,6 +21,7 @@ let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.
     retailPrice;
     active;
     pictures = [];
+    source;
     picture;
 };
 exports.CatalogVariantEntity = CatalogVariantEntity;
@@ -48,6 +49,14 @@ __decorate([
     (0, mongoose_1.Prop)({ default: [], ref: app_schemas_1.AppSchemas.assets.files, type: [{ type: mongoose_2.Schema.Types.ObjectId }] }),
     __metadata("design:type", Array)
 ], CatalogVariantEntity.prototype, "pictures", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        _id: false,
+        default: null,
+        type: { provider: String, productId: String, skuId: String, skuAttr: String },
+    }),
+    __metadata("design:type", Object)
+], CatalogVariantEntity.prototype, "source", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {

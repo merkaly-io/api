@@ -97,6 +97,13 @@
         "enums/organization.enum",
         "validators/organization/request.validator"
       ]
+    },
+    "@/supplier": {
+      "product": [
+        "enums/provider.enum",
+        "types/product.preview",
+        "validators/product/request.validator"
+      ]
     }
   }
 }
