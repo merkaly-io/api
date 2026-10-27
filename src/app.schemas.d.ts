@@ -1,7 +1,5 @@
 export declare abstract class AppSchemas {
     static get account(): {
-        addresses: string;
-        payments: string;
         users: string;
     };
     static get assets(): {
