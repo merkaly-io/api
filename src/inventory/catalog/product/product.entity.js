@@ -19,8 +19,9 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     sku;
     name;
     description;
-    sellPrice;
-    buyPrice;
+    variant;
+    supplierPrice;
+    retailPrice;
     category;
     brand;
     hashtags;
@@ -43,22 +44,28 @@ __decorate([
 ], CatalogProductEntity.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
-        default: 0,
-        min: 0,
-        type: Number,
-        validate: { validator: Number.isInteger },
+        required: true,
+        ref: app_schemas_1.AppSchemas.inventory.catalog.variants,
+        type: mongoose_2.Schema.Types.ObjectId,
     }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "sellPrice", void 0);
+    __metadata("design:type", Function)
+], CatalogProductEntity.prototype, "variant", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({
-        default: 0,
-        min: 0,
-        type: Number,
-        validate: { validator: Number.isInteger },
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.variant?.supplierPrice;
+        },
     }),
     __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "buyPrice", void 0);
+], CatalogProductEntity.prototype, "supplierPrice", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.variant?.retailPrice;
+        },
+    }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "retailPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: null,
@@ -82,7 +89,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.pictures?.at(0);
+            return this.variant?.picture;
         },
     }),
     __metadata("design:type", asset_entity_1.AssetEntity)
@@ -90,11 +97,17 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const variants = this.get('variants') ?? [];
-            return variants.reduce((pool, variant) => {
-                pool.push(...variant.pictures);
-                return pool;
-            }, []);
+            const pictures = [this.variant, ...(this.variants ?? [])]
+                .flatMap((variant) => variant?.pictures ?? [])
+                .filter((picture) => picture && !(picture instanceof mongoose_2.Types.ObjectId));
+            const seen = new Set();
+            return pictures.filter((picture) => {
+                const id = String(picture._id);
+                if (seen.has(id))
+                    return false;
+                seen.add(id);
+                return true;
+            });
         },
     }),
     __metadata("design:type", Array)

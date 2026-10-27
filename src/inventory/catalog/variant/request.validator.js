@@ -9,40 +9,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateVariantRequestValidator = exports.CreateVariantRequestValidator = void 0;
+exports.CreateVariantRequestValidator = exports.UpdateVariantRequestValidator = void 0;
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
-class CreateVariantRequestValidator extends abstract_validator_1.AbstractRequestValidator {
-    product;
-    sellPrice;
+class UpdateVariantRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+    retailPrice;
+    pictures;
     active;
     constructor(variant) {
         super();
-        if (!variant) {
+        if (!variant)
             return;
-        }
-        this.product = (variant.product?._id || variant.product);
-        this.sellPrice = variant.sellPrice;
+        this.retailPrice = variant.retailPrice;
         this.active = variant.active;
+        this.pictures = variant.pictures?.map((picture) => String(picture._id ?? picture));
     }
 }
-exports.CreateVariantRequestValidator = CreateVariantRequestValidator;
+exports.UpdateVariantRequestValidator = UpdateVariantRequestValidator;
 __decorate([
-    (0, class_validator_1.IsMongoId)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], CreateVariantRequestValidator.prototype, "product", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    (0, class_validator_1.Max)(Number.MAX_SAFE_INTEGER),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], CreateVariantRequestValidator.prototype, "sellPrice", void 0);
+], UpdateVariantRequestValidator.prototype, "retailPrice", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)({ each: true }),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Array)
+], UpdateVariantRequestValidator.prototype, "pictures", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
-], CreateVariantRequestValidator.prototype, "active", void 0);
-class UpdateVariantRequestValidator extends CreateVariantRequestValidator {
+], UpdateVariantRequestValidator.prototype, "active", void 0);
+class CreateVariantRequestValidator extends UpdateVariantRequestValidator {
+    supplierPrice;
+    constructor(variant) {
+        super(variant);
+        if (variant)
+            this.supplierPrice = variant.supplierPrice;
+    }
 }
-exports.UpdateVariantRequestValidator = UpdateVariantRequestValidator;
+exports.CreateVariantRequestValidator = CreateVariantRequestValidator;
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    (0, class_validator_1.Max)(Number.MAX_SAFE_INTEGER),
+    __metadata("design:type", Number)
+], CreateVariantRequestValidator.prototype, "supplierPrice", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    (0, class_validator_1.Max)(Number.MAX_SAFE_INTEGER),
+    __metadata("design:type", Number)
+], CreateVariantRequestValidator.prototype, "retailPrice", void 0);
 //# sourceMappingURL=request.validator.js.map

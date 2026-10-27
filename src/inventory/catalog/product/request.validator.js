@@ -9,95 +9,105 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateProductRequestValidator = exports.CreateProductRequestValidator = void 0;
+exports.CreateProductRequestValidator = exports.UpdateProductRequestValidator = void 0;
+const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
-class CreateProductRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+const request_validator_1 = require("../variant/request.validator");
+class ProductMetadataRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     sku;
     description;
-    sellPrice;
-    buyPrice;
-    pictures = [];
     category;
     brand;
-    hashtags = [];
+    hashtags;
     constructor(product) {
         super();
-        if (!product) {
+        if (!product)
             return;
-        }
         this.name = product.name;
         this.sku = product.sku;
         this.description = product.description;
-        this.sellPrice = product.sellPrice;
-        this.buyPrice = product.buyPrice;
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
         this.hashtags = product.hashtags ?? [];
-        this.pictures =
-            product.pictures?.map((picture) => (picture?._id || picture)) ?? this.pictures;
     }
 }
-exports.CreateProductRequestValidator = CreateProductRequestValidator;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.Length)(0, 100),
     __metadata("design:type", String)
-], CreateProductRequestValidator.prototype, "name", void 0);
+], ProductMetadataRequestValidator.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 50),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateProductRequestValidator.prototype, "sku", void 0);
+], ProductMetadataRequestValidator.prototype, "sku", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 1000),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateProductRequestValidator.prototype, "description", void 0);
-__decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.Min)(0),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreateProductRequestValidator.prototype, "sellPrice", void 0);
-__decorate([
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.Min)(0),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
-], CreateProductRequestValidator.prototype, "buyPrice", void 0);
-__decorate([
-    (0, class_validator_1.IsMongoId)({ each: true }),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
-], CreateProductRequestValidator.prototype, "pictures", void 0);
+], ProductMetadataRequestValidator.prototype, "description", void 0);
 __decorate([
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateProductRequestValidator.prototype, "category", void 0);
+], ProductMetadataRequestValidator.prototype, "category", void 0);
 __decorate([
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateProductRequestValidator.prototype, "brand", void 0);
+], ProductMetadataRequestValidator.prototype, "brand", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsString)({ each: true }),
     (0, class_validator_1.Length)(0, 50, { each: true }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
-], CreateProductRequestValidator.prototype, "hashtags", void 0);
-class UpdateProductRequestValidator extends CreateProductRequestValidator {
+], ProductMetadataRequestValidator.prototype, "hashtags", void 0);
+class UpdateProductVariantRequestValidator extends request_validator_1.UpdateVariantRequestValidator {
+    _id;
+    constructor(variant) {
+        super(variant);
+        if (variant)
+            this._id = String(variant._id ?? variant);
+    }
+}
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateProductVariantRequestValidator.prototype, "_id", void 0);
+class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
+    variant;
+    constructor(product) {
+        super(product);
+        if (product?.variant)
+            this.variant = new UpdateProductVariantRequestValidator(product.variant);
+    }
 }
 exports.UpdateProductRequestValidator = UpdateProductRequestValidator;
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateProductRequestValidator.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.ValidateNested)(),
+    (0, class_transformer_1.Type)(() => UpdateProductVariantRequestValidator),
+    __metadata("design:type", UpdateProductVariantRequestValidator)
+], UpdateProductRequestValidator.prototype, "variant", void 0);
+class CreateProductRequestValidator extends ProductMetadataRequestValidator {
+    variant;
+}
+exports.CreateProductRequestValidator = CreateProductRequestValidator;
+__decorate([
+    (0, class_validator_1.IsDefined)(),
+    (0, class_validator_1.ValidateNested)(),
+    (0, class_transformer_1.Type)(() => request_validator_1.CreateVariantRequestValidator),
+    __metadata("design:type", request_validator_1.CreateVariantRequestValidator)
+], CreateProductRequestValidator.prototype, "variant", void 0);
 //# sourceMappingURL=request.validator.js.map

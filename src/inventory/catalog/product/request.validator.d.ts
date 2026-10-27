@@ -1,19 +1,26 @@
 import { AbstractRequestValidator } from '../../../abstract.validator';
+import { CreateVariantRequestValidator, UpdateVariantRequestValidator } from '../variant/request.validator';
 import type { CatalogProductEntity } from './product.entity';
-type CatalogProductRequestSource = CatalogProductEntity;
-export declare class CreateProductRequestValidator extends AbstractRequestValidator {
+import type { CatalogVariantEntity } from '../variant/variant.entity';
+declare class ProductMetadataRequestValidator extends AbstractRequestValidator {
     name: string;
     sku?: string;
     description?: string;
-    sellPrice?: number;
-    buyPrice?: number;
-    pictures?: string[];
     category?: string;
     brand?: string;
-    hashtags: string[];
-    constructor(product?: CatalogProductRequestSource);
+    hashtags?: string[];
+    constructor(product?: CatalogProductEntity);
 }
-export declare class UpdateProductRequestValidator extends CreateProductRequestValidator {
+declare class UpdateProductVariantRequestValidator extends UpdateVariantRequestValidator {
+    _id?: string;
+    constructor(variant?: CatalogVariantEntity);
+}
+export declare class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     name: string;
+    variant?: UpdateProductVariantRequestValidator;
+    constructor(product?: CatalogProductEntity);
+}
+export declare class CreateProductRequestValidator extends ProductMetadataRequestValidator {
+    variant: CreateVariantRequestValidator;
 }
 export {};
