@@ -1,14 +1,14 @@
-import type { SupplierProviderEnum } from './provider.enum';
+import type { SupplierProviderEnum } from '../source/provider.enum';
 export interface SupplierVariantPreview {
-    skuId: string;
-    skuAttr: string;
+    externalVariantId: string;
+    name: string;
     supplierPrice: number;
     stock: number;
     picture?: string;
 }
 export interface SupplierProductPreview {
     provider: SupplierProviderEnum;
-    productId: string;
+    externalProductId: string;
     name: string;
     description: string;
     pictures: string[];
