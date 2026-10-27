@@ -16,14 +16,6 @@
       "domain/catalog/enums/relation.status.enum"
     ],
     "@/account": {
-      "address": [
-        "entities/address.entity",
-        "validators/address/request.validator"
-      ],
-      "payment": [
-        "entities/payment.entity",
-        "validators/payment/request.validator"
-      ],
       "user": [
         "entities/user.entity",
         "validators/user/request.validator"

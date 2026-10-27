@@ -4,8 +4,6 @@ exports.AppSchemas = void 0;
 class AppSchemas {
     static get account() {
         return {
-            addresses: 'account.addresses',
-            payments: 'account.payments',
             users: 'account.users',
         };
     }
