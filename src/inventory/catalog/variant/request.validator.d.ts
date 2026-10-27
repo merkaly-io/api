@@ -1,10 +1,13 @@
 import { AbstractRequestValidator } from '../../../abstract.validator';
 import type { CatalogVariantEntity } from './variant.entity';
-export declare class CreateVariantRequestValidator extends AbstractRequestValidator {
-    product?: string;
-    sellPrice?: number;
+export declare class UpdateVariantRequestValidator extends AbstractRequestValidator {
+    retailPrice?: number;
+    pictures?: string[];
     active?: boolean;
     constructor(variant?: CatalogVariantEntity);
 }
-export declare class UpdateVariantRequestValidator extends CreateVariantRequestValidator {
+export declare class CreateVariantRequestValidator extends UpdateVariantRequestValidator {
+    supplierPrice: number;
+    retailPrice: number;
+    constructor(variant?: CatalogVariantEntity);
 }

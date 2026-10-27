@@ -2,10 +2,10 @@ import { AssetEntity } from '../../../assets/asset/asset.entity';
 import { AbstractEntity } from '../../../abstract.entity';
 import type { CatalogProductEntity } from '../product/product.entity';
 export declare class CatalogVariantEntity extends AbstractEntity {
-    product?: CatalogProductEntity;
-    sellPrice: number;
+    product: CatalogProductEntity;
+    supplierPrice: number;
+    retailPrice: number;
     active: boolean;
     pictures: AssetEntity[];
     readonly picture: AssetEntity;
-    readonly total: number;
 }

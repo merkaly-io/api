@@ -17,21 +17,29 @@ const asset_entity_1 = require("../../../assets/asset/asset.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
 let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.AbstractEntity {
     product;
-    sellPrice;
+    supplierPrice;
+    retailPrice;
     active;
     pictures = [];
     picture;
-    total;
 };
 exports.CatalogVariantEntity = CatalogVariantEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.inventory.catalog.products, type: mongoose_2.Schema.Types.ObjectId }),
+    (0, mongoose_1.Prop)({
+        required: true,
+        ref: app_schemas_1.AppSchemas.inventory.catalog.products,
+        type: mongoose_2.Schema.Types.ObjectId,
+    }),
     __metadata("design:type", Function)
 ], CatalogVariantEntity.prototype, "product", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: 0, type: Number }),
+    (0, mongoose_1.Prop)({ required: true, min: 0, type: Number, validate: { validator: Number.isSafeInteger } }),
     __metadata("design:type", Number)
-], CatalogVariantEntity.prototype, "sellPrice", void 0);
+], CatalogVariantEntity.prototype, "supplierPrice", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, min: 0, type: Number, validate: { validator: Number.isSafeInteger } }),
+    __metadata("design:type", Number)
+], CatalogVariantEntity.prototype, "retailPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: true }),
     __metadata("design:type", Boolean)
@@ -48,14 +56,6 @@ __decorate([
     }),
     __metadata("design:type", asset_entity_1.AssetEntity)
 ], CatalogVariantEntity.prototype, "picture", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            return this.product?._id ? this.get('sellPrice') + this.product.sellPrice : this.get('sellPrice');
-        },
-    }),
-    __metadata("design:type", Number)
-], CatalogVariantEntity.prototype, "total", void 0);
 exports.CatalogVariantEntity = CatalogVariantEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], CatalogVariantEntity);

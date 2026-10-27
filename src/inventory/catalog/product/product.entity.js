@@ -19,8 +19,9 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     sku;
     name;
     description;
-    sellPrice;
-    buyPrice;
+    master;
+    supplierPrice;
+    retailPrice;
     category;
     brand;
     hashtags;
@@ -43,22 +44,28 @@ __decorate([
 ], CatalogProductEntity.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
-        default: 0,
-        min: 0,
-        type: Number,
-        validate: { validator: Number.isInteger },
+        required: true,
+        ref: app_schemas_1.AppSchemas.inventory.catalog.variants,
+        type: mongoose_2.Schema.Types.ObjectId,
     }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "sellPrice", void 0);
+    __metadata("design:type", Function)
+], CatalogProductEntity.prototype, "master", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({
-        default: 0,
-        min: 0,
-        type: Number,
-        validate: { validator: Number.isInteger },
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.master?.supplierPrice;
+        },
     }),
     __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "buyPrice", void 0);
+], CatalogProductEntity.prototype, "supplierPrice", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.master?.retailPrice;
+        },
+    }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "retailPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: null,
@@ -82,7 +89,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.pictures?.at(0);
+            return this.master?.picture;
         },
     }),
     __metadata("design:type", asset_entity_1.AssetEntity)
@@ -90,11 +97,16 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const variants = this.get('variants') ?? [];
-            return variants.reduce((pool, variant) => {
-                pool.push(...variant.pictures);
-                return pool;
-            }, []);
+            const variants = [this.master, ...(this.variants ?? [])];
+            const pictures = new Map();
+            for (const variant of variants) {
+                for (const picture of variant?.pictures ?? []) {
+                    const id = String(picture._id ?? picture);
+                    if (!pictures.has(id))
+                        pictures.set(id, picture);
+                }
+            }
+            return [...pictures.values()];
         },
     }),
     __metadata("design:type", Array)
