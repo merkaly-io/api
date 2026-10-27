@@ -34,6 +34,9 @@ export declare abstract class AppSchemas {
             transactions: string;
         };
     };
+    static get supplier(): {
+        sources: string;
+    };
     static get settings(): {
         organizations: string;
     };
