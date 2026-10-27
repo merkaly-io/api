@@ -68,13 +68,25 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
 ], ProductMetadataRequestValidator.prototype, "hashtags", void 0);
+class UpdateProductVariantRequestValidator extends request_validator_1.UpdateVariantRequestValidator {
+    _id;
+    constructor(variant) {
+        super(variant);
+        if (variant)
+            this._id = String(variant._id ?? variant);
+    }
+}
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateProductVariantRequestValidator.prototype, "_id", void 0);
 class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
-    master;
-    masterVariant;
+    variant;
     constructor(product) {
         super(product);
-        if (product?.master)
-            this.master = String(product.master._id ?? product.master);
+        if (product?.variant)
+            this.variant = new UpdateProductVariantRequestValidator(product.variant);
     }
 }
 exports.UpdateProductRequestValidator = UpdateProductRequestValidator;
@@ -83,18 +95,13 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateProductRequestValidator.prototype, "name", void 0);
 __decorate([
-    (0, class_validator_1.IsMongoId)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], UpdateProductRequestValidator.prototype, "master", void 0);
-__decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.ValidateNested)(),
-    (0, class_transformer_1.Type)(() => request_validator_1.UpdateVariantRequestValidator),
-    __metadata("design:type", request_validator_1.UpdateVariantRequestValidator)
-], UpdateProductRequestValidator.prototype, "masterVariant", void 0);
+    (0, class_transformer_1.Type)(() => UpdateProductVariantRequestValidator),
+    __metadata("design:type", UpdateProductVariantRequestValidator)
+], UpdateProductRequestValidator.prototype, "variant", void 0);
 class CreateProductRequestValidator extends ProductMetadataRequestValidator {
-    masterVariant;
+    variant;
 }
 exports.CreateProductRequestValidator = CreateProductRequestValidator;
 __decorate([
@@ -102,5 +109,5 @@ __decorate([
     (0, class_validator_1.ValidateNested)(),
     (0, class_transformer_1.Type)(() => request_validator_1.CreateVariantRequestValidator),
     __metadata("design:type", request_validator_1.CreateVariantRequestValidator)
-], CreateProductRequestValidator.prototype, "masterVariant", void 0);
+], CreateProductRequestValidator.prototype, "variant", void 0);
 //# sourceMappingURL=request.validator.js.map

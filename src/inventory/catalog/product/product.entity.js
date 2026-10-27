@@ -19,7 +19,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     sku;
     name;
     description;
-    master;
+    variant;
     supplierPrice;
     retailPrice;
     category;
@@ -49,11 +49,11 @@ __decorate([
         type: mongoose_2.Schema.Types.ObjectId,
     }),
     __metadata("design:type", Function)
-], CatalogProductEntity.prototype, "master", void 0);
+], CatalogProductEntity.prototype, "variant", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.master?.supplierPrice;
+            return this.variant?.supplierPrice;
         },
     }),
     __metadata("design:type", Number)
@@ -61,7 +61,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.master?.retailPrice;
+            return this.variant?.retailPrice;
         },
     }),
     __metadata("design:type", Number)
@@ -89,7 +89,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.master?.picture;
+            return this.variant?.picture;
         },
     }),
     __metadata("design:type", asset_entity_1.AssetEntity)
@@ -97,16 +97,17 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const variants = [this.master, ...(this.variants ?? [])];
-            const pictures = new Map();
-            for (const variant of variants) {
-                for (const picture of variant?.pictures ?? []) {
-                    const id = String(picture._id ?? picture);
-                    if (!pictures.has(id))
-                        pictures.set(id, picture);
-                }
-            }
-            return [...pictures.values()];
+            const pictures = [this.variant, ...(this.variants ?? [])]
+                .flatMap((variant) => variant?.pictures ?? [])
+                .filter((picture) => picture && !(picture instanceof mongoose_2.Types.ObjectId));
+            const seen = new Set();
+            return pictures.filter((picture) => {
+                const id = String(picture._id);
+                if (seen.has(id))
+                    return false;
+                seen.add(id);
+                return true;
+            });
         },
     }),
     __metadata("design:type", Array)
