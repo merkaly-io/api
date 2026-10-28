@@ -12,6 +12,12 @@ class AppSchemas {
             files: 'assets.files',
         };
     }
+    static get contact() {
+        return {
+            customers: 'contact.customers',
+            vendors: 'contact.vendors',
+        };
+    }
     static get finance() {
         return {
             payments: 'finance.payments',
@@ -34,10 +40,8 @@ class AppSchemas {
             purchase: {
                 items: 'order.purchase.items',
                 transactions: 'order.purchase.transactions',
-                vendors: 'order.purchase.vendors',
             },
             sale: {
-                customers: 'order.sale.customers',
                 items: 'order.sale.items',
                 transactions: 'order.sale.transactions',
             },
@@ -47,9 +51,9 @@ class AppSchemas {
             },
         };
     }
-    static get supplier() {
+    static get integration() {
         return {
-            suppliers: 'supplier.suppliers',
+            suppliers: 'integration.suppliers',
         };
     }
     static get settings() {

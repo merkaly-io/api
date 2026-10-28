@@ -13,18 +13,18 @@ exports.SaleTransactionEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
+const customer_entity_1 = require("../../../contact/customer/customer.entity");
 const item_schema_1 = require("../schemas/item.schema");
 const abstract_entity_1 = require("../../../abstract.entity");
 const transaction_entity_1 = require("../../../transaction.entity");
-const customer_entity_1 = require("../customer/customer.entity");
 let SaleTransactionEntity = class SaleTransactionEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
 };
 exports.SaleTransactionEntity = SaleTransactionEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.sale.customers, type: mongoose_2.Schema.Types.ObjectId }),
-    __metadata("design:type", customer_entity_1.SaleCustomerEntity)
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.contact.customers, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", customer_entity_1.ContactCustomerEntity)
 ], SaleTransactionEntity.prototype, "customer", void 0);
 __decorate([
     (0, mongoose_1.Prop)({

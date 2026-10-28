@@ -5,6 +5,10 @@ export declare abstract class AppSchemas {
     static get assets(): {
         files: string;
     };
+    static get contact(): {
+        customers: string;
+        vendors: string;
+    };
     static get finance(): {
         payments: string;
         subscriptions: string;
@@ -22,10 +26,8 @@ export declare abstract class AppSchemas {
         purchase: {
             items: string;
             transactions: string;
-            vendors: string;
         };
         sale: {
-            customers: string;
             items: string;
             transactions: string;
         };
@@ -34,7 +36,7 @@ export declare abstract class AppSchemas {
             transactions: string;
         };
     };
-    static get supplier(): {
+    static get integration(): {
         suppliers: string;
     };
     static get settings(): {
