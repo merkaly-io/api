@@ -9,19 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SupplierEntity = void 0;
+exports.ContactVendorEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
+const app_schemas_1 = require("../../app.schemas");
 const abstract_entity_1 = require("../../abstract.entity");
-const provider_enum_1 = require("./provider.enum");
-let SupplierEntity = class SupplierEntity extends abstract_entity_1.AbstractEntity {
-    provider;
+const contact_entity_1 = require("../../contact.entity");
+let ContactVendorEntity = class ContactVendorEntity extends contact_entity_1.ContactEntity {
+    supplier;
+    externalId;
 };
-exports.SupplierEntity = SupplierEntity;
+exports.ContactVendorEntity = ContactVendorEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ enum: provider_enum_1.SupplierProviderEnum, required: true, type: String }),
+    (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.integration.suppliers, required: true, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", Function)
+], ContactVendorEntity.prototype, "supplier", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
-], SupplierEntity.prototype, "provider", void 0);
-exports.SupplierEntity = SupplierEntity = __decorate([
+], ContactVendorEntity.prototype, "externalId", void 0);
+exports.ContactVendorEntity = ContactVendorEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
-], SupplierEntity);
-//# sourceMappingURL=supplier.entity.js.map
+], ContactVendorEntity);
+//# sourceMappingURL=vendor.entity.js.map

@@ -9,13 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleCustomerEntity = void 0;
+exports.ContactEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const abstract_entity_1 = require("../../../abstract.entity");
-const customer_enum_1 = require("./customer.enum");
-let SaleCustomerEntity = class SaleCustomerEntity extends abstract_entity_1.AbstractEntity {
+const abstract_entity_1 = require("./abstract.entity");
+class ContactEntity extends abstract_entity_1.AbstractEntity {
     name;
-    type = customer_enum_1.SaleCustomerTypeEnum.B2C;
     description;
     email;
     phone;
@@ -23,49 +21,38 @@ let SaleCustomerEntity = class SaleCustomerEntity extends abstract_entity_1.Abst
     logo;
     taxId;
     active;
-};
-exports.SaleCustomerEntity = SaleCustomerEntity;
+}
+exports.ContactEntity = ContactEntity;
 __decorate([
     (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "name", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({
-        default: customer_enum_1.SaleCustomerTypeEnum.B2C,
-        enum: customer_enum_1.SaleCustomerTypeEnum,
-        type: String,
-    }),
-    __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "type", void 0);
+], ContactEntity.prototype, "name", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "description", void 0);
+], ContactEntity.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ lowercase: true, type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "email", void 0);
+], ContactEntity.prototype, "email", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "phone", void 0);
+], ContactEntity.prototype, "phone", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "website", void 0);
+], ContactEntity.prototype, "website", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "logo", void 0);
+], ContactEntity.prototype, "logo", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
-], SaleCustomerEntity.prototype, "taxId", void 0);
+], ContactEntity.prototype, "taxId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: true, type: Boolean }),
     __metadata("design:type", Boolean)
-], SaleCustomerEntity.prototype, "active", void 0);
-exports.SaleCustomerEntity = SaleCustomerEntity = __decorate([
-    (0, mongoose_1.Schema)(abstract_entity_1.$collection)
-], SaleCustomerEntity);
-//# sourceMappingURL=customer.entity.js.map
+], ContactEntity.prototype, "active", void 0);
+//# sourceMappingURL=contact.entity.js.map

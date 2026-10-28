@@ -21,6 +21,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     description;
     active;
     supplier;
+    vendor;
     externalProductId;
     variant;
     supplierPrice;
@@ -50,9 +51,13 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CatalogProductEntity.prototype, "active", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.supplier.suppliers, type: mongoose_2.Schema.Types.ObjectId }),
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.integration.suppliers, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)
 ], CatalogProductEntity.prototype, "supplier", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.contact.vendors, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", Function)
+], CatalogProductEntity.prototype, "vendor", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)

@@ -9,6 +9,7 @@
       "infrastructure/validators/address.validator",
       "infrastructure/entities/address.entity",
       "infrastructure/entities/transaction.entity",
+      "infrastructure/entities/contact.entity",
       "infrastructure/types/transitionable.interface",
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
@@ -27,12 +28,30 @@
         "enums/asset.enum"
       ]
     },
+    "@/contact": {
+      "customer": [
+        "customer/entities/customer.entity",
+        "customer/enums/customer.enum",
+        "customer/validators/customer/request.validator"
+      ],
+      "vendor": [
+        "vendor/entities/vendor.entity"
+      ]
+    },
     "@/finance": {
       "payment": [
         "entities/payment.entity",
         "enums/payment.enum",
         "validators/payment/request.validator",
         "transitions/payment.transition"
+      ]
+    },
+    "@/integration": {
+      "supplier": [
+        "supplier/entities/supplier.entity",
+        "supplier/enums/provider.enum",
+        "supplier/types/product",
+        "supplier/validators/product/request.validator"
       ]
     },
     "@/inventory": {
@@ -66,18 +85,9 @@
           "purchase/validators/transaction/request.validator",
           "purchase/enums/transaction.enum",
           "purchase/transitions/transaction.transition"
-        ],
-        "vendor": [
-          "purchase/entities/vendor.entity",
-          "purchase/validators/vendor/request.validator"
         ]
       },
       "sale": {
-        "customer": [
-          "sale/entities/customer.entity",
-          "sale/enums/customer.enum",
-          "sale/validators/customer/request.validator"
-        ],
         "item": [
           "infrastructure/entities/item.entity",
           "sale/validators/item/request.validator"
@@ -96,16 +106,6 @@
         "entities/organization.entity",
         "enums/organization.enum",
         "validators/organization/request.validator"
-      ]
-    },
-    "@/supplier": {
-      "product": [
-        "types/product.preview",
-        "validators/product/request.validator"
-      ],
-      "supplier": [
-        "entities/supplier.entity",
-        "enums/provider.enum"
       ]
     }
   }
