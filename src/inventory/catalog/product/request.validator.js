@@ -16,7 +16,6 @@ const abstract_validator_1 = require("../../../abstract.validator");
 const request_validator_1 = require("../variant/request.validator");
 class ProductMetadataRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
-    sku;
     description;
     category;
     brand;
@@ -26,7 +25,6 @@ class ProductMetadataRequestValidator extends abstract_validator_1.AbstractReque
         if (!product)
             return;
         this.name = product.name;
-        this.sku = product.sku;
         this.description = product.description;
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
@@ -39,12 +37,6 @@ __decorate([
     (0, class_validator_1.Length)(0, 100),
     __metadata("design:type", String)
 ], ProductMetadataRequestValidator.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(0, 50),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], ProductMetadataRequestValidator.prototype, "sku", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 1000),

@@ -4,7 +4,6 @@ import type { CatalogProductEntity } from './product.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
 declare class ProductMetadataRequestValidator extends AbstractRequestValidator {
     name: string;
-    sku?: string;
     description?: string;
     category?: string;
     brand?: string;
