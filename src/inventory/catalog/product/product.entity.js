@@ -31,6 +31,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     hashtags;
     picture;
     assets;
+    options;
     variants;
 };
 exports.CatalogProductEntity = CatalogProductEntity;
@@ -132,6 +133,23 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], CatalogProductEntity.prototype, "assets", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            const dimensions = new Map();
+            for (const variant of [this.variant, ...(this.variants ?? [])]) {
+                for (const option of variant?.options ?? []) {
+                    const values = dimensions.get(option.name) ?? [];
+                    if (!values.includes(option.value))
+                        values.push(option.value);
+                    dimensions.set(option.name, values);
+                }
+            }
+            return [...dimensions].map(([name, values]) => ({ name, values }));
+        },
+    }),
+    __metadata("design:type", Array)
+], CatalogProductEntity.prototype, "options", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         options: {

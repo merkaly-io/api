@@ -21,5 +21,9 @@ export declare class CatalogProductEntity extends AbstractEntity {
     hashtags: string[];
     readonly picture: AssetEntity;
     readonly assets: AssetEntity[];
+    readonly options: {
+        name: string;
+        values: string[];
+    }[];
     readonly variants: CatalogVariantEntity[];
 }

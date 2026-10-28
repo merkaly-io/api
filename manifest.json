@@ -70,6 +70,7 @@
         ],
         "variant": [
           "domain/catalog/entities/variant.entity",
+          "domain/catalog/entities/variant.option.entity",
           "domain/catalog/validators/variant/request.validator"
         ]
       }

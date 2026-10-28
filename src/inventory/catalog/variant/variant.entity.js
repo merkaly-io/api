@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const asset_entity_1 = require("../../../assets/asset/asset.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
+const variant_option_entity_1 = require("./variant.option.entity");
 let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.AbstractEntity {
     product;
     supplierPrice;
@@ -22,6 +23,8 @@ let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.
     active;
     picture;
     assets = [];
+    options = [];
+    shipsFrom;
     externalVariantId;
 };
 exports.CatalogVariantEntity = CatalogVariantEntity;
@@ -53,6 +56,14 @@ __decorate([
     (0, mongoose_1.Prop)({ default: [], ref: app_schemas_1.AppSchemas.assets.files, type: [{ type: mongoose_2.Schema.Types.ObjectId }] }),
     __metadata("design:type", Array)
 ], CatalogVariantEntity.prototype, "assets", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: [], type: [variant_option_entity_1.CatalogVariantOptionSchema] }),
+    __metadata("design:type", Array)
+], CatalogVariantEntity.prototype, "options", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: variant_option_entity_1.CatalogVariantOptionSchema }),
+    __metadata("design:type", variant_option_entity_1.CatalogVariantOptionEntity)
+], CatalogVariantEntity.prototype, "shipsFrom", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
