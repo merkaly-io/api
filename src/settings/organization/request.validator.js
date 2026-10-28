@@ -126,19 +126,35 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateOrganizationContactRequestValidator.prototype, "website", void 0);
 class UpdateOrganizationLocalizationRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+    country;
     currency;
+    language;
     constructor(localization) {
         super();
+        this.country = localization?.country;
         this.currency = localization?.currency;
+        this.language = localization?.language;
     }
 }
 exports.UpdateOrganizationLocalizationRequestValidator = UpdateOrganizationLocalizationRequestValidator;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(2, 2),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateOrganizationLocalizationRequestValidator.prototype, "country", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 3),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateOrganizationLocalizationRequestValidator.prototype, "currency", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(2, 5),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateOrganizationLocalizationRequestValidator.prototype, "language", void 0);
 class UpdateOrganizationIdentityRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     legalName;
     name;

@@ -18,7 +18,9 @@ export interface SettingsOrganizationContactContract {
     website?: string;
 }
 export interface SettingsOrganizationLocalizationContract {
+    country?: string;
     currency?: string;
+    language?: string;
 }
 export interface SettingsOrganizationIdentityContract {
     legalName?: string;

@@ -22,7 +22,9 @@ export declare class UpdateOrganizationContactRequestValidator extends AbstractR
     constructor(contact?: SettingsOrganizationContactContract);
 }
 export declare class UpdateOrganizationLocalizationRequestValidator extends AbstractRequestValidator {
+    country?: string;
     currency?: string;
+    language?: string;
     constructor(localization?: SettingsOrganizationLocalizationContract);
 }
 export declare class UpdateOrganizationIdentityRequestValidator extends AbstractRequestValidator {
