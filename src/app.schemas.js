@@ -47,6 +47,11 @@ class AppSchemas {
             },
         };
     }
+    static get supplier() {
+        return {
+            sources: 'supplier.sources',
+        };
+    }
     static get settings() {
         return {
             organizations: 'settings.organizations',

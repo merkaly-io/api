@@ -100,9 +100,12 @@
     },
     "@/supplier": {
       "product": [
-        "enums/provider.enum",
         "types/product.preview",
         "validators/product/request.validator"
+      ],
+      "source": [
+        "entities/source.entity",
+        "enums/provider.enum"
       ]
     }
   }
