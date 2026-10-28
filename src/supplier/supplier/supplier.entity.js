@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SupplierSourceEntity = void 0;
+exports.SupplierEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const abstract_entity_1 = require("../../abstract.entity");
 const provider_enum_1 = require("./provider.enum");
-let SupplierSourceEntity = class SupplierSourceEntity extends abstract_entity_1.AbstractEntity {
+let SupplierEntity = class SupplierEntity extends abstract_entity_1.AbstractEntity {
     provider;
 };
-exports.SupplierSourceEntity = SupplierSourceEntity;
+exports.SupplierEntity = SupplierEntity;
 __decorate([
     (0, mongoose_1.Prop)({ enum: provider_enum_1.SupplierProviderEnum, required: true, type: String }),
     __metadata("design:type", String)
-], SupplierSourceEntity.prototype, "provider", void 0);
-exports.SupplierSourceEntity = SupplierSourceEntity = __decorate([
+], SupplierEntity.prototype, "provider", void 0);
+exports.SupplierEntity = SupplierEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
-], SupplierSourceEntity);
-//# sourceMappingURL=source.entity.js.map
+], SupplierEntity);
+//# sourceMappingURL=supplier.entity.js.map

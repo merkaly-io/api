@@ -20,9 +20,9 @@ let CatalogVariantEntity = class CatalogVariantEntity extends abstract_entity_1.
     supplierPrice;
     retailPrice;
     active;
-    pictures = [];
-    externalVariantId;
     picture;
+    assets = [];
+    externalVariantId;
 };
 exports.CatalogVariantEntity = CatalogVariantEntity;
 __decorate([
@@ -46,21 +46,17 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CatalogVariantEntity.prototype, "active", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.assets.files, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", asset_entity_1.AssetEntity)
+], CatalogVariantEntity.prototype, "picture", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ default: [], ref: app_schemas_1.AppSchemas.assets.files, type: [{ type: mongoose_2.Schema.Types.ObjectId }] }),
     __metadata("design:type", Array)
-], CatalogVariantEntity.prototype, "pictures", void 0);
+], CatalogVariantEntity.prototype, "assets", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], CatalogVariantEntity.prototype, "externalVariantId", void 0);
-__decorate([
-    (0, mongoose_1.Virtual)({
-        get: function () {
-            return this.pictures?.at(0);
-        },
-    }),
-    __metadata("design:type", asset_entity_1.AssetEntity)
-], CatalogVariantEntity.prototype, "picture", void 0);
 exports.CatalogVariantEntity = CatalogVariantEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], CatalogVariantEntity);

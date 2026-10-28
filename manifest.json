@@ -103,8 +103,8 @@
         "types/product.preview",
         "validators/product/request.validator"
       ],
-      "source": [
-        "entities/source.entity",
+      "supplier": [
+        "entities/supplier.entity",
         "enums/provider.enum"
       ]
     }

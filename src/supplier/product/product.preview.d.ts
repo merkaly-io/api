@@ -1,4 +1,9 @@
-import type { SupplierProviderEnum } from '../source/provider.enum';
+import type { SupplierProviderEnum } from '../supplier/provider.enum';
+import type { AssetType } from '../../assets/asset/asset.enum';
+export interface SupplierAssetPreview {
+    type: AssetType;
+    url: string;
+}
 export interface SupplierVariantPreview {
     externalVariantId: string;
     name: string;
@@ -11,7 +16,7 @@ export interface SupplierProductPreview {
     externalProductId: string;
     name: string;
     description: string;
-    pictures: string[];
+    assets: SupplierAssetPreview[];
     currency: string;
     deliveryDays?: number;
     store?: {

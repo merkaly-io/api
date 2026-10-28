@@ -20,7 +20,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     name;
     description;
     active;
-    source;
+    supplier;
     externalProductId;
     variant;
     supplierPrice;
@@ -29,7 +29,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     brand;
     hashtags;
     picture;
-    pictures;
+    assets;
     variants;
 };
 exports.CatalogProductEntity = CatalogProductEntity;
@@ -50,9 +50,9 @@ __decorate([
     __metadata("design:type", Boolean)
 ], CatalogProductEntity.prototype, "active", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.supplier.sources, type: mongoose_2.Schema.Types.ObjectId }),
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.supplier.suppliers, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)
-], CatalogProductEntity.prototype, "source", void 0);
+], CatalogProductEntity.prototype, "supplier", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
@@ -112,12 +112,12 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const pictures = [this.variant, ...(this.variants ?? [])]
-                .flatMap((variant) => variant?.pictures ?? [])
-                .filter((picture) => picture && !(picture instanceof mongoose_2.Types.ObjectId));
+            const assets = [this.variant, ...(this.variants ?? [])]
+                .flatMap((variant) => variant?.assets ?? [])
+                .filter((asset) => asset && !(asset instanceof mongoose_2.Types.ObjectId));
             const seen = new Set();
-            return pictures.filter((picture) => {
-                const id = String(picture._id);
+            return assets.filter((asset) => {
+                const id = String(asset._id);
                 if (seen.has(id))
                     return false;
                 seen.add(id);
@@ -126,7 +126,7 @@ __decorate([
         },
     }),
     __metadata("design:type", Array)
-], CatalogProductEntity.prototype, "pictures", void 0);
+], CatalogProductEntity.prototype, "assets", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         options: {

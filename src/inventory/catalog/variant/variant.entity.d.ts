@@ -6,7 +6,7 @@ export declare class CatalogVariantEntity extends AbstractEntity {
     supplierPrice: number;
     retailPrice: number;
     active: boolean;
-    pictures: AssetEntity[];
+    picture?: AssetEntity;
+    assets: AssetEntity[];
     externalVariantId?: string;
-    readonly picture: AssetEntity;
 }

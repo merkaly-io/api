@@ -49,7 +49,7 @@ class AppSchemas {
     }
     static get supplier() {
         return {
-            sources: 'supplier.sources',
+            suppliers: 'supplier.suppliers',
         };
     }
     static get settings() {
