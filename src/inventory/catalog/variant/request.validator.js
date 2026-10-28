@@ -14,7 +14,6 @@ const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
 class UpdateVariantRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     retailPrice;
-    pictures;
     active;
     constructor(variant) {
         super();
@@ -22,7 +21,6 @@ class UpdateVariantRequestValidator extends abstract_validator_1.AbstractRequest
             return;
         this.retailPrice = variant.retailPrice;
         this.active = variant.active;
-        this.pictures = variant.pictures?.map((picture) => String(picture._id ?? picture));
     }
 }
 exports.UpdateVariantRequestValidator = UpdateVariantRequestValidator;
@@ -33,12 +31,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UpdateVariantRequestValidator.prototype, "retailPrice", void 0);
-__decorate([
-    (0, class_validator_1.IsMongoId)({ each: true }),
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
-], UpdateVariantRequestValidator.prototype, "pictures", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),

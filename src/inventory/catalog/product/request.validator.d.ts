@@ -4,7 +4,6 @@ import type { CatalogProductEntity } from './product.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
 declare class ProductMetadataRequestValidator extends AbstractRequestValidator {
     name: string;
-    sku?: string;
     description?: string;
     category?: string;
     brand?: string;
@@ -17,6 +16,7 @@ declare class UpdateProductVariantRequestValidator extends UpdateVariantRequestV
 }
 export declare class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     name: string;
+    active?: boolean;
     variant?: UpdateProductVariantRequestValidator;
     constructor(product?: CatalogProductEntity);
 }
