@@ -1,6 +1,6 @@
-import { CatalogProductEntity } from '../../../inventory/catalog/product/product.entity';
-import { CatalogVariantEntity } from '../../../inventory/catalog/variant/variant.entity';
-import { AbstractEntity } from '../../../abstract.entity';
+import { CatalogProductEntity } from '../../inventory/catalog/product/product.entity';
+import { CatalogVariantEntity } from '../../inventory/catalog/variant/variant.entity';
+import { AbstractEntity } from '../../abstract.entity';
 interface ItemPricing {
     product: number;
     readonly total: number;

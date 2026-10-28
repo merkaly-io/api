@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateSaleTransactionRequestValidator = exports.CreateSaleTransactionRequestValidator = void 0;
+exports.UpdatePurchaseRequestValidator = exports.CreatePurchaseRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const payment_enum_1 = require("../../../finance/payment/payment.enum");
-const transaction_enum_1 = require("./transaction.enum");
-const abstract_validator_1 = require("../../../abstract.validator");
-const request_validator_1 = require("../item/request.validator");
-class CreateSaleTransactionRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+const payment_enum_1 = require("../../finance/payment/payment.enum");
+const purchase_enum_1 = require("./purchase.enum");
+const abstract_validator_1 = require("../../abstract.validator");
+const item_request_validator_1 = require("./item.request.validator");
+class CreatePurchaseRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     items = [];
     method;
     notes;
-    customer;
+    vendor;
+    customerOrder;
     payment = payment_enum_1.FinancePaymentStatusEnum.PENDING;
-    status = transaction_enum_1.SaleTransactionStatusEnum.OPEN;
+    status = purchase_enum_1.OrderPurchaseStatusEnum.OPEN;
     constructor(order) {
         super();
         if (!order) {
@@ -30,14 +31,15 @@ class CreateSaleTransactionRequestValidator extends abstract_validator_1.Abstrac
         }
         this.notes = order.notes;
         this.method = order.payment?.method;
-        this.customer = (order.customer?._id || order.customer);
+        this.vendor = (order.vendor?._id || order.vendor);
+        this.customerOrder = (order.customerOrder?._id || order.customerOrder);
         if (order.status !== undefined) {
             this.status = order.status;
         }
         if (order.payment?.status !== undefined) {
             this.payment = order.payment.status;
         }
-        this.items = order.items?.map((it) => new request_validator_1.SaleItemRequestValidator(it)) ?? this.items;
+        this.items = order.items?.map((it) => new item_request_validator_1.PurchaseItemRequestValidator(it)) ?? this.items;
     }
     get total() {
         return this.items.reduce((acc, item) => {
@@ -47,56 +49,54 @@ class CreateSaleTransactionRequestValidator extends abstract_validator_1.Abstrac
         }, { units: 0, price: 0 });
     }
 }
-exports.CreateSaleTransactionRequestValidator = CreateSaleTransactionRequestValidator;
+exports.CreatePurchaseRequestValidator = CreatePurchaseRequestValidator;
 __decorate([
     (0, class_validator_1.IsArray)(),
-    (0, class_transformer_1.Type)(() => request_validator_1.SaleItemRequestValidator),
+    (0, class_transformer_1.Type)(() => item_request_validator_1.PurchaseItemRequestValidator),
     (0, class_validator_1.ValidateNested)({ each: true }),
     __metadata("design:type", Array)
-], CreateSaleTransactionRequestValidator.prototype, "items", void 0);
+], CreatePurchaseRequestValidator.prototype, "items", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(payment_enum_1.FinancePaymentMethodEnum),
     __metadata("design:type", String)
-], CreateSaleTransactionRequestValidator.prototype, "method", void 0);
+], CreatePurchaseRequestValidator.prototype, "method", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 500),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateSaleTransactionRequestValidator.prototype, "notes", void 0);
+], CreatePurchaseRequestValidator.prototype, "notes", void 0);
 __decorate([
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateSaleTransactionRequestValidator.prototype, "customer", void 0);
+], CreatePurchaseRequestValidator.prototype, "vendor", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreatePurchaseRequestValidator.prototype, "customerOrder", void 0);
 __decorate([
     (0, class_validator_1.IsEnum)(payment_enum_1.FinancePaymentStatusEnum),
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], CreateSaleTransactionRequestValidator.prototype, "payment", void 0);
+], CreatePurchaseRequestValidator.prototype, "payment", void 0);
 __decorate([
-    (0, class_validator_1.IsEnum)(transaction_enum_1.SaleTransactionStatusEnum),
+    (0, class_validator_1.IsEnum)(purchase_enum_1.OrderPurchaseStatusEnum),
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
-], CreateSaleTransactionRequestValidator.prototype, "status", void 0);
-class UpdateSaleTransactionRequestValidator extends CreateSaleTransactionRequestValidator {
-    payment = undefined;
-    status = undefined;
+], CreatePurchaseRequestValidator.prototype, "status", void 0);
+class UpdatePurchaseRequestValidator extends CreatePurchaseRequestValidator {
 }
-exports.UpdateSaleTransactionRequestValidator = UpdateSaleTransactionRequestValidator;
+exports.UpdatePurchaseRequestValidator = UpdatePurchaseRequestValidator;
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
-], UpdateSaleTransactionRequestValidator.prototype, "items", void 0);
-__decorate([
-    (0, class_validator_1.ValidateIf)(() => false),
-    (0, class_transformer_1.Transform)(() => undefined),
-    __metadata("design:type", Object)
-], UpdateSaleTransactionRequestValidator.prototype, "payment", void 0);
+], UpdatePurchaseRequestValidator.prototype, "items", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UpdateSaleTransactionRequestValidator.prototype, "method", void 0);
+], UpdatePurchaseRequestValidator.prototype, "method", void 0);
 //# sourceMappingURL=request.validator.js.map

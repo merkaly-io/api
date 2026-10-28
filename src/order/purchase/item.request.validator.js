@@ -9,16 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleItemRequestValidator = void 0;
+exports.PurchaseItemRequestValidator = void 0;
 const class_validator_1 = require("class-validator");
-const abstract_validator_1 = require("../../../abstract.validator");
-class SaleItemRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+const abstract_validator_1 = require("../../abstract.validator");
+class PurchaseItemRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     _id;
     product;
     variant;
     quantity = 1;
-    notes;
     price = 0;
+    notes = String();
     constructor(item) {
         super();
         if (!item) {
@@ -30,37 +30,44 @@ class SaleItemRequestValidator extends abstract_validator_1.AbstractRequestValid
         if (item.quantity !== undefined) {
             this.quantity = item.quantity;
         }
-        this.notes = item.notes;
         this.price = item.price?.unit || item.get?.('price.unit') || this.price;
+        if (item.notes !== undefined) {
+            this.notes = item.notes;
+        }
     }
     get total() {
-        return Math.trunc(this.quantity * this.price) || 0;
+        return Math.round(this.quantity * this.price);
     }
 }
-exports.SaleItemRequestValidator = SaleItemRequestValidator;
+exports.PurchaseItemRequestValidator = PurchaseItemRequestValidator;
 __decorate([
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], SaleItemRequestValidator.prototype, "_id", void 0);
+], PurchaseItemRequestValidator.prototype, "_id", void 0);
 __decorate([
     (0, class_validator_1.IsMongoId)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], SaleItemRequestValidator.prototype, "product", void 0);
+], PurchaseItemRequestValidator.prototype, "product", void 0);
 __decorate([
     (0, class_validator_1.IsMongoId)(),
     __metadata("design:type", String)
-], SaleItemRequestValidator.prototype, "variant", void 0);
+], PurchaseItemRequestValidator.prototype, "variant", void 0);
 __decorate([
     (0, class_validator_1.IsPositive)(),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Object)
-], SaleItemRequestValidator.prototype, "quantity", void 0);
+], PurchaseItemRequestValidator.prototype, "quantity", void 0);
+__decorate([
+    (0, class_validator_1.IsPositive)(),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Object)
+], PurchaseItemRequestValidator.prototype, "price", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 500),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", String)
-], SaleItemRequestValidator.prototype, "notes", void 0);
-//# sourceMappingURL=request.validator.js.map
+    __metadata("design:type", Object)
+], PurchaseItemRequestValidator.prototype, "notes", void 0);
+//# sourceMappingURL=item.request.validator.js.map

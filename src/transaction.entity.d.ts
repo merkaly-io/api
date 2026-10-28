@@ -3,7 +3,7 @@ import { FinancePaymentEntity } from './finance/payment/payment.entity';
 import { AbstractEntity } from './abstract.entity';
 import { StatusEntity } from './status.plugin';
 import { ITransitionable } from './transitionable.interface';
-import { ItemEntity } from './order/sale/item/item.entity';
+import { ItemEntity } from './order/item/item.entity';
 export interface TransactionCapabilities {
     addItems: boolean;
     editItems: boolean;

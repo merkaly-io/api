@@ -9,35 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PurchaseTransactionEntity = void 0;
+exports.OrderPurchaseEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../app.schemas");
-const vendor_entity_1 = require("../../../contact/vendor/vendor.entity");
-const item_schema_1 = require("../schemas/item.schema");
-const abstract_entity_1 = require("../../../abstract.entity");
-const transaction_entity_1 = require("../../../transaction.entity");
-let PurchaseTransactionEntity = class PurchaseTransactionEntity extends transaction_entity_1.TransactionEntity {
+const app_schemas_1 = require("../../app.schemas");
+const vendor_entity_1 = require("../../contact/vendor/vendor.entity");
+const purchase_item_schema_1 = require("../schemas/purchase.item.schema");
+const abstract_entity_1 = require("../../abstract.entity");
+const transaction_entity_1 = require("../../transaction.entity");
+let OrderPurchaseEntity = class OrderPurchaseEntity extends transaction_entity_1.TransactionEntity {
     vendor;
+    customerOrder;
     items = [];
 };
-exports.PurchaseTransactionEntity = PurchaseTransactionEntity;
+exports.OrderPurchaseEntity = OrderPurchaseEntity;
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.contact.vendors, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", vendor_entity_1.ContactVendorEntity)
-], PurchaseTransactionEntity.prototype, "vendor", void 0);
+], OrderPurchaseEntity.prototype, "vendor", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.sales, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", Function)
+], OrderPurchaseEntity.prototype, "customerOrder", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: () => [],
-        type: [item_schema_1.PurchaseItemSchema.schema],
+        type: [purchase_item_schema_1.OrderPurchaseItemSchema.schema],
         validate: {
             message: 'Purchase items cannot be empty',
             validator: (items = []) => items.length > 0,
         },
     }),
     __metadata("design:type", Array)
-], PurchaseTransactionEntity.prototype, "items", void 0);
-exports.PurchaseTransactionEntity = PurchaseTransactionEntity = __decorate([
+], OrderPurchaseEntity.prototype, "items", void 0);
+exports.OrderPurchaseEntity = OrderPurchaseEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
-], PurchaseTransactionEntity);
-//# sourceMappingURL=transaction.entity.js.map
+], OrderPurchaseEntity);
+//# sourceMappingURL=purchase.entity.js.map

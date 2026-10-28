@@ -75,30 +75,23 @@
       }
     },
     "@/order": {
-      "purchase": {
-        "item": [
-          "infrastructure/entities/item.entity",
-          "purchase/validators/item/request.validator"
-        ],
-        "transaction": [
-          "purchase/entities/transaction.entity",
-          "purchase/validators/transaction/request.validator",
-          "purchase/enums/transaction.enum",
-          "purchase/transitions/transaction.transition"
-        ]
-      },
-      "sale": {
-        "item": [
-          "infrastructure/entities/item.entity",
-          "sale/validators/item/request.validator"
-        ],
-        "transaction": [
-          "sale/entities/transaction.entity",
-          "sale/validators/transaction/request.validator",
-          "sale/enums/transaction.enum",
-          "sale/transitions/transaction.transition"
-        ]
-      }
+      "purchase": [
+        "entities/purchase.entity",
+        "enums/purchase.enum",
+        "transitions/purchase.transition",
+        "validators/purchase/request.validator",
+        "validators/purchase/item.request.validator"
+      ],
+      "sale": [
+        "entities/sale.entity",
+        "enums/sale.enum",
+        "transitions/sale.transition",
+        "validators/sale/request.validator",
+        "validators/sale/item.request.validator"
+      ],
+      "item": [
+        "infrastructure/entities/item.entity"
+      ]
     },
     "@/settings": {
       "organization": [
