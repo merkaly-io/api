@@ -3,13 +3,13 @@ import { AbstractEntity } from '../../../abstract.entity';
 import type { CatalogBrandEntity } from '../brand/brand.entity';
 import type { CatalogCategoryEntity } from '../category/category.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
-import type { SupplierSourceEntity } from '../../../supplier/source/source.entity';
+import type { SupplierEntity } from '../../../supplier/supplier/supplier.entity';
 export declare class CatalogProductEntity extends AbstractEntity {
     sku?: string;
     name: string;
     description?: string;
     active: boolean;
-    source?: SupplierSourceEntity;
+    supplier?: SupplierEntity;
     externalProductId?: string;
     variant: CatalogVariantEntity;
     readonly supplierPrice: number;
@@ -18,6 +18,6 @@ export declare class CatalogProductEntity extends AbstractEntity {
     brand?: CatalogBrandEntity;
     hashtags: string[];
     readonly picture: AssetEntity;
-    readonly pictures: AssetEntity[];
+    readonly assets: AssetEntity[];
     readonly variants: CatalogVariantEntity[];
 }
