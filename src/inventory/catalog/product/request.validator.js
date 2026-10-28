@@ -74,9 +74,12 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateProductVariantRequestValidator.prototype, "_id", void 0);
 class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
+    active;
     variant;
     constructor(product) {
         super(product);
+        if (product)
+            this.active = product.active;
         if (product?.variant)
             this.variant = new UpdateProductVariantRequestValidator(product.variant);
     }
@@ -86,6 +89,11 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateProductRequestValidator.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Boolean)
+], UpdateProductRequestValidator.prototype, "active", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.ValidateNested)(),

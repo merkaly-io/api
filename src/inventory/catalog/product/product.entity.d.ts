@@ -8,6 +8,7 @@ export declare class CatalogProductEntity extends AbstractEntity {
     sku?: string;
     name: string;
     description?: string;
+    active: boolean;
     source?: SupplierSourceEntity;
     externalProductId?: string;
     variant: CatalogVariantEntity;

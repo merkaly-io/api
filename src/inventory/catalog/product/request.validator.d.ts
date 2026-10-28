@@ -16,6 +16,7 @@ declare class UpdateProductVariantRequestValidator extends UpdateVariantRequestV
 }
 export declare class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     name: string;
+    active?: boolean;
     variant?: UpdateProductVariantRequestValidator;
     constructor(product?: CatalogProductEntity);
 }
