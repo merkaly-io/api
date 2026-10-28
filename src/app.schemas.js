@@ -37,18 +37,10 @@ class AppSchemas {
     }
     static get order() {
         return {
-            purchase: {
-                items: 'order.purchase.items',
-                transactions: 'order.purchase.transactions',
-            },
-            sale: {
-                items: 'order.sale.items',
-                transactions: 'order.sale.transactions',
-            },
-            service: {
-                items: 'order.service.items',
-                transactions: 'order.service.transactions',
-            },
+            purchaseItems: 'order.purchase.items',
+            purchases: 'order.purchases',
+            saleItems: 'order.sale.items',
+            sales: 'order.sales',
         };
     }
     static get integration() {

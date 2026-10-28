@@ -9,35 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleTransactionEntity = void 0;
+exports.OrderSaleEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const app_schemas_1 = require("../../../app.schemas");
-const customer_entity_1 = require("../../../contact/customer/customer.entity");
-const item_schema_1 = require("../schemas/item.schema");
-const abstract_entity_1 = require("../../../abstract.entity");
-const transaction_entity_1 = require("../../../transaction.entity");
-let SaleTransactionEntity = class SaleTransactionEntity extends transaction_entity_1.TransactionEntity {
+const app_schemas_1 = require("../../app.schemas");
+const customer_entity_1 = require("../../contact/customer/customer.entity");
+const sale_item_schema_1 = require("../schemas/sale.item.schema");
+const abstract_entity_1 = require("../../abstract.entity");
+const transaction_entity_1 = require("../../transaction.entity");
+let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
+    purchases;
 };
-exports.SaleTransactionEntity = SaleTransactionEntity;
+exports.OrderSaleEntity = OrderSaleEntity;
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.contact.customers, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", customer_entity_1.ContactCustomerEntity)
-], SaleTransactionEntity.prototype, "customer", void 0);
+], OrderSaleEntity.prototype, "customer", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: () => [],
-        type: [item_schema_1.SaleItemSchema.schema],
+        type: [sale_item_schema_1.OrderSaleItemSchema.schema],
         validate: {
             message: 'Sale items cannot be empty',
             validator: (items = []) => items.length > 0,
         },
     }),
     __metadata("design:type", Array)
-], SaleTransactionEntity.prototype, "items", void 0);
-exports.SaleTransactionEntity = SaleTransactionEntity = __decorate([
+], OrderSaleEntity.prototype, "items", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        options: {
+            foreignField: 'customerOrder',
+            localField: '_id',
+            ref: app_schemas_1.AppSchemas.order.purchases,
+        },
+    }),
+    __metadata("design:type", Array)
+], OrderSaleEntity.prototype, "purchases", void 0);
+exports.OrderSaleEntity = OrderSaleEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
-], SaleTransactionEntity);
-//# sourceMappingURL=transaction.entity.js.map
+], OrderSaleEntity);
+//# sourceMappingURL=sale.entity.js.map

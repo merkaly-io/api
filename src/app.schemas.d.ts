@@ -23,18 +23,10 @@ export declare abstract class AppSchemas {
         };
     };
     static get order(): {
-        purchase: {
-            items: string;
-            transactions: string;
-        };
-        sale: {
-            items: string;
-            transactions: string;
-        };
-        service: {
-            items: string;
-            transactions: string;
-        };
+        purchaseItems: string;
+        purchases: string;
+        saleItems: string;
+        sales: string;
     };
     static get integration(): {
         suppliers: string;
