@@ -13,14 +13,20 @@ exports.IntegrationSupplierEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const abstract_entity_1 = require("../../abstract.entity");
 const provider_enum_1 = require("./provider.enum");
+const supplier_connection_entity_1 = require("./supplier.connection.entity");
 let IntegrationSupplierEntity = class IntegrationSupplierEntity extends abstract_entity_1.AbstractEntity {
     provider;
+    connection;
 };
 exports.IntegrationSupplierEntity = IntegrationSupplierEntity;
 __decorate([
     (0, mongoose_1.Prop)({ enum: provider_enum_1.SupplierProviderEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], IntegrationSupplierEntity.prototype, "provider", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: supplier_connection_entity_1.IntegrationSupplierConnectionSchema }),
+    __metadata("design:type", supplier_connection_entity_1.IntegrationSupplierConnectionEntity)
+], IntegrationSupplierEntity.prototype, "connection", void 0);
 exports.IntegrationSupplierEntity = IntegrationSupplierEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], IntegrationSupplierEntity);
