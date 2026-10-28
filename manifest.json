@@ -51,7 +51,10 @@
         "supplier/entities/supplier.entity",
         "supplier/enums/provider.enum",
         "supplier/types/product",
-        "supplier/validators/product/request.validator"
+        "supplier/validators/product/request.validator",
+        "supplier/entities/supplier.connection.entity",
+        "supplier/types/connection",
+        "supplier/types/quote"
       ]
     },
     "@/inventory": {
@@ -88,7 +91,9 @@
         "enums/sale.enum",
         "transitions/sale.transition",
         "validators/sale/request.validator",
-        "validators/sale/item.request.validator"
+        "validators/sale/item.request.validator",
+        "types/procurement",
+        "validators/sale/procurement.request.validator"
       ],
       "item": [
         "infrastructure/entities/item.entity"
