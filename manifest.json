@@ -96,7 +96,9 @@
         "types/procurement",
         "validators/sale/procurement.request.validator",
         "validators/sale/shipping.request.validator",
-        "validators/sale/checkout.request.validator"
+        "validators/sale/checkout.request.validator",
+        "validators/sale/quote.request.validator",
+        "types/checkout"
       ],
       "item": [
         "infrastructure/entities/item.entity"
