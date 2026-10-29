@@ -17,9 +17,11 @@ const customer_entity_1 = require("../../contact/customer/customer.entity");
 const sale_item_schema_1 = require("../schemas/sale.item.schema");
 const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
+const sale_shipping_entity_1 = require("./sale.shipping.entity");
 let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
+    shipping;
     purchases;
 };
 exports.OrderSaleEntity = OrderSaleEntity;
@@ -38,6 +40,10 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], OrderSaleEntity.prototype, "items", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: sale_shipping_entity_1.OrderSaleShippingSchema }),
+    __metadata("design:type", sale_shipping_entity_1.OrderSaleShippingEntity)
+], OrderSaleEntity.prototype, "shipping", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         options: {

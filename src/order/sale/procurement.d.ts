@@ -38,7 +38,7 @@ export interface ProcurementQuote {
     currency: string;
     destination: {
         country: string;
-        source: 'market';
+        source: 'order' | 'market';
     };
     groups: ProcurementGroup[];
     manual: ProcurementLine[];
