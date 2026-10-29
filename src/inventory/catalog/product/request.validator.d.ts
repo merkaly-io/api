@@ -14,10 +14,14 @@ declare class UpdateProductVariantRequestValidator extends UpdateVariantRequestV
     _id?: string;
     constructor(variant?: CatalogVariantEntity);
 }
+declare class UpdateProductVariantsItemRequestValidator extends UpdateVariantRequestValidator {
+    _id: string;
+}
 export declare class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     name: string;
     active?: boolean;
     variant?: UpdateProductVariantRequestValidator;
+    variants?: UpdateProductVariantsItemRequestValidator[];
     constructor(product?: CatalogProductEntity);
 }
 export declare class CreateProductRequestValidator extends ProductMetadataRequestValidator {

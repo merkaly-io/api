@@ -32,6 +32,7 @@ class ProductMetadataRequestValidator extends abstract_validator_1.AbstractReque
     }
 }
 __decorate([
+    (0, class_transformer_1.Transform)(({ value }) => typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : value),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.Length)(0, 100),
@@ -73,9 +74,17 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateProductVariantRequestValidator.prototype, "_id", void 0);
+class UpdateProductVariantsItemRequestValidator extends request_validator_1.UpdateVariantRequestValidator {
+    _id;
+}
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    __metadata("design:type", String)
+], UpdateProductVariantsItemRequestValidator.prototype, "_id", void 0);
 class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     active;
     variant;
+    variants;
     constructor(product) {
         super(product);
         if (product)
@@ -100,6 +109,13 @@ __decorate([
     (0, class_transformer_1.Type)(() => UpdateProductVariantRequestValidator),
     __metadata("design:type", UpdateProductVariantRequestValidator)
 ], UpdateProductRequestValidator.prototype, "variant", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => UpdateProductVariantsItemRequestValidator),
+    __metadata("design:type", Array)
+], UpdateProductRequestValidator.prototype, "variants", void 0);
 class CreateProductRequestValidator extends ProductMetadataRequestValidator {
     variant;
 }
