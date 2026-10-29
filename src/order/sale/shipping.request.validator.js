@@ -51,7 +51,10 @@ function isCpf(value) {
         return false;
     }
     const digit = (length) => {
-        const sum = [...value.slice(0, length)].reduce((acc, char, index) => acc + Number(char) * (length + 1 - index), 0);
+        const sum = value
+            .slice(0, length)
+            .split('')
+            .reduce((acc, char, index) => acc + Number(char) * (length + 1 - index), 0);
         return ((sum * 10) % 11) % 10;
     };
     return digit(9) === Number(value[9]) && digit(10) === Number(value[10]);
