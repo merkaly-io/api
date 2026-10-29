@@ -55,7 +55,9 @@
         "supplier/entities/supplier.connection.entity",
         "supplier/types/connection",
         "supplier/types/quote",
-        "supplier/types/order"
+        "supplier/types/order",
+        "supplier/types/address",
+        "supplier/validators/address/request.validator"
       ]
     },
     "@/inventory": {
