@@ -17,10 +17,13 @@ const vendor_entity_1 = require("../../contact/vendor/vendor.entity");
 const purchase_item_schema_1 = require("../schemas/purchase.item.schema");
 const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
+const purchase_supplier_order_entity_1 = require("./purchase.supplier.order.entity");
 let OrderPurchaseEntity = class OrderPurchaseEntity extends transaction_entity_1.TransactionEntity {
     vendor;
     customerOrder;
     items = [];
+    freight;
+    supplierOrder;
 };
 exports.OrderPurchaseEntity = OrderPurchaseEntity;
 __decorate([
@@ -42,6 +45,19 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], OrderPurchaseEntity.prototype, "items", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        default: null,
+        min: 0,
+        type: Number,
+        validate: { validator: (value) => value == null || Number.isInteger(value) },
+    }),
+    __metadata("design:type", Number)
+], OrderPurchaseEntity.prototype, "freight", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: purchase_supplier_order_entity_1.OrderPurchaseSupplierOrderSchema }),
+    __metadata("design:type", purchase_supplier_order_entity_1.OrderPurchaseSupplierOrderEntity)
+], OrderPurchaseEntity.prototype, "supplierOrder", void 0);
 exports.OrderPurchaseEntity = OrderPurchaseEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], OrderPurchaseEntity);

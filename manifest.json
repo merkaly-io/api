@@ -54,7 +54,8 @@
         "supplier/validators/product/request.validator",
         "supplier/entities/supplier.connection.entity",
         "supplier/types/connection",
-        "supplier/types/quote"
+        "supplier/types/quote",
+        "supplier/types/order"
       ]
     },
     "@/inventory": {
@@ -84,7 +85,10 @@
         "enums/purchase.enum",
         "transitions/purchase.transition",
         "validators/purchase/request.validator",
-        "validators/purchase/item.request.validator"
+        "validators/purchase/item.request.validator",
+        "entities/purchase.supplier.order.entity",
+        "enums/supplier.order.enum",
+        "validators/purchase/supplier.order.request.validator"
       ],
       "sale": [
         "entities/sale.entity",
@@ -97,6 +101,9 @@
         "validators/sale/procurement.request.validator",
         "validators/sale/shipping.request.validator",
         "validators/sale/checkout.request.validator",
+        "validators/sale/payment.confirm.request.validator",
+        "enums/fulfillment.enum",
+        "types/fulfillment",
         "validators/sale/quote.request.validator",
         "types/checkout"
       ],
