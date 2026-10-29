@@ -26,6 +26,7 @@ export interface ProcurementGroup {
     items: ProcurementLine[];
     totals: {
         retail: number;
+        shipping: number;
         cost: number;
         freight: number;
         margin: number;

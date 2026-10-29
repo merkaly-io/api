@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderFulfillmentActionEnum = exports.OrderFulfillmentStageEnum = void 0;
+exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.OrderFulfillmentStageEnum = void 0;
 var OrderFulfillmentStageEnum;
 (function (OrderFulfillmentStageEnum) {
     OrderFulfillmentStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -15,9 +15,28 @@ var OrderFulfillmentActionEnum;
     OrderFulfillmentActionEnum["CONFIRM_PAYMENT"] = "CONFIRM_PAYMENT";
     OrderFulfillmentActionEnum["PROCURE"] = "PROCURE";
     OrderFulfillmentActionEnum["PLACE_SUPPLIER_ORDER"] = "PLACE_SUPPLIER_ORDER";
-    OrderFulfillmentActionEnum["REGISTER_SUPPLIER_ORDER"] = "REGISTER_SUPPLIER_ORDER";
     OrderFulfillmentActionEnum["PAY_SUPPLIER_ORDER"] = "PAY_SUPPLIER_ORDER";
     OrderFulfillmentActionEnum["SYNC_SUPPLIER_ORDER"] = "SYNC_SUPPLIER_ORDER";
     OrderFulfillmentActionEnum["NONE"] = "NONE";
 })(OrderFulfillmentActionEnum || (exports.OrderFulfillmentActionEnum = OrderFulfillmentActionEnum = {}));
+var OrderSaleCostSourceEnum;
+(function (OrderSaleCostSourceEnum) {
+    OrderSaleCostSourceEnum["ESTIMATED"] = "ESTIMATED";
+    OrderSaleCostSourceEnum["CONFIRMED"] = "CONFIRMED";
+})(OrderSaleCostSourceEnum || (exports.OrderSaleCostSourceEnum = OrderSaleCostSourceEnum = {}));
+var OrderSaleHistoryEventEnum;
+(function (OrderSaleHistoryEventEnum) {
+    OrderSaleHistoryEventEnum["CREATED"] = "CREATED";
+    OrderSaleHistoryEventEnum["PAYMENT_CONFIRMED"] = "PAYMENT_CONFIRMED";
+    OrderSaleHistoryEventEnum["PAYMENT_CANCELLED"] = "PAYMENT_CANCELLED";
+    OrderSaleHistoryEventEnum["PAYMENT_REFUNDED"] = "PAYMENT_REFUNDED";
+    OrderSaleHistoryEventEnum["SALE_IN_PROGRESS"] = "SALE_IN_PROGRESS";
+    OrderSaleHistoryEventEnum["SALE_COMPLETED"] = "SALE_COMPLETED";
+    OrderSaleHistoryEventEnum["SALE_CANCELLED"] = "SALE_CANCELLED";
+    OrderSaleHistoryEventEnum["SALE_RETURNED"] = "SALE_RETURNED";
+    OrderSaleHistoryEventEnum["PURCHASE_CREATED"] = "PURCHASE_CREATED";
+    OrderSaleHistoryEventEnum["PURCHASE_CANCELLED"] = "PURCHASE_CANCELLED";
+    OrderSaleHistoryEventEnum["SUPPLIER_ORDER_PLACED"] = "SUPPLIER_ORDER_PLACED";
+    OrderSaleHistoryEventEnum["SUPPLIER_ORDER_SYNCED"] = "SUPPLIER_ORDER_SYNCED";
+})(OrderSaleHistoryEventEnum || (exports.OrderSaleHistoryEventEnum = OrderSaleHistoryEventEnum = {}));
 //# sourceMappingURL=fulfillment.enum.js.map
