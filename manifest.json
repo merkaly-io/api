@@ -88,12 +88,15 @@
       ],
       "sale": [
         "entities/sale.entity",
+        "entities/sale.shipping.entity",
         "enums/sale.enum",
         "transitions/sale.transition",
         "validators/sale/request.validator",
         "validators/sale/item.request.validator",
         "types/procurement",
-        "validators/sale/procurement.request.validator"
+        "validators/sale/procurement.request.validator",
+        "validators/sale/shipping.request.validator",
+        "validators/sale/checkout.request.validator"
       ],
       "item": [
         "infrastructure/entities/item.entity"
