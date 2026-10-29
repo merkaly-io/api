@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleShippingRequestValidator = exports.SaleShippingAddressRequestValidator = exports.SaleShippingRecipientRequestValidator = exports.BRAZIL_STATES = void 0;
+exports.SaleShippingRequestValidator = exports.SaleShippingAddressRequestValidator = exports.SaleShippingRecipientRequestValidator = exports.BIRTHDAY_MAX_AGE = exports.BIRTHDAY_MIN_AGE = exports.BRAZIL_STATES = void 0;
 exports.isCpf = isCpf;
+exports.isBirthday = isBirthday;
+exports.IsBirthday = IsBirthday;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
@@ -68,11 +70,51 @@ function IsCpf() {
         },
     });
 }
+exports.BIRTHDAY_MIN_AGE = 16;
+exports.BIRTHDAY_MAX_AGE = 120;
+function isBirthday(value, today = new Date()) {
+    const [, y, m, d] = (typeof value === 'string' && value.match(/^(\d{4})-(\d{2})-(\d{2})$/)) || [];
+    if (!y)
+        return false;
+    const [year, month, day] = [Number(y), Number(m), Number(d)];
+    const date = new Date(Date.UTC(year, month - 1, day));
+    if (date.getUTCFullYear() !== year ||
+        date.getUTCMonth() !== month - 1 ||
+        date.getUTCDate() !== day) {
+        return false;
+    }
+    const birthdayPassed = today.getUTCMonth() > month - 1 ||
+        (today.getUTCMonth() === month - 1 && today.getUTCDate() >= day);
+    const age = today.getUTCFullYear() - year - (birthdayPassed ? 0 : 1);
+    return age >= exports.BIRTHDAY_MIN_AGE && age <= exports.BIRTHDAY_MAX_AGE;
+}
+function IsBirthday() {
+    return (0, class_validator_1.ValidateBy)({
+        name: 'isBirthday',
+        validator: {
+            defaultMessage: () => `$property must be a real date (YYYY-MM-DD) of someone aged ${exports.BIRTHDAY_MIN_AGE} to ${exports.BIRTHDAY_MAX_AGE}`,
+            validate: (value) => isBirthday(value),
+        },
+    });
+}
+function BirthdayForBrazil() {
+    return (0, class_validator_1.ValidateBy)({
+        name: 'birthdayForBrazil',
+        validator: {
+            defaultMessage: () => 'recipient.birthday is required for deliveries to Brazil',
+            validate: (recipient, args) => {
+                const { address } = args.object;
+                return address?.country !== 'BR' || Boolean(recipient?.birthday);
+            },
+        },
+    });
+}
 class SaleShippingRecipientRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     email;
     phone;
     document;
+    birthday;
 }
 exports.SaleShippingRecipientRequestValidator = SaleShippingRecipientRequestValidator;
 __decorate([
@@ -97,6 +139,12 @@ __decorate([
     (0, class_transformer_1.Transform)(digits),
     __metadata("design:type", String)
 ], SaleShippingRecipientRequestValidator.prototype, "document", void 0);
+__decorate([
+    IsBirthday(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_transformer_1.Transform)(trim),
+    __metadata("design:type", String)
+], SaleShippingRecipientRequestValidator.prototype, "birthday", void 0);
 class SaleShippingAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     postalCode;
     street;
@@ -170,6 +218,7 @@ class SaleShippingRequestValidator extends abstract_validator_1.AbstractRequestV
 exports.SaleShippingRequestValidator = SaleShippingRequestValidator;
 __decorate([
     (0, class_validator_1.IsDefined)(),
+    BirthdayForBrazil(),
     (0, class_transformer_1.Type)(() => SaleShippingRecipientRequestValidator),
     (0, class_validator_1.ValidateNested)(),
     __metadata("design:type", Object)

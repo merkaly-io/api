@@ -47,7 +47,7 @@ __decorate([
     __metadata("design:type", Number)
 ], FinancePaymentEntity.prototype, "fee", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ enum: payment_enum_1.FinancePaymentMethodEnum, required: true, type: String }),
+    (0, mongoose_1.Prop)({ default: null, enum: [...Object.values(payment_enum_1.FinancePaymentMethodEnum), null], type: String }),
     __metadata("design:type", String)
 ], FinancePaymentEntity.prototype, "method", void 0);
 exports.FinancePaymentEntity = FinancePaymentEntity = __decorate([

@@ -16,6 +16,7 @@ export declare class TransactionEntity<S extends string> extends AbstractEntity 
     items: ItemEntity[];
     readonly number: string;
     readonly pricing: {
+        shipping: number;
         subtotal: number;
         total: number;
         units: number;
