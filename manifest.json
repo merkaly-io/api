@@ -103,6 +103,7 @@
         "validators/sale/shipping.request.validator",
         "validators/sale/shipping.update.request.validator",
         "validators/sale/checkout.request.validator",
+        "validators/sale/search.request.validator",
         "validators/sale/payment.confirm.request.validator",
         "enums/fulfillment.enum",
         "types/fulfillment",
