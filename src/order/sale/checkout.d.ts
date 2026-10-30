@@ -1,11 +1,14 @@
+export interface CheckoutQuoteDays {
+    max?: number;
+    min?: number;
+}
 export interface CheckoutQuoteShipping {
     available: boolean;
     amount: number;
     method?: string;
-    deliveryDays?: {
-        max?: number;
-        min?: number;
-    };
+    deliveryDays?: CheckoutQuoteDays;
+    handlingDays?: number;
+    transitDays?: CheckoutQuoteDays;
     issue?: string;
 }
 export interface CheckoutQuoteItem {
