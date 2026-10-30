@@ -15,6 +15,8 @@ const abstract_validator_1 = require("../../../abstract.validator");
 class CreateCategoryRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     description;
+    icon;
+    parent;
     constructor(category) {
         super();
         if (!category) {
@@ -22,6 +24,8 @@ class CreateCategoryRequestValidator extends abstract_validator_1.AbstractReques
         }
         this.name = category.name;
         this.description = category.description;
+        this.icon = category.icon;
+        this.parent = category.parent ? String(category.parent._id ?? category.parent) : null;
     }
 }
 exports.CreateCategoryRequestValidator = CreateCategoryRequestValidator;
@@ -37,6 +41,18 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCategoryRequestValidator.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 40),
+    (0, class_validator_1.Matches)(/^[a-z0-9-]+$/),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateCategoryRequestValidator.prototype, "icon", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateCategoryRequestValidator.prototype, "parent", void 0);
 class UpdateCategoryRequestValidator extends CreateCategoryRequestValidator {
 }
 exports.UpdateCategoryRequestValidator = UpdateCategoryRequestValidator;
