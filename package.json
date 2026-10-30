@@ -1,6 +1,6 @@
 {
   "name": "@merkaly/api",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "type": "module",
   "description": "Shared TypeScript interfaces and enums for Merkaly API",
   "repository": {
