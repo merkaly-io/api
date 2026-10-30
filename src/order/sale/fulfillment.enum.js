@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.OrderFulfillmentStageEnum = void 0;
+exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = exports.OrderFulfillmentStageEnum = void 0;
 var OrderFulfillmentStageEnum;
 (function (OrderFulfillmentStageEnum) {
     OrderFulfillmentStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -10,6 +10,24 @@ var OrderFulfillmentStageEnum;
     OrderFulfillmentStageEnum["DELIVERED"] = "DELIVERED";
     OrderFulfillmentStageEnum["CANCELLED"] = "CANCELLED";
 })(OrderFulfillmentStageEnum || (exports.OrderFulfillmentStageEnum = OrderFulfillmentStageEnum = {}));
+var OrderBuyerStageEnum;
+(function (OrderBuyerStageEnum) {
+    OrderBuyerStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
+    OrderBuyerStageEnum["IN_PREPARATION"] = "IN_PREPARATION";
+    OrderBuyerStageEnum["SHIPPED"] = "SHIPPED";
+    OrderBuyerStageEnum["DELIVERED"] = "DELIVERED";
+    OrderBuyerStageEnum["CANCELLED"] = "CANCELLED";
+})(OrderBuyerStageEnum || (exports.OrderBuyerStageEnum = OrderBuyerStageEnum = {}));
+exports.BUYER_STAGE_GROUPS = {
+    [OrderBuyerStageEnum.AWAITING_PAYMENT]: [OrderFulfillmentStageEnum.AWAITING_PAYMENT],
+    [OrderBuyerStageEnum.IN_PREPARATION]: [
+        OrderFulfillmentStageEnum.TO_ORDER,
+        OrderFulfillmentStageEnum.ORDERED,
+    ],
+    [OrderBuyerStageEnum.SHIPPED]: [OrderFulfillmentStageEnum.SHIPPED],
+    [OrderBuyerStageEnum.DELIVERED]: [OrderFulfillmentStageEnum.DELIVERED],
+    [OrderBuyerStageEnum.CANCELLED]: [OrderFulfillmentStageEnum.CANCELLED],
+};
 var OrderFulfillmentActionEnum;
 (function (OrderFulfillmentActionEnum) {
     OrderFulfillmentActionEnum["CONFIRM_PAYMENT"] = "CONFIRM_PAYMENT";

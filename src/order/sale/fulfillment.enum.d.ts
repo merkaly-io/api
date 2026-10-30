@@ -6,6 +6,14 @@ export declare enum OrderFulfillmentStageEnum {
     DELIVERED = "DELIVERED",
     CANCELLED = "CANCELLED"
 }
+export declare enum OrderBuyerStageEnum {
+    AWAITING_PAYMENT = "AWAITING_PAYMENT",
+    IN_PREPARATION = "IN_PREPARATION",
+    SHIPPED = "SHIPPED",
+    DELIVERED = "DELIVERED",
+    CANCELLED = "CANCELLED"
+}
+export declare const BUYER_STAGE_GROUPS: Readonly<Record<OrderBuyerStageEnum, readonly OrderFulfillmentStageEnum[]>>;
 export declare enum OrderFulfillmentActionEnum {
     CONFIRM_PAYMENT = "CONFIRM_PAYMENT",
     PROCURE = "PROCURE",
