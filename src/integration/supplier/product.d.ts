@@ -25,6 +25,16 @@ export interface SupplierProductVariant {
     stock: number;
     picture?: string;
 }
+export interface SupplierProductShipping {
+    country: string;
+    amount: number;
+    currency: string;
+    service?: string;
+    deliveryDays?: {
+        min?: number;
+        max?: number;
+    };
+}
 export interface SupplierProduct {
     provider: SupplierProviderEnum;
     externalProductId: string;
@@ -46,6 +56,7 @@ export interface SupplierProduct {
     variants: SupplierProductVariant[];
     importedProduct?: string;
     defaultMarkup?: number;
+    shipping?: SupplierProductShipping | null;
 }
 export interface SupplierProductSource {
     product: SupplierProduct;
