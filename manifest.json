@@ -56,7 +56,8 @@
         "supplier/types/connection",
         "supplier/types/quote",
         "supplier/types/order",
-        "supplier/types/address"
+        "supplier/types/address",
+        "supplier/types/sync"
       ]
     },
     "@/inventory": {

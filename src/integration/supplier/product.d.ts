@@ -47,3 +47,7 @@ export interface SupplierProduct {
     importedProduct?: string;
     defaultMarkup?: number;
 }
+export interface SupplierProductSource {
+    product: SupplierProduct;
+    offers: SupplierProductVariant[];
+}
