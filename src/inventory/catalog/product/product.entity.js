@@ -23,6 +23,7 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     supplier;
     vendor;
     externalProductId;
+    handlingDays;
     variant;
     supplierPrice;
     retailPrice;
@@ -63,6 +64,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], CatalogProductEntity.prototype, "externalProductId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "handlingDays", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,

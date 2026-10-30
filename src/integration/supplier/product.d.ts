@@ -27,7 +27,8 @@ export interface SupplierProduct {
     description: string;
     assets: SupplierProductAsset[];
     currency: string;
-    deliveryDays?: number;
+    handlingDays?: number | null;
+    deliveryDays?: number | null;
     store?: {
         externalId: string;
         name: string;
@@ -35,4 +36,5 @@ export interface SupplierProduct {
     };
     variants: SupplierProductVariant[];
     importedProduct?: string;
+    defaultMarkup?: number;
 }

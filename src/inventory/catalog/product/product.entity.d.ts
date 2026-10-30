@@ -13,6 +13,7 @@ export declare class CatalogProductEntity extends AbstractEntity {
     supplier?: IntegrationSupplierEntity;
     vendor?: ContactVendorEntity;
     externalProductId?: string;
+    handlingDays?: number | null;
     variant: CatalogVariantEntity;
     readonly supplierPrice: number;
     readonly retailPrice: number;
