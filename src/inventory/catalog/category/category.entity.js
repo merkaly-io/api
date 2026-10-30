@@ -20,6 +20,7 @@ const categoriesRef = app_schemas_1.AppSchemas.inventory.catalog.categories;
 let CatalogCategoryEntity = class CatalogCategoryEntity extends abstract_entity_1.AbstractEntity {
     name;
     description;
+    icon;
     parent;
     children = [];
     products = [];
@@ -34,6 +35,10 @@ __decorate([
     (0, mongoose_1.Prop)({ trim: true, type: String }),
     __metadata("design:type", String)
 ], CatalogCategoryEntity.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ trim: true, type: String, default: null }),
+    __metadata("design:type", String)
+], CatalogCategoryEntity.prototype, "icon", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ ref: categoriesRef, type: mongoose_2.Types.ObjectId, default: null }),
     __metadata("design:type", CatalogCategoryEntity)
