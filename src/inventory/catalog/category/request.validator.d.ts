@@ -3,7 +3,7 @@ import type { CatalogCategoryEntity } from './category.entity';
 export declare class CreateCategoryRequestValidator extends AbstractRequestValidator {
     name: string;
     description?: string;
-    icon?: string;
+    icon?: string | null;
     parent?: string | null;
     constructor(category?: CatalogCategoryEntity);
 }
