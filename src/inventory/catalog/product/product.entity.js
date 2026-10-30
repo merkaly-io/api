@@ -9,12 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CatalogProductEntity = void 0;
+exports.CatalogProductEntity = exports.CatalogProductPropertySchema = exports.CatalogProductPropertyEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const asset_entity_1 = require("../../../assets/asset/asset.entity");
 const abstract_entity_1 = require("../../../abstract.entity");
+let CatalogProductPropertyEntity = class CatalogProductPropertyEntity {
+    name;
+    value;
+    unit;
+};
+exports.CatalogProductPropertyEntity = CatalogProductPropertyEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    __metadata("design:type", String)
+], CatalogProductPropertyEntity.prototype, "name", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    __metadata("design:type", String)
+], CatalogProductPropertyEntity.prototype, "value", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], CatalogProductPropertyEntity.prototype, "unit", void 0);
+exports.CatalogProductPropertyEntity = CatalogProductPropertyEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], CatalogProductPropertyEntity);
+exports.CatalogProductPropertySchema = mongoose_1.SchemaFactory.createForClass(CatalogProductPropertyEntity);
 let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.AbstractEntity {
     sku;
     name;
@@ -24,6 +46,11 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     vendor;
     externalProductId;
     handlingDays;
+    properties;
+    ratingValue;
+    ratingCount;
+    soldCount;
+    reviewCount;
     variant;
     supplierPrice;
     retailPrice;
@@ -68,6 +95,26 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
     __metadata("design:type", Number)
 ], CatalogProductEntity.prototype, "handlingDays", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: [], type: [exports.CatalogProductPropertySchema] }),
+    __metadata("design:type", Array)
+], CatalogProductEntity.prototype, "properties", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, max: 5, min: 1, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "ratingValue", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "ratingCount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "soldCount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductEntity.prototype, "reviewCount", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,

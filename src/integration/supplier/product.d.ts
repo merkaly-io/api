@@ -11,6 +11,11 @@ export interface SupplierProductOption {
     externalNameId: string;
     externalValueId: string;
 }
+export interface SupplierProductProperty {
+    name: string;
+    value: string;
+    unit?: string;
+}
 export interface SupplierProductVariant {
     externalVariantId: string;
     name: string;
@@ -29,6 +34,10 @@ export interface SupplierProduct {
     currency: string;
     handlingDays?: number | null;
     deliveryDays?: number | null;
+    properties: SupplierProductProperty[];
+    ratingValue: number | null;
+    ratingCount: number | null;
+    soldCount: number | null;
     store?: {
         externalId: string;
         name: string;
