@@ -4,4 +4,5 @@ export interface OrderSaleAttentionSummary {
     attention: Record<OrderSaleAttentionEnum, number>;
     stages: Record<OrderFulfillmentStageEnum, number>;
     shipmentDelayDays: number;
+    paymentConfirmDays: number;
 }
