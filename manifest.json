@@ -117,7 +117,9 @@
         "enums/fulfillment.enum",
         "types/fulfillment",
         "validators/sale/quote.request.validator",
-        "types/checkout"
+        "types/checkout",
+        "enums/attention.enum",
+        "types/attention"
       ],
       "item": [
         "infrastructure/entities/item.entity"
