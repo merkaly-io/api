@@ -24,6 +24,7 @@ class CreatePaymentChargeRequestValidator extends abstract_validator_1.AbstractR
     issuerId;
     identificationType;
     identificationNumber;
+    deviceId;
 }
 exports.CreatePaymentChargeRequestValidator = CreatePaymentChargeRequestValidator;
 __decorate([
@@ -69,4 +70,10 @@ __decorate([
     (0, class_validator_1.Length)(1, 32),
     __metadata("design:type", String)
 ], CreatePaymentChargeRequestValidator.prototype, "identificationNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(1, 512),
+    __metadata("design:type", String)
+], CreatePaymentChargeRequestValidator.prototype, "deviceId", void 0);
 //# sourceMappingURL=request.validator.js.map
