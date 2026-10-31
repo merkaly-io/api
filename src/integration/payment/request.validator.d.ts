@@ -1,79 +1,46 @@
 import { AbstractRequestValidator } from '../../abstract.validator';
-import { PaymentBankAccountTypeEnum, PaymentRecipientTypeEnum, PaymentTransferIntervalEnum } from './recipient.enum';
+import { PaymentAccountCompanyTypeEnum, PaymentAccountPersonTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
 export declare function isCnpj(value: unknown): boolean;
 export declare function IsCnpj(): PropertyDecorator;
-export declare function isPastDate(value: unknown, today?: Date): boolean;
-export declare function isTransferDay(day: unknown, interval: unknown): boolean;
-export declare class PaymentRecipientAddressRequestValidator extends AbstractRequestValidator {
-    zipCode: string;
+export declare function isPixKey(type: unknown, key: unknown): boolean;
+export declare class PaymentAccountAddressRequestValidator extends AbstractRequestValidator {
+    postalCode: string;
     street: string;
     number: string;
-    complement: string;
-    neighborhood: string;
-    city: string;
-    state: string;
-    referencePoint: string;
+    complement?: string;
+    district: string;
 }
-export declare class PaymentRecipientPhoneRequestValidator extends AbstractRequestValidator {
-    ddd: string;
-    number: string;
+declare abstract class PaymentAccountContactRequestValidator extends AbstractRequestValidator {
+    email: string;
+    mobilePhone: string;
+    phone?: string;
+    incomeValue: number;
+    site?: string;
+    address: PaymentAccountAddressRequestValidator;
 }
-export declare abstract class PaymentRecipientPersonBaseRequestValidator extends AbstractRequestValidator {
+export declare class CreatePaymentAccountRequestValidator extends PaymentAccountContactRequestValidator {
+    personType: PaymentAccountPersonTypeEnum;
     name: string;
-    email: string;
-    document: string;
-    birthdate: string;
-    monthlyIncome: number;
-    professionalOccupation: string;
-    motherName?: string;
-}
-export declare class PaymentRecipientIndividualRequestValidator extends PaymentRecipientPersonBaseRequestValidator {
-    siteUrl?: string;
-}
-export declare class PaymentRecipientPartnerRequestValidator extends PaymentRecipientPersonBaseRequestValidator {
-    address: PaymentRecipientAddressRequestValidator;
-    phone: PaymentRecipientPhoneRequestValidator;
+    cpfCnpj: string;
+    birthDate?: string;
+    companyType?: PaymentAccountCompanyTypeEnum;
     constructor();
 }
-export declare class PaymentRecipientCorporationRequestValidator extends AbstractRequestValidator {
-    companyName: string;
-    tradingName: string;
-    email: string;
-    document: string;
-    siteUrl?: string;
-    annualRevenue: number;
-    corporationType?: string;
-    foundingDate?: string;
-    partner: PaymentRecipientPartnerRequestValidator;
-    constructor();
-}
-export declare class PaymentRecipientBankAccountRequestValidator extends AbstractRequestValidator {
-    bank: string;
-    branchNumber: string;
-    branchCheckDigit?: string;
-    accountNumber: string;
-    accountCheckDigit: string;
-    type: PaymentBankAccountTypeEnum;
-}
-export declare class PaymentRecipientTransferSettingsRequestValidator extends AbstractRequestValidator {
-    interval: PaymentTransferIntervalEnum;
-    day: number;
-    constructor();
-}
-export declare class CreatePaymentRecipientRequestValidator extends AbstractRequestValidator {
-    type: PaymentRecipientTypeEnum;
-    individual?: PaymentRecipientIndividualRequestValidator;
-    corporation?: PaymentRecipientCorporationRequestValidator;
-    address: PaymentRecipientAddressRequestValidator;
-    phone: PaymentRecipientPhoneRequestValidator;
-    bankAccount: PaymentRecipientBankAccountRequestValidator;
-    transferSettings: PaymentRecipientTransferSettingsRequestValidator;
-    constructor();
-}
-export declare class UpdatePaymentRecipientRequestValidator extends AbstractRequestValidator {
-    name?: string;
+export declare class UpdatePaymentAccountRequestValidator extends AbstractRequestValidator {
     email?: string;
-    bankAccount?: PaymentRecipientBankAccountRequestValidator;
+    mobilePhone?: string;
+    phone?: string;
+    incomeValue?: number;
+    site?: string;
+    birthDate?: string;
+    companyType?: PaymentAccountCompanyTypeEnum;
+    address?: PaymentAccountAddressRequestValidator;
 }
-export declare class UpdatePaymentTransferSettingsRequestValidator extends PaymentRecipientTransferSettingsRequestValidator {
+export declare class UpdatePaymentWithdrawalRequestValidator extends AbstractRequestValidator {
+    pixKeyType: PaymentPixKeyTypeEnum;
+    pixKey: string;
 }
+export declare class CreatePaymentWithdrawalRequestValidator extends AbstractRequestValidator {
+    amount?: number;
+}
+export {};

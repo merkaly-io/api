@@ -13,10 +13,11 @@ exports.IntegrationPaymentEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const abstract_entity_1 = require("../../abstract.entity");
 const provider_enum_1 = require("./provider.enum");
-const payment_recipient_entity_1 = require("./payment.recipient.entity");
+const payment_account_entity_1 = require("./payment.account.entity");
 let IntegrationPaymentEntity = class IntegrationPaymentEntity extends abstract_entity_1.AbstractEntity {
     provider;
-    recipient;
+    account;
+    accountError;
 };
 exports.IntegrationPaymentEntity = IntegrationPaymentEntity;
 __decorate([
@@ -24,9 +25,13 @@ __decorate([
     __metadata("design:type", String)
 ], IntegrationPaymentEntity.prototype, "provider", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: payment_recipient_entity_1.IntegrationPaymentRecipientSchema }),
-    __metadata("design:type", payment_recipient_entity_1.IntegrationPaymentRecipientEntity)
-], IntegrationPaymentEntity.prototype, "recipient", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: payment_account_entity_1.IntegrationPaymentAccountSchema }),
+    __metadata("design:type", payment_account_entity_1.IntegrationPaymentAccountEntity)
+], IntegrationPaymentEntity.prototype, "account", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], IntegrationPaymentEntity.prototype, "accountError", void 0);
 exports.IntegrationPaymentEntity = IntegrationPaymentEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], IntegrationPaymentEntity);
