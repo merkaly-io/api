@@ -41,6 +41,7 @@
     "@/finance": {
       "payment": [
         "entities/payment.entity",
+        "entities/payment.gateway.entity",
         "enums/payment.enum",
         "validators/payment/request.validator",
         "transitions/payment.transition"
@@ -64,8 +65,11 @@
         "payment/entities/payment.recipient.entity",
         "payment/enums/provider.enum",
         "payment/enums/recipient.enum",
+        "payment/enums/charge.enum",
         "payment/types/recipient",
-        "payment/validators/recipient/request.validator"
+        "payment/types/charge",
+        "payment/validators/recipient/request.validator",
+        "payment/validators/charge/charge.request.validator"
       ]
     },
     "@/inventory": {
