@@ -18,6 +18,7 @@ export declare const IntegrationPaymentAccountApprovalSchema: MongoSchema<Integr
 export declare class IntegrationPaymentAccountWithdrawalEntity {
     pixKeyType: PaymentPixKeyTypeEnum;
     pixKey: string;
+    automatic: boolean;
 }
 export declare const IntegrationPaymentAccountWithdrawalSchema: MongoSchema<IntegrationPaymentAccountWithdrawalEntity, import("mongoose").Model<IntegrationPaymentAccountWithdrawalEntity, any, any, any, import("mongoose").Document<unknown, any, IntegrationPaymentAccountWithdrawalEntity, any, {}> & IntegrationPaymentAccountWithdrawalEntity & {
     _id: import("mongoose").Types.ObjectId;

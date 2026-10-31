@@ -43,6 +43,7 @@ exports.IntegrationPaymentAccountApprovalSchema = mongoose_1.SchemaFactory.creat
 let IntegrationPaymentAccountWithdrawalEntity = class IntegrationPaymentAccountWithdrawalEntity {
     pixKeyType;
     pixKey;
+    automatic;
 };
 exports.IntegrationPaymentAccountWithdrawalEntity = IntegrationPaymentAccountWithdrawalEntity;
 __decorate([
@@ -53,6 +54,10 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
 ], IntegrationPaymentAccountWithdrawalEntity.prototype, "pixKey", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: true, type: Boolean }),
+    __metadata("design:type", Boolean)
+], IntegrationPaymentAccountWithdrawalEntity.prototype, "automatic", void 0);
 exports.IntegrationPaymentAccountWithdrawalEntity = IntegrationPaymentAccountWithdrawalEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], IntegrationPaymentAccountWithdrawalEntity);

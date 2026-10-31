@@ -9,6 +9,7 @@ export interface PaymentAccountApproval {
 export interface PaymentAccountWithdrawal {
     pixKeyType: PaymentPixKeyTypeEnum;
     pixKeyMasked: string;
+    automatic: boolean;
 }
 export interface PaymentAccountSummary {
     accountId: string;

@@ -39,6 +39,7 @@ export declare class UpdatePaymentAccountRequestValidator extends AbstractReques
 export declare class UpdatePaymentWithdrawalRequestValidator extends AbstractRequestValidator {
     pixKeyType: PaymentPixKeyTypeEnum;
     pixKey: string;
+    automatic?: boolean;
 }
 export declare class CreatePaymentWithdrawalRequestValidator extends AbstractRequestValidator {
     amount?: number;
