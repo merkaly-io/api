@@ -11,6 +11,7 @@ var FinancePaymentStatusEnum;
 var FinancePaymentMethodEnum;
 (function (FinancePaymentMethodEnum) {
     FinancePaymentMethodEnum["CARD"] = "CARD";
+    FinancePaymentMethodEnum["PIX"] = "PIX";
     FinancePaymentMethodEnum["TRANSFER"] = "TRANSFER";
     FinancePaymentMethodEnum["CASH"] = "CASH";
     FinancePaymentMethodEnum["CRYPTO"] = "CRYPTO";
