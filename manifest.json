@@ -58,6 +58,14 @@
         "supplier/types/order",
         "supplier/types/address",
         "supplier/types/sync"
+      ],
+      "payment": [
+        "payment/entities/payment.entity",
+        "payment/entities/payment.recipient.entity",
+        "payment/enums/provider.enum",
+        "payment/enums/recipient.enum",
+        "payment/types/recipient",
+        "payment/validators/recipient/request.validator"
       ]
     },
     "@/inventory": {

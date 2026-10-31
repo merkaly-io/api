@@ -45,6 +45,7 @@ class AppSchemas {
     }
     static get integration() {
         return {
+            payments: 'integration.payments',
             suppliers: 'integration.suppliers',
         };
     }
