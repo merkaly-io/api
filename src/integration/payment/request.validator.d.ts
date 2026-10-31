@@ -8,4 +8,5 @@ export declare class CreatePaymentChargeRequestValidator extends AbstractRequest
     issuerId?: string;
     identificationType?: string;
     identificationNumber?: string;
+    deviceId?: string;
 }
