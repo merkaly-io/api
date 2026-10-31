@@ -14,7 +14,6 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const abstract_entity_1 = require("../../abstract.entity");
 const payment_enum_1 = require("./payment.enum");
-const payment_gateway_entity_1 = require("./payment.gateway.entity");
 let FinancePaymentEntity = class FinancePaymentEntity extends abstract_entity_1.AbstractEntity {
     type;
     target;
@@ -22,7 +21,6 @@ let FinancePaymentEntity = class FinancePaymentEntity extends abstract_entity_1.
     amount;
     fee;
     method;
-    gateway;
     status;
     history = [];
     number;
@@ -52,10 +50,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, enum: [...Object.values(payment_enum_1.FinancePaymentMethodEnum), null], type: String }),
     __metadata("design:type", String)
 ], FinancePaymentEntity.prototype, "method", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: payment_gateway_entity_1.FinancePaymentGatewaySchema }),
-    __metadata("design:type", payment_gateway_entity_1.FinancePaymentGatewayEntity)
-], FinancePaymentEntity.prototype, "gateway", void 0);
 exports.FinancePaymentEntity = FinancePaymentEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], FinancePaymentEntity);
