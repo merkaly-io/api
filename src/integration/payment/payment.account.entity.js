@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IntegrationPaymentAccountSchema = exports.IntegrationPaymentAccountEntity = exports.IntegrationPaymentAccountWithdrawalSchema = exports.IntegrationPaymentAccountWithdrawalEntity = exports.IntegrationPaymentAccountApprovalSchema = exports.IntegrationPaymentAccountApprovalEntity = void 0;
+exports.IntegrationPaymentAccountSchema = exports.IntegrationPaymentAccountEntity = exports.IntegrationPaymentAccountPixSchema = exports.IntegrationPaymentAccountPixEntity = exports.IntegrationPaymentAccountWithdrawalSchema = exports.IntegrationPaymentAccountWithdrawalEntity = exports.IntegrationPaymentAccountApprovalSchema = exports.IntegrationPaymentAccountApprovalEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const account_enum_1 = require("./account.enum");
@@ -62,6 +62,28 @@ exports.IntegrationPaymentAccountWithdrawalEntity = IntegrationPaymentAccountWit
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], IntegrationPaymentAccountWithdrawalEntity);
 exports.IntegrationPaymentAccountWithdrawalSchema = mongoose_1.SchemaFactory.createForClass(IntegrationPaymentAccountWithdrawalEntity);
+let IntegrationPaymentAccountPixEntity = class IntegrationPaymentAccountPixEntity {
+    ready;
+    error;
+    checkedAt;
+};
+exports.IntegrationPaymentAccountPixEntity = IntegrationPaymentAccountPixEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: false, type: Boolean }),
+    __metadata("design:type", Boolean)
+], IntegrationPaymentAccountPixEntity.prototype, "ready", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], IntegrationPaymentAccountPixEntity.prototype, "error", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: mongoose_2.Schema.Types.Date }),
+    __metadata("design:type", Date)
+], IntegrationPaymentAccountPixEntity.prototype, "checkedAt", void 0);
+exports.IntegrationPaymentAccountPixEntity = IntegrationPaymentAccountPixEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], IntegrationPaymentAccountPixEntity);
+exports.IntegrationPaymentAccountPixSchema = mongoose_1.SchemaFactory.createForClass(IntegrationPaymentAccountPixEntity);
 let IntegrationPaymentAccountEntity = class IntegrationPaymentAccountEntity {
     accountId;
     walletId;
@@ -71,6 +93,7 @@ let IntegrationPaymentAccountEntity = class IntegrationPaymentAccountEntity {
     name;
     email;
     approval;
+    pix;
     withdrawal;
     createdAt;
     syncedAt;
@@ -108,6 +131,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.IntegrationPaymentAccountApprovalSchema }),
     __metadata("design:type", IntegrationPaymentAccountApprovalEntity)
 ], IntegrationPaymentAccountEntity.prototype, "approval", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: exports.IntegrationPaymentAccountPixSchema }),
+    __metadata("design:type", IntegrationPaymentAccountPixEntity)
+], IntegrationPaymentAccountEntity.prototype, "pix", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.IntegrationPaymentAccountWithdrawalSchema }),
     __metadata("design:type", IntegrationPaymentAccountWithdrawalEntity)

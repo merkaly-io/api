@@ -31,6 +31,8 @@ export interface PaymentAccountStatus {
     canSell: boolean;
     canWithdraw: boolean;
     kycAction: boolean;
+    pixReady: boolean;
+    warnings: string[];
     accountError: string | null;
 }
 export interface PaymentAccountDocument {

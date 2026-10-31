@@ -29,6 +29,20 @@ export declare const IntegrationPaymentAccountWithdrawalSchema: MongoSchema<Inte
 } & {
     __v: number;
 }>;
+export declare class IntegrationPaymentAccountPixEntity {
+    ready: boolean;
+    error?: string | null;
+    checkedAt: Date;
+}
+export declare const IntegrationPaymentAccountPixSchema: MongoSchema<IntegrationPaymentAccountPixEntity, import("mongoose").Model<IntegrationPaymentAccountPixEntity, any, any, any, import("mongoose").Document<unknown, any, IntegrationPaymentAccountPixEntity, any, {}> & IntegrationPaymentAccountPixEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountPixEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountPixEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IntegrationPaymentAccountPixEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
 export declare class IntegrationPaymentAccountEntity {
     accountId: string;
     walletId: string;
@@ -38,6 +52,7 @@ export declare class IntegrationPaymentAccountEntity {
     name: string;
     email: string;
     approval?: IntegrationPaymentAccountApprovalEntity | null;
+    pix?: IntegrationPaymentAccountPixEntity | null;
     withdrawal?: IntegrationPaymentAccountWithdrawalEntity | null;
     createdAt: Date;
     syncedAt: Date;
