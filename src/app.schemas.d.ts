@@ -29,6 +29,7 @@ export declare abstract class AppSchemas {
         sales: string;
     };
     static get integration(): {
+        payments: string;
         suppliers: string;
     };
     static get settings(): {

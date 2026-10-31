@@ -6,6 +6,7 @@ export declare enum FinancePaymentStatusEnum {
 }
 export declare enum FinancePaymentMethodEnum {
     CARD = "CARD",
+    PIX = "PIX",
     TRANSFER = "TRANSFER",
     CASH = "CASH",
     CRYPTO = "CRYPTO"
