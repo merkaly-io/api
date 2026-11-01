@@ -8,10 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePaymentChargeRequestValidator = exports.PaymentCardRequestValidator = void 0;
 exports.isCardNumber = isCardNumber;
 exports.isCardExpiry = isCardExpiry;
+const card_validator_1 = __importDefault(require("card-validator"));
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const payment_enum_1 = require("../../finance/payment/payment.enum");
@@ -19,25 +23,14 @@ const shipping_request_validator_1 = require("../../order/sale/shipping.request.
 const abstract_validator_1 = require("../../abstract.validator");
 const request_validator_1 = require("./request.validator");
 function isCardNumber(value) {
-    if (typeof value !== 'string' || !/^\d{13,19}$/.test(value))
-        return false;
-    const sum = value
-        .split('')
-        .reverse()
-        .reduce((acc, char, index) => {
-        const digit = Number(char) * (index % 2 ? 2 : 1);
-        return acc + (digit > 9 ? digit - 9 : digit);
-    }, 0);
-    return sum % 10 === 0;
+    return (typeof value === 'string' && /^\d{13,19}$/.test(value) && card_validator_1.default.number(value).isValid);
 }
-function isCardExpiry(month, year, today = new Date()) {
+function isCardExpiry(month, year) {
     if (typeof month !== 'string' || typeof year !== 'string')
         return false;
-    if (!/^(0[1-9]|1[0-2])$/.test(month) || !/^\d{4}$/.test(year))
-        return false;
-    const current = today.getUTCFullYear() * 12 + today.getUTCMonth();
-    const expiry = Number(year) * 12 + Number(month) - 1;
-    return expiry >= current && expiry <= current + 20 * 12;
+    return (/^(0[1-9]|1[0-2])$/.test(month) &&
+        /^\d{4}$/.test(year) &&
+        card_validator_1.default.expirationDate({ month, year }).isValid);
 }
 function IsCardNumber() {
     return (0, class_validator_1.ValidateBy)({

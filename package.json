@@ -28,6 +28,8 @@
     "sync": "bash scripts/sync-from-api-app.sh"
   },
   "dependencies": {
+    "@brazilian-utils/brazilian-utils": "^2.5.0",
+    "card-validator": "^10.0.4",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "reflect-metadata": "^0.2.2"

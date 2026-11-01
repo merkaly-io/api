@@ -13,6 +13,7 @@ exports.CreatePaymentWithdrawalRequestValidator = exports.UpdatePaymentWithdrawa
 exports.isCnpj = isCnpj;
 exports.IsCnpj = IsCnpj;
 exports.isPixKey = isPixKey;
+const brazilian_utils_1 = require("@brazilian-utils/brazilian-utils");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const shipping_request_validator_1 = require("../../order/sale/shipping.request.validator");
@@ -20,18 +21,7 @@ const abstract_validator_1 = require("../../abstract.validator");
 const account_enum_1 = require("./account.enum");
 const lower = ({ value }) => typeof value === 'string' ? value.trim().toLowerCase() : value;
 function isCnpj(value) {
-    if (typeof value !== 'string' || !/^\d{14}$/.test(value) || /^(\d)\1{13}$/.test(value)) {
-        return false;
-    }
-    const digit = (length) => {
-        const weights = length === 12
-            ? [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
-            : [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        const sum = weights.reduce((acc, weight, index) => acc + Number(value[index]) * weight, 0);
-        const rest = sum % 11;
-        return rest < 2 ? 0 : 11 - rest;
-    };
-    return digit(12) === Number(value[12]) && digit(13) === Number(value[13]);
+    return typeof value === 'string' && /^\d{14}$/.test(value) && (0, brazilian_utils_1.isValidCnpj)(value);
 }
 function IsCnpj() {
     return (0, class_validator_1.ValidateBy)({

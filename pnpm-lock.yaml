@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@brazilian-utils/brazilian-utils':
+        specifier: ^2.5.0
+        version: 2.5.0
+      card-validator:
+        specifier: ^10.0.4
+        version: 10.0.4
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
@@ -35,6 +41,10 @@ importers:
         version: 7.0.2
 
 packages:
+
+  '@brazilian-utils/brazilian-utils@2.5.0':
+    resolution: {integrity: sha512-rWXbTGN+8irKr5fe6/mtZ/vc/qoDBGIR57RzuwGZ90uV4/SxG00ehPo77RYviOhSzenKbYbEMDMyd8GHjmF6sg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@esbuild/aix-ppc64@0.28.1':
     resolution: {integrity: sha512-Svl7tq8k/08+p6CXPpRjQ1fKX+1odH/BQbb48fV6fj3CWHhsoIOoY87w1oHXm0qEpkIK3ZfVgp0hed3XBXzXMQ==}
@@ -452,6 +462,9 @@ packages:
       magicast:
         optional: true
 
+  card-validator@10.0.4:
+    resolution: {integrity: sha512-1Q/tDCSvM5iL3psPo6j8KF/VoI63WA7Y4Zthy1E7l/H4Iul2e2X+1S0vp33n3OMRjLgGU2+gLaK2NsGtwArJkQ==}
+
   changelogen@0.6.2:
     resolution: {integrity: sha512-QtC7+r9BxoUm+XDAwhLbz3CgU134J1ytfE3iCpLpA4KFzX2P1e6s21RrWDwUBzfx66b1Rv+6lOA2nS2btprd+A==}
     hasBin: true
@@ -475,6 +488,9 @@ packages:
 
   convert-gitmoji@0.1.5:
     resolution: {integrity: sha512-4wqOafJdk2tqZC++cjcbGcaJ13BZ3kwldf06PTiAQRAB76Z1KJwZNL1SaRZMi2w1FM9RYTgZ6QErS8NUl/GBmQ==}
+
+  credit-card-type@10.3.1:
+    resolution: {integrity: sha512-mmHHMrNofu9WF/U1qlZTuzoEixmT7robK7s26ut8HgrjxXVPRWGlVb1l6K+fDNLJdShc4zv4ml+ZE5KwKHpZMA==}
 
   default-browser-id@5.0.1:
     resolution: {integrity: sha512-x1VCxdX4t+8wVfd1so/9w+vQ4vx7lKd2Qp5tDRutErwmR85OgmfX7RlLRMWafRMY7hbEiXIbudNrjOAPa/hL8Q==}
@@ -625,6 +641,8 @@ packages:
     engines: {node: '>=18'}
 
 snapshots:
+
+  '@brazilian-utils/brazilian-utils@2.5.0': {}
 
   '@esbuild/aix-ppc64@0.28.1':
     optional: true
@@ -846,6 +864,10 @@ snapshots:
       pkg-types: 2.3.1
       rc9: 3.0.1
 
+  card-validator@10.0.4:
+    dependencies:
+      credit-card-type: 10.3.1
+
   changelogen@0.6.2:
     dependencies:
       c12: 3.3.4
@@ -881,6 +903,8 @@ snapshots:
   consola@3.4.2: {}
 
   convert-gitmoji@0.1.5: {}
+
+  credit-card-type@10.3.1: {}
 
   default-browser-id@5.0.1: {}
 

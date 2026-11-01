@@ -1,7 +1,7 @@
 import { AbstractRequestValidator } from '../../abstract.validator';
 import type { StorePaymentMethod } from './charge';
 export declare function isCardNumber(value: unknown): boolean;
-export declare function isCardExpiry(month: unknown, year: unknown, today?: Date): boolean;
+export declare function isCardExpiry(month: unknown, year: unknown): boolean;
 export declare class PaymentCardRequestValidator extends AbstractRequestValidator {
     holderName: string;
     number: string;
