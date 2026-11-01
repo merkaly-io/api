@@ -9,4 +9,6 @@ export declare class OrderSaleEntity extends TransactionEntity<OrderSaleStatusEn
     items: ItemEntity[];
     shipping?: OrderSaleShippingEntity;
     readonly purchases: OrderPurchaseEntity[];
+    readonly cost: number | null;
+    readonly profit: number | null;
 }
