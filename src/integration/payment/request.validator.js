@@ -262,7 +262,6 @@ __decorate([
 class UpdatePaymentWithdrawalRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     pixKeyType;
     pixKey;
-    automatic;
 }
 exports.UpdatePaymentWithdrawalRequestValidator = UpdatePaymentWithdrawalRequestValidator;
 __decorate([
@@ -274,11 +273,6 @@ __decorate([
     (0, class_transformer_1.Transform)(pixKey),
     __metadata("design:type", String)
 ], UpdatePaymentWithdrawalRequestValidator.prototype, "pixKey", void 0);
-__decorate([
-    (0, class_validator_1.IsBoolean)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Boolean)
-], UpdatePaymentWithdrawalRequestValidator.prototype, "automatic", void 0);
 class CreatePaymentWithdrawalRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     amount;
 }
