@@ -41,10 +41,13 @@
     "@/finance": {
       "payment": [
         "entities/payment.entity",
+        "entities/payment.attempt.entity",
         "entities/payment.gateway.entity",
         "enums/payment.enum",
         "validators/payment/request.validator",
-        "transitions/payment.transition"
+        "transitions/payment.transition",
+        "types/report",
+        "validators/payment/report.request.validator"
       ]
     },
     "@/integration": {

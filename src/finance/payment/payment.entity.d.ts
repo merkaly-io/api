@@ -4,6 +4,7 @@ import { AbstractEntity } from '../../abstract.entity';
 import { StatusEntity } from '../../status.plugin';
 import { ITransitionable } from '../../transitionable.interface';
 import { FinancePaymentMethodEnum, FinancePaymentStatusEnum, FinancePaymentTypeEnum } from './payment.enum';
+import { FinancePaymentAttemptEntity } from './payment.attempt.entity';
 import { FinancePaymentGatewayEntity } from './payment.gateway.entity';
 export type OrderEntity = OrderSaleEntity | OrderPurchaseEntity;
 export declare class FinancePaymentEntity extends AbstractEntity implements ITransitionable<FinancePaymentStatusEnum> {
@@ -14,6 +15,7 @@ export declare class FinancePaymentEntity extends AbstractEntity implements ITra
     fee: number;
     method?: FinancePaymentMethodEnum | null;
     gateway?: FinancePaymentGatewayEntity | null;
+    attempts?: FinancePaymentAttemptEntity[];
     status: FinancePaymentStatusEnum;
     history: StatusEntity<FinancePaymentStatusEnum>[];
     readonly number: string;
