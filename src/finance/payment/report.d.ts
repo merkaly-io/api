@@ -1,6 +1,6 @@
-import type { FinancePaymentMethodEnum } from './payment.enum';
-import type { PaymentChargeStatusEnum } from '../../integration/payment/charge.enum';
-export type FinancePaymentReportStatus = PaymentChargeStatusEnum | 'UNKNOWN';
+import type { FinancePaymentAttemptStatus } from './payment.attempt.entity';
+import type { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
+export type FinancePaymentReportStatus = FinancePaymentAttemptStatus;
 export interface FinancePaymentReportTotal {
     amount: number;
     count: number;
@@ -47,6 +47,7 @@ export interface FinancePaymentReportItem {
     orgName: string;
     paid: boolean;
     paymentId: string;
+    paymentStatus: FinancePaymentStatusEnum;
     provider: string;
     rawStatus: string;
     reference: string | null;
