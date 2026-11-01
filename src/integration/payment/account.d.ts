@@ -47,8 +47,14 @@ export interface PaymentAccountOnboarding {
     documents: PaymentAccountDocument[];
     rejectReasons: string | null;
 }
+export interface PaymentAccountPending {
+    amount: number;
+    count: number;
+    nextCreditDate: string | null;
+}
 export interface PaymentAccountBalance {
     balance: number;
+    pending: PaymentAccountPending | null;
 }
 export interface PaymentAccountTransfer {
     id: string;
