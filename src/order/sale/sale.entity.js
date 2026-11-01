@@ -17,12 +17,16 @@ const customer_entity_1 = require("../../contact/customer/customer.entity");
 const sale_item_schema_1 = require("../schemas/sale.item.schema");
 const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
+const purchase_enum_1 = require("../purchase/purchase.enum");
+const sale_enum_1 = require("./sale.enum");
 const sale_shipping_entity_1 = require("./sale.shipping.entity");
 let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
     shipping;
     purchases;
+    cost;
+    profit;
 };
 exports.OrderSaleEntity = OrderSaleEntity;
 __decorate([
@@ -54,6 +58,30 @@ __decorate([
     }),
     __metadata("design:type", Array)
 ], OrderSaleEntity.prototype, "purchases", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            if (!Array.isArray(this.purchases))
+                return undefined;
+            if (this.status === sale_enum_1.OrderSaleStatusEnum.CANCELLED)
+                return null;
+            const live = this.purchases.filter((it) => !it.deletedAt && it.status !== purchase_enum_1.OrderPurchaseStatusEnum.CANCELLED);
+            if (!live.length)
+                return null;
+            return live.reduce((sum, it) => sum + it.pricing.subtotal + (it.freight ?? 0), 0);
+        },
+    }),
+    __metadata("design:type", Number)
+], OrderSaleEntity.prototype, "cost", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            const cost = this.cost;
+            return cost == null ? cost : this.pricing.total - cost;
+        },
+    }),
+    __metadata("design:type", Number)
+], OrderSaleEntity.prototype, "profit", void 0);
 exports.OrderSaleEntity = OrderSaleEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], OrderSaleEntity);
