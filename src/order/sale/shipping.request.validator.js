@@ -15,6 +15,7 @@ exports.IsCpf = IsCpf;
 exports.isBirthday = isBirthday;
 exports.IsBirthday = IsBirthday;
 exports.isFullName = isFullName;
+const brazilian_utils_1 = require("@brazilian-utils/brazilian-utils");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
@@ -54,17 +55,7 @@ exports.digits = digits;
 const upper = ({ value }) => typeof value === 'string' ? value.trim().toUpperCase() : value;
 exports.upper = upper;
 function isCpf(value) {
-    if (typeof value !== 'string' || !/^\d{11}$/.test(value) || /^(\d)\1{10}$/.test(value)) {
-        return false;
-    }
-    const digit = (length) => {
-        const sum = value
-            .slice(0, length)
-            .split('')
-            .reduce((acc, char, index) => acc + Number(char) * (length + 1 - index), 0);
-        return ((sum * 10) % 11) % 10;
-    };
-    return digit(9) === Number(value[9]) && digit(10) === Number(value[10]);
+    return typeof value === 'string' && /^\d{11}$/.test(value) && (0, brazilian_utils_1.isValidCpf)(value);
 }
 function IsCpf() {
     return (0, class_validator_1.ValidateBy)({
