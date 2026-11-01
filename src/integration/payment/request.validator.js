@@ -122,9 +122,7 @@ __decorate([
 class PaymentAccountContactRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     email;
     mobilePhone;
-    phone;
     incomeValue;
-    site;
     address;
 }
 __decorate([
@@ -139,22 +137,10 @@ __decorate([
     __metadata("design:type", String)
 ], PaymentAccountContactRequestValidator.prototype, "mobilePhone", void 0);
 __decorate([
-    (0, class_validator_1.Matches)(/^\d{10,11}$/, { message: '$property must be the DDD and number (10 or 11 digits)' }),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
-    __metadata("design:type", String)
-], PaymentAccountContactRequestValidator.prototype, "phone", void 0);
-__decorate([
     (0, class_validator_1.IsInt)(),
     (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], PaymentAccountContactRequestValidator.prototype, "incomeValue", void 0);
-__decorate([
-    (0, class_validator_1.IsUrl)({ require_protocol: true }),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
-    __metadata("design:type", String)
-], PaymentAccountContactRequestValidator.prototype, "site", void 0);
 __decorate([
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.ValidateNested)(),
@@ -203,9 +189,7 @@ __decorate([
 class UpdatePaymentAccountRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     email;
     mobilePhone;
-    phone;
     incomeValue;
-    site;
     birthDate;
     companyType;
     address;
@@ -225,23 +209,11 @@ __decorate([
     __metadata("design:type", String)
 ], UpdatePaymentAccountRequestValidator.prototype, "mobilePhone", void 0);
 __decorate([
-    (0, class_validator_1.Matches)(/^\d{10,11}$/, { message: '$property must be the DDD and number (10 or 11 digits)' }),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
-    __metadata("design:type", String)
-], UpdatePaymentAccountRequestValidator.prototype, "phone", void 0);
-__decorate([
     (0, class_validator_1.IsInt)(),
     (0, class_validator_1.Min)(1),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UpdatePaymentAccountRequestValidator.prototype, "incomeValue", void 0);
-__decorate([
-    (0, class_validator_1.IsUrl)({ require_protocol: true }),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
-    __metadata("design:type", String)
-], UpdatePaymentAccountRequestValidator.prototype, "site", void 0);
 __decorate([
     (0, shipping_request_validator_1.IsBirthday)(),
     (0, class_validator_1.IsOptional)(),
@@ -262,7 +234,6 @@ __decorate([
 class UpdatePaymentWithdrawalRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     pixKeyType;
     pixKey;
-    automatic;
 }
 exports.UpdatePaymentWithdrawalRequestValidator = UpdatePaymentWithdrawalRequestValidator;
 __decorate([
@@ -274,11 +245,6 @@ __decorate([
     (0, class_transformer_1.Transform)(pixKey),
     __metadata("design:type", String)
 ], UpdatePaymentWithdrawalRequestValidator.prototype, "pixKey", void 0);
-__decorate([
-    (0, class_validator_1.IsBoolean)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Boolean)
-], UpdatePaymentWithdrawalRequestValidator.prototype, "automatic", void 0);
 class CreatePaymentWithdrawalRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     amount;
 }
