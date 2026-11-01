@@ -13,9 +13,7 @@ export declare class PaymentAccountAddressRequestValidator extends AbstractReque
 declare abstract class PaymentAccountContactRequestValidator extends AbstractRequestValidator {
     email: string;
     mobilePhone: string;
-    phone?: string;
     incomeValue: number;
-    site?: string;
     address: PaymentAccountAddressRequestValidator;
 }
 export declare class CreatePaymentAccountRequestValidator extends PaymentAccountContactRequestValidator {
@@ -29,9 +27,7 @@ export declare class CreatePaymentAccountRequestValidator extends PaymentAccount
 export declare class UpdatePaymentAccountRequestValidator extends AbstractRequestValidator {
     email?: string;
     mobilePhone?: string;
-    phone?: string;
     incomeValue?: number;
-    site?: string;
     birthDate?: string;
     companyType?: PaymentAccountCompanyTypeEnum;
     address?: PaymentAccountAddressRequestValidator;
