@@ -7,3 +7,7 @@ export declare enum PaymentChargeStatusEnum {
     EXPIRED = "EXPIRED",
     REFUNDED = "REFUNDED"
 }
+export declare enum PaymentChargeAccountEnum {
+    MAIN = "MAIN",
+    SUBCONTA = "SUBCONTA"
+}

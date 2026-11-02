@@ -42,7 +42,6 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     name;
     description;
     active;
-    supplier;
     vendor;
     externalProductId;
     handlingDays;
@@ -50,13 +49,12 @@ let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.
     ratingValue;
     ratingCount;
     soldCount;
-    reviewCount;
     variant;
     supplierPrice;
     retailPrice;
     category;
     brand;
-    hashtags;
+    posterId;
     picture;
     assets;
     options;
@@ -79,10 +77,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: true, type: Boolean }),
     __metadata("design:type", Boolean)
 ], CatalogProductEntity.prototype, "active", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.integration.suppliers, type: mongoose_2.Schema.Types.ObjectId }),
-    __metadata("design:type", Function)
-], CatalogProductEntity.prototype, "supplier", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.contact.vendors, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)
@@ -111,10 +105,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
     __metadata("design:type", Number)
 ], CatalogProductEntity.prototype, "soldCount", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "reviewCount", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         required: true,
@@ -156,13 +146,15 @@ __decorate([
     __metadata("design:type", Function)
 ], CatalogProductEntity.prototype, "brand", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: [String], default: [] }),
-    __metadata("design:type", Array)
-], CatalogProductEntity.prototype, "hashtags", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", String)
+], CatalogProductEntity.prototype, "posterId", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.variant?.picture;
+            const { poster, posterVariants } = this;
+            const owned = (posterVariants ?? []).some((variant) => String(variant.product?._id ?? variant.product) === String(this._id));
+            return poster && owned ? poster : this.variant?.picture;
         },
     }),
     __metadata("design:type", asset_entity_1.AssetEntity)
