@@ -7,7 +7,6 @@ declare class ProductMetadataRequestValidator extends AbstractRequestValidator {
     description?: string;
     category?: string;
     brand?: string;
-    hashtags?: string[];
     constructor(product?: CatalogProductEntity);
 }
 declare class UpdateProductVariantRequestValidator extends UpdateVariantRequestValidator {
@@ -20,6 +19,7 @@ declare class UpdateProductVariantsItemRequestValidator extends UpdateVariantReq
 export declare class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     name: string;
     active?: boolean;
+    posterId?: string | null;
     variant?: UpdateProductVariantRequestValidator;
     variants?: UpdateProductVariantsItemRequestValidator[];
     constructor(product?: CatalogProductEntity);

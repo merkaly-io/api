@@ -5,7 +5,6 @@ import type { CatalogBrandEntity } from '../brand/brand.entity';
 import type { CatalogCategoryEntity } from '../category/category.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
 import type { ContactVendorEntity } from '../../../contact/vendor/vendor.entity';
-import type { IntegrationSupplierEntity } from '../../../integration/supplier/supplier.entity';
 export declare class CatalogProductPropertyEntity {
     name: string;
     value: string;
@@ -25,7 +24,6 @@ export declare class CatalogProductEntity extends AbstractEntity {
     name: string;
     description?: string;
     active: boolean;
-    supplier?: IntegrationSupplierEntity;
     vendor?: ContactVendorEntity;
     externalProductId?: string;
     handlingDays?: number | null;
@@ -33,13 +31,12 @@ export declare class CatalogProductEntity extends AbstractEntity {
     ratingValue?: number | null;
     ratingCount?: number | null;
     soldCount?: number | null;
-    reviewCount?: number | null;
     variant: CatalogVariantEntity;
     readonly supplierPrice: number;
     readonly retailPrice: number;
     category?: CatalogCategoryEntity;
     brand?: CatalogBrandEntity;
-    hashtags: string[];
+    posterId?: string | null;
     readonly picture: AssetEntity;
     readonly assets: AssetEntity[];
     readonly options: {

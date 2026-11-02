@@ -19,7 +19,6 @@ class ProductMetadataRequestValidator extends abstract_validator_1.AbstractReque
     description;
     category;
     brand;
-    hashtags;
     constructor(product) {
         super();
         if (!product)
@@ -28,7 +27,6 @@ class ProductMetadataRequestValidator extends abstract_validator_1.AbstractReque
         this.description = product.description;
         this.category = (product.category?._id || product.category);
         this.brand = (product.brand?._id || product.brand);
-        this.hashtags = product.hashtags ?? [];
     }
 }
 __decorate([
@@ -54,13 +52,6 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], ProductMetadataRequestValidator.prototype, "brand", void 0);
-__decorate([
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsString)({ each: true }),
-    (0, class_validator_1.Length)(0, 50, { each: true }),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Array)
-], ProductMetadataRequestValidator.prototype, "hashtags", void 0);
 class UpdateProductVariantRequestValidator extends request_validator_1.UpdateVariantRequestValidator {
     _id;
     constructor(variant) {
@@ -83,12 +74,15 @@ __decorate([
 ], UpdateProductVariantsItemRequestValidator.prototype, "_id", void 0);
 class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
     active;
+    posterId;
     variant;
     variants;
     constructor(product) {
         super(product);
         if (product)
             this.active = product.active;
+        if (product)
+            this.posterId = product.posterId ? String(product.posterId) : null;
         if (product?.variant)
             this.variant = new UpdateProductVariantRequestValidator(product.variant);
     }
@@ -103,6 +97,11 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], UpdateProductRequestValidator.prototype, "active", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateProductRequestValidator.prototype, "posterId", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.ValidateNested)(),
