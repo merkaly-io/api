@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCheckoutRequestValidator = exports.CheckoutItemRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const payment_enum_1 = require("../../finance/payment/payment.enum");
 const abstract_validator_1 = require("../../abstract.validator");
 const shipping_request_validator_1 = require("./shipping.request.validator");
 class CheckoutItemRequestValidator extends abstract_validator_1.AbstractRequestValidator {
@@ -38,6 +39,7 @@ class CreateCheckoutRequestValidator extends abstract_validator_1.AbstractReques
     items = [];
     shipping = new shipping_request_validator_1.SaleShippingRequestValidator();
     notes;
+    method;
 }
 exports.CreateCheckoutRequestValidator = CreateCheckoutRequestValidator;
 __decorate([
@@ -60,4 +62,9 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCheckoutRequestValidator.prototype, "notes", void 0);
+__decorate([
+    (0, class_validator_1.IsIn)([payment_enum_1.FinancePaymentMethodEnum.PIX, payment_enum_1.FinancePaymentMethodEnum.CARD]),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateCheckoutRequestValidator.prototype, "method", void 0);
 //# sourceMappingURL=checkout.request.validator.js.map
