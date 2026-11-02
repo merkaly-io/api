@@ -1,4 +1,5 @@
 import { Schema as MongoSchema } from 'mongoose';
+import { PaymentChargeAccountEnum } from '../../integration/payment/charge.enum';
 import { FinancePaymentMethodEnum } from './payment.enum';
 export declare class FinancePaymentGatewayPixEntity {
     qrCode?: string | null;
@@ -29,6 +30,7 @@ export declare const FinancePaymentGatewayCardSchema: MongoSchema<FinancePayment
 export declare class FinancePaymentGatewayEntity {
     provider: string;
     reference?: string | null;
+    account?: PaymentChargeAccountEnum | null;
     method: FinancePaymentMethodEnum;
     status: string;
     message?: string | null;
