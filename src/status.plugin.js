@@ -7,7 +7,7 @@ function statusPlugin(schema, options) {
     const historySchema = new mongoose_1.Schema({
         date: { default: () => Date.now(), required: true, type: Date },
         name: { default: options.default, enum: options.enum, required: true, type: String },
-        user: { required: true, type: String },
+        user: { default: null, type: String },
     });
     schema.add({
         history: { default: [], type: [historySchema] },
@@ -16,7 +16,7 @@ function statusPlugin(schema, options) {
     schema.pre('save', function (next) {
         const doc = this;
         const cls = nestjs_cls_1.ClsServiceManager.getClsService();
-        const { userId } = cls.get('auth');
+        const userId = cls.get('auth')?.userId ?? null;
         if (!doc.status) {
             return next();
         }
@@ -36,7 +36,7 @@ function statusPlugin(schema, options) {
     schema.pre('findOneAndUpdate', async function (next) {
         const query = this;
         const cls = nestjs_cls_1.ClsServiceManager.getClsService();
-        const { userId } = cls.get('auth');
+        const userId = cls.get('auth')?.userId ?? null;
         const update = query.getUpdate();
         if (!update) {
             return next();

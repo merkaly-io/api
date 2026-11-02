@@ -52,11 +52,11 @@ class SearchValidator extends ReadValidator {
 }
 exports.SearchValidator = SearchValidator;
 __decorate([
-    (0, class_transformer_1.Transform)(({ value }) => {
+    (0, class_transformer_1.Transform)(({ key, value }) => {
         if (!value) {
             return new PaginationValidator();
         }
-        const parsed = (0, class_validator_1.isObject)(value) ? value : JSON.parse(value);
+        const parsed = (0, class_validator_1.isObject)(value) ? value : parseQueryJson(key, value);
         return (0, class_transformer_1.plainToInstance)(PaginationValidator, parsed);
     }),
     (0, class_validator_1.ValidateNested)(),
@@ -65,23 +65,54 @@ __decorate([
     __metadata("design:type", PaginationValidator)
 ], SearchValidator.prototype, "pagination", void 0);
 __decorate([
-    (0, class_transformer_1.Transform)(({ value }) => transformStructuredValue(value)),
+    (0, class_transformer_1.Transform)(({ key, value }) => assertSortOrder(transformStructuredValue(key, value))),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
 ], SearchValidator.prototype, "sort", void 0);
 __decorate([
-    (0, class_transformer_1.Transform)(({ value }) => transformStructuredValue(value)),
+    (0, class_transformer_1.Transform)(({ key, value }) => transformStructuredValue(key, value)),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
 ], SearchValidator.prototype, "filters", void 0);
-function transformStructuredValue(value) {
+class QueryValidationError extends Error {
+    statusCode = 400;
+}
+const FORBIDDEN_OPERATORS = new Set(['$where', '$function', '$accumulator']);
+const SORT_ORDERS = new Set([1, -1, 'asc', 'desc', 'ascending', 'descending']);
+function assertSortOrder(sort) {
+    if (!sort)
+        return sort;
+    if (!(0, class_validator_1.isObject)(sort) || (0, class_validator_1.isArray)(sort))
+        throw new QueryValidationError('sort must be an object');
+    for (const [field, order] of Object.entries(sort)) {
+        if (!SORT_ORDERS.has(order))
+            throw new QueryValidationError(`sort.${field} must be 1, -1, asc or desc`);
+    }
+    return sort;
+}
+function parseQueryJson(key, value) {
+    if (!(0, class_validator_1.isJSON)(value))
+        throw new QueryValidationError(`${key} must be valid JSON`);
+    return JSON.parse(value);
+}
+function assertNoForbiddenOperators(key, value) {
+    if ((0, class_validator_1.isArray)(value))
+        return value.forEach((item) => assertNoForbiddenOperators(key, item));
+    if (!(0, class_validator_1.isObject)(value))
+        return;
+    for (const [field, nested] of Object.entries(value)) {
+        if (FORBIDDEN_OPERATORS.has(field))
+            throw new QueryValidationError(`${key} must not use ${field}`);
+        assertNoForbiddenOperators(key, nested);
+    }
+}
+function transformStructuredValue(key, value) {
     if (!value) {
         return undefined;
     }
-    if ((0, class_validator_1.isObject)(value) || (0, class_validator_1.isArray)(value)) {
-        return value;
-    }
-    return JSON.parse(value);
+    const parsed = (0, class_validator_1.isObject)(value) || (0, class_validator_1.isArray)(value) ? value : parseQueryJson(key, value);
+    assertNoForbiddenOperators(key, parsed);
+    return parsed;
 }
 function transformJoinsIntoPopulate(value) {
     function transform(value) {

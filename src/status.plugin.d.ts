@@ -8,7 +8,7 @@ export interface StatusEntity<TEnum extends string = string> {
     _id: Types.ObjectId;
     date: Date;
     name: TEnum;
-    user: string;
+    user: string | null;
 }
 export declare function statusPlugin(schema: Schema, options: StatusPluginOptions): void;
 export {};
