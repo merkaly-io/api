@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = exports.FinancePaymentGatewayCardSchema = exports.FinancePaymentGatewayCardEntity = exports.FinancePaymentGatewayPixSchema = exports.FinancePaymentGatewayPixEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const charge_enum_1 = require("../../integration/payment/charge.enum");
 const payment_enum_1 = require("./payment.enum");
 let FinancePaymentGatewayPixEntity = class FinancePaymentGatewayPixEntity {
     qrCode;
@@ -50,6 +51,7 @@ exports.FinancePaymentGatewayCardSchema = mongoose_1.SchemaFactory.createForClas
 let FinancePaymentGatewayEntity = class FinancePaymentGatewayEntity {
     provider;
     reference;
+    account;
     method;
     status;
     message;
@@ -70,6 +72,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], FinancePaymentGatewayEntity.prototype, "reference", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, enum: charge_enum_1.PaymentChargeAccountEnum, type: String }),
+    __metadata("design:type", String)
+], FinancePaymentGatewayEntity.prototype, "account", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ enum: payment_enum_1.FinancePaymentMethodEnum, required: true, type: String }),
     __metadata("design:type", String)
