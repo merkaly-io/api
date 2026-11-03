@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SALE_PAYMENT_CONFIRM_DAYS = exports.SALE_SHIPMENT_DELAY_DAYS = exports.OrderSaleAttentionEnum = void 0;
+exports.SALE_PAYMENT_CONFIRM_DAYS = exports.SALE_SHIPMENT_DELAY_DAYS = exports.SALE_ACTIONABLE_ATTENTIONS = exports.OrderSaleAttentionEnum = void 0;
 var OrderSaleAttentionEnum;
 (function (OrderSaleAttentionEnum) {
     OrderSaleAttentionEnum["SUPPLIER_ORDER_FAILED"] = "SUPPLIER_ORDER_FAILED";
@@ -10,6 +10,13 @@ var OrderSaleAttentionEnum;
     OrderSaleAttentionEnum["PAYMENT_TO_CONFIRM"] = "PAYMENT_TO_CONFIRM";
     OrderSaleAttentionEnum["SHIPMENT_DELAYED"] = "SHIPMENT_DELAYED";
 })(OrderSaleAttentionEnum || (exports.OrderSaleAttentionEnum = OrderSaleAttentionEnum = {}));
+exports.SALE_ACTIONABLE_ATTENTIONS = [
+    OrderSaleAttentionEnum.SUPPLIER_ORDER_FAILED,
+    OrderSaleAttentionEnum.SUPPLIER_PAYMENT_PENDING,
+    OrderSaleAttentionEnum.SHIPMENT_EXCEPTION,
+    OrderSaleAttentionEnum.TO_ORDER,
+    OrderSaleAttentionEnum.PAYMENT_TO_CONFIRM,
+];
 exports.SALE_SHIPMENT_DELAY_DAYS = 7;
 exports.SALE_PAYMENT_CONFIRM_DAYS = 7;
 //# sourceMappingURL=attention.enum.js.map

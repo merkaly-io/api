@@ -6,5 +6,6 @@ export declare enum OrderSaleAttentionEnum {
     PAYMENT_TO_CONFIRM = "PAYMENT_TO_CONFIRM",
     SHIPMENT_DELAYED = "SHIPMENT_DELAYED"
 }
+export declare const SALE_ACTIONABLE_ATTENTIONS: readonly OrderSaleAttentionEnum[];
 export declare const SALE_SHIPMENT_DELAY_DAYS = 7;
 export declare const SALE_PAYMENT_CONFIRM_DAYS = 7;
