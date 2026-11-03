@@ -41,7 +41,6 @@ export interface DashboardHomeOnboarding {
 }
 export interface DashboardHome {
     attention: OrderSaleAttentionSummary;
-    period: DashboardHomePeriod;
     recent: DashboardHomeSale[];
     integrations: DashboardHomeIntegrations;
     onboarding: DashboardHomeOnboarding;

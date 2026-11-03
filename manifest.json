@@ -41,7 +41,7 @@
     "@/dashboard": {
       "home": [
         "types/home",
-        "validators/home.request.validator"
+        "validators/period.request.validator"
       ]
     },
     "@/finance": {

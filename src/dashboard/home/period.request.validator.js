@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DashboardHomeRequestValidator = exports.DASHBOARD_HOME_DAYS = void 0;
+exports.DashboardPeriodRequestValidator = exports.DASHBOARD_PERIOD_DAYS = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
-exports.DASHBOARD_HOME_DAYS = [7, 30, 90];
-class DashboardHomeRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+exports.DASHBOARD_PERIOD_DAYS = [7, 30, 90];
+class DashboardPeriodRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     days = 30;
 }
-exports.DashboardHomeRequestValidator = DashboardHomeRequestValidator;
+exports.DashboardPeriodRequestValidator = DashboardPeriodRequestValidator;
 __decorate([
-    (0, class_validator_1.IsIn)(exports.DASHBOARD_HOME_DAYS),
+    (0, class_validator_1.IsIn)(exports.DASHBOARD_PERIOD_DAYS),
     (0, class_validator_1.IsOptional)(),
     (0, class_transformer_1.Type)(() => Number),
     __metadata("design:type", Object)
-], DashboardHomeRequestValidator.prototype, "days", void 0);
-//# sourceMappingURL=home.request.validator.js.map
+], DashboardPeriodRequestValidator.prototype, "days", void 0);
+//# sourceMappingURL=period.request.validator.js.map
