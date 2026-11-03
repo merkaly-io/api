@@ -25,6 +25,7 @@ let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.Transac
     customer;
     items = [];
     shipping;
+    cancelledAt;
     imported;
     purchases;
     cost;
@@ -50,6 +51,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: sale_shipping_entity_1.OrderSaleShippingSchema }),
     __metadata("design:type", sale_shipping_entity_1.OrderSaleShippingEntity)
 ], OrderSaleEntity.prototype, "shipping", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderSaleEntity.prototype, "cancelledAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: sale_import_entity_1.OrderSaleImportSchema }),
     __metadata("design:type", sale_import_entity_1.OrderSaleImportEntity)

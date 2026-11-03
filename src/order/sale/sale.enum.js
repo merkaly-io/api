@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SALE_OPEN_STATUSES = exports.SALE_PRE_FULFILLMENT_STATUSES = exports.OrderSaleStatusEnum = void 0;
+exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
 var OrderSaleStatusEnum;
 (function (OrderSaleStatusEnum) {
-    OrderSaleStatusEnum["OPEN"] = "OPEN";
-    OrderSaleStatusEnum["IN_PROGRESS"] = "IN_PROGRESS";
-    OrderSaleStatusEnum["COMPLETED"] = "COMPLETED";
+    OrderSaleStatusEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
+    OrderSaleStatusEnum["PAID"] = "PAID";
+    OrderSaleStatusEnum["ORDERED"] = "ORDERED";
+    OrderSaleStatusEnum["SHIPPED"] = "SHIPPED";
+    OrderSaleStatusEnum["DELIVERED"] = "DELIVERED";
     OrderSaleStatusEnum["CANCELLED"] = "CANCELLED";
-    OrderSaleStatusEnum["RETURNED"] = "RETURNED";
 })(OrderSaleStatusEnum || (exports.OrderSaleStatusEnum = OrderSaleStatusEnum = {}));
-exports.SALE_PRE_FULFILLMENT_STATUSES = [
-    OrderSaleStatusEnum.OPEN,
-];
 exports.SALE_OPEN_STATUSES = [
-    ...exports.SALE_PRE_FULFILLMENT_STATUSES,
-    OrderSaleStatusEnum.IN_PROGRESS,
+    OrderSaleStatusEnum.AWAITING_PAYMENT,
+    OrderSaleStatusEnum.PAID,
+    OrderSaleStatusEnum.ORDERED,
+    OrderSaleStatusEnum.SHIPPED,
 ];
 //# sourceMappingURL=sale.enum.js.map

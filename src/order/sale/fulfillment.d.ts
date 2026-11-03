@@ -1,6 +1,9 @@
 import type { FinancePaymentStatusEnum } from '../../finance/payment/payment.enum';
-import type { OrderFulfillmentActionEnum, OrderFulfillmentStageEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from './fulfillment.enum';
-import type { OrderSupplierOrderStatusEnum } from '../purchase/supplier.order.enum';
+import type { LogisticsShipmentEntity } from '../../logistics/shipment/shipment.entity';
+import type { LogisticsBuyerShipment } from '../../logistics/shipment/shipment';
+import type { OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from './fulfillment.enum';
+import type { OrderPurchaseStatusEnum } from '../purchase/purchase.enum';
+import type { OrderSaleStatusEnum } from './sale.enum';
 export interface OrderSaleCosts {
     products: number;
     freight: number;
@@ -24,7 +27,8 @@ export interface OrderSaleHistoryEntry {
     at: string;
     type: OrderSaleHistoryEventEnum;
     purchase?: string;
-    status?: OrderSupplierOrderStatusEnum;
+    status?: OrderPurchaseStatusEnum;
+    trackingNumber?: string;
 }
 export interface OrderSaleSummary {
     currency: string;
@@ -46,14 +50,11 @@ export interface OrderSaleSummary {
     payment: {
         status: FinancePaymentStatusEnum | null;
     };
-    fulfillment: {
-        stage: OrderFulfillmentStageEnum;
-    };
+    status: OrderSaleStatusEnum;
+    shipments: LogisticsShipmentEntity[];
     nextActions: OrderFulfillmentActionEnum[];
 }
 export interface OrderBuyerFulfillment {
-    stage: OrderFulfillmentStageEnum;
-    trackingNumbers: string[];
-    carrier?: string;
-    trackingUrl?: string;
+    status: OrderSaleStatusEnum;
+    shipments: LogisticsBuyerShipment[];
 }

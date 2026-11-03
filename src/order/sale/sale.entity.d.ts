@@ -9,6 +9,7 @@ export declare class OrderSaleEntity extends TransactionEntity<OrderSaleStatusEn
     customer: ContactCustomerEntity;
     items: ItemEntity[];
     shipping?: OrderSaleShippingEntity;
+    cancelledAt?: Date | null;
     imported?: OrderSaleImportEntity;
     readonly purchases: OrderPurchaseEntity[];
     readonly cost: number | null;

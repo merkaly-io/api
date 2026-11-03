@@ -5,6 +5,7 @@ var OrderSaleAttentionEnum;
 (function (OrderSaleAttentionEnum) {
     OrderSaleAttentionEnum["SUPPLIER_ORDER_FAILED"] = "SUPPLIER_ORDER_FAILED";
     OrderSaleAttentionEnum["SUPPLIER_PAYMENT_PENDING"] = "SUPPLIER_PAYMENT_PENDING";
+    OrderSaleAttentionEnum["SHIPMENT_EXCEPTION"] = "SHIPMENT_EXCEPTION";
     OrderSaleAttentionEnum["TO_ORDER"] = "TO_ORDER";
     OrderSaleAttentionEnum["PAYMENT_TO_CONFIRM"] = "PAYMENT_TO_CONFIRM";
     OrderSaleAttentionEnum["SHIPMENT_DELAYED"] = "SHIPMENT_DELAYED";

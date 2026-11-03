@@ -1,15 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = exports.OrderFulfillmentStageEnum = void 0;
-var OrderFulfillmentStageEnum;
-(function (OrderFulfillmentStageEnum) {
-    OrderFulfillmentStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
-    OrderFulfillmentStageEnum["TO_ORDER"] = "TO_ORDER";
-    OrderFulfillmentStageEnum["ORDERED"] = "ORDERED";
-    OrderFulfillmentStageEnum["SHIPPED"] = "SHIPPED";
-    OrderFulfillmentStageEnum["DELIVERED"] = "DELIVERED";
-    OrderFulfillmentStageEnum["CANCELLED"] = "CANCELLED";
-})(OrderFulfillmentStageEnum || (exports.OrderFulfillmentStageEnum = OrderFulfillmentStageEnum = {}));
+exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = void 0;
+const sale_enum_1 = require("./sale.enum");
 var OrderBuyerStageEnum;
 (function (OrderBuyerStageEnum) {
     OrderBuyerStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -19,14 +11,11 @@ var OrderBuyerStageEnum;
     OrderBuyerStageEnum["CANCELLED"] = "CANCELLED";
 })(OrderBuyerStageEnum || (exports.OrderBuyerStageEnum = OrderBuyerStageEnum = {}));
 exports.BUYER_STAGE_GROUPS = {
-    [OrderBuyerStageEnum.AWAITING_PAYMENT]: [OrderFulfillmentStageEnum.AWAITING_PAYMENT],
-    [OrderBuyerStageEnum.IN_PREPARATION]: [
-        OrderFulfillmentStageEnum.TO_ORDER,
-        OrderFulfillmentStageEnum.ORDERED,
-    ],
-    [OrderBuyerStageEnum.SHIPPED]: [OrderFulfillmentStageEnum.SHIPPED],
-    [OrderBuyerStageEnum.DELIVERED]: [OrderFulfillmentStageEnum.DELIVERED],
-    [OrderBuyerStageEnum.CANCELLED]: [OrderFulfillmentStageEnum.CANCELLED],
+    [OrderBuyerStageEnum.AWAITING_PAYMENT]: [sale_enum_1.OrderSaleStatusEnum.AWAITING_PAYMENT],
+    [OrderBuyerStageEnum.IN_PREPARATION]: [sale_enum_1.OrderSaleStatusEnum.PAID, sale_enum_1.OrderSaleStatusEnum.ORDERED],
+    [OrderBuyerStageEnum.SHIPPED]: [sale_enum_1.OrderSaleStatusEnum.SHIPPED],
+    [OrderBuyerStageEnum.DELIVERED]: [sale_enum_1.OrderSaleStatusEnum.DELIVERED],
+    [OrderBuyerStageEnum.CANCELLED]: [sale_enum_1.OrderSaleStatusEnum.CANCELLED],
 };
 var OrderFulfillmentActionEnum;
 (function (OrderFulfillmentActionEnum) {
@@ -48,13 +37,12 @@ var OrderSaleHistoryEventEnum;
     OrderSaleHistoryEventEnum["PAYMENT_CONFIRMED"] = "PAYMENT_CONFIRMED";
     OrderSaleHistoryEventEnum["PAYMENT_CANCELLED"] = "PAYMENT_CANCELLED";
     OrderSaleHistoryEventEnum["PAYMENT_REFUNDED"] = "PAYMENT_REFUNDED";
-    OrderSaleHistoryEventEnum["SALE_IN_PROGRESS"] = "SALE_IN_PROGRESS";
-    OrderSaleHistoryEventEnum["SALE_COMPLETED"] = "SALE_COMPLETED";
-    OrderSaleHistoryEventEnum["SALE_CANCELLED"] = "SALE_CANCELLED";
-    OrderSaleHistoryEventEnum["SALE_RETURNED"] = "SALE_RETURNED";
     OrderSaleHistoryEventEnum["PURCHASE_CREATED"] = "PURCHASE_CREATED";
     OrderSaleHistoryEventEnum["PURCHASE_CANCELLED"] = "PURCHASE_CANCELLED";
     OrderSaleHistoryEventEnum["SUPPLIER_ORDER_PLACED"] = "SUPPLIER_ORDER_PLACED";
     OrderSaleHistoryEventEnum["SUPPLIER_ORDER_SYNCED"] = "SUPPLIER_ORDER_SYNCED";
+    OrderSaleHistoryEventEnum["SHIPMENT_SHIPPED"] = "SHIPMENT_SHIPPED";
+    OrderSaleHistoryEventEnum["SHIPMENT_DELIVERED"] = "SHIPMENT_DELIVERED";
+    OrderSaleHistoryEventEnum["SALE_CANCELLED"] = "SALE_CANCELLED";
 })(OrderSaleHistoryEventEnum || (exports.OrderSaleHistoryEventEnum = OrderSaleHistoryEventEnum = {}));
 //# sourceMappingURL=fulfillment.enum.js.map

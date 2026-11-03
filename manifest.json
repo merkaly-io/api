@@ -96,6 +96,14 @@
         ]
       }
     },
+    "@/logistics": {
+      "shipment": [
+        "entities/shipment.entity",
+        "entities/shipment.event.entity",
+        "enums/shipment.enum",
+        "types/shipment"
+      ]
+    },
     "@/order": {
       "purchase": [
         "entities/purchase.entity",
@@ -104,7 +112,6 @@
         "validators/purchase/request.validator",
         "validators/purchase/item.request.validator",
         "entities/purchase.supplier.order.entity",
-        "enums/supplier.order.enum",
         "validators/purchase/supplier.order.request.validator"
       ],
       "sale": [

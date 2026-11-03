@@ -1,4 +1,5 @@
-import type { OrderSupplierOrderStatusEnum } from '../../order/purchase/supplier.order.enum';
+import type { LogisticsParcelInput } from '../../logistics/shipment/shipment';
+import type { OrderPurchaseStatusEnum } from '../../order/purchase/purchase.enum';
 export interface SupplierOrderLine {
     externalProductId: string;
     externalVariantId: string;
@@ -29,15 +30,14 @@ export interface SupplierOrderRequest {
 }
 export interface SupplierOrderPlacement {
     externalOrderIds: string[];
-    status: OrderSupplierOrderStatusEnum;
+    status: OrderPurchaseStatusEnum;
     warning?: string;
 }
 export interface SupplierOrderSnapshot {
-    status?: OrderSupplierOrderStatusEnum;
+    status?: OrderPurchaseStatusEnum;
+    received: boolean;
     rawStatus: string;
-    trackingNumbers: string[];
-    carrier?: string;
-    trackingUrl?: string;
+    parcels: LogisticsParcelInput[];
 }
 export interface SupplierOrderImportLine {
     externalProductId: string;

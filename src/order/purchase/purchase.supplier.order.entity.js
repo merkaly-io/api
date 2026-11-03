@@ -12,18 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderPurchaseSupplierOrderSchema = exports.OrderPurchaseSupplierOrderEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const provider_enum_1 = require("../../integration/supplier/provider.enum");
-const supplier_order_enum_1 = require("./supplier.order.enum");
 let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
     provider;
     externalOrderIds = [];
     reference;
-    status;
     rawStatus;
     placedAt;
     syncedAt;
-    trackingNumbers = [];
-    carrier;
-    trackingUrl;
     error;
 };
 exports.OrderPurchaseSupplierOrderEntity = OrderPurchaseSupplierOrderEntity;
@@ -40,10 +35,6 @@ __decorate([
     __metadata("design:type", String)
 ], OrderPurchaseSupplierOrderEntity.prototype, "reference", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ enum: supplier_order_enum_1.OrderSupplierOrderStatusEnum, required: true, type: String }),
-    __metadata("design:type", String)
-], OrderPurchaseSupplierOrderEntity.prototype, "status", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ default: null, type: String }),
     __metadata("design:type", String)
 ], OrderPurchaseSupplierOrderEntity.prototype, "rawStatus", void 0);
@@ -55,18 +46,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
 ], OrderPurchaseSupplierOrderEntity.prototype, "syncedAt", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: () => [], type: [String] }),
-    __metadata("design:type", Array)
-], OrderPurchaseSupplierOrderEntity.prototype, "trackingNumbers", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
-], OrderPurchaseSupplierOrderEntity.prototype, "carrier", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
-], OrderPurchaseSupplierOrderEntity.prototype, "trackingUrl", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: String }),
     __metadata("design:type", String)

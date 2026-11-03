@@ -22,7 +22,7 @@ class CreateSaleRequestValidator extends abstract_validator_1.AbstractRequestVal
     notes;
     customer;
     payment = payment_enum_1.FinancePaymentStatusEnum.PENDING;
-    status = sale_enum_1.OrderSaleStatusEnum.OPEN;
+    status;
     constructor(order) {
         super();
         if (!order) {
@@ -79,7 +79,7 @@ __decorate([
     (0, class_validator_1.IsEnum)(sale_enum_1.OrderSaleStatusEnum),
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], CreateSaleRequestValidator.prototype, "status", void 0);
 class UpdateSaleRequestValidator extends CreateSaleRequestValidator {
     payment = undefined;

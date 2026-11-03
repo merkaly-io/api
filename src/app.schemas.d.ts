@@ -22,6 +22,9 @@ export declare abstract class AppSchemas {
             variants: string;
         };
     };
+    static get logistics(): {
+        shipments: string;
+    };
     static get order(): {
         purchaseItems: string;
         purchases: string;
