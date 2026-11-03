@@ -19,7 +19,7 @@ const card_validator_1 = __importDefault(require("card-validator"));
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const payment_enum_1 = require("../../finance/payment/payment.enum");
-const shipping_request_validator_1 = require("../../order/sale/shipping.request.validator");
+const delivery_request_validator_1 = require("../../order/sale/delivery.request.validator");
 const abstract_validator_1 = require("../../abstract.validator");
 const request_validator_1 = require("./request.validator");
 function isCardNumber(value) {
@@ -55,13 +55,13 @@ function IsCpfOrCnpj() {
         name: 'isCpfOrCnpj',
         validator: {
             defaultMessage: () => '$property must be a valid CPF or CNPJ',
-            validate: (value) => (0, shipping_request_validator_1.isCpf)(value) || (0, request_validator_1.isCnpj)(value),
+            validate: (value) => (0, delivery_request_validator_1.isCpf)(value) || (0, request_validator_1.isCnpj)(value),
         },
     });
 }
-const twoDigits = ({ value }) => typeof value === 'number' ? String(value).padStart(2, '0') : (0, shipping_request_validator_1.digits)({ value });
+const twoDigits = ({ value }) => typeof value === 'number' ? String(value).padStart(2, '0') : (0, delivery_request_validator_1.digits)({ value });
 const fourDigits = ({ value }) => {
-    const year = typeof value === 'number' ? String(value) : (0, shipping_request_validator_1.digits)({ value });
+    const year = typeof value === 'number' ? String(value) : (0, delivery_request_validator_1.digits)({ value });
     return typeof year === 'string' && year.length === 2 ? `20${year}` : year;
 };
 class PaymentCardRequestValidator extends abstract_validator_1.AbstractRequestValidator {
@@ -76,12 +76,12 @@ exports.PaymentCardRequestValidator = PaymentCardRequestValidator;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 100, { message: 'card.holderName must have 2 to 100 characters' }),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], PaymentCardRequestValidator.prototype, "holderName", void 0);
 __decorate([
     IsCardNumber(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], PaymentCardRequestValidator.prototype, "number", void 0);
 __decorate([
@@ -96,13 +96,13 @@ __decorate([
 ], PaymentCardRequestValidator.prototype, "expiryYear", void 0);
 __decorate([
     (0, class_validator_1.Matches)(/^\d{3,4}$/, { message: 'card.ccv must have 3 or 4 digits' }),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], PaymentCardRequestValidator.prototype, "ccv", void 0);
 __decorate([
     IsCpfOrCnpj(),
     (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], PaymentCardRequestValidator.prototype, "holderDocument", void 0);
 const isCard = (body) => body.method === payment_enum_1.FinancePaymentMethodEnum.CARD;

@@ -13,7 +13,7 @@ exports.UpdateSaleShippingRequestValidator = exports.UpdateSaleShippingAddressRe
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
-const shipping_request_validator_1 = require("./shipping.request.validator");
+const delivery_request_validator_1 = require("./delivery.request.validator");
 const Sent = () => (0, class_validator_1.ValidateIf)((_, value) => value !== undefined);
 const optionalText = ({ value }) => {
     if (value === null)
@@ -34,7 +34,7 @@ __decorate([
     Sent(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], UpdateSaleShippingRecipientRequestValidator.prototype, "name", void 0);
 __decorate([
@@ -47,19 +47,19 @@ __decorate([
 __decorate([
     Sent(),
     (0, class_validator_1.Matches)(/^(55)?\d{10,11}$/, { message: '$property must be a Brazilian phone with area code' }),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], UpdateSaleShippingRecipientRequestValidator.prototype, "phone", void 0);
 __decorate([
     Sent(),
-    (0, shipping_request_validator_1.IsCpf)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
+    (0, delivery_request_validator_1.IsCpf)(),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], UpdateSaleShippingRecipientRequestValidator.prototype, "document", void 0);
 __decorate([
     Sent(),
-    (0, shipping_request_validator_1.IsBirthday)(),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, delivery_request_validator_1.IsBirthday)(),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], UpdateSaleShippingRecipientRequestValidator.prototype, "birthday", void 0);
 class UpdateSaleShippingAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
@@ -75,21 +75,21 @@ exports.UpdateSaleShippingAddressRequestValidator = UpdateSaleShippingAddressReq
 __decorate([
     Sent(),
     (0, class_validator_1.Matches)(/^\d{8}$/, { message: '$property must be a CEP with 8 digits' }),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], UpdateSaleShippingAddressRequestValidator.prototype, "postalCode", void 0);
 __decorate([
     Sent(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 200),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], UpdateSaleShippingAddressRequestValidator.prototype, "street", void 0);
 __decorate([
     Sent(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(1, 20),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], UpdateSaleShippingAddressRequestValidator.prototype, "number", void 0);
 __decorate([
@@ -103,20 +103,20 @@ __decorate([
     Sent(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], UpdateSaleShippingAddressRequestValidator.prototype, "district", void 0);
 __decorate([
     Sent(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], UpdateSaleShippingAddressRequestValidator.prototype, "city", void 0);
 __decorate([
     Sent(),
-    (0, class_validator_1.IsIn)(shipping_request_validator_1.BRAZIL_STATES, { message: '$property must be a Brazilian UF' }),
-    (0, class_transformer_1.Transform)(shipping_request_validator_1.upper),
+    (0, class_validator_1.IsIn)(delivery_request_validator_1.BRAZIL_STATES, { message: '$property must be a Brazilian UF' }),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.upper),
     __metadata("design:type", String)
 ], UpdateSaleShippingAddressRequestValidator.prototype, "state", void 0);
 class UpdateSaleShippingRequestValidator extends abstract_validator_1.AbstractRequestValidator {
@@ -142,4 +142,4 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], UpdateSaleShippingRequestValidator.prototype, "updateCustomer", void 0);
-//# sourceMappingURL=shipping.update.request.validator.js.map
+//# sourceMappingURL=delivery.update.request.validator.js.map

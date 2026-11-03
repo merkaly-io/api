@@ -14,7 +14,7 @@ const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const payment_enum_1 = require("../../finance/payment/payment.enum");
 const abstract_validator_1 = require("../../abstract.validator");
-const shipping_request_validator_1 = require("./shipping.request.validator");
+const delivery_request_validator_1 = require("./delivery.request.validator");
 class CheckoutItemRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     product;
     variant;
@@ -37,7 +37,7 @@ __decorate([
 ], CheckoutItemRequestValidator.prototype, "quantity", void 0);
 class CreateCheckoutRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     items = [];
-    shipping = new shipping_request_validator_1.SaleShippingRequestValidator();
+    delivery = new delivery_request_validator_1.SaleDeliveryRequestValidator();
     notes;
     method;
 }
@@ -52,10 +52,10 @@ __decorate([
 ], CreateCheckoutRequestValidator.prototype, "items", void 0);
 __decorate([
     (0, class_validator_1.IsDefined)(),
-    (0, class_transformer_1.Type)(() => shipping_request_validator_1.SaleShippingRequestValidator),
+    (0, class_transformer_1.Type)(() => delivery_request_validator_1.SaleDeliveryRequestValidator),
     (0, class_validator_1.ValidateNested)(),
     __metadata("design:type", Object)
-], CreateCheckoutRequestValidator.prototype, "shipping", void 0);
+], CreateCheckoutRequestValidator.prototype, "delivery", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 500),
