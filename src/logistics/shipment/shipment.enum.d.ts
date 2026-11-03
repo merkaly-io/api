@@ -11,7 +11,8 @@ export declare enum LogisticsShipmentDirectionEnum {
 export declare enum LogisticsShipmentSourceEnum {
     SUPPLIER = "SUPPLIER",
     MERCHANT = "MERCHANT",
-    CARRIER = "CARRIER"
+    CARRIER = "CARRIER",
+    BUYER = "BUYER"
 }
 export declare enum LogisticsTrackingEventCodeEnum {
     POSTED = "POSTED",

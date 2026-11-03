@@ -26,6 +26,7 @@ let LogisticsShipmentEntity = class LogisticsShipmentEntity extends abstract_ent
     trackingUrl;
     shippedAt;
     deliveredAt;
+    receivedBy;
     events = [];
     status;
     history = [];
@@ -71,6 +72,14 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
 ], LogisticsShipmentEntity.prototype, "deliveredAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        default: null,
+        enum: [...Object.values(shipment_enum_1.LogisticsShipmentSourceEnum), null],
+        type: String,
+    }),
+    __metadata("design:type", String)
+], LogisticsShipmentEntity.prototype, "receivedBy", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: () => [], type: [shipment_event_entity_1.LogisticsShipmentEventSchema] }),
     __metadata("design:type", Array)

@@ -18,6 +18,7 @@ var LogisticsShipmentSourceEnum;
     LogisticsShipmentSourceEnum["SUPPLIER"] = "SUPPLIER";
     LogisticsShipmentSourceEnum["MERCHANT"] = "MERCHANT";
     LogisticsShipmentSourceEnum["CARRIER"] = "CARRIER";
+    LogisticsShipmentSourceEnum["BUYER"] = "BUYER";
 })(LogisticsShipmentSourceEnum || (exports.LogisticsShipmentSourceEnum = LogisticsShipmentSourceEnum = {}));
 var LogisticsTrackingEventCodeEnum;
 (function (LogisticsTrackingEventCodeEnum) {

@@ -14,6 +14,7 @@ export declare class LogisticsShipmentEntity extends AbstractEntity {
     trackingUrl?: string | null;
     shippedAt?: Date | null;
     deliveredAt?: Date | null;
+    receivedBy?: LogisticsShipmentSourceEnum | null;
     events: LogisticsShipmentEventEntity[];
     status: LogisticsShipmentStatusEnum;
     history: StatusEntity<LogisticsShipmentStatusEnum>[];
