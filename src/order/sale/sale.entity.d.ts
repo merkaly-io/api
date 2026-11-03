@@ -4,23 +4,23 @@ import { ItemEntity } from '../item/item.entity';
 import { TransactionEntity } from '../../transaction.entity';
 import { OrderSaleSourceEnum, OrderSaleStatusEnum } from './sale.enum';
 import type { OrderPurchaseEntity } from '../purchase/purchase.entity';
-export declare class OrderSaleShippingRecipientEntity {
+export declare class OrderSaleDeliveryRecipientEntity {
     name: string;
     email: string;
     phone: string;
     document: string;
     birthday?: string;
 }
-export declare const OrderSaleShippingRecipientSchema: MongoSchema<OrderSaleShippingRecipientEntity, import("mongoose").Model<OrderSaleShippingRecipientEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleShippingRecipientEntity, any, {}> & OrderSaleShippingRecipientEntity & {
+export declare const OrderSaleDeliveryRecipientSchema: MongoSchema<OrderSaleDeliveryRecipientEntity, import("mongoose").Model<OrderSaleDeliveryRecipientEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleDeliveryRecipientEntity, any, {}> & OrderSaleDeliveryRecipientEntity & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleShippingRecipientEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleShippingRecipientEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleShippingRecipientEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleDeliveryRecipientEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleDeliveryRecipientEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleDeliveryRecipientEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
 }>;
-export declare class OrderSaleShippingAddressEntity {
+export declare class OrderSaleDeliveryAddressEntity {
     postalCode: string;
     street: string;
     number: string;
@@ -30,55 +30,55 @@ export declare class OrderSaleShippingAddressEntity {
     state: string;
     country: string;
 }
-export declare const OrderSaleShippingAddressSchema: MongoSchema<OrderSaleShippingAddressEntity, import("mongoose").Model<OrderSaleShippingAddressEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleShippingAddressEntity, any, {}> & OrderSaleShippingAddressEntity & {
+export declare const OrderSaleDeliveryAddressSchema: MongoSchema<OrderSaleDeliveryAddressEntity, import("mongoose").Model<OrderSaleDeliveryAddressEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleDeliveryAddressEntity, any, {}> & OrderSaleDeliveryAddressEntity & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleShippingAddressEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleShippingAddressEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleShippingAddressEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleDeliveryAddressEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleDeliveryAddressEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleDeliveryAddressEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
 }>;
-export declare class OrderSaleShippingDaysEntity {
+export declare class OrderSaleDeliveryDaysEntity {
     min?: number;
     max?: number;
 }
-export declare const OrderSaleShippingDaysSchema: MongoSchema<OrderSaleShippingDaysEntity, import("mongoose").Model<OrderSaleShippingDaysEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleShippingDaysEntity, any, {}> & OrderSaleShippingDaysEntity & {
+export declare const OrderSaleDeliveryDaysSchema: MongoSchema<OrderSaleDeliveryDaysEntity, import("mongoose").Model<OrderSaleDeliveryDaysEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleDeliveryDaysEntity, any, {}> & OrderSaleDeliveryDaysEntity & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleShippingDaysEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleShippingDaysEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleShippingDaysEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleDeliveryDaysEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleDeliveryDaysEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleDeliveryDaysEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
 }>;
-export declare class OrderSaleShippingLineEntity {
+export declare class OrderSaleDeliveryLineEntity {
     variant: string;
     amount: number;
     method?: string;
-    deliveryDays?: OrderSaleShippingDaysEntity;
+    deliveryDays?: OrderSaleDeliveryDaysEntity;
 }
-export declare const OrderSaleShippingLineSchema: MongoSchema<OrderSaleShippingLineEntity, import("mongoose").Model<OrderSaleShippingLineEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleShippingLineEntity, any, {}> & OrderSaleShippingLineEntity & {
+export declare const OrderSaleDeliveryLineSchema: MongoSchema<OrderSaleDeliveryLineEntity, import("mongoose").Model<OrderSaleDeliveryLineEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleDeliveryLineEntity, any, {}> & OrderSaleDeliveryLineEntity & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleShippingLineEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleShippingLineEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleShippingLineEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleDeliveryLineEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleDeliveryLineEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleDeliveryLineEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
 }>;
-export declare class OrderSaleShippingEntity {
-    recipient: OrderSaleShippingRecipientEntity;
-    address: OrderSaleShippingAddressEntity;
+export declare class OrderSaleDeliveryEntity {
+    recipient: OrderSaleDeliveryRecipientEntity;
+    address: OrderSaleDeliveryAddressEntity;
     fee?: number;
     quotedAt?: Date;
-    lines?: OrderSaleShippingLineEntity[];
+    lines?: OrderSaleDeliveryLineEntity[];
 }
-export declare const OrderSaleShippingSchema: MongoSchema<OrderSaleShippingEntity, import("mongoose").Model<OrderSaleShippingEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleShippingEntity, any, {}> & OrderSaleShippingEntity & {
+export declare const OrderSaleDeliverySchema: MongoSchema<OrderSaleDeliveryEntity, import("mongoose").Model<OrderSaleDeliveryEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleDeliveryEntity, any, {}> & OrderSaleDeliveryEntity & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleShippingEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleShippingEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleShippingEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleDeliveryEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleDeliveryEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderSaleDeliveryEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -86,7 +86,7 @@ export declare const OrderSaleShippingSchema: MongoSchema<OrderSaleShippingEntit
 export declare class OrderSaleEntity extends TransactionEntity<OrderSaleStatusEnum> {
     customer: ContactCustomerEntity;
     items: ItemEntity[];
-    shipping?: OrderSaleShippingEntity;
+    delivery?: OrderSaleDeliveryEntity;
     cancelledAt?: Date | null;
     source: OrderSaleSourceEnum;
     readonly purchases: OrderPurchaseEntity[];

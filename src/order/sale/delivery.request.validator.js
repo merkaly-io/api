@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleShippingRequestValidator = exports.SaleShippingAddressRequestValidator = exports.SaleShippingRecipientRequestValidator = exports.FULL_NAME_MESSAGE = exports.BIRTHDAY_MAX_AGE = exports.BIRTHDAY_MIN_AGE = exports.upper = exports.digits = exports.trim = exports.BRAZIL_STATES = void 0;
+exports.SaleDeliveryRequestValidator = exports.SaleDeliveryAddressRequestValidator = exports.SaleDeliveryRecipientRequestValidator = exports.FULL_NAME_MESSAGE = exports.BIRTHDAY_MAX_AGE = exports.BIRTHDAY_MIN_AGE = exports.upper = exports.digits = exports.trim = exports.BRAZIL_STATES = void 0;
 exports.isCpf = isCpf;
 exports.IsCpf = IsCpf;
 exports.isBirthday = isBirthday;
@@ -121,43 +121,43 @@ function FullNameForBrazil() {
         },
     });
 }
-class SaleShippingRecipientRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+class SaleDeliveryRecipientRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     email;
     phone;
     document;
     birthday;
 }
-exports.SaleShippingRecipientRequestValidator = SaleShippingRecipientRequestValidator;
+exports.SaleDeliveryRecipientRequestValidator = SaleDeliveryRecipientRequestValidator;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingRecipientRequestValidator.prototype, "name", void 0);
+], SaleDeliveryRecipientRequestValidator.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.Length)(3, 254),
     (0, class_transformer_1.Transform)(({ value }) => (typeof value === 'string' ? value.trim().toLowerCase() : value)),
     __metadata("design:type", String)
-], SaleShippingRecipientRequestValidator.prototype, "email", void 0);
+], SaleDeliveryRecipientRequestValidator.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.Matches)(/^(55)?\d{10,11}$/, { message: '$property must be a Brazilian phone with area code' }),
     (0, class_transformer_1.Transform)(exports.digits),
     __metadata("design:type", String)
-], SaleShippingRecipientRequestValidator.prototype, "phone", void 0);
+], SaleDeliveryRecipientRequestValidator.prototype, "phone", void 0);
 __decorate([
     IsCpf(),
     (0, class_transformer_1.Transform)(exports.digits),
     __metadata("design:type", String)
-], SaleShippingRecipientRequestValidator.prototype, "document", void 0);
+], SaleDeliveryRecipientRequestValidator.prototype, "document", void 0);
 __decorate([
     IsBirthday(),
     (0, class_validator_1.IsOptional)(),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingRecipientRequestValidator.prototype, "birthday", void 0);
-class SaleShippingAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+], SaleDeliveryRecipientRequestValidator.prototype, "birthday", void 0);
+class SaleDeliveryAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     postalCode;
     street;
     number;
@@ -167,79 +167,79 @@ class SaleShippingAddressRequestValidator extends abstract_validator_1.AbstractR
     state;
     country;
 }
-exports.SaleShippingAddressRequestValidator = SaleShippingAddressRequestValidator;
+exports.SaleDeliveryAddressRequestValidator = SaleDeliveryAddressRequestValidator;
 __decorate([
     (0, class_validator_1.Matches)(/^\d{8}$/, { message: '$property must be a CEP with 8 digits' }),
     (0, class_transformer_1.Transform)(exports.digits),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "postalCode", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "postalCode", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 200),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "street", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "street", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(1, 20),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "number", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "number", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 120),
     (0, class_validator_1.IsOptional)(),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "complement", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "complement", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "district", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "district", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
     (0, class_transformer_1.Transform)(exports.trim),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "city", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "city", void 0);
 __decorate([
     (0, class_validator_1.IsIn)(exports.BRAZIL_STATES, { message: '$property must be a Brazilian UF' }),
     (0, class_transformer_1.Transform)(exports.upper),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "state", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "state", void 0);
 __decorate([
     (0, class_validator_1.IsISO31661Alpha2)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_transformer_1.Transform)(exports.upper),
     __metadata("design:type", String)
-], SaleShippingAddressRequestValidator.prototype, "country", void 0);
-class SaleShippingRequestValidator extends abstract_validator_1.AbstractRequestValidator {
-    recipient = new SaleShippingRecipientRequestValidator();
-    address = new SaleShippingAddressRequestValidator();
-    constructor(shipping) {
+], SaleDeliveryAddressRequestValidator.prototype, "country", void 0);
+class SaleDeliveryRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+    recipient = new SaleDeliveryRecipientRequestValidator();
+    address = new SaleDeliveryAddressRequestValidator();
+    constructor(delivery) {
         super();
-        if (!shipping) {
+        if (!delivery) {
             return;
         }
-        Object.assign(this.recipient, shipping.recipient);
-        Object.assign(this.address, shipping.address);
+        Object.assign(this.recipient, delivery.recipient);
+        Object.assign(this.address, delivery.address);
     }
 }
-exports.SaleShippingRequestValidator = SaleShippingRequestValidator;
+exports.SaleDeliveryRequestValidator = SaleDeliveryRequestValidator;
 __decorate([
     (0, class_validator_1.IsDefined)(),
     BirthdayForBrazil(),
     FullNameForBrazil(),
-    (0, class_transformer_1.Type)(() => SaleShippingRecipientRequestValidator),
+    (0, class_transformer_1.Type)(() => SaleDeliveryRecipientRequestValidator),
     (0, class_validator_1.ValidateNested)(),
     __metadata("design:type", Object)
-], SaleShippingRequestValidator.prototype, "recipient", void 0);
+], SaleDeliveryRequestValidator.prototype, "recipient", void 0);
 __decorate([
     (0, class_validator_1.IsDefined)(),
-    (0, class_transformer_1.Type)(() => SaleShippingAddressRequestValidator),
+    (0, class_transformer_1.Type)(() => SaleDeliveryAddressRequestValidator),
     (0, class_validator_1.ValidateNested)(),
     __metadata("design:type", Object)
-], SaleShippingRequestValidator.prototype, "address", void 0);
-//# sourceMappingURL=shipping.request.validator.js.map
+], SaleDeliveryRequestValidator.prototype, "address", void 0);
+//# sourceMappingURL=delivery.request.validator.js.map

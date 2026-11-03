@@ -1,5 +1,5 @@
 import { AbstractRequestValidator } from '../../abstract.validator';
-import type { OrderSaleShippingEntity } from './sale.entity';
+import type { OrderSaleDeliveryEntity } from './sale.entity';
 export declare const BRAZIL_STATES: string[];
 export declare const trim: ({ value }: {
     value: unknown;
@@ -18,14 +18,14 @@ export declare function isBirthday(value: unknown, today?: Date): boolean;
 export declare function IsBirthday(): PropertyDecorator;
 export declare const FULL_NAME_MESSAGE = "recipient.name must be the full name as registered in the CPF";
 export declare function isFullName(value: unknown): boolean;
-export declare class SaleShippingRecipientRequestValidator extends AbstractRequestValidator {
+export declare class SaleDeliveryRecipientRequestValidator extends AbstractRequestValidator {
     name: string;
     email: string;
     phone: string;
     document: string;
     birthday?: string;
 }
-export declare class SaleShippingAddressRequestValidator extends AbstractRequestValidator {
+export declare class SaleDeliveryAddressRequestValidator extends AbstractRequestValidator {
     postalCode: string;
     street: string;
     number: string;
@@ -35,8 +35,8 @@ export declare class SaleShippingAddressRequestValidator extends AbstractRequest
     state: string;
     country: string;
 }
-export declare class SaleShippingRequestValidator extends AbstractRequestValidator {
-    recipient: SaleShippingRecipientRequestValidator;
-    address: SaleShippingAddressRequestValidator;
-    constructor(shipping?: OrderSaleShippingEntity);
+export declare class SaleDeliveryRequestValidator extends AbstractRequestValidator {
+    recipient: SaleDeliveryRecipientRequestValidator;
+    address: SaleDeliveryAddressRequestValidator;
+    constructor(delivery?: OrderSaleDeliveryEntity);
 }

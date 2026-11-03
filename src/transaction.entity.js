@@ -42,7 +42,7 @@ __decorate([
             const items = this.items;
             const subtotal = items.reduce((sum, item) => sum + item.get('price.total'), 0);
             const units = items.reduce((sum, it) => sum + Number(it.quantity || 0), 0);
-            const shipping = Number(this.shipping?.fee) || 0;
+            const shipping = Number(this.delivery?.fee) || 0;
             const total = subtotal + shipping;
             return { shipping, subtotal, total, units };
         },
