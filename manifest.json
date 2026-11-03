@@ -38,6 +38,12 @@
         "vendor/entities/vendor.entity"
       ]
     },
+    "@/dashboard": {
+      "home": [
+        "types/home",
+        "validators/home.request.validator"
+      ]
+    },
     "@/finance": {
       "payment": [
         "entities/payment.entity",
