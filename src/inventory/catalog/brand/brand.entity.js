@@ -11,12 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CatalogBrandEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const abstract_entity_1 = require("../../../abstract.entity");
 const relation_status_enum_1 = require("../../../relation.status.enum");
 let CatalogBrandEntity = class CatalogBrandEntity extends abstract_entity_1.AbstractEntity {
     name;
     description;
+    posterId;
+    poster;
     products = [];
     status;
 };
@@ -29,6 +32,21 @@ __decorate([
     (0, mongoose_1.Prop)({ type: String }),
     __metadata("design:type", String)
 ], CatalogBrandEntity.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Types.ObjectId }),
+    __metadata("design:type", String)
+], CatalogBrandEntity.prototype, "posterId", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        options: {
+            foreignField: '_id',
+            justOne: true,
+            localField: 'posterId',
+            ref: app_schemas_1.AppSchemas.assets.files,
+        },
+    }),
+    __metadata("design:type", Function)
+], CatalogBrandEntity.prototype, "poster", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         options: {

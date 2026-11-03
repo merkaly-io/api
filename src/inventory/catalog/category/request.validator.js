@@ -17,6 +17,7 @@ class CreateCategoryRequestValidator extends abstract_validator_1.AbstractReques
     description;
     icon;
     parent;
+    posterId;
     constructor(category) {
         super();
         if (!category) {
@@ -26,6 +27,7 @@ class CreateCategoryRequestValidator extends abstract_validator_1.AbstractReques
         this.description = category.description;
         this.icon = category.icon;
         this.parent = category.parent ? String(category.parent._id ?? category.parent) : null;
+        this.posterId = category.posterId ? String(category.posterId) : null;
     }
 }
 exports.CreateCategoryRequestValidator = CreateCategoryRequestValidator;
@@ -53,6 +55,11 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCategoryRequestValidator.prototype, "parent", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateCategoryRequestValidator.prototype, "posterId", void 0);
 class UpdateCategoryRequestValidator extends CreateCategoryRequestValidator {
 }
 exports.UpdateCategoryRequestValidator = UpdateCategoryRequestValidator;
