@@ -39,3 +39,19 @@ export interface SupplierOrderSnapshot {
     carrier?: string;
     trackingUrl?: string;
 }
+export interface SupplierOrderImportLine {
+    externalProductId: string;
+    externalVariantId: string;
+    name: string;
+    quantity: number;
+    paid: number;
+    shipping: number;
+}
+export interface SupplierOrderImport extends SupplierOrderSnapshot {
+    externalOrderId: string;
+    currency: string;
+    lines: SupplierOrderImportLine[];
+    placedAt: Date;
+    store?: string;
+    total: number;
+}

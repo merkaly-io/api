@@ -46,6 +46,7 @@ __decorate([
     __metadata("design:type", String)
 ], ReadValidator.prototype, "select", void 0);
 class SearchValidator extends ReadValidator {
+    static rules = { filters: [], sort: [] };
     pagination = new PaginationValidator();
     sort = {};
     filters = {};
@@ -66,11 +67,13 @@ __decorate([
 ], SearchValidator.prototype, "pagination", void 0);
 __decorate([
     (0, class_transformer_1.Transform)(({ key, value }) => assertSortOrder(transformStructuredValue(key, value))),
+    AllowedBy('sort', sortViolation),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
 ], SearchValidator.prototype, "sort", void 0);
 __decorate([
     (0, class_transformer_1.Transform)(({ key, value }) => transformStructuredValue(key, value)),
+    AllowedBy('filters', filterViolation),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
 ], SearchValidator.prototype, "filters", void 0);
@@ -78,6 +81,69 @@ class QueryValidationError extends Error {
     statusCode = 400;
 }
 const FORBIDDEN_OPERATORS = new Set(['$where', '$function', '$accumulator']);
+const FIELD_OPERATORS = new Set([
+    '$eq',
+    '$ne',
+    '$in',
+    '$nin',
+    '$gt',
+    '$gte',
+    '$lt',
+    '$lte',
+    '$regex',
+    '$options',
+    '$exists',
+]);
+const LOGICAL_OPERATORS = new Set(['$and', '$or']);
+const rulesOf = (object) => object.constructor.rules ?? SearchValidator.rules;
+function AllowedBy(name, violation) {
+    return (0, class_validator_1.ValidateBy)({
+        name: `${name}Allowed`,
+        validator: {
+            defaultMessage: (args) => violation(args?.value, rulesOf(args?.object ?? {})) ?? `${name} is not allowed`,
+            validate: (value, args) => !violation(value, rulesOf(args?.object ?? {})),
+        },
+    });
+}
+const isScalar = (value) => value === null || ['string', 'number', 'boolean'].includes(typeof value);
+const isPlainValue = (value) => isScalar(value) || ((0, class_validator_1.isArray)(value) && value.every(isScalar));
+function filterViolation(value, rules, path = 'filters') {
+    if (value === undefined || value === null)
+        return undefined;
+    if (!(0, class_validator_1.isObject)(value))
+        return `${path} must be an object`;
+    for (const [field, condition] of Object.entries(value)) {
+        if (LOGICAL_OPERATORS.has(field)) {
+            if (!(0, class_validator_1.isArray)(condition))
+                return `${path}.${field} must be an array`;
+            const nested = condition
+                .map((item) => filterViolation(item ?? {}, rules, `${path}.${field}`))
+                .find(Boolean);
+            if (nested)
+                return nested;
+            continue;
+        }
+        if (!rules.filters.includes(field))
+            return `${path}.${field} is not filterable`;
+        if (isPlainValue(condition))
+            continue;
+        if (!(0, class_validator_1.isObject)(condition))
+            return `${path}.${field} must be a value or an operator object`;
+        for (const [operator, operand] of Object.entries(condition)) {
+            if (!FIELD_OPERATORS.has(operator))
+                return `${path}.${field} must not use ${operator}`;
+            if (!isPlainValue(operand))
+                return `${path}.${field}.${operator} must be a plain value`;
+        }
+    }
+    return undefined;
+}
+function sortViolation(value, rules) {
+    if (!(0, class_validator_1.isObject)(value))
+        return undefined;
+    const field = Object.keys(value).find((key) => !rules.sort.includes(key));
+    return field ? `sort.${field} is not sortable` : undefined;
+}
 const SORT_ORDERS = new Set([1, -1, 'asc', 'desc', 'ascending', 'descending']);
 function assertSortOrder(sort) {
     if (!sort)
