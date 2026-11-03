@@ -35,6 +35,11 @@ class AppSchemas {
             },
         };
     }
+    static get logistics() {
+        return {
+            shipments: 'logistics.shipments',
+        };
+    }
     static get order() {
         return {
             purchaseItems: 'order.purchase.items',

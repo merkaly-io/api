@@ -15,7 +15,7 @@ const app_schemas_1 = require("./app.schemas");
 const user_entity_1 = require("./account/user/user.entity");
 const payment_entity_1 = require("./finance/payment/payment.entity");
 const abstract_entity_1 = require("./abstract.entity");
-const OPEN_TRANSACTION_STATUS = 'OPEN';
+const EDITABLE_STATUSES = new Set(['AWAITING_PAYMENT', 'TO_PLACE']);
 class TransactionEntity extends abstract_entity_1.AbstractEntity {
     user;
     notes;
@@ -63,7 +63,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const editable = this.status === OPEN_TRANSACTION_STATUS;
+            const editable = EDITABLE_STATUSES.has(this.status);
             return {
                 addItems: editable,
                 deleteItems: editable && this.items.length > 1,

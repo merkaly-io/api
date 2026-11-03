@@ -1,4 +1,4 @@
-import type { OrderSupplierOrderStatusEnum } from '../purchase/supplier.order.enum';
+import type { OrderPurchaseStatusEnum } from '../purchase/purchase.enum';
 export interface SaleImportPreviewLine {
     externalProductId: string;
     externalVariantId: string;
@@ -17,7 +17,8 @@ export interface SaleImportPreview {
     externalOrderId: string;
     store?: string;
     placedAt: Date;
-    status?: OrderSupplierOrderStatusEnum;
+    status?: OrderPurchaseStatusEnum;
+    received: boolean;
     rawStatus: string;
     trackingNumbers: string[];
     currency: string;

@@ -23,7 +23,7 @@ class CreatePurchaseRequestValidator extends abstract_validator_1.AbstractReques
     vendor;
     customerOrder;
     payment = payment_enum_1.FinancePaymentStatusEnum.PENDING;
-    status = purchase_enum_1.OrderPurchaseStatusEnum.OPEN;
+    status;
     constructor(order) {
         super();
         if (!order) {
@@ -86,7 +86,7 @@ __decorate([
     (0, class_validator_1.IsEnum)(purchase_enum_1.OrderPurchaseStatusEnum),
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], CreatePurchaseRequestValidator.prototype, "status", void 0);
 class UpdatePurchaseRequestValidator extends CreatePurchaseRequestValidator {
 }

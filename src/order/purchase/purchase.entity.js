@@ -9,15 +9,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderPurchaseEntity = void 0;
+exports.OrderPurchaseEntity = exports.OrderPurchaseSupplierOrderSchema = exports.OrderPurchaseSupplierOrderEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
 const vendor_entity_1 = require("../../contact/vendor/vendor.entity");
+const provider_enum_1 = require("../../integration/supplier/provider.enum");
 const purchase_item_schema_1 = require("../schemas/purchase.item.schema");
 const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
-const purchase_supplier_order_entity_1 = require("./purchase.supplier.order.entity");
+let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
+    provider;
+    externalOrderIds = [];
+    reference;
+    rawStatus;
+    placedAt;
+    syncedAt;
+    error;
+};
+exports.OrderPurchaseSupplierOrderEntity = OrderPurchaseSupplierOrderEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ enum: provider_enum_1.SupplierProviderEnum, required: true, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderEntity.prototype, "provider", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: () => [], type: [String] }),
+    __metadata("design:type", Array)
+], OrderPurchaseSupplierOrderEntity.prototype, "externalOrderIds", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderEntity.prototype, "reference", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderEntity.prototype, "rawStatus", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: Date }),
+    __metadata("design:type", Date)
+], OrderPurchaseSupplierOrderEntity.prototype, "placedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderPurchaseSupplierOrderEntity.prototype, "syncedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderEntity.prototype, "error", void 0);
+exports.OrderPurchaseSupplierOrderEntity = OrderPurchaseSupplierOrderEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], OrderPurchaseSupplierOrderEntity);
+exports.OrderPurchaseSupplierOrderSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseSupplierOrderEntity);
 let OrderPurchaseEntity = class OrderPurchaseEntity extends transaction_entity_1.TransactionEntity {
     vendor;
     customerOrder;
@@ -55,8 +97,8 @@ __decorate([
     __metadata("design:type", Number)
 ], OrderPurchaseEntity.prototype, "freight", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: purchase_supplier_order_entity_1.OrderPurchaseSupplierOrderSchema }),
-    __metadata("design:type", purchase_supplier_order_entity_1.OrderPurchaseSupplierOrderEntity)
+    (0, mongoose_1.Prop)({ default: null, type: exports.OrderPurchaseSupplierOrderSchema }),
+    __metadata("design:type", OrderPurchaseSupplierOrderEntity)
 ], OrderPurchaseEntity.prototype, "supplierOrder", void 0);
 exports.OrderPurchaseEntity = OrderPurchaseEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)

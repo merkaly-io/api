@@ -1,4 +1,4 @@
-import type { FinancePaymentAttemptStatus } from './payment.attempt.entity';
+import type { FinancePaymentAttemptStatus } from './payment.entity';
 import type { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
 export type FinancePaymentReportStatus = FinancePaymentAttemptStatus;
 export interface FinancePaymentReportTotal {

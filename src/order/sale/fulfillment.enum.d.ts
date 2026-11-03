@@ -1,11 +1,4 @@
-export declare enum OrderFulfillmentStageEnum {
-    AWAITING_PAYMENT = "AWAITING_PAYMENT",
-    TO_ORDER = "TO_ORDER",
-    ORDERED = "ORDERED",
-    SHIPPED = "SHIPPED",
-    DELIVERED = "DELIVERED",
-    CANCELLED = "CANCELLED"
-}
+import { OrderSaleStatusEnum as Status } from './sale.enum';
 export declare enum OrderBuyerStageEnum {
     AWAITING_PAYMENT = "AWAITING_PAYMENT",
     IN_PREPARATION = "IN_PREPARATION",
@@ -13,7 +6,7 @@ export declare enum OrderBuyerStageEnum {
     DELIVERED = "DELIVERED",
     CANCELLED = "CANCELLED"
 }
-export declare const BUYER_STAGE_GROUPS: Readonly<Record<OrderBuyerStageEnum, readonly OrderFulfillmentStageEnum[]>>;
+export declare const BUYER_STAGE_GROUPS: Readonly<Record<OrderBuyerStageEnum, readonly Status[]>>;
 export declare enum OrderFulfillmentActionEnum {
     CONFIRM_PAYMENT = "CONFIRM_PAYMENT",
     PROCURE = "PROCURE",
@@ -31,12 +24,11 @@ export declare enum OrderSaleHistoryEventEnum {
     PAYMENT_CONFIRMED = "PAYMENT_CONFIRMED",
     PAYMENT_CANCELLED = "PAYMENT_CANCELLED",
     PAYMENT_REFUNDED = "PAYMENT_REFUNDED",
-    SALE_IN_PROGRESS = "SALE_IN_PROGRESS",
-    SALE_COMPLETED = "SALE_COMPLETED",
-    SALE_CANCELLED = "SALE_CANCELLED",
-    SALE_RETURNED = "SALE_RETURNED",
     PURCHASE_CREATED = "PURCHASE_CREATED",
     PURCHASE_CANCELLED = "PURCHASE_CANCELLED",
     SUPPLIER_ORDER_PLACED = "SUPPLIER_ORDER_PLACED",
-    SUPPLIER_ORDER_SYNCED = "SUPPLIER_ORDER_SYNCED"
+    SUPPLIER_ORDER_SYNCED = "SUPPLIER_ORDER_SYNCED",
+    SHIPMENT_SHIPPED = "SHIPMENT_SHIPPED",
+    SHIPMENT_DELIVERED = "SHIPMENT_DELIVERED",
+    SALE_CANCELLED = "SALE_CANCELLED"
 }

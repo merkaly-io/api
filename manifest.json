@@ -41,8 +41,6 @@
     "@/finance": {
       "payment": [
         "entities/payment.entity",
-        "entities/payment.attempt.entity",
-        "entities/payment.gateway.entity",
         "enums/payment.enum",
         "validators/payment/request.validator",
         "transitions/payment.transition",
@@ -96,6 +94,13 @@
         ]
       }
     },
+    "@/logistics": {
+      "shipment": [
+        "entities/shipment.entity",
+        "enums/shipment.enum",
+        "types/shipment"
+      ]
+    },
     "@/order": {
       "purchase": [
         "entities/purchase.entity",
@@ -103,14 +108,10 @@
         "transitions/purchase.transition",
         "validators/purchase/request.validator",
         "validators/purchase/item.request.validator",
-        "entities/purchase.supplier.order.entity",
-        "enums/supplier.order.enum",
         "validators/purchase/supplier.order.request.validator"
       ],
       "sale": [
         "entities/sale.entity",
-        "entities/sale.import.entity",
-        "entities/sale.shipping.entity",
         "enums/sale.enum",
         "transitions/sale.transition",
         "validators/sale/request.validator",
