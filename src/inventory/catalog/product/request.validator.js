@@ -33,12 +33,11 @@ __decorate([
     (0, class_transformer_1.Transform)(({ value }) => typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : value),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.Length)(0, 100),
+    (0, class_validator_1.Length)(0, 255),
     __metadata("design:type", String)
 ], ProductMetadataRequestValidator.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(0, 1000),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], ProductMetadataRequestValidator.prototype, "description", void 0);
