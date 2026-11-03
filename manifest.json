@@ -106,16 +106,12 @@
         "entities/purchase.entity",
         "enums/purchase.enum",
         "transitions/purchase.transition",
-        "validators/purchase/request.validator",
-        "validators/purchase/item.request.validator",
         "validators/purchase/supplier.order.request.validator"
       ],
       "sale": [
         "entities/sale.entity",
         "enums/sale.enum",
         "transitions/sale.transition",
-        "validators/sale/request.validator",
-        "validators/sale/item.request.validator",
         "types/procurement",
         "types/sale.import",
         "validators/sale/procurement.request.validator",
