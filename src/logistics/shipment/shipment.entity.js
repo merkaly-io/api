@@ -9,13 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogisticsShipmentEntity = void 0;
+exports.LogisticsShipmentEntity = exports.LogisticsShipmentEventSchema = exports.LogisticsShipmentEventEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
 const abstract_entity_1 = require("../../abstract.entity");
 const shipment_enum_1 = require("./shipment.enum");
-const shipment_event_entity_1 = require("./shipment.event.entity");
+let LogisticsShipmentEventEntity = class LogisticsShipmentEventEntity {
+    at;
+    code;
+    description;
+    location;
+};
+exports.LogisticsShipmentEventEntity = LogisticsShipmentEventEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: Date }),
+    __metadata("design:type", Date)
+], LogisticsShipmentEventEntity.prototype, "at", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ enum: shipment_enum_1.LogisticsTrackingEventCodeEnum, required: true, type: String }),
+    __metadata("design:type", String)
+], LogisticsShipmentEventEntity.prototype, "code", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: '', trim: true, type: String }),
+    __metadata("design:type", String)
+], LogisticsShipmentEventEntity.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], LogisticsShipmentEventEntity.prototype, "location", void 0);
+exports.LogisticsShipmentEventEntity = LogisticsShipmentEventEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], LogisticsShipmentEventEntity);
+exports.LogisticsShipmentEventSchema = mongoose_1.SchemaFactory.createForClass(LogisticsShipmentEventEntity);
 let LogisticsShipmentEntity = class LogisticsShipmentEntity extends abstract_entity_1.AbstractEntity {
     order;
     purchase;
@@ -81,7 +107,7 @@ __decorate([
     __metadata("design:type", String)
 ], LogisticsShipmentEntity.prototype, "receivedBy", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: () => [], type: [shipment_event_entity_1.LogisticsShipmentEventSchema] }),
+    (0, mongoose_1.Prop)({ default: () => [], type: [exports.LogisticsShipmentEventSchema] }),
     __metadata("design:type", Array)
 ], LogisticsShipmentEntity.prototype, "events", void 0);
 exports.LogisticsShipmentEntity = LogisticsShipmentEntity = __decorate([

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
+exports.OrderSaleSourceEnum = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
 var OrderSaleStatusEnum;
 (function (OrderSaleStatusEnum) {
     OrderSaleStatusEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -16,4 +16,10 @@ exports.SALE_OPEN_STATUSES = [
     OrderSaleStatusEnum.ORDERED,
     OrderSaleStatusEnum.SHIPPED,
 ];
+var OrderSaleSourceEnum;
+(function (OrderSaleSourceEnum) {
+    OrderSaleSourceEnum["CHECKOUT"] = "CHECKOUT";
+    OrderSaleSourceEnum["ADMIN"] = "ADMIN";
+    OrderSaleSourceEnum["IMPORT"] = "IMPORT";
+})(OrderSaleSourceEnum || (exports.OrderSaleSourceEnum = OrderSaleSourceEnum = {}));
 //# sourceMappingURL=sale.enum.js.map

@@ -1,5 +1,5 @@
 import { AbstractRequestValidator } from '../../abstract.validator';
-import type { OrderSaleShippingEntity } from './sale.shipping.entity';
+import type { OrderSaleShippingEntity } from './sale.entity';
 export declare const BRAZIL_STATES: string[];
 export declare const trim: ({ value }: {
     value: unknown;
