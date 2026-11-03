@@ -19,11 +19,13 @@ const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
 const purchase_enum_1 = require("../purchase/purchase.enum");
 const sale_enum_1 = require("./sale.enum");
+const sale_import_entity_1 = require("./sale.import.entity");
 const sale_shipping_entity_1 = require("./sale.shipping.entity");
 let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
     shipping;
+    imported;
     purchases;
     cost;
     profit;
@@ -48,6 +50,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: sale_shipping_entity_1.OrderSaleShippingSchema }),
     __metadata("design:type", sale_shipping_entity_1.OrderSaleShippingEntity)
 ], OrderSaleEntity.prototype, "shipping", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: sale_import_entity_1.OrderSaleImportSchema }),
+    __metadata("design:type", sale_import_entity_1.OrderSaleImportEntity)
+], OrderSaleEntity.prototype, "imported", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         options: {

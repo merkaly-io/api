@@ -11,7 +11,12 @@ export declare class ReadValidator extends AbstractRequestValidator {
     join?: PopulateOptions[];
     select?: string;
 }
+export interface SearchRules {
+    filters: readonly string[];
+    sort: readonly string[];
+}
 export declare class SearchValidator<E = AbstractEntity> extends ReadValidator {
+    static readonly rules: SearchRules;
     pagination?: PaginationValidator;
     sort?: {
         [key: string]: SortOrder;

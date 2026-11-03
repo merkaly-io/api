@@ -109,6 +109,7 @@
       ],
       "sale": [
         "entities/sale.entity",
+        "entities/sale.import.entity",
         "entities/sale.shipping.entity",
         "enums/sale.enum",
         "transitions/sale.transition",
@@ -121,6 +122,7 @@
         "validators/sale/checkout.request.validator",
         "validators/sale/search.request.validator",
         "validators/sale/payment.confirm.request.validator",
+        "validators/sale/import.request.validator",
         "enums/fulfillment.enum",
         "types/fulfillment",
         "validators/sale/quote.request.validator",
