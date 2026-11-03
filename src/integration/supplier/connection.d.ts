@@ -5,5 +5,7 @@ export interface SupplierConnectionStatus {
     connected: boolean;
     connectedAt: Date | null;
     expiresAt: Date | null;
+    expired: boolean;
+    reconnectBy: Date | null;
     source: SupplierConnectionSource | null;
 }
