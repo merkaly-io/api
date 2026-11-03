@@ -52,5 +52,6 @@ export interface SupplierOrderImport extends SupplierOrderSnapshot {
     currency: string;
     lines: SupplierOrderImportLine[];
     placedAt: Date;
+    store?: string;
     total: number;
 }

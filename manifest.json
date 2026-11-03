@@ -116,6 +116,7 @@
         "validators/sale/request.validator",
         "validators/sale/item.request.validator",
         "types/procurement",
+        "types/sale.import",
         "validators/sale/procurement.request.validator",
         "validators/sale/shipping.request.validator",
         "validators/sale/shipping.update.request.validator",
