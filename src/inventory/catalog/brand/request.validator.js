@@ -15,6 +15,7 @@ const abstract_validator_1 = require("../../../abstract.validator");
 class CreateBrandRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     description;
+    posterId;
     constructor(brand) {
         super();
         if (!brand) {
@@ -22,6 +23,7 @@ class CreateBrandRequestValidator extends abstract_validator_1.AbstractRequestVa
         }
         this.name = brand.name;
         this.description = brand.description;
+        this.posterId = brand.posterId ? String(brand.posterId) : null;
     }
 }
 exports.CreateBrandRequestValidator = CreateBrandRequestValidator;
@@ -37,6 +39,11 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateBrandRequestValidator.prototype, "description", void 0);
+__decorate([
+    (0, class_validator_1.IsMongoId)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateBrandRequestValidator.prototype, "posterId", void 0);
 class UpdateBrandRequestValidator extends CreateBrandRequestValidator {
 }
 exports.UpdateBrandRequestValidator = UpdateBrandRequestValidator;

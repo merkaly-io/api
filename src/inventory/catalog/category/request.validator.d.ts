@@ -5,6 +5,7 @@ export declare class CreateCategoryRequestValidator extends AbstractRequestValid
     description?: string;
     icon?: string | null;
     parent?: string | null;
+    posterId?: string | null;
     constructor(category?: CatalogCategoryEntity);
 }
 export declare class UpdateCategoryRequestValidator extends CreateCategoryRequestValidator {

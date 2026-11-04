@@ -17,11 +17,14 @@ const abstract_entity_1 = require("../../../abstract.entity");
 const relation_status_enum_1 = require("../../../relation.status.enum");
 const productsRef = app_schemas_1.AppSchemas.inventory.catalog.products;
 const categoriesRef = app_schemas_1.AppSchemas.inventory.catalog.categories;
+const assetsRef = app_schemas_1.AppSchemas.assets.files;
 let CatalogCategoryEntity = class CatalogCategoryEntity extends abstract_entity_1.AbstractEntity {
     name;
     description;
     icon;
     parent;
+    posterId;
+    poster;
     children = [];
     products = [];
     status;
@@ -43,6 +46,16 @@ __decorate([
     (0, mongoose_1.Prop)({ ref: categoriesRef, type: mongoose_2.Types.ObjectId, default: null }),
     __metadata("design:type", CatalogCategoryEntity)
 ], CatalogCategoryEntity.prototype, "parent", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Types.ObjectId }),
+    __metadata("design:type", String)
+], CatalogCategoryEntity.prototype, "posterId", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        options: { foreignField: '_id', justOne: true, localField: 'posterId', ref: assetsRef },
+    }),
+    __metadata("design:type", Function)
+], CatalogCategoryEntity.prototype, "poster", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({ options: { foreignField: 'parent', localField: '_id', ref: categoriesRef } }),
     __metadata("design:type", Array)
