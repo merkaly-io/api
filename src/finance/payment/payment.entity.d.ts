@@ -16,7 +16,7 @@ export declare const FinancePaymentGatewayPixSchema: MongoSchema<FinancePaymentG
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayPixEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayPixEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<FinancePaymentGatewayPixEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayPixEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayPixEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentGatewayPixEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -29,7 +29,7 @@ export declare const FinancePaymentGatewayCardSchema: MongoSchema<FinancePayment
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayCardEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayCardEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<FinancePaymentGatewayCardEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayCardEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayCardEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentGatewayCardEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -53,7 +53,7 @@ export declare const FinancePaymentGatewaySchema: MongoSchema<FinancePaymentGate
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<FinancePaymentGatewayEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentGatewayEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -75,7 +75,7 @@ export declare const FinancePaymentAttemptSchema: MongoSchema<FinancePaymentAtte
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentAttemptEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentAttemptEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<FinancePaymentAttemptEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentAttemptEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentAttemptEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentAttemptEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

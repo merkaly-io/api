@@ -7,13 +7,17 @@ declare class PaginationValidator {
 export type AbstractEntityValidator = Record<string, any>;
 export declare abstract class AbstractRequestValidator {
 }
+export interface ReadRules {
+    join: readonly string[];
+}
 export declare class ReadValidator extends AbstractRequestValidator {
+    static readonly rules: ReadRules;
     join?: PopulateOptions[];
     select?: string;
 }
-export interface SearchRules {
+export interface SearchRules extends ReadRules {
     filters: readonly string[];
-    sort: readonly string[];
+    sort?: readonly string[];
 }
 export declare class SearchValidator<E = AbstractEntity> extends ReadValidator {
     static readonly rules: SearchRules;

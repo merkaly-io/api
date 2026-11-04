@@ -11,7 +11,7 @@ export declare const IntegrationSupplierConnectionSchema: MongoSchema<Integratio
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationSupplierConnectionEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationSupplierConnectionEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IntegrationSupplierConnectionEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationSupplierConnectionEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationSupplierConnectionEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<IntegrationSupplierConnectionEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

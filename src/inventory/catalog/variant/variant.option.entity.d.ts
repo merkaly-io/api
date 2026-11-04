@@ -9,7 +9,7 @@ export declare const CatalogVariantOptionSchema: import("mongoose").Schema<Catal
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CatalogVariantOptionEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CatalogVariantOptionEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<CatalogVariantOptionEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CatalogVariantOptionEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CatalogVariantOptionEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<CatalogVariantOptionEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

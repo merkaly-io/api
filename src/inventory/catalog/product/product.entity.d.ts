@@ -14,7 +14,7 @@ export declare const CatalogProductPropertySchema: MongoSchema<CatalogProductPro
     _id: Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CatalogProductPropertyEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CatalogProductPropertyEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<CatalogProductPropertyEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CatalogProductPropertyEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CatalogProductPropertyEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<CatalogProductPropertyEntity> & {
     _id: Types.ObjectId;
 } & {
     __v: number;
