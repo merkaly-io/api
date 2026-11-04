@@ -14,7 +14,6 @@ const class_validator_1 = require("class-validator");
 const fulfillment_enum_1 = require("./fulfillment.enum");
 const abstract_validator_1 = require("../../abstract.validator");
 class SearchBuyerOrdersRequestValidator extends abstract_validator_1.SearchValidator {
-    static rules = { filters: ['number'], sort: [] };
     stage;
 }
 exports.SearchBuyerOrdersRequestValidator = SearchBuyerOrdersRequestValidator;

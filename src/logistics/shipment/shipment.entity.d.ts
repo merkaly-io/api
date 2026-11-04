@@ -14,7 +14,7 @@ export declare const LogisticsShipmentEventSchema: MongoSchema<LogisticsShipment
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, LogisticsShipmentEventEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<LogisticsShipmentEventEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<LogisticsShipmentEventEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, LogisticsShipmentEventEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<LogisticsShipmentEventEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<LogisticsShipmentEventEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

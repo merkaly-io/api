@@ -10,7 +10,7 @@ export declare const IntegrationPaymentAccountApprovalSchema: MongoSchema<Integr
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountApprovalEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountApprovalEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IntegrationPaymentAccountApprovalEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountApprovalEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountApprovalEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<IntegrationPaymentAccountApprovalEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -23,7 +23,7 @@ export declare const IntegrationPaymentAccountWithdrawalSchema: MongoSchema<Inte
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountWithdrawalEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountWithdrawalEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IntegrationPaymentAccountWithdrawalEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountWithdrawalEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountWithdrawalEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<IntegrationPaymentAccountWithdrawalEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -37,7 +37,7 @@ export declare const IntegrationPaymentAccountPixSchema: MongoSchema<Integration
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountPixEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountPixEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IntegrationPaymentAccountPixEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountPixEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountPixEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<IntegrationPaymentAccountPixEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
@@ -60,7 +60,7 @@ export declare const IntegrationPaymentAccountSchema: MongoSchema<IntegrationPay
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<IntegrationPaymentAccountEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, IntegrationPaymentAccountEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<IntegrationPaymentAccountEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<IntegrationPaymentAccountEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

@@ -18,7 +18,7 @@ export declare const OrderPurchaseSupplierOrderSchema: MongoSchema<OrderPurchase
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderPurchaseSupplierOrderEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderPurchaseSupplierOrderEntity>, {}, import("mongoose").ResolveSchemaOptions<import("mongoose").DefaultSchemaOptions>> & import("mongoose").FlatRecord<OrderPurchaseSupplierOrderEntity> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderPurchaseSupplierOrderEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderPurchaseSupplierOrderEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<OrderPurchaseSupplierOrderEntity> & {
     _id: import("mongoose").Types.ObjectId;
 } & {
     __v: number;

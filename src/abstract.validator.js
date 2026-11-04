@@ -32,6 +32,7 @@ class AbstractRequestValidator {
 }
 exports.AbstractRequestValidator = AbstractRequestValidator;
 class ReadValidator extends AbstractRequestValidator {
+    static rules = { join: [] };
     join = [];
     select;
 }
@@ -39,6 +40,7 @@ exports.ReadValidator = ReadValidator;
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_transformer_1.Transform)(({ value }) => transformJoinsIntoPopulate(value)),
+    AllowedBy('join', joinViolation),
     __metadata("design:type", Array)
 ], ReadValidator.prototype, "join", void 0);
 __decorate([
@@ -46,7 +48,7 @@ __decorate([
     __metadata("design:type", String)
 ], ReadValidator.prototype, "select", void 0);
 class SearchValidator extends ReadValidator {
-    static rules = { filters: [], sort: [] };
+    static rules = { filters: [], join: [] };
     pagination = new PaginationValidator();
     sort = {};
     filters = {};
@@ -72,7 +74,7 @@ __decorate([
     __metadata("design:type", Object)
 ], SearchValidator.prototype, "sort", void 0);
 __decorate([
-    (0, class_transformer_1.Transform)(({ key, value }) => transformStructuredValue(key, value)),
+    (0, class_transformer_1.Transform)(({ key, value }) => escapeRegexOperands(key, transformStructuredValue(key, value))),
     AllowedBy('filters', filterViolation),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Object)
@@ -95,7 +97,11 @@ const FIELD_OPERATORS = new Set([
     '$exists',
 ]);
 const LOGICAL_OPERATORS = new Set(['$and', '$or']);
-const rulesOf = (object) => object.constructor.rules ?? SearchValidator.rules;
+const REGEX_MAX_LENGTH = 100;
+const REGEX_OPTIONS = /^[ims]*$/;
+const REGEX_SPECIALS = /[\\^$.*+?()[\]{}|]/g;
+const REGEX_ESCAPED = /\\([\\^$.*+?()[\]{}|])/g;
+const rulesOf = (object) => object.constructor.rules ?? ReadValidator.rules;
 function AllowedBy(name, violation) {
     return (0, class_validator_1.ValidateBy)({
         name: `${name}Allowed`,
@@ -123,7 +129,7 @@ function filterViolation(value, rules, path = 'filters') {
                 return nested;
             continue;
         }
-        if (!rules.filters.includes(field))
+        if (!(rules.filters ?? []).includes(field))
             return `${path}.${field} is not filterable`;
         if (isPlainValue(condition))
             continue;
@@ -134,6 +140,10 @@ function filterViolation(value, rules, path = 'filters') {
                 return `${path}.${field} must not use ${operator}`;
             if (!isPlainValue(operand))
                 return `${path}.${field}.${operator} must be a plain value`;
+            if (operator === '$regex' && !(0, class_validator_1.isString)(operand))
+                return `${path}.${field}.$regex must be a string`;
+            if (operator === '$options' && !((0, class_validator_1.isString)(operand) && REGEX_OPTIONS.test(operand)))
+                return `${path}.${field}.$options must only use i, m or s`;
         }
     }
     return undefined;
@@ -141,8 +151,40 @@ function filterViolation(value, rules, path = 'filters') {
 function sortViolation(value, rules) {
     if (!(0, class_validator_1.isObject)(value))
         return undefined;
-    const field = Object.keys(value).find((key) => !rules.sort.includes(key));
+    const field = Object.keys(value).find((key) => !(rules.sort ?? rules.filters ?? []).includes(key));
     return field ? `sort.${field} is not sortable` : undefined;
+}
+function joinViolation(value, rules, prefix = '') {
+    if (value === undefined || value === null)
+        return undefined;
+    if (!(0, class_validator_1.isArray)(value))
+        return 'join must be a list';
+    for (const entry of value) {
+        if (!(0, class_validator_1.isString)(entry?.path))
+            return 'join entries must have a path';
+        const path = prefix ? `${prefix}.${entry.path}` : entry.path;
+        if (!(rules.join ?? []).includes(path))
+            return `join.${path} is not allowed`;
+        const nested = joinViolation(entry.populate, rules, path);
+        if (nested)
+            return nested;
+    }
+    return undefined;
+}
+const escapeRegex = (term) => term.replace(REGEX_ESCAPED, '$1').replace(REGEX_SPECIALS, '\\$&');
+function escapeRegexOperands(key, value) {
+    if ((0, class_validator_1.isArray)(value))
+        return value.map((item) => escapeRegexOperands(key, item));
+    if (!(0, class_validator_1.isObject)(value))
+        return value;
+    const entries = Object.entries(value).map(([field, nested]) => {
+        if (field !== '$regex' || !(0, class_validator_1.isString)(nested))
+            return [field, escapeRegexOperands(key, nested)];
+        if (nested.length > REGEX_MAX_LENGTH)
+            throw new QueryValidationError(`${key} $regex must be at most ${REGEX_MAX_LENGTH} characters`);
+        return [field, escapeRegex(nested)];
+    });
+    return Object.fromEntries(entries);
 }
 const SORT_ORDERS = new Set([1, -1, 'asc', 'desc', 'ascending', 'descending']);
 function assertSortOrder(sort) {
