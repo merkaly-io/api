@@ -11,6 +11,7 @@
       "infrastructure/entities/transaction.entity",
       "infrastructure/entities/contact.entity",
       "infrastructure/types/transitionable.interface",
+      "infrastructure/types/query.interface",
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
       "infrastructure/abstracts/abstract.validator",
@@ -20,6 +21,10 @@
       "user": [
         "entities/user.entity",
         "validators/user/request.validator"
+      ],
+      "auth": [
+        "types/auth",
+        "validators/identity/request.validator"
       ]
     },
     "@/assets": {
@@ -42,6 +47,9 @@
       "home": [
         "types/home",
         "validators/period.request.validator"
+      ],
+      "client": [
+        "types/client"
       ]
     },
     "@/finance": {
@@ -143,7 +151,11 @@
         "contracts/organization.contract",
         "entities/organization.entity",
         "enums/organization.enum",
-        "validators/organization/request.validator"
+        "validators/organization/request.validator",
+        "types/organization"
+      ],
+      "authentication": [
+        "types/authentication"
       ]
     }
   }

@@ -1,6 +1,7 @@
 import { Schema as MongoSchema } from 'mongoose';
 export declare class IntegrationSupplierConnectionEntity {
     account?: string;
+    sellerId?: string;
     accessToken: string;
     refreshToken?: string;
     expiresAt: Date;

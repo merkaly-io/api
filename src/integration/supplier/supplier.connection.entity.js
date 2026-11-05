@@ -14,6 +14,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let IntegrationSupplierConnectionEntity = class IntegrationSupplierConnectionEntity {
     account;
+    sellerId;
     accessToken;
     refreshToken;
     expiresAt;
@@ -25,6 +26,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], IntegrationSupplierConnectionEntity.prototype, "account", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], IntegrationSupplierConnectionEntity.prototype, "sellerId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, select: false, type: String }),
     __metadata("design:type", String)
