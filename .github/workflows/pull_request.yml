@@ -26,3 +26,5 @@ jobs:
       - run: pnpm pack --dry-run
 
       - uses: merkaly-io/actions/dependabot@master
+        with:
+          private-key: ${{ secrets.MERKALY_BOT_PRIVATE_KEY }}
