@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateOrganizationProfileRequestValidator = exports.UpdateOrganizationBillingRequestValidator = exports.UpdateOrganizationBrandingRequestValidator = exports.UpdateOrganizationIdentityRequestValidator = exports.UpdateOrganizationLocalizationRequestValidator = exports.UpdateOrganizationContactRequestValidator = exports.UpdateOrganizationAddressRequestValidator = exports.UpdateOrganizationLocationRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const organization_enum_1 = require("./organization.enum");
 const abstract_validator_1 = require("../../abstract.validator");
 class UpdateOrganizationLocationRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     lat;
@@ -95,14 +96,29 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateOrganizationAddressRequestValidator.prototype, "state", void 0);
+const SOCIAL_KEYS = Object.values(organization_enum_1.SettingsOrganizationSocialEnum);
+const isSocialLink = (value) => value === '' ||
+    (typeof value === 'string' &&
+        value.length <= 2048 &&
+        (0, class_validator_1.isURL)(value, { protocols: ['https'], require_protocol: true }));
+const IsSocialLinks = () => (0, class_validator_1.ValidateBy)({
+    name: 'isSocialLinks',
+    validator: {
+        defaultMessage: () => `$property keys must be one of ${SOCIAL_KEYS.join(', ')} and values https URLs`,
+        validate: (value) => (0, class_validator_1.isObject)(value) &&
+            Object.entries(value).every(([key, link]) => SOCIAL_KEYS.includes(key) && isSocialLink(link)),
+    },
+});
 class UpdateOrganizationContactRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     email;
     phone;
+    social;
     website;
     constructor(contact) {
         super();
         this.email = contact?.email;
         this.phone = contact?.phone;
+        this.social = { ...contact?.social };
         this.website = contact?.website;
     }
 }
@@ -119,6 +135,11 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateOrganizationContactRequestValidator.prototype, "phone", void 0);
+__decorate([
+    IsSocialLinks(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Object)
+], UpdateOrganizationContactRequestValidator.prototype, "social", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 2048),
@@ -187,11 +208,11 @@ __decorate([
 ], UpdateOrganizationIdentityRequestValidator.prototype, "taxId", void 0);
 class UpdateOrganizationBrandingRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     description;
-    logo;
+    primaryColor;
     constructor(branding) {
         super();
         this.description = branding?.description;
-        this.logo = branding?.logo;
+        this.primaryColor = branding?.primaryColor;
     }
 }
 exports.UpdateOrganizationBrandingRequestValidator = UpdateOrganizationBrandingRequestValidator;
@@ -202,11 +223,10 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateOrganizationBrandingRequestValidator.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.Length)(0, 2048),
+    (0, class_validator_1.Matches)(/^(#[0-9a-f]{6})?$/i, { message: '$property must be a #RRGGBB color' }),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UpdateOrganizationBrandingRequestValidator.prototype, "logo", void 0);
+], UpdateOrganizationBrandingRequestValidator.prototype, "primaryColor", void 0);
 class UpdateOrganizationBillingRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     email;
     constructor(billing) {
