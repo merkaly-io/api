@@ -24,6 +24,7 @@
       ],
       "auth": [
         "types/auth",
+        "enums/team.enum",
         "validators/identity/request.validator"
       ]
     },

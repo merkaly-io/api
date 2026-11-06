@@ -4,6 +4,7 @@ export interface Auth0JwtPayload {
     exp: number;
     iss: string;
     aud: string | string[];
+    azp?: string;
     org_id?: string;
     'https://merka.ly/authorization'?: {
         roles: string[];
@@ -11,6 +12,7 @@ export interface Auth0JwtPayload {
     };
 }
 export interface AppAuth {
+    clientId?: string;
     expiresAt: Date;
     issuedAt: Date;
     orgId?: string;
