@@ -1,3 +1,4 @@
+import type { AccountTeamAssignableRole } from './team.enum';
 export interface AccountAuthIdentity {
     connection: string;
     isSocial: boolean;
@@ -65,4 +66,19 @@ export interface AccountAuthOrganizationInvitation {
         name: string;
     };
     roles?: string[];
+}
+export interface AccountTeamInvitation {
+    createdAt?: string;
+    email: string;
+    expiresAt?: string;
+    id: string;
+    inviter?: string;
+    role?: string;
+}
+export interface AccountTeamInvitationPayload {
+    email: string;
+    role: AccountTeamAssignableRole;
+}
+export interface AccountTeamMemberRolePayload {
+    role: AccountTeamAssignableRole;
 }
