@@ -13,6 +13,12 @@ export interface AccountAuthConnection {
     name: string;
     strategy: string;
 }
+export interface AccountAuthProfile {
+    avatar?: string;
+    email?: string;
+    name?: string;
+    picture?: string;
+}
 export interface AccountAuthPasswordTicket {
     ticket: string;
 }
