@@ -1,4 +1,4 @@
-import { SettingsOrganizationEnum } from './organization.enum';
+import { SettingsOrganizationEnum, SettingsOrganizationSocialEnum } from './organization.enum';
 export interface SettingsOrganizationLocationContract {
     lat?: number;
     lng?: number;
@@ -12,9 +12,11 @@ export interface SettingsOrganizationAddressContract {
     location?: SettingsOrganizationLocationContract;
     state?: string;
 }
+export type SettingsOrganizationSocialContract = Partial<Record<SettingsOrganizationSocialEnum, string>>;
 export interface SettingsOrganizationContactContract {
     email?: string;
     phone?: string;
+    social?: SettingsOrganizationSocialContract;
     website?: string;
 }
 export interface SettingsOrganizationLocalizationContract {
@@ -29,13 +31,24 @@ export interface SettingsOrganizationIdentityContract {
 }
 export interface SettingsOrganizationBrandingContract {
     description?: string;
+    favicon?: string;
     logo?: string;
+    ogImage?: string;
+    primaryColor?: string;
+}
+export type SettingsOrganizationBrandingImage = 'favicon' | 'logo' | 'ogImage';
+export interface SettingsOrganizationBrandingStoredContract extends SettingsOrganizationBrandingContract {
+    keys?: Partial<Record<SettingsOrganizationBrandingImage, string>>;
 }
 export interface SettingsOrganizationBillingContract {
     email?: string;
 }
 export type SettingsOrganizationSecurityContract = Record<string, unknown>;
 export type SettingsOrganizationSequenceContract = Record<string, unknown>;
+export interface SettingsOrganizationStoreContract {
+    host: string;
+    url: string;
+}
 export interface SettingsOrganizationProfileContract {
     address: SettingsOrganizationAddressContract;
     billing: SettingsOrganizationBillingContract;
@@ -44,10 +57,13 @@ export interface SettingsOrganizationProfileContract {
     identity: SettingsOrganizationIdentityContract;
     localization: SettingsOrganizationLocalizationContract;
 }
+export interface SettingsOrganizationProfileResponse extends SettingsOrganizationProfileContract {
+    store: SettingsOrganizationStoreContract;
+}
 export interface SettingsOrganizationValueMap {
     [SettingsOrganizationEnum.ORGANIZATION_ADDRESS]: SettingsOrganizationAddressContract;
     [SettingsOrganizationEnum.ORGANIZATION_BILLING]: SettingsOrganizationBillingContract;
-    [SettingsOrganizationEnum.ORGANIZATION_BRANDING]: SettingsOrganizationBrandingContract;
+    [SettingsOrganizationEnum.ORGANIZATION_BRANDING]: SettingsOrganizationBrandingStoredContract;
     [SettingsOrganizationEnum.ORGANIZATION_CONTACT]: SettingsOrganizationContactContract;
     [SettingsOrganizationEnum.ORGANIZATION_IDENTITY]: SettingsOrganizationIdentityContract;
     [SettingsOrganizationEnum.ORGANIZATION_LOCALIZATION]: SettingsOrganizationLocalizationContract;

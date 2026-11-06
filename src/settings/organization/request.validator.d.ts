@@ -1,5 +1,5 @@
 import { AbstractRequestValidator } from '../../abstract.validator';
-import type { SettingsOrganizationAddressContract, SettingsOrganizationBillingContract, SettingsOrganizationBrandingContract, SettingsOrganizationContactContract, SettingsOrganizationIdentityContract, SettingsOrganizationLocalizationContract, SettingsOrganizationLocationContract, SettingsOrganizationProfileContract } from './organization.contract';
+import type { SettingsOrganizationAddressContract, SettingsOrganizationBillingContract, SettingsOrganizationBrandingContract, SettingsOrganizationContactContract, SettingsOrganizationIdentityContract, SettingsOrganizationLocalizationContract, SettingsOrganizationLocationContract, SettingsOrganizationProfileContract, SettingsOrganizationSocialContract } from './organization.contract';
 export declare class UpdateOrganizationLocationRequestValidator extends AbstractRequestValidator {
     lat?: number;
     lng?: number;
@@ -18,6 +18,7 @@ export declare class UpdateOrganizationAddressRequestValidator extends AbstractR
 export declare class UpdateOrganizationContactRequestValidator extends AbstractRequestValidator {
     email?: string;
     phone?: string;
+    social?: SettingsOrganizationSocialContract;
     website?: string;
     constructor(contact?: SettingsOrganizationContactContract);
 }
@@ -35,7 +36,7 @@ export declare class UpdateOrganizationIdentityRequestValidator extends Abstract
 }
 export declare class UpdateOrganizationBrandingRequestValidator extends AbstractRequestValidator {
     description?: string;
-    logo?: string;
+    primaryColor?: string;
     constructor(branding?: SettingsOrganizationBrandingContract);
 }
 export declare class UpdateOrganizationBillingRequestValidator extends AbstractRequestValidator {
