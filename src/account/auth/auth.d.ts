@@ -16,7 +16,10 @@ export interface AccountAuthConnection {
 export interface AccountAuthProfile {
     avatar?: string;
     email?: string;
+    emailVerified?: boolean;
+    locale?: string;
     name?: string;
+    phone?: string;
     picture?: string;
 }
 export interface AccountAuthPasswordTicket {

@@ -17,6 +17,7 @@ class UpdateUserRequestValidator extends abstract_validator_1.AbstractRequestVal
     picture;
     email;
     phone;
+    locale;
     active;
     constructor(user) {
         super();
@@ -55,6 +56,11 @@ __decorate([
     (0, class_validator_1.Length)(0, 20),
     __metadata("design:type", String)
 ], UpdateUserRequestValidator.prototype, "phone", void 0);
+__decorate([
+    (0, class_validator_1.IsIn)(['en-US', 'pt-BR']),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateUserRequestValidator.prototype, "locale", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
