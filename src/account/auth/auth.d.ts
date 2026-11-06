@@ -14,7 +14,7 @@ export interface AccountAuthConnection {
     strategy: string;
 }
 export interface AccountAuthProfile {
-    avatar?: string;
+    customAvatar: boolean;
     email?: string;
     emailVerified?: boolean;
     locale?: string;
