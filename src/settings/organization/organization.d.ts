@@ -6,3 +6,9 @@ export interface SettingsOrganizationProfileMeta {
     countries: SettingsOrganizationSelectOption[];
     currencies: SettingsOrganizationSelectOption[];
 }
+export interface SettingsOrganizationStoreProfile {
+    description?: string;
+    email?: string;
+    logo?: string;
+    name: string;
+}
