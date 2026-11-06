@@ -5,6 +5,7 @@ export declare class UpdateUserRequestValidator extends AbstractRequestValidator
     picture: string;
     email: string;
     phone?: string;
+    locale?: string;
     active: boolean;
     constructor(user?: AccountUserEntity);
 }
