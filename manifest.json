@@ -134,7 +134,6 @@
         "validators/sale/delivery.update.request.validator",
         "validators/sale/checkout.request.validator",
         "validators/sale/search.request.validator",
-        "validators/sale/payment.confirm.request.validator",
         "validators/sale/import.request.validator",
         "enums/fulfillment.enum",
         "types/fulfillment",
