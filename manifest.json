@@ -147,6 +147,15 @@
         "infrastructure/entities/item.entity"
       ]
     },
+    "@/content": {
+      "page": [
+        "enums/page.enum",
+        "entities/page.entity",
+        "types/blocks.types",
+        "types/home.page.types",
+        "types/page.types"
+      ]
+    },
     "@/settings": {
       "organization": [
         "contracts/organization.contract",

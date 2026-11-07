@@ -18,6 +18,11 @@ class AppSchemas {
             vendors: 'contact.vendors',
         };
     }
+    static get content() {
+        return {
+            pages: 'content.pages',
+        };
+    }
     static get finance() {
         return {
             payments: 'finance.payments',
