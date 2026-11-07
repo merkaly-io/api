@@ -1,11 +1,6 @@
 export declare enum ContentPageEnum {
     HOME = "home"
 }
-export declare enum ContentProductsSourceEnum {
-    CATEGORY = "category",
-    LATEST = "latest",
-    MANUAL = "manual"
-}
 export declare enum ContentPageImageEnum {
     HERO = "hero",
     NEW_ARRIVALS = "new-arrivals",
