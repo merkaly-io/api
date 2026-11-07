@@ -1,16 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContentFeatureIconEnum = exports.ContentPageImageEnum = exports.ContentProductsSourceEnum = exports.ContentPageEnum = void 0;
+exports.ContentFeatureIconEnum = exports.ContentPageImageEnum = exports.ContentPageEnum = void 0;
 var ContentPageEnum;
 (function (ContentPageEnum) {
     ContentPageEnum["HOME"] = "home";
 })(ContentPageEnum || (exports.ContentPageEnum = ContentPageEnum = {}));
-var ContentProductsSourceEnum;
-(function (ContentProductsSourceEnum) {
-    ContentProductsSourceEnum["CATEGORY"] = "category";
-    ContentProductsSourceEnum["LATEST"] = "latest";
-    ContentProductsSourceEnum["MANUAL"] = "manual";
-})(ContentProductsSourceEnum || (exports.ContentProductsSourceEnum = ContentProductsSourceEnum = {}));
 var ContentPageImageEnum;
 (function (ContentPageImageEnum) {
     ContentPageImageEnum["HERO"] = "hero";

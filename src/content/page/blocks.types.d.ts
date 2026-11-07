@@ -1,4 +1,4 @@
-import type { ContentFeatureIconEnum, ContentProductsSourceEnum } from './page.enum';
+import type { ContentFeatureIconEnum } from './page.enum';
 export interface ContentImage {
     key: string;
     url: string;
@@ -15,10 +15,7 @@ export interface ContentBannerBlock {
     title?: string;
 }
 export interface ContentProductsBlock {
-    category?: string;
     enabled?: boolean;
-    products?: string[];
-    source?: ContentProductsSourceEnum;
     title?: string;
 }
 export interface ContentFeatureItem {
