@@ -57,4 +57,5 @@ export interface OrderSaleSummary {
 export interface OrderBuyerFulfillment {
     status: OrderSaleStatusEnum;
     shipments: LogisticsBuyerShipment[];
+    orderedAt: Date | null;
 }

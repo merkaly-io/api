@@ -8,7 +8,6 @@ export declare enum OrderBuyerStageEnum {
 }
 export declare const BUYER_STAGE_GROUPS: Readonly<Record<OrderBuyerStageEnum, readonly Status[]>>;
 export declare enum OrderFulfillmentActionEnum {
-    CONFIRM_PAYMENT = "CONFIRM_PAYMENT",
     PROCURE = "PROCURE",
     PLACE_SUPPLIER_ORDER = "PLACE_SUPPLIER_ORDER",
     PAY_SUPPLIER_ORDER = "PAY_SUPPLIER_ORDER",

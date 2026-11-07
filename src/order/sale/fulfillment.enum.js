@@ -19,7 +19,6 @@ exports.BUYER_STAGE_GROUPS = {
 };
 var OrderFulfillmentActionEnum;
 (function (OrderFulfillmentActionEnum) {
-    OrderFulfillmentActionEnum["CONFIRM_PAYMENT"] = "CONFIRM_PAYMENT";
     OrderFulfillmentActionEnum["PROCURE"] = "PROCURE";
     OrderFulfillmentActionEnum["PLACE_SUPPLIER_ORDER"] = "PLACE_SUPPLIER_ORDER";
     OrderFulfillmentActionEnum["PAY_SUPPLIER_ORDER"] = "PAY_SUPPLIER_ORDER";
