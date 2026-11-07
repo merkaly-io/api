@@ -9,6 +9,9 @@ export declare abstract class AppSchemas {
         customers: string;
         vendors: string;
     };
+    static get content(): {
+        pages: string;
+    };
     static get finance(): {
         payments: string;
         subscriptions: string;

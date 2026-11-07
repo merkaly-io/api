@@ -223,7 +223,8 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateOrganizationBrandingRequestValidator.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.Matches)(/^(#[0-9a-f]{6})?$/i, { message: '$property must be a #RRGGBB color' }),
+    (0, class_validator_1.IsHexColor)(),
+    (0, class_validator_1.ValidateIf)((_, value) => value !== ''),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateOrganizationBrandingRequestValidator.prototype, "primaryColor", void 0);
