@@ -7,6 +7,7 @@ export declare enum OrderSaleStatusEnum {
     CANCELLED = "CANCELLED"
 }
 export declare const SALE_OPEN_STATUSES: readonly OrderSaleStatusEnum[];
+export declare const SALE_CANCELLABLE_STATUSES: readonly OrderSaleStatusEnum[];
 export declare enum OrderSaleSourceEnum {
     CHECKOUT = "CHECKOUT",
     ADMIN = "ADMIN",

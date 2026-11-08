@@ -10,6 +10,7 @@ var PaymentChargeStatusEnum;
     PaymentChargeStatusEnum["CANCELLED"] = "CANCELLED";
     PaymentChargeStatusEnum["EXPIRED"] = "EXPIRED";
     PaymentChargeStatusEnum["REFUNDED"] = "REFUNDED";
+    PaymentChargeStatusEnum["DISPUTED"] = "DISPUTED";
 })(PaymentChargeStatusEnum || (exports.PaymentChargeStatusEnum = PaymentChargeStatusEnum = {}));
 var PaymentAsaasChargeStatusEnum;
 (function (PaymentAsaasChargeStatusEnum) {
