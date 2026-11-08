@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FinancePaymentEntity = exports.FinancePaymentAttemptSchema = exports.FinancePaymentAttemptEntity = exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = exports.FinancePaymentGatewayCardSchema = exports.FinancePaymentGatewayCardEntity = exports.FinancePaymentGatewayPixSchema = exports.FinancePaymentGatewayPixEntity = void 0;
-const mongoose_1 = require("@nestjs/mongoose");
-const mongoose_2 = require("mongoose");
-const charge_enum_1 = require("../../integration/payment/charge.enum");
-const abstract_entity_1 = require("../../abstract.entity");
-const payment_enum_1 = require("./payment.enum");
+const mongoose_1 = require('@nestjs/mongoose');
+const mongoose_2 = require('mongoose');
+const charge_enum_1 = require('../../integration/payment/charge.enum');
+const abstract_entity_1 = require('../../abstract.entity');
+const payment_enum_1 = require('./payment.enum');
 let FinancePaymentGatewayPixEntity = class FinancePaymentGatewayPixEntity {
     qrCode;
     qrCodeImage;
@@ -187,6 +187,7 @@ let FinancePaymentEntity = class FinancePaymentEntity extends abstract_entity_1.
     method;
     gateway;
     attempts;
+    splitProblem;
     status;
     history = [];
     number;
@@ -224,6 +225,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: undefined, type: [exports.FinancePaymentAttemptSchema] }),
     __metadata("design:type", Array)
 ], FinancePaymentEntity.prototype, "attempts", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, select: false, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinancePaymentEntity.prototype, "splitProblem", void 0);
 exports.FinancePaymentEntity = FinancePaymentEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], FinancePaymentEntity);

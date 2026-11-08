@@ -5,7 +5,8 @@ export declare enum PaymentChargeStatusEnum {
     REJECTED = "REJECTED",
     CANCELLED = "CANCELLED",
     EXPIRED = "EXPIRED",
-    REFUNDED = "REFUNDED"
+    REFUNDED = "REFUNDED",
+    DISPUTED = "DISPUTED"
 }
 export declare enum PaymentAsaasChargeStatusEnum {
     AUTHORIZED = "AUTHORIZED",

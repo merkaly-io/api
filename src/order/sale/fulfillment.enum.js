@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = void 0;
-const sale_enum_1 = require("./sale.enum");
+const sale_enum_1 = require('./sale.enum');
 var OrderBuyerStageEnum;
 (function (OrderBuyerStageEnum) {
     OrderBuyerStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -36,6 +36,8 @@ var OrderSaleHistoryEventEnum;
     OrderSaleHistoryEventEnum["PAYMENT_CONFIRMED"] = "PAYMENT_CONFIRMED";
     OrderSaleHistoryEventEnum["PAYMENT_CANCELLED"] = "PAYMENT_CANCELLED";
     OrderSaleHistoryEventEnum["PAYMENT_REFUNDED"] = "PAYMENT_REFUNDED";
+    OrderSaleHistoryEventEnum["PAYMENT_DISPUTED"] = "PAYMENT_DISPUTED";
+    OrderSaleHistoryEventEnum["PAYMENT_CHARGED_BACK"] = "PAYMENT_CHARGED_BACK";
     OrderSaleHistoryEventEnum["PURCHASE_CREATED"] = "PURCHASE_CREATED";
     OrderSaleHistoryEventEnum["PURCHASE_CANCELLED"] = "PURCHASE_CANCELLED";
     OrderSaleHistoryEventEnum["SUPPLIER_ORDER_PLACED"] = "SUPPLIER_ORDER_PLACED";

@@ -89,6 +89,7 @@ export declare class FinancePaymentEntity extends AbstractEntity implements ITra
     method?: FinancePaymentMethodEnum | null;
     gateway?: FinancePaymentGatewayEntity | null;
     attempts?: FinancePaymentAttemptEntity[];
+    splitProblem?: string | null;
     status: FinancePaymentStatusEnum;
     history: StatusEntity<FinancePaymentStatusEnum>[];
     readonly number: string;

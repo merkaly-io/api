@@ -25,7 +25,9 @@ class AppSchemas {
     }
     static get finance() {
         return {
+            chargebacks: 'finance.chargebacks',
             payments: 'finance.payments',
+            refunds: 'finance.refunds',
             subscriptions: 'finance.subscriptions',
             taxes: 'finance.taxes',
         };

@@ -19,6 +19,7 @@ export interface FinancePaymentReportStore {
     paidAmount: number;
     paidCount: number;
     rejectedCount: number;
+    splitProblemCount: number;
 }
 export interface FinancePaymentReportSummary {
     attempts: Partial<Record<FinancePaymentReportStatus, number>> & {
@@ -28,6 +29,7 @@ export interface FinancePaymentReportSummary {
     from: Date;
     methods: Partial<Record<FinancePaymentMethodEnum, FinancePaymentReportTotal>>;
     paid: FinancePaymentReportTotal;
+    splitProblemCount: number;
     storeCount: number;
     stores: FinancePaymentReportStore[];
     to: Date;
@@ -53,6 +55,7 @@ export interface FinancePaymentReportItem {
     reference: string | null;
     saleId: string | null;
     saleNumber: string | null;
+    splitProblem: string | null;
     status: FinancePaymentReportStatus;
     syncedAt: Date;
 }

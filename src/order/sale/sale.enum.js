@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleSourceEnum = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
+exports.OrderSaleSourceEnum = exports.SALE_CANCELLABLE_STATUSES = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
 var OrderSaleStatusEnum;
 (function (OrderSaleStatusEnum) {
     OrderSaleStatusEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -15,6 +15,11 @@ exports.SALE_OPEN_STATUSES = [
     OrderSaleStatusEnum.PAID,
     OrderSaleStatusEnum.ORDERED,
     OrderSaleStatusEnum.SHIPPED,
+];
+exports.SALE_CANCELLABLE_STATUSES = [
+    OrderSaleStatusEnum.AWAITING_PAYMENT,
+    OrderSaleStatusEnum.PAID,
+    OrderSaleStatusEnum.ORDERED,
 ];
 var OrderSaleSourceEnum;
 (function (OrderSaleSourceEnum) {

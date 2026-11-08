@@ -53,6 +53,7 @@ export interface OrderSaleSummary {
     status: OrderSaleStatusEnum;
     shipments: LogisticsShipmentEntity[];
     nextActions: OrderFulfillmentActionEnum[];
+    cancellable: boolean;
 }
 export interface OrderBuyerFulfillment {
     status: OrderSaleStatusEnum;
