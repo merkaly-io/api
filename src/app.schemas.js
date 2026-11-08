@@ -30,6 +30,7 @@ class AppSchemas {
             refunds: 'finance.refunds',
             subscriptions: 'finance.subscriptions',
             taxes: 'finance.taxes',
+            withdrawals: 'finance.withdrawals',
         };
     }
     static get inventory() {
