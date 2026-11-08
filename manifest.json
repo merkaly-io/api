@@ -69,6 +69,10 @@
       "refund": [
         "entities/refund.entity",
         "enums/refund.enum"
+      ],
+      "withdrawal": [
+        "entities/withdrawal.entity",
+        "enums/withdrawal.enum"
       ]
     },
     "@/integration": {
