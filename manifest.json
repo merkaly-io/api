@@ -61,6 +61,10 @@
         "transitions/payment.transition",
         "types/report",
         "validators/payment/report.request.validator"
+      ],
+      "refund": [
+        "entities/refund.entity",
+        "enums/refund.enum"
       ]
     },
     "@/integration": {
