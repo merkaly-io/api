@@ -54,6 +54,10 @@
       ]
     },
     "@/finance": {
+      "chargeback": [
+        "entities/chargeback.entity",
+        "enums/chargeback.enum"
+      ],
       "payment": [
         "entities/payment.entity",
         "enums/payment.enum",
