@@ -21,17 +21,14 @@ let FinanceWithdrawalEntity = class FinanceWithdrawalEntity extends abstract_ent
     amount;
     fee;
     netAmount;
-    pixKeyType;
-    pixKeyMasked;
+    keyType;
+    keyMasked;
     status;
     rawStatus;
     failReason;
-    authorized;
     requestedBy;
-    requestedAt;
     completedAt;
-    provider;
-    reference;
+    transferId;
     receiptUrl;
 };
 exports.FinanceWithdrawalEntity = FinanceWithdrawalEntity;
@@ -40,21 +37,25 @@ __decorate([
     __metadata("design:type", Number)
 ], FinanceWithdrawalEntity.prototype, "amount", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, ...cents }),
+    (0, mongoose_1.Prop)({ default: 0, min: 0, required: true, type: Number, ...cents }),
     __metadata("design:type", Number)
 ], FinanceWithdrawalEntity.prototype, "fee", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, ...cents }),
+    (0, mongoose_1.Virtual)({
+        get: function () {
+            return this.amount - (this.fee ?? 0);
+        },
+    }),
     __metadata("design:type", Number)
 ], FinanceWithdrawalEntity.prototype, "netAmount", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, enum: [...Object.values(account_enum_1.PaymentPixKeyTypeEnum), null], type: String }),
     __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "pixKeyType", void 0);
+], FinanceWithdrawalEntity.prototype, "keyType", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "pixKeyMasked", void 0);
+], FinanceWithdrawalEntity.prototype, "keyMasked", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ enum: withdrawal_enum_1.FinanceWithdrawalStatusEnum, required: true, type: String }),
     __metadata("design:type", String)
@@ -68,17 +69,9 @@ __decorate([
     __metadata("design:type", String)
 ], FinanceWithdrawalEntity.prototype, "failReason", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: Boolean }),
-    __metadata("design:type", Boolean)
-], FinanceWithdrawalEntity.prototype, "authorized", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.account.users, type: String }),
     __metadata("design:type", Object)
 ], FinanceWithdrawalEntity.prototype, "requestedBy", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true, type: mongoose_2.Schema.Types.Date }),
-    __metadata("design:type", Date)
-], FinanceWithdrawalEntity.prototype, "requestedAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Date }),
     __metadata("design:type", Date)
@@ -86,11 +79,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "provider", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "reference", void 0);
+], FinanceWithdrawalEntity.prototype, "transferId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)

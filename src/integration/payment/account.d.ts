@@ -59,11 +59,18 @@ export interface PaymentAccountBalance {
 export interface PaymentAccountTransfer {
     id: string;
     amount: number;
-    fee: number | null;
+    fee: number;
+    netAmount: number;
     status: string;
     failReason: string | null;
     createdAt: Date | null;
 }
+export type PaymentWithdrawalAuthorization = {
+    status: 'APPROVED';
+} | {
+    status: 'REFUSED';
+    refuseReason: string;
+};
 export interface PaymentAccountCommercialInfo {
     personType: PaymentAccountPersonTypeEnum;
     cpfCnpj: string;
