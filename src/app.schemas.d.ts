@@ -18,6 +18,7 @@ export declare abstract class AppSchemas {
         refunds: string;
         subscriptions: string;
         taxes: string;
+        withdrawals: string;
     };
     static get inventory(): {
         catalog: {
