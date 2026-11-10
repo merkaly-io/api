@@ -26,6 +26,7 @@ export interface AccountAuthProfile {
 export interface AccountIdentityProfile {
     birthDate: string;
     cpf: string;
+    editable: boolean;
     name: string;
 }
 export interface AccountAuthMembership {
