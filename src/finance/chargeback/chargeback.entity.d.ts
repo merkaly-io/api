@@ -1,4 +1,4 @@
-import { AbstractEntity } from "../../abstract.entity";
+import { AbstractEntity } from '../../abstract.entity';
 import { FinanceChargebackReasonEnum, FinanceChargebackStatusEnum } from './chargeback.enum';
 import { FinancePaymentEntity } from '../payment/payment.entity';
 export declare class FinanceChargebackEntity extends AbstractEntity {

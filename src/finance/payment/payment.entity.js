@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FinancePaymentEntity = exports.FinancePaymentAttemptSchema = exports.FinancePaymentAttemptEntity = exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = exports.FinancePaymentGatewayCardSchema = exports.FinancePaymentGatewayCardEntity = exports.FinancePaymentGatewayPixSchema = exports.FinancePaymentGatewayPixEntity = void 0;
-const mongoose_1 = require('@nestjs/mongoose');
-const mongoose_2 = require('mongoose');
-const charge_enum_1 = require('../../integration/payment/charge.enum');
-const abstract_entity_1 = require('../../abstract.entity');
-const payment_enum_1 = require('./payment.enum');
+const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
+const charge_enum_1 = require("../../integration/payment/charge.enum");
+const abstract_entity_1 = require("../../abstract.entity");
+const payment_enum_1 = require("./payment.enum");
 let FinancePaymentGatewayPixEntity = class FinancePaymentGatewayPixEntity {
     qrCode;
     qrCodeImage;

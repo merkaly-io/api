@@ -17,6 +17,10 @@ and used by the frontends (admin, store, dashboard). The source of truth is
 - **A leaf that is an array becomes an entry point with a barrel**: `"@/order": { "sale": [...] }`
   is importable as `@merkaly/api/order/sale`. Intermediate maps do not generate one, so
   `@merkaly/api/order` alone does not resolve: add a leaf (`type`, `home`...) instead.
+- Validators of one app live in the api's `src/application/<app>/validators` and are listed with
+  their full `application/...` path under a group named after the surface: `"@/www": {
+  "onboarding": ["application/www/validators/onboarding.request.validator"] }` is
+  `@merkaly/api/www/onboarding`, `"@/auth": { "identity": [...] }` is `@merkaly/api/auth/identity`.
 - New domains need their group here (e.g. `"@/dashboard": { "home": [...] }`) or their types
   never reach the package.
 
