@@ -28,6 +28,10 @@ export interface AccountIdentityProfile {
     cpf: string;
     name: string;
 }
+export interface AccountAuthMembership {
+    id: string;
+    name: string;
+}
 export interface OnboardingResult {
     organization: string;
 }

@@ -9,16 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleDeliveryRequestValidator = exports.SaleDeliveryAddressRequestValidator = exports.SaleDeliveryRecipientRequestValidator = exports.FULL_NAME_MESSAGE = exports.BIRTHDAY_MAX_AGE = exports.BIRTHDAY_MIN_AGE = exports.upper = exports.digits = exports.trim = exports.BRAZIL_STATES = void 0;
-exports.isCpf = isCpf;
-exports.IsCpf = IsCpf;
-exports.isBirthday = isBirthday;
-exports.IsBirthday = IsBirthday;
-exports.isFullName = isFullName;
-const brazilian_utils_1 = require("@brazilian-utils/brazilian-utils");
+exports.SaleDeliveryRequestValidator = exports.SaleDeliveryAddressRequestValidator = exports.SaleDeliveryRecipientRequestValidator = exports.FULL_NAME_MESSAGE = exports.BRAZIL_STATES = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
+const person_validator_1 = require("../../person.validator");
+const transform_validator_1 = require("../../transform.validator");
 exports.BRAZIL_STATES = [
     'AC',
     'AL',
@@ -48,51 +44,6 @@ exports.BRAZIL_STATES = [
     'SP',
     'TO',
 ];
-const trim = ({ value }) => typeof value === 'string' ? value.trim() : value;
-exports.trim = trim;
-const digits = ({ value }) => typeof value === 'string' ? value.replace(/\D/g, '') : value;
-exports.digits = digits;
-const upper = ({ value }) => typeof value === 'string' ? value.trim().toUpperCase() : value;
-exports.upper = upper;
-function isCpf(value) {
-    return typeof value === 'string' && /^\d{11}$/.test(value) && (0, brazilian_utils_1.isValidCpf)(value);
-}
-function IsCpf() {
-    return (0, class_validator_1.ValidateBy)({
-        name: 'isCpf',
-        validator: {
-            defaultMessage: () => '$property must be a valid CPF',
-            validate: isCpf,
-        },
-    });
-}
-exports.BIRTHDAY_MIN_AGE = 16;
-exports.BIRTHDAY_MAX_AGE = 120;
-function isBirthday(value, today = new Date()) {
-    const [, y, m, d] = (typeof value === 'string' && value.match(/^(\d{4})-(\d{2})-(\d{2})$/)) || [];
-    if (!y)
-        return false;
-    const [year, month, day] = [Number(y), Number(m), Number(d)];
-    const date = new Date(Date.UTC(year, month - 1, day));
-    if (date.getUTCFullYear() !== year ||
-        date.getUTCMonth() !== month - 1 ||
-        date.getUTCDate() !== day) {
-        return false;
-    }
-    const birthdayPassed = today.getUTCMonth() > month - 1 ||
-        (today.getUTCMonth() === month - 1 && today.getUTCDate() >= day);
-    const age = today.getUTCFullYear() - year - (birthdayPassed ? 0 : 1);
-    return age >= exports.BIRTHDAY_MIN_AGE && age <= exports.BIRTHDAY_MAX_AGE;
-}
-function IsBirthday() {
-    return (0, class_validator_1.ValidateBy)({
-        name: 'isBirthday',
-        validator: {
-            defaultMessage: () => `$property must be a real date (YYYY-MM-DD) of someone aged ${exports.BIRTHDAY_MIN_AGE} to ${exports.BIRTHDAY_MAX_AGE}`,
-            validate: (value) => isBirthday(value),
-        },
-    });
-}
 function BirthdayForBrazil() {
     return (0, class_validator_1.ValidateBy)({
         name: 'birthdayForBrazil',
@@ -106,9 +57,6 @@ function BirthdayForBrazil() {
     });
 }
 exports.FULL_NAME_MESSAGE = 'recipient.name must be the full name as registered in the CPF';
-function isFullName(value) {
-    return typeof value === 'string' && value.trim().split(/\s+/).filter(Boolean).length >= 2;
-}
 function FullNameForBrazil() {
     return (0, class_validator_1.ValidateBy)({
         name: 'fullNameForBrazil',
@@ -116,7 +64,7 @@ function FullNameForBrazil() {
             defaultMessage: () => exports.FULL_NAME_MESSAGE,
             validate: (recipient, args) => {
                 const { address } = args.object;
-                return address?.country !== 'BR' || isFullName(recipient?.name);
+                return address?.country !== 'BR' || (0, person_validator_1.isFullName)(recipient?.name);
             },
         },
     });
@@ -132,7 +80,7 @@ exports.SaleDeliveryRecipientRequestValidator = SaleDeliveryRecipientRequestVali
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryRecipientRequestValidator.prototype, "name", void 0);
 __decorate([
@@ -143,18 +91,18 @@ __decorate([
 ], SaleDeliveryRecipientRequestValidator.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.Matches)(/^(55)?\d{10,11}$/, { message: '$property must be a Brazilian phone with area code' }),
-    (0, class_transformer_1.Transform)(exports.digits),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], SaleDeliveryRecipientRequestValidator.prototype, "phone", void 0);
 __decorate([
-    IsCpf(),
-    (0, class_transformer_1.Transform)(exports.digits),
+    (0, person_validator_1.IsCpf)(),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], SaleDeliveryRecipientRequestValidator.prototype, "document", void 0);
 __decorate([
-    IsBirthday(),
+    (0, person_validator_1.IsBirthday)(),
     (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryRecipientRequestValidator.prototype, "birthday", void 0);
 class SaleDeliveryAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
@@ -170,49 +118,49 @@ class SaleDeliveryAddressRequestValidator extends abstract_validator_1.AbstractR
 exports.SaleDeliveryAddressRequestValidator = SaleDeliveryAddressRequestValidator;
 __decorate([
     (0, class_validator_1.Matches)(/^\d{8}$/, { message: '$property must be a CEP with 8 digits' }),
-    (0, class_transformer_1.Transform)(exports.digits),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "postalCode", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 200),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "street", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(1, 20),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "number", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(0, 120),
     (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "complement", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "district", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(exports.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "city", void 0);
 __decorate([
     (0, class_validator_1.IsIn)(exports.BRAZIL_STATES, { message: '$property must be a Brazilian UF' }),
-    (0, class_transformer_1.Transform)(exports.upper),
+    (0, class_transformer_1.Transform)(transform_validator_1.upper),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "state", void 0);
 __decorate([
     (0, class_validator_1.IsISO31661Alpha2)(),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_transformer_1.Transform)(exports.upper),
+    (0, class_transformer_1.Transform)(transform_validator_1.upper),
     __metadata("design:type", String)
 ], SaleDeliveryAddressRequestValidator.prototype, "country", void 0);
 class SaleDeliveryRequestValidator extends abstract_validator_1.AbstractRequestValidator {
