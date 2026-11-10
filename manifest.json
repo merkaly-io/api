@@ -178,6 +178,16 @@
       "authentication": [
         "types/authentication"
       ]
+    },
+    "@/auth": {
+      "identity": [
+        "application/auth/validators/identity.request.validator"
+      ]
+    },
+    "@/www": {
+      "onboarding": [
+        "application/www/validators/onboarding.request.validator"
+      ]
     }
   }
 }

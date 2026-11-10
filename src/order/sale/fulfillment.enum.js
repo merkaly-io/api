@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = void 0;
-const sale_enum_1 = require('./sale.enum');
+const sale_enum_1 = require("./sale.enum");
 var OrderBuyerStageEnum;
 (function (OrderBuyerStageEnum) {
     OrderBuyerStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";

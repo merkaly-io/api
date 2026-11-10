@@ -63,7 +63,11 @@ function publicPathBase(publicPath) {
 function resolveSourcePath(sourceBase, sourcePath) {
   const normalized = normalizeSourcePath(sourcePath);
 
-  if (normalized.startsWith('domain/') || normalized.startsWith('infrastructure/')) {
+  if (
+    normalized.startsWith('domain/') ||
+    normalized.startsWith('infrastructure/') ||
+    normalized.startsWith('application/') // validators of one app (e.g. application/www/validators)
+  ) {
     return `${normalized}.ts`;
   }
 

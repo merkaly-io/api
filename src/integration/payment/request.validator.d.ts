@@ -18,8 +18,8 @@ declare abstract class PaymentAccountContactRequestValidator extends AbstractReq
 }
 export declare class CreatePaymentAccountRequestValidator extends PaymentAccountContactRequestValidator {
     personType: PaymentAccountPersonTypeEnum;
-    name: string;
-    cpfCnpj: string;
+    name?: string;
+    cpfCnpj?: string;
     birthDate?: string;
     companyType?: PaymentAccountCompanyTypeEnum;
     constructor();

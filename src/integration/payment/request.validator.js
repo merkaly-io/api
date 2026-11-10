@@ -70,16 +70,6 @@ const pixKey = ({ value, obj }) => {
     }
     return type === account_enum_1.PaymentPixKeyTypeEnum.EMAIL ? value.trim().toLowerCase() : value.trim();
 };
-function IsAccountDocument() {
-    return (0, class_validator_1.ValidateBy)({
-        name: 'isAccountDocument',
-        validator: {
-            defaultMessage: () => '$property must be a valid CPF (individual) or CNPJ (company)',
-            validate: (value, args) => (isCompany(args.object) ? isCnpj(value) : (0, delivery_request_validator_1.isCpf)(value)),
-        },
-    });
-}
-const isIndividual = (body) => body.personType === account_enum_1.PaymentAccountPersonTypeEnum.INDIVIDUAL;
 const isCompany = (body) => body.personType === account_enum_1.PaymentAccountPersonTypeEnum.COMPANY;
 class PaymentAccountAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     postalCode;
@@ -165,18 +155,20 @@ __decorate([
     __metadata("design:type", String)
 ], CreatePaymentAccountRequestValidator.prototype, "personType", void 0);
 __decorate([
+    (0, class_validator_1.ValidateIf)(isCompany),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
     (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)
 ], CreatePaymentAccountRequestValidator.prototype, "name", void 0);
 __decorate([
-    IsAccountDocument(),
+    (0, class_validator_1.ValidateIf)(isCompany),
+    IsCnpj(),
     (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
     __metadata("design:type", String)
 ], CreatePaymentAccountRequestValidator.prototype, "cpfCnpj", void 0);
 __decorate([
-    (0, class_validator_1.ValidateIf)(isIndividual),
+    (0, class_validator_1.IsOptional)(),
     (0, delivery_request_validator_1.IsBirthday)(),
     (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
     __metadata("design:type", String)

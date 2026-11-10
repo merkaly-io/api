@@ -1,0 +1,40 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SaveAccountIdentityRequestValidator = void 0;
+const class_transformer_1 = require("class-transformer");
+const class_validator_1 = require("class-validator");
+const delivery_request_validator_1 = require("../../order/sale/delivery.request.validator");
+const abstract_validator_1 = require("../../abstract.validator");
+class SaveAccountIdentityRequestValidator extends abstract_validator_1.AbstractRequestValidator {
+    name;
+    cpf;
+    birthDate;
+}
+exports.SaveAccountIdentityRequestValidator = SaveAccountIdentityRequestValidator;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(5, 120),
+    (0, class_validator_1.Matches)(/^\S+(\s+\S+)+$/, { message: '$property must be the full name' }),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    __metadata("design:type", String)
+], SaveAccountIdentityRequestValidator.prototype, "name", void 0);
+__decorate([
+    (0, delivery_request_validator_1.IsCpf)(),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
+    __metadata("design:type", String)
+], SaveAccountIdentityRequestValidator.prototype, "cpf", void 0);
+__decorate([
+    (0, delivery_request_validator_1.IsBirthday)(),
+    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    __metadata("design:type", String)
+], SaveAccountIdentityRequestValidator.prototype, "birthDate", void 0);
+//# sourceMappingURL=identity.request.validator.js.map

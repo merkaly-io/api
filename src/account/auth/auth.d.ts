@@ -23,6 +23,14 @@ export interface AccountAuthProfile {
     phone?: string;
     picture?: string;
 }
+export interface AccountIdentityProfile {
+    birthDate: string;
+    cpf: string;
+    name: string;
+}
+export interface OnboardingResult {
+    organization: string;
+}
 export interface AccountAuthPasswordTicket {
     ticket: string;
 }
