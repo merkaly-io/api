@@ -7,6 +7,8 @@
       "infrastructure/plugins/status.plugin",
       "infrastructure/decorators/not-equal-to.decorator",
       "infrastructure/validators/address.validator",
+      "infrastructure/validators/person.validator",
+      "infrastructure/validators/transform.validator",
       "infrastructure/entities/address.entity",
       "infrastructure/entities/transaction.entity",
       "infrastructure/entities/contact.entity",

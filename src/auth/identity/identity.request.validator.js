@@ -12,8 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SaveAccountIdentityRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const delivery_request_validator_1 = require("../../order/sale/delivery.request.validator");
 const abstract_validator_1 = require("../../abstract.validator");
+const person_validator_1 = require("../../person.validator");
+const transform_validator_1 = require("../../transform.validator");
 class SaveAccountIdentityRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     name;
     cpf;
@@ -24,17 +25,17 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(5, 120),
     (0, class_validator_1.Matches)(/^\S+(\s+\S+)+$/, { message: '$property must be the full name' }),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaveAccountIdentityRequestValidator.prototype, "name", void 0);
 __decorate([
-    (0, delivery_request_validator_1.IsCpf)(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
+    (0, person_validator_1.IsCpf)(),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], SaveAccountIdentityRequestValidator.prototype, "cpf", void 0);
 __decorate([
-    (0, delivery_request_validator_1.IsBirthday)(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, person_validator_1.IsBirthday)(),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], SaveAccountIdentityRequestValidator.prototype, "birthDate", void 0);
 //# sourceMappingURL=identity.request.validator.js.map

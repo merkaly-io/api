@@ -12,13 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegisterSupplierOrderRequestValidator = exports.PlaceSupplierOrderRequestValidator = void 0;
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
-const delivery_request_validator_1 = require("../sale/delivery.request.validator");
+const person_validator_1 = require("../../person.validator");
 class PlaceSupplierOrderRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     recipientBirthday;
 }
 exports.PlaceSupplierOrderRequestValidator = PlaceSupplierOrderRequestValidator;
 __decorate([
-    (0, delivery_request_validator_1.IsBirthday)(),
+    (0, person_validator_1.IsBirthday)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], PlaceSupplierOrderRequestValidator.prototype, "recipientBirthday", void 0);

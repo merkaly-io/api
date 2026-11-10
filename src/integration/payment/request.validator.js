@@ -16,8 +16,9 @@ exports.isPixKey = isPixKey;
 const brazilian_utils_1 = require("@brazilian-utils/brazilian-utils");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const delivery_request_validator_1 = require("../../order/sale/delivery.request.validator");
 const abstract_validator_1 = require("../../abstract.validator");
+const person_validator_1 = require("../../person.validator");
+const transform_validator_1 = require("../../transform.validator");
 const account_enum_1 = require("./account.enum");
 const lower = ({ value }) => typeof value === 'string' ? value.trim().toLowerCase() : value;
 function isCnpj(value) {
@@ -37,7 +38,7 @@ function isPixKey(type, key) {
         return false;
     switch (type) {
         case account_enum_1.PaymentPixKeyTypeEnum.CPF:
-            return (0, delivery_request_validator_1.isCpf)(key);
+            return (0, person_validator_1.isCpf)(key);
         case account_enum_1.PaymentPixKeyTypeEnum.CNPJ:
             return isCnpj(key);
         case account_enum_1.PaymentPixKeyTypeEnum.EMAIL:
@@ -81,32 +82,32 @@ class PaymentAccountAddressRequestValidator extends abstract_validator_1.Abstrac
 exports.PaymentAccountAddressRequestValidator = PaymentAccountAddressRequestValidator;
 __decorate([
     (0, class_validator_1.Matches)(/^\d{8}$/, { message: '$property must be a CEP with 8 digits' }),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], PaymentAccountAddressRequestValidator.prototype, "postalCode", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 200),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], PaymentAccountAddressRequestValidator.prototype, "street", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(1, 20),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], PaymentAccountAddressRequestValidator.prototype, "number", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(1, 120),
     (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], PaymentAccountAddressRequestValidator.prototype, "complement", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], PaymentAccountAddressRequestValidator.prototype, "district", void 0);
 class PaymentAccountContactRequestValidator extends abstract_validator_1.AbstractRequestValidator {
@@ -123,7 +124,7 @@ __decorate([
 ], PaymentAccountContactRequestValidator.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.Matches)(/^\d{10,11}$/, { message: '$property must be the DDD and number (10 or 11 digits)' }),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], PaymentAccountContactRequestValidator.prototype, "mobilePhone", void 0);
 __decorate([
@@ -158,19 +159,19 @@ __decorate([
     (0, class_validator_1.ValidateIf)(isCompany),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 120),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], CreatePaymentAccountRequestValidator.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.ValidateIf)(isCompany),
     IsCnpj(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], CreatePaymentAccountRequestValidator.prototype, "cpfCnpj", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, delivery_request_validator_1.IsBirthday)(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, person_validator_1.IsBirthday)(),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], CreatePaymentAccountRequestValidator.prototype, "birthDate", void 0);
 __decorate([
@@ -197,7 +198,7 @@ __decorate([
 __decorate([
     (0, class_validator_1.Matches)(/^\d{10,11}$/, { message: '$property must be the DDD and number (10 or 11 digits)' }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.digits),
+    (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
 ], UpdatePaymentAccountRequestValidator.prototype, "mobilePhone", void 0);
 __decorate([
@@ -207,9 +208,9 @@ __decorate([
     __metadata("design:type", Number)
 ], UpdatePaymentAccountRequestValidator.prototype, "incomeValue", void 0);
 __decorate([
-    (0, delivery_request_validator_1.IsBirthday)(),
+    (0, person_validator_1.IsBirthday)(),
     (0, class_validator_1.IsOptional)(),
-    (0, class_transformer_1.Transform)(delivery_request_validator_1.trim),
+    (0, class_transformer_1.Transform)(transform_validator_1.trim),
     __metadata("design:type", String)
 ], UpdatePaymentAccountRequestValidator.prototype, "birthDate", void 0);
 __decorate([
