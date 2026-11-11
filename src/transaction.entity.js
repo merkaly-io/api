@@ -9,12 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionEntity = void 0;
+exports.TransactionEntity = exports.SYSTEM_USER = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const app_schemas_1 = require("./app.schemas");
 const user_entity_1 = require("./account/user/user.entity");
 const payment_entity_1 = require("./finance/payment/payment.entity");
 const abstract_entity_1 = require("./abstract.entity");
+exports.SYSTEM_USER = 'merkaly';
 const EDITABLE_STATUSES = new Set(['AWAITING_PAYMENT', 'TO_PLACE']);
 class TransactionEntity extends abstract_entity_1.AbstractEntity {
     user;

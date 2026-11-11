@@ -16,7 +16,6 @@ exports.FINANCE_PAYMENT_PAID_STATUSES = [
 ];
 var FinancePaymentMethodEnum;
 (function (FinancePaymentMethodEnum) {
-    FinancePaymentMethodEnum["CARD"] = "CARD";
     FinancePaymentMethodEnum["PIX"] = "PIX";
     FinancePaymentMethodEnum["TRANSFER"] = "TRANSFER";
     FinancePaymentMethodEnum["CASH"] = "CASH";

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleEntity = exports.OrderSaleDeliverySchema = exports.OrderSaleDeliveryEntity = exports.OrderSaleDeliveryLineSchema = exports.OrderSaleDeliveryLineEntity = exports.OrderSaleDeliveryDaysSchema = exports.OrderSaleDeliveryDaysEntity = exports.OrderSaleDeliveryAddressSchema = exports.OrderSaleDeliveryAddressEntity = exports.OrderSaleDeliveryRecipientSchema = exports.OrderSaleDeliveryRecipientEntity = void 0;
+exports.OrderSaleEntity = exports.OrderSaleAutoProcurementSchema = exports.OrderSaleAutoProcurementEntity = exports.OrderSaleDeliverySchema = exports.OrderSaleDeliveryEntity = exports.OrderSaleDeliveryLineSchema = exports.OrderSaleDeliveryLineEntity = exports.OrderSaleDeliveryDaysSchema = exports.OrderSaleDeliveryDaysEntity = exports.OrderSaleDeliveryAddressSchema = exports.OrderSaleDeliveryAddressEntity = exports.OrderSaleDeliveryRecipientSchema = exports.OrderSaleDeliveryRecipientEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
@@ -179,12 +179,30 @@ exports.OrderSaleDeliveryEntity = OrderSaleDeliveryEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], OrderSaleDeliveryEntity);
 exports.OrderSaleDeliverySchema = mongoose_1.SchemaFactory.createForClass(OrderSaleDeliveryEntity);
+let OrderSaleAutoProcurementEntity = class OrderSaleAutoProcurementEntity {
+    attemptedAt;
+    error;
+};
+exports.OrderSaleAutoProcurementEntity = OrderSaleAutoProcurementEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: Date }),
+    __metadata("design:type", Date)
+], OrderSaleAutoProcurementEntity.prototype, "attemptedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], OrderSaleAutoProcurementEntity.prototype, "error", void 0);
+exports.OrderSaleAutoProcurementEntity = OrderSaleAutoProcurementEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], OrderSaleAutoProcurementEntity);
+exports.OrderSaleAutoProcurementSchema = mongoose_1.SchemaFactory.createForClass(OrderSaleAutoProcurementEntity);
 let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
     delivery;
     cancelledAt;
     source;
+    autoProcurement;
     purchases;
     cost;
     profit;
@@ -217,6 +235,10 @@ __decorate([
     (0, mongoose_1.Prop)({ enum: sale_enum_1.OrderSaleSourceEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], OrderSaleEntity.prototype, "source", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: exports.OrderSaleAutoProcurementSchema }),
+    __metadata("design:type", OrderSaleAutoProcurementEntity)
+], OrderSaleEntity.prototype, "autoProcurement", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         options: {

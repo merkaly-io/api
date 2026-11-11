@@ -1,7 +1,7 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { ContactCustomerEntity } from '../../contact/customer/customer.entity';
-import { ItemEntity } from '../item/item.entity';
-import { TransactionEntity } from '../../transaction.entity';
+import { ContactCustomerEntity } from "../../contact/customer/customer.entity";
+import { ItemEntity } from "../item/item.entity";
+import { TransactionEntity } from "../../transaction.entity";
 import { OrderSaleSourceEnum, OrderSaleStatusEnum } from './sale.enum';
 import type { OrderPurchaseEntity } from '../purchase/purchase.entity';
 export declare class OrderSaleDeliveryRecipientEntity {
@@ -83,12 +83,26 @@ export declare const OrderSaleDeliverySchema: MongoSchema<OrderSaleDeliveryEntit
 } & {
     __v: number;
 }>;
+export declare class OrderSaleAutoProcurementEntity {
+    attemptedAt: Date;
+    error?: string | null;
+}
+export declare const OrderSaleAutoProcurementSchema: MongoSchema<OrderSaleAutoProcurementEntity, import("mongoose").Model<OrderSaleAutoProcurementEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleAutoProcurementEntity, any, {}> & OrderSaleAutoProcurementEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleAutoProcurementEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleAutoProcurementEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<OrderSaleAutoProcurementEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
 export declare class OrderSaleEntity extends TransactionEntity<OrderSaleStatusEnum> {
     customer: ContactCustomerEntity;
     items: ItemEntity[];
     delivery?: OrderSaleDeliveryEntity;
     cancelledAt?: Date | null;
     source: OrderSaleSourceEnum;
+    autoProcurement?: OrderSaleAutoProcurementEntity | null;
     readonly purchases: OrderPurchaseEntity[];
     readonly cost: number | null;
     readonly profit: number | null;

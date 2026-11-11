@@ -6,7 +6,6 @@ var PaymentChargeStatusEnum;
     PaymentChargeStatusEnum["PENDING"] = "PENDING";
     PaymentChargeStatusEnum["IN_PROCESS"] = "IN_PROCESS";
     PaymentChargeStatusEnum["APPROVED"] = "APPROVED";
-    PaymentChargeStatusEnum["REJECTED"] = "REJECTED";
     PaymentChargeStatusEnum["CANCELLED"] = "CANCELLED";
     PaymentChargeStatusEnum["EXPIRED"] = "EXPIRED";
     PaymentChargeStatusEnum["REFUNDED"] = "REFUNDED";
