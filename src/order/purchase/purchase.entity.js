@@ -26,6 +26,7 @@ let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
     placedAt;
     syncedAt;
     error;
+    paidAfterCancelAt;
 };
 exports.OrderPurchaseSupplierOrderEntity = OrderPurchaseSupplierOrderEntity;
 __decorate([
@@ -56,6 +57,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: String }),
     __metadata("design:type", String)
 ], OrderPurchaseSupplierOrderEntity.prototype, "error", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderPurchaseSupplierOrderEntity.prototype, "paidAfterCancelAt", void 0);
 exports.OrderPurchaseSupplierOrderEntity = OrderPurchaseSupplierOrderEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], OrderPurchaseSupplierOrderEntity);

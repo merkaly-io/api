@@ -18,7 +18,6 @@ export interface FinancePaymentReportStore {
     orgName: string;
     paidAmount: number;
     paidCount: number;
-    rejectedCount: number;
     splitProblemCount: number;
 }
 export interface FinancePaymentReportSummary {
@@ -34,16 +33,10 @@ export interface FinancePaymentReportSummary {
     stores: FinancePaymentReportStore[];
     to: Date;
 }
-export interface FinancePaymentReportCard {
-    brand: string | null;
-    last4: string | null;
-}
 export interface FinancePaymentReportItem {
     amount: number;
     attempt: number;
-    card: FinancePaymentReportCard | null;
     createdAt: Date;
-    message: string | null;
     method: FinancePaymentMethodEnum;
     orgId: string;
     orgName: string;

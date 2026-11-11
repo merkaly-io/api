@@ -8,7 +8,6 @@ export declare enum FinancePaymentStatusEnum {
 }
 export declare const FINANCE_PAYMENT_PAID_STATUSES: readonly FinancePaymentStatusEnum[];
 export declare enum FinancePaymentMethodEnum {
-    CARD = "CARD",
     PIX = "PIX",
     TRANSFER = "TRANSFER",
     CASH = "CASH",

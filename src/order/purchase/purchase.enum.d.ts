@@ -9,5 +9,6 @@ export declare enum OrderPurchaseStatusEnum {
 }
 export declare const PURCHASE_PLACEABLE_STATUSES: readonly OrderPurchaseStatusEnum[];
 export declare const PURCHASE_CANCEL_BLOCKING_STATUSES: readonly OrderPurchaseStatusEnum[];
+export declare const PURCHASE_CANCELLABLE_WITH_SALE_STATUSES: readonly OrderPurchaseStatusEnum[];
 export declare const PURCHASE_SYNCABLE_STATUSES: readonly OrderPurchaseStatusEnum[];
 export declare const PURCHASE_PROGRESS: readonly OrderPurchaseStatusEnum[];

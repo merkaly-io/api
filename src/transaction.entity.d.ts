@@ -1,6 +1,6 @@
-import { AccountUserEntity } from './account/user/user.entity';
-import { FinancePaymentEntity } from './finance/payment/payment.entity';
-import { AbstractEntity } from './abstract.entity';
+import { AccountUserEntity } from "./account/user/user.entity";
+import { FinancePaymentEntity } from "./finance/payment/payment.entity";
+import { AbstractEntity } from "./abstract.entity";
 import { StatusEntity } from './status.plugin';
 import { ITransitionable } from './transitionable.interface';
 import { ItemEntity } from './order/item/item.entity';
@@ -9,6 +9,7 @@ export interface TransactionCapabilities {
     editItems: boolean;
     deleteItems: boolean;
 }
+export declare const SYSTEM_USER = "merkaly";
 export declare class TransactionEntity<S extends string> extends AbstractEntity implements ITransitionable<S> {
     user: AccountUserEntity;
     notes?: string;

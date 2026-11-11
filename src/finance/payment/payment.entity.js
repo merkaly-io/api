@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FinancePaymentEntity = exports.FinancePaymentAttemptSchema = exports.FinancePaymentAttemptEntity = exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = exports.FinancePaymentGatewayCardSchema = exports.FinancePaymentGatewayCardEntity = exports.FinancePaymentGatewayPixSchema = exports.FinancePaymentGatewayPixEntity = void 0;
+exports.FinancePaymentEntity = exports.FinancePaymentAttemptSchema = exports.FinancePaymentAttemptEntity = exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = exports.FinancePaymentGatewayPixSchema = exports.FinancePaymentGatewayPixEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const charge_enum_1 = require("../../integration/payment/charge.enum");
@@ -32,35 +32,15 @@ exports.FinancePaymentGatewayPixEntity = FinancePaymentGatewayPixEntity = __deco
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], FinancePaymentGatewayPixEntity);
 exports.FinancePaymentGatewayPixSchema = mongoose_1.SchemaFactory.createForClass(FinancePaymentGatewayPixEntity);
-let FinancePaymentGatewayCardEntity = class FinancePaymentGatewayCardEntity {
-    brand;
-    last4;
-};
-exports.FinancePaymentGatewayCardEntity = FinancePaymentGatewayCardEntity;
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentGatewayCardEntity.prototype, "brand", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentGatewayCardEntity.prototype, "last4", void 0);
-exports.FinancePaymentGatewayCardEntity = FinancePaymentGatewayCardEntity = __decorate([
-    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
-], FinancePaymentGatewayCardEntity);
-exports.FinancePaymentGatewayCardSchema = mongoose_1.SchemaFactory.createForClass(FinancePaymentGatewayCardEntity);
 let FinancePaymentGatewayEntity = class FinancePaymentGatewayEntity {
     provider;
     reference;
     account;
     method;
     status;
-    message;
     attempt;
-    cardAttempts;
     amount;
     pix;
-    card;
     expiresAt;
     syncedAt;
 };
@@ -86,17 +66,9 @@ __decorate([
     __metadata("design:type", String)
 ], FinancePaymentGatewayEntity.prototype, "status", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentGatewayEntity.prototype, "message", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ default: 1, min: 1, type: Number }),
     __metadata("design:type", Number)
 ], FinancePaymentGatewayEntity.prototype, "attempt", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number }),
-    __metadata("design:type", Number)
-], FinancePaymentGatewayEntity.prototype, "cardAttempts", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
@@ -105,10 +77,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.FinancePaymentGatewayPixSchema }),
     __metadata("design:type", FinancePaymentGatewayPixEntity)
 ], FinancePaymentGatewayEntity.prototype, "pix", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: exports.FinancePaymentGatewayCardSchema }),
-    __metadata("design:type", FinancePaymentGatewayCardEntity)
-], FinancePaymentGatewayEntity.prototype, "card", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Date }),
     __metadata("design:type", Date)
@@ -127,8 +95,6 @@ let FinancePaymentAttemptEntity = class FinancePaymentAttemptEntity {
     status;
     rawStatus;
     amount;
-    message;
-    card;
     expiresAt;
     createdAt;
     syncedAt;
@@ -154,14 +120,6 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
 ], FinancePaymentAttemptEntity.prototype, "amount", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentAttemptEntity.prototype, "message", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: exports.FinancePaymentGatewayCardSchema }),
-    __metadata("design:type", FinancePaymentGatewayCardEntity)
-], FinancePaymentAttemptEntity.prototype, "card", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Date }),
     __metadata("design:type", Date)

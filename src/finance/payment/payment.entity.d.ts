@@ -1,12 +1,12 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { PaymentChargeAccountEnum } from '../../integration/payment/charge.enum';
-import { OrderPurchaseEntity } from '../../order/purchase/purchase.entity';
-import { OrderSaleEntity } from '../../order/sale/sale.entity';
-import { AbstractEntity } from '../../abstract.entity';
-import { StatusEntity } from '../../status.plugin';
-import { ITransitionable } from '../../transitionable.interface';
+import { PaymentChargeAccountEnum } from "../../integration/payment/charge.enum";
+import { OrderPurchaseEntity } from "../../order/purchase/purchase.entity";
+import { OrderSaleEntity } from "../../order/sale/sale.entity";
+import { AbstractEntity } from "../../abstract.entity";
+import { StatusEntity } from "../../status.plugin";
+import { ITransitionable } from "../../transitionable.interface";
 import { FinancePaymentMethodEnum, FinancePaymentStatusEnum, FinancePaymentTypeEnum } from './payment.enum';
-import type { PaymentChargeStatusEnum } from '../../integration/payment/charge.enum';
+import type { PaymentChargeStatusEnum } from "../../integration/payment/charge.enum";
 export type OrderEntity = OrderSaleEntity | OrderPurchaseEntity;
 export declare class FinancePaymentGatewayPixEntity {
     qrCode?: string | null;
@@ -21,31 +21,15 @@ export declare const FinancePaymentGatewayPixSchema: MongoSchema<FinancePaymentG
 } & {
     __v: number;
 }>;
-export declare class FinancePaymentGatewayCardEntity {
-    brand?: string | null;
-    last4?: string | null;
-}
-export declare const FinancePaymentGatewayCardSchema: MongoSchema<FinancePaymentGatewayCardEntity, import("mongoose").Model<FinancePaymentGatewayCardEntity, any, any, any, import("mongoose").Document<unknown, any, FinancePaymentGatewayCardEntity, any, {}> & FinancePaymentGatewayCardEntity & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
-    __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayCardEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayCardEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentGatewayCardEntity> & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
-    __v: number;
-}>;
 export declare class FinancePaymentGatewayEntity {
     provider: string;
     reference?: string | null;
     account?: PaymentChargeAccountEnum | null;
     method: FinancePaymentMethodEnum;
     status: string;
-    message?: string | null;
     attempt: number;
-    cardAttempts: number;
     amount: number;
     pix?: FinancePaymentGatewayPixEntity | null;
-    card?: FinancePaymentGatewayCardEntity | null;
     expiresAt?: Date | null;
     syncedAt: Date;
 }
@@ -65,8 +49,6 @@ export declare class FinancePaymentAttemptEntity {
     status: FinancePaymentAttemptStatus;
     rawStatus: string;
     amount: number;
-    message?: string | null;
-    card?: FinancePaymentGatewayCardEntity | null;
     expiresAt?: Date | null;
     createdAt: Date;
     syncedAt: Date;
