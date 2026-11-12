@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
-import { PaymentAccountCompanyTypeEnum, PaymentAccountPersonTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
+import { AbstractRequestValidator } from "../../abstract.validator";
+import { PaymentAccountCompanyTypeEnum, PaymentAccountTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
 export declare function isCnpj(value: unknown): boolean;
 export declare function IsCnpj(): PropertyDecorator;
 export declare function isPixKey(type: unknown, key: unknown): boolean;
@@ -17,7 +17,7 @@ declare abstract class PaymentAccountContactRequestValidator extends AbstractReq
     address: PaymentAccountAddressRequestValidator;
 }
 export declare class CreatePaymentAccountRequestValidator extends PaymentAccountContactRequestValidator {
-    personType: PaymentAccountPersonTypeEnum;
+    accountType: PaymentAccountTypeEnum;
     name?: string;
     cpfCnpj?: string;
     birthDate?: string;

@@ -1,4 +1,4 @@
-import type { PaymentAccountApprovalEnum, PaymentAccountCompanyTypeEnum, PaymentAccountDocumentStatusEnum, PaymentAccountPersonTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
+import type { PaymentAccountApprovalEnum, PaymentAccountCompanyTypeEnum, PaymentAccountDocumentStatusEnum, PaymentAccountTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
 import type { PaymentProviderEnum } from './provider.enum';
 export interface PaymentAccountApproval {
     general: PaymentAccountApprovalEnum;
@@ -13,8 +13,8 @@ export interface PaymentAccountWithdrawal {
 export interface PaymentAccountSummary {
     accountId: string;
     walletId: string;
-    personType: PaymentAccountPersonTypeEnum;
-    documentMasked: string;
+    accountType: PaymentAccountTypeEnum;
+    document: string;
     name: string;
     email: string;
     approval: PaymentAccountApproval | null;
@@ -79,7 +79,7 @@ export type PaymentWithdrawalAuthorization = {
     refuseReason: string;
 };
 export interface PaymentAccountCommercialInfo {
-    personType: PaymentAccountPersonTypeEnum;
+    accountType: PaymentAccountTypeEnum;
     cpfCnpj: string;
     name: string | null;
     companyName: string | null;

@@ -4,7 +4,7 @@ export declare enum PaymentAccountApprovalEnum {
     APPROVED = "APPROVED",
     REJECTED = "REJECTED"
 }
-export declare enum PaymentAccountPersonTypeEnum {
+export declare enum PaymentAccountTypeEnum {
     INDIVIDUAL = "INDIVIDUAL",
     COMPANY = "COMPANY"
 }

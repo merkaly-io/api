@@ -71,7 +71,7 @@ const pixKey = ({ value, obj }) => {
     }
     return type === account_enum_1.PaymentPixKeyTypeEnum.EMAIL ? value.trim().toLowerCase() : value.trim();
 };
-const isCompany = (body) => body.personType === account_enum_1.PaymentAccountPersonTypeEnum.COMPANY;
+const isCompany = (body) => body.accountType === account_enum_1.PaymentAccountTypeEnum.COMPANY;
 class PaymentAccountAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     postalCode;
     street;
@@ -139,22 +139,22 @@ __decorate([
     __metadata("design:type", PaymentAccountAddressRequestValidator)
 ], PaymentAccountContactRequestValidator.prototype, "address", void 0);
 class CreatePaymentAccountRequestValidator extends PaymentAccountContactRequestValidator {
-    personType;
+    accountType;
     name;
     cpfCnpj;
     birthDate;
     companyType;
     constructor() {
         super();
-        this.personType = account_enum_1.PaymentAccountPersonTypeEnum.INDIVIDUAL;
+        this.accountType = account_enum_1.PaymentAccountTypeEnum.INDIVIDUAL;
         this.address = new PaymentAccountAddressRequestValidator();
     }
 }
 exports.CreatePaymentAccountRequestValidator = CreatePaymentAccountRequestValidator;
 __decorate([
-    (0, class_validator_1.IsEnum)(account_enum_1.PaymentAccountPersonTypeEnum),
+    (0, class_validator_1.IsEnum)(account_enum_1.PaymentAccountTypeEnum),
     __metadata("design:type", String)
-], CreatePaymentAccountRequestValidator.prototype, "personType", void 0);
+], CreatePaymentAccountRequestValidator.prototype, "accountType", void 0);
 __decorate([
     (0, class_validator_1.ValidateIf)(isCompany),
     (0, class_validator_1.IsString)(),
