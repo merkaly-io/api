@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentPixKeyTypeEnum = exports.PaymentAccountDocumentStatusEnum = exports.PaymentAccountCompanyTypeEnum = exports.PaymentAccountPersonTypeEnum = exports.PaymentAccountApprovalEnum = void 0;
+exports.PaymentPixKeyTypeEnum = exports.PaymentAccountDocumentStatusEnum = exports.PaymentAccountCompanyTypeEnum = exports.PaymentAccountTypeEnum = exports.PaymentAccountApprovalEnum = void 0;
 var PaymentAccountApprovalEnum;
 (function (PaymentAccountApprovalEnum) {
     PaymentAccountApprovalEnum["PENDING"] = "PENDING";
@@ -8,11 +8,11 @@ var PaymentAccountApprovalEnum;
     PaymentAccountApprovalEnum["APPROVED"] = "APPROVED";
     PaymentAccountApprovalEnum["REJECTED"] = "REJECTED";
 })(PaymentAccountApprovalEnum || (exports.PaymentAccountApprovalEnum = PaymentAccountApprovalEnum = {}));
-var PaymentAccountPersonTypeEnum;
-(function (PaymentAccountPersonTypeEnum) {
-    PaymentAccountPersonTypeEnum["INDIVIDUAL"] = "INDIVIDUAL";
-    PaymentAccountPersonTypeEnum["COMPANY"] = "COMPANY";
-})(PaymentAccountPersonTypeEnum || (exports.PaymentAccountPersonTypeEnum = PaymentAccountPersonTypeEnum = {}));
+var PaymentAccountTypeEnum;
+(function (PaymentAccountTypeEnum) {
+    PaymentAccountTypeEnum["INDIVIDUAL"] = "INDIVIDUAL";
+    PaymentAccountTypeEnum["COMPANY"] = "COMPANY";
+})(PaymentAccountTypeEnum || (exports.PaymentAccountTypeEnum = PaymentAccountTypeEnum = {}));
 var PaymentAccountCompanyTypeEnum;
 (function (PaymentAccountCompanyTypeEnum) {
     PaymentAccountCompanyTypeEnum["MEI"] = "MEI";
