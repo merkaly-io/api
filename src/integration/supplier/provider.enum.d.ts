@@ -3,5 +3,6 @@ export declare enum SupplierProviderEnum {
 }
 export declare enum SupplierReadinessEnum {
     NOT_CONNECTED = "NOT_CONNECTED",
+    EXPIRED = "EXPIRED",
     READY = "READY"
 }

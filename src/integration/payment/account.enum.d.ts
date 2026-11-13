@@ -30,7 +30,8 @@ export declare enum PaymentPixKeyTypeEnum {
 }
 export declare enum PaymentAccountReadinessEnum {
     NOT_CONNECTED = "NOT_CONNECTED",
-    PENDING_APPROVAL = "PENDING_APPROVAL",
+    PENDING_DOCUMENTS = "PENDING_DOCUMENTS",
+    IN_REVIEW = "IN_REVIEW",
     REJECTED = "REJECTED",
     READY = "READY"
 }

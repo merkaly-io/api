@@ -39,7 +39,8 @@ var PaymentPixKeyTypeEnum;
 var PaymentAccountReadinessEnum;
 (function (PaymentAccountReadinessEnum) {
     PaymentAccountReadinessEnum["NOT_CONNECTED"] = "NOT_CONNECTED";
-    PaymentAccountReadinessEnum["PENDING_APPROVAL"] = "PENDING_APPROVAL";
+    PaymentAccountReadinessEnum["PENDING_DOCUMENTS"] = "PENDING_DOCUMENTS";
+    PaymentAccountReadinessEnum["IN_REVIEW"] = "IN_REVIEW";
     PaymentAccountReadinessEnum["REJECTED"] = "REJECTED";
     PaymentAccountReadinessEnum["READY"] = "READY";
 })(PaymentAccountReadinessEnum || (exports.PaymentAccountReadinessEnum = PaymentAccountReadinessEnum = {}));
