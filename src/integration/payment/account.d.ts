@@ -1,4 +1,4 @@
-import type { PaymentAccountApprovalEnum, PaymentAccountCompanyTypeEnum, PaymentAccountDocumentStatusEnum, PaymentAccountTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
+import type { PaymentAccountApprovalEnum, PaymentAccountCompanyTypeEnum, PaymentAccountDocumentStatusEnum, PaymentAccountReadinessEnum, PaymentAccountTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
 import type { PaymentProviderEnum } from './provider.enum';
 export interface PaymentAccountApproval {
     general: PaymentAccountApprovalEnum;
@@ -33,6 +33,10 @@ export interface PaymentAccountStatus {
     pixReady: boolean;
     warnings: string[];
     accountError: string | null;
+}
+export interface PaymentAccountReadiness {
+    canSell: boolean;
+    payments: PaymentAccountReadinessEnum;
 }
 export interface PaymentAccountDocument {
     id: string;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentPixKeyTypeEnum = exports.PaymentAccountDocumentStatusEnum = exports.PaymentAccountCompanyTypeEnum = exports.PaymentAccountTypeEnum = exports.PaymentAccountApprovalEnum = void 0;
+exports.PaymentAccountReadinessEnum = exports.PaymentPixKeyTypeEnum = exports.PaymentAccountDocumentStatusEnum = exports.PaymentAccountCompanyTypeEnum = exports.PaymentAccountTypeEnum = exports.PaymentAccountApprovalEnum = void 0;
 var PaymentAccountApprovalEnum;
 (function (PaymentAccountApprovalEnum) {
     PaymentAccountApprovalEnum["PENDING"] = "PENDING";
@@ -36,4 +36,11 @@ var PaymentPixKeyTypeEnum;
     PaymentPixKeyTypeEnum["PHONE"] = "PHONE";
     PaymentPixKeyTypeEnum["EVP"] = "EVP";
 })(PaymentPixKeyTypeEnum || (exports.PaymentPixKeyTypeEnum = PaymentPixKeyTypeEnum = {}));
+var PaymentAccountReadinessEnum;
+(function (PaymentAccountReadinessEnum) {
+    PaymentAccountReadinessEnum["NOT_CONNECTED"] = "NOT_CONNECTED";
+    PaymentAccountReadinessEnum["PENDING_APPROVAL"] = "PENDING_APPROVAL";
+    PaymentAccountReadinessEnum["REJECTED"] = "REJECTED";
+    PaymentAccountReadinessEnum["READY"] = "READY";
+})(PaymentAccountReadinessEnum || (exports.PaymentAccountReadinessEnum = PaymentAccountReadinessEnum = {}));
 //# sourceMappingURL=account.enum.js.map

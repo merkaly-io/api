@@ -1,4 +1,6 @@
-import { SettingsOrganizationEnum, SettingsOrganizationSocialEnum } from './organization.enum';
+import { SettingsOrganizationEnum, SettingsOrganizationSocialEnum } from "./organization.enum";
+import type { PaymentAccountReadinessEnum } from "../../integration/payment/account.enum";
+import type { SupplierReadinessEnum } from "../../integration/supplier/provider.enum";
 export interface SettingsOrganizationLocationContract {
     lat?: number;
     lng?: number;
@@ -57,7 +59,13 @@ export interface SettingsOrganizationProfileContract {
     identity: SettingsOrganizationIdentityContract;
     localization: SettingsOrganizationLocalizationContract;
 }
+export interface SettingsOrganizationReadinessContract {
+    canSell: boolean;
+    payments: PaymentAccountReadinessEnum;
+    supplier: SupplierReadinessEnum;
+}
 export interface SettingsOrganizationProfileResponse extends SettingsOrganizationProfileContract {
+    readiness: SettingsOrganizationReadinessContract;
     store: SettingsOrganizationStoreContract;
 }
 export interface SettingsOrganizationValueMap {
