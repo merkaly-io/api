@@ -28,3 +28,9 @@ export declare enum PaymentPixKeyTypeEnum {
     PHONE = "PHONE",
     EVP = "EVP"
 }
+export declare enum PaymentAccountReadinessEnum {
+    NOT_CONNECTED = "NOT_CONNECTED",
+    PENDING_APPROVAL = "PENDING_APPROVAL",
+    REJECTED = "REJECTED",
+    READY = "READY"
+}
