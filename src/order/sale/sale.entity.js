@@ -182,6 +182,8 @@ exports.OrderSaleDeliverySchema = mongoose_1.SchemaFactory.createForClass(OrderS
 let OrderSaleAutoProcurementEntity = class OrderSaleAutoProcurementEntity {
     attemptedAt;
     error;
+    attempts;
+    retryAt;
 };
 exports.OrderSaleAutoProcurementEntity = OrderSaleAutoProcurementEntity;
 __decorate([
@@ -192,6 +194,14 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], OrderSaleAutoProcurementEntity.prototype, "error", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: 1, min: 1, type: Number }),
+    __metadata("design:type", Number)
+], OrderSaleAutoProcurementEntity.prototype, "attempts", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderSaleAutoProcurementEntity.prototype, "retryAt", void 0);
 exports.OrderSaleAutoProcurementEntity = OrderSaleAutoProcurementEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], OrderSaleAutoProcurementEntity);

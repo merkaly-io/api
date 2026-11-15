@@ -18,6 +18,7 @@ export declare class ReadValidator extends AbstractRequestValidator {
 export interface SearchRules extends ReadRules {
     filters: readonly string[];
     sort?: readonly string[];
+    unlimited?: boolean;
 }
 export declare class SearchValidator<E = AbstractEntity> extends ReadValidator {
     static readonly rules: SearchRules;
@@ -27,4 +28,5 @@ export declare class SearchValidator<E = AbstractEntity> extends ReadValidator {
     };
     filters?: FilterQuery<E>;
 }
+export declare const PAGINATION_MAX_LIMIT = 100;
 export {};

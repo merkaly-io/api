@@ -61,6 +61,7 @@ export interface PaymentAccountBalance {
     pending: PaymentAccountPending | null;
     withdrawable: number;
     retained: number;
+    debts: number;
 }
 export interface PaymentWithdrawableLedger {
     released: number;

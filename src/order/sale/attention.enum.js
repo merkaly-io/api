@@ -5,6 +5,7 @@ var OrderSaleAttentionEnum;
 (function (OrderSaleAttentionEnum) {
     OrderSaleAttentionEnum["PAYMENT_AMOUNT_MISMATCH"] = "PAYMENT_AMOUNT_MISMATCH";
     OrderSaleAttentionEnum["PAYMENT_DISPUTED"] = "PAYMENT_DISPUTED";
+    OrderSaleAttentionEnum["REFUND_PENDING"] = "REFUND_PENDING";
     OrderSaleAttentionEnum["CHARGED_BACK_WITH_SUPPLIER_ORDER"] = "CHARGED_BACK_WITH_SUPPLIER_ORDER";
     OrderSaleAttentionEnum["REFUNDED_OUTSIDE_WITH_SUPPLIER_ORDER"] = "REFUNDED_OUTSIDE_WITH_SUPPLIER_ORDER";
     OrderSaleAttentionEnum["SUPPLIER_PAID_AFTER_CANCEL"] = "SUPPLIER_PAID_AFTER_CANCEL";
@@ -20,6 +21,7 @@ var OrderSaleAttentionEnum;
 exports.SALE_ACTIONABLE_ATTENTIONS = [
     OrderSaleAttentionEnum.PAYMENT_AMOUNT_MISMATCH,
     OrderSaleAttentionEnum.PAYMENT_DISPUTED,
+    OrderSaleAttentionEnum.REFUND_PENDING,
     OrderSaleAttentionEnum.CHARGED_BACK_WITH_SUPPLIER_ORDER,
     OrderSaleAttentionEnum.REFUNDED_OUTSIDE_WITH_SUPPLIER_ORDER,
     OrderSaleAttentionEnum.SUPPLIER_PAID_AFTER_CANCEL,

@@ -1,4 +1,4 @@
-import type { SettingsOrganizationSocialContract } from "./organization.contract";
+import type { SettingsOrganizationSocialContract } from './organization.contract';
 export interface SettingsOrganizationSelectOption {
     text: string;
     value: string;

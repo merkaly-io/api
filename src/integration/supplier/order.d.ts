@@ -4,6 +4,7 @@ export interface SupplierOrderLine {
     externalProductId: string;
     externalVariantId: string;
     quantity: number;
+    logisticsService?: string;
 }
 export interface SupplierOrderRecipient {
     name: string;

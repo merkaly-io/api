@@ -1,8 +1,8 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { ContactVendorEntity } from "../../contact/vendor/vendor.entity";
-import { SupplierProviderEnum } from "../../integration/supplier/provider.enum";
-import { ItemEntity } from "../item/item.entity";
-import { TransactionEntity } from "../../transaction.entity";
+import { ContactVendorEntity } from '../../contact/vendor/vendor.entity';
+import { SupplierProviderEnum } from '../../integration/supplier/provider.enum';
+import { ItemEntity } from '../item/item.entity';
+import { TransactionEntity } from '../../transaction.entity';
 import { OrderPurchaseStatusEnum } from './purchase.enum';
 import type { OrderSaleEntity } from '../sale/sale.entity';
 export declare class OrderPurchaseSupplierOrderEntity {

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SearchValidator = exports.ReadValidator = exports.AbstractRequestValidator = void 0;
+exports.PAGINATION_MAX_LIMIT = exports.SearchValidator = exports.ReadValidator = exports.AbstractRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 class PaginationValidator {
@@ -64,6 +64,7 @@ __decorate([
     }),
     (0, class_validator_1.ValidateNested)(),
     (0, class_transformer_1.Type)(() => PaginationValidator),
+    AllowedBy('unlimited', paginationViolation),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", PaginationValidator)
 ], SearchValidator.prototype, "pagination", void 0);
@@ -97,6 +98,8 @@ const FIELD_OPERATORS = new Set([
     '$exists',
 ]);
 const LOGICAL_OPERATORS = new Set(['$and', '$or']);
+exports.PAGINATION_MAX_LIMIT = 100;
+const UNLIMITED = -1;
 const REGEX_MAX_LENGTH = 100;
 const REGEX_OPTIONS = /^[ims]*$/;
 const REGEX_SPECIALS = /[\\^$.*+?()[\]{}|]/g;
@@ -146,6 +149,18 @@ function filterViolation(value, rules, path = 'filters') {
                 return `${path}.${field}.$options must only use i, m or s`;
         }
     }
+    return undefined;
+}
+function paginationViolation(value, rules) {
+    if (!(0, class_validator_1.isObject)(value))
+        return undefined;
+    const { limit = 10, page = 1 } = value;
+    if (limit === UNLIMITED || page === UNLIMITED)
+        return rules.unlimited ? undefined : 'pagination must not ask for every record';
+    if (!(limit >= 1 && limit <= exports.PAGINATION_MAX_LIMIT))
+        return `pagination.limit must be between 1 and ${exports.PAGINATION_MAX_LIMIT}`;
+    if (!(page >= 1))
+        return 'pagination.page must be at least 1';
     return undefined;
 }
 function sortViolation(value, rules) {

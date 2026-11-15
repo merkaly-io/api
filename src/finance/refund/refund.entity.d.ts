@@ -9,5 +9,6 @@ export declare class FinanceRefundEntity extends AbstractEntity {
     provider?: string | null;
     reference?: string | null;
     status: string;
+    error?: string | null;
     at: Date;
 }

@@ -4,6 +4,7 @@ import type { LogisticsBuyerShipment } from '../../logistics/shipment/shipment';
 import type { OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from './fulfillment.enum';
 import type { OrderPurchaseStatusEnum } from '../purchase/purchase.enum';
 import type { OrderSaleStatusEnum } from './sale.enum';
+import type { OrderSaleReceipt } from './receipt';
 export interface OrderSaleCosts {
     products: number;
     freight: number;
@@ -59,4 +60,5 @@ export interface OrderBuyerFulfillment {
     status: OrderSaleStatusEnum;
     shipments: LogisticsBuyerShipment[];
     orderedAt: Date | null;
+    receipt: OrderSaleReceipt;
 }

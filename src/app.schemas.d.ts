@@ -14,6 +14,7 @@ export declare abstract class AppSchemas {
     };
     static get finance(): {
         chargebacks: string;
+        debts: string;
         payments: string;
         refunds: string;
         subscriptions: string;
