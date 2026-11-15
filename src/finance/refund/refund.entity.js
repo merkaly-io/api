@@ -9,20 +9,64 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FinanceRefundEntity = void 0;
+exports.FinanceRefundEntity = exports.FinanceRefundGatewaySchema = exports.FinanceRefundGatewayEntity = exports.FinanceRefundGatewayPixSchema = exports.FinanceRefundGatewayPixEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
 const abstract_entity_1 = require("../../abstract.entity");
 const refund_enum_1 = require("./refund.enum");
+let FinanceRefundGatewayPixEntity = class FinanceRefundGatewayPixEntity {
+    endToEndId;
+};
+exports.FinanceRefundGatewayPixEntity = FinanceRefundGatewayPixEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundGatewayPixEntity.prototype, "endToEndId", void 0);
+exports.FinanceRefundGatewayPixEntity = FinanceRefundGatewayPixEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], FinanceRefundGatewayPixEntity);
+exports.FinanceRefundGatewayPixSchema = mongoose_1.SchemaFactory.createForClass(FinanceRefundGatewayPixEntity);
+let FinanceRefundGatewayEntity = class FinanceRefundGatewayEntity {
+    provider;
+    reference;
+    status;
+    receiptUrl;
+    pix;
+};
+exports.FinanceRefundGatewayEntity = FinanceRefundGatewayEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundGatewayEntity.prototype, "provider", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundGatewayEntity.prototype, "reference", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundGatewayEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundGatewayEntity.prototype, "receiptUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: exports.FinanceRefundGatewayPixSchema }),
+    __metadata("design:type", FinanceRefundGatewayPixEntity)
+], FinanceRefundGatewayEntity.prototype, "pix", void 0);
+exports.FinanceRefundGatewayEntity = FinanceRefundGatewayEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], FinanceRefundGatewayEntity);
+exports.FinanceRefundGatewaySchema = mongoose_1.SchemaFactory.createForClass(FinanceRefundGatewayEntity);
 let FinanceRefundEntity = class FinanceRefundEntity extends abstract_entity_1.AbstractEntity {
     payment;
     amount;
     partial;
     origin;
-    provider;
-    reference;
     status;
+    gateway;
+    refundedAt;
     error;
     at;
 };
@@ -44,17 +88,17 @@ __decorate([
     __metadata("design:type", String)
 ], FinanceRefundEntity.prototype, "origin", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceRefundEntity.prototype, "provider", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceRefundEntity.prototype, "reference", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    (0, mongoose_1.Prop)({ enum: refund_enum_1.FinanceRefundStatusEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], FinanceRefundEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: exports.FinanceRefundGatewaySchema }),
+    __metadata("design:type", FinanceRefundGatewayEntity)
+], FinanceRefundEntity.prototype, "gateway", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Date }),
+    __metadata("design:type", Date)
+], FinanceRefundEntity.prototype, "refundedAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)

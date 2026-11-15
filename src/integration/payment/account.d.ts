@@ -62,6 +62,7 @@ export interface PaymentAccountBalance {
     withdrawable: number;
     retained: number;
     debts: number;
+    reservedForRefunds: number;
 }
 export interface PaymentWithdrawableLedger {
     released: number;

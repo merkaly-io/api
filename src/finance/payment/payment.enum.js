@@ -8,6 +8,7 @@ var FinancePaymentStatusEnum;
     FinancePaymentStatusEnum["CANCELLED"] = "CANCELLED";
     FinancePaymentStatusEnum["REFUNDED"] = "REFUNDED";
     FinancePaymentStatusEnum["REFUND_PENDING"] = "REFUND_PENDING";
+    FinancePaymentStatusEnum["REFUND_PROCESSING"] = "REFUND_PROCESSING";
     FinancePaymentStatusEnum["DISPUTED"] = "DISPUTED";
     FinancePaymentStatusEnum["CHARGED_BACK"] = "CHARGED_BACK";
 })(FinancePaymentStatusEnum || (exports.FinancePaymentStatusEnum = FinancePaymentStatusEnum = {}));
