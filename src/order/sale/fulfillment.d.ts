@@ -7,7 +7,7 @@ import type { OrderSaleStatusEnum } from './sale.enum';
 import type { OrderSaleReceipt } from './receipt';
 export interface OrderSaleCosts {
     products: number;
-    freight: number;
+    shippingCost: number;
     total: number;
 }
 export interface OrderSaleEstimate extends OrderSaleCosts {

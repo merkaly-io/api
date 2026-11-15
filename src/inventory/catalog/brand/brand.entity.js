@@ -52,7 +52,7 @@ __decorate([
         options: {
             foreignField: 'brand',
             localField: '_id',
-            ref: app_schemas_1.AppSchemas.inventory.catalog.products,
+            ref: app_schemas_1.AppSchemas.catalog.products,
         },
     }),
     __metadata("design:type", Array)

@@ -28,13 +28,13 @@ let ItemEntity = class ItemEntity extends abstract_entity_1.AbstractEntity {
 };
 exports.ItemEntity = ItemEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.inventory.catalog.products, type: mongoose_2.Schema.Types.ObjectId }),
+    (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.catalog.products, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", product_entity_1.CatalogProductEntity)
 ], ItemEntity.prototype, "product", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: null,
-        ref: app_schemas_1.AppSchemas.inventory.catalog.variants,
+        ref: app_schemas_1.AppSchemas.catalog.variants,
         required: true,
         type: mongoose_2.Schema.Types.ObjectId,
     }),

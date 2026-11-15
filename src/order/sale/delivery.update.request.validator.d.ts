@@ -7,7 +7,7 @@ export declare class UpdateSaleDeliveryRecipientRequestValidator extends Abstrac
     birthday?: string;
 }
 export declare class UpdateSaleDeliveryAddressRequestValidator extends AbstractRequestValidator {
-    postalCode?: string;
+    zipCode?: string;
     street?: string;
     number?: string;
     complement?: string | null;

@@ -1,4 +1,5 @@
-import { SettingsOrganizationEnum, SettingsOrganizationSocialEnum } from './organization.enum';
+import { SettingsOrganizationSocialEnum } from './organization.enum';
+import { SettingsKeyEnum } from './settings.enum';
 import type { PaymentAccountReadinessEnum } from '../../integration/payment/account.enum';
 import type { SupplierReadinessEnum } from '../../integration/supplier/provider.enum';
 export interface SettingsOrganizationLocationContract {
@@ -45,6 +46,33 @@ export interface SettingsOrganizationBrandingStoredContract extends SettingsOrga
 export interface SettingsOrganizationBillingContract {
     email?: string;
 }
+export interface SettingsOrganizationPaymentsContract {
+    holder: {
+        type: string;
+        name: string;
+        email: string;
+        documentLast4: string;
+    } | null;
+    pixKey: {
+        type: string;
+        value: string;
+    } | null;
+    error: string | null;
+    gateway: {
+        provider: string;
+        id: string;
+        walletId: string;
+        apiKey: string | null;
+        approval: {
+            general: string;
+            commercialInfo: string;
+            documentation: string;
+            bankAccountInfo: string;
+        } | null;
+        createdAt: Date;
+        syncedAt: Date;
+    } | null;
+}
 export type SettingsOrganizationSecurityContract = Record<string, unknown>;
 export type SettingsOrganizationSequenceContract = Record<string, unknown>;
 export interface SettingsOrganizationStoreContract {
@@ -69,13 +97,14 @@ export interface SettingsOrganizationProfileResponse extends SettingsOrganizatio
     store: SettingsOrganizationStoreContract;
 }
 export interface SettingsOrganizationValueMap {
-    [SettingsOrganizationEnum.ORGANIZATION_ADDRESS]: SettingsOrganizationAddressContract;
-    [SettingsOrganizationEnum.ORGANIZATION_BILLING]: SettingsOrganizationBillingContract;
-    [SettingsOrganizationEnum.ORGANIZATION_BRANDING]: SettingsOrganizationBrandingStoredContract;
-    [SettingsOrganizationEnum.ORGANIZATION_CONTACT]: SettingsOrganizationContactContract;
-    [SettingsOrganizationEnum.ORGANIZATION_IDENTITY]: SettingsOrganizationIdentityContract;
-    [SettingsOrganizationEnum.ORGANIZATION_LOCALIZATION]: SettingsOrganizationLocalizationContract;
-    [SettingsOrganizationEnum.ORGANIZATION_SECURITY]: SettingsOrganizationSecurityContract;
-    [SettingsOrganizationEnum.ORGANIZATION_SEQUENCE]: SettingsOrganizationSequenceContract;
+    [SettingsKeyEnum.ADDRESS]: SettingsOrganizationAddressContract;
+    [SettingsKeyEnum.BILLING]: SettingsOrganizationBillingContract;
+    [SettingsKeyEnum.BRANDING]: SettingsOrganizationBrandingStoredContract;
+    [SettingsKeyEnum.CONTACT]: SettingsOrganizationContactContract;
+    [SettingsKeyEnum.IDENTITY]: SettingsOrganizationIdentityContract;
+    [SettingsKeyEnum.LOCALIZATION]: SettingsOrganizationLocalizationContract;
+    [SettingsKeyEnum.PAYMENTS]: SettingsOrganizationPaymentsContract;
+    [SettingsKeyEnum.SECURITY]: SettingsOrganizationSecurityContract;
+    [SettingsKeyEnum.SEQUENCE]: SettingsOrganizationSequenceContract;
 }
 export type SettingsOrganizationKey = keyof SettingsOrganizationValueMap;

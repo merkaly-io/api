@@ -9,14 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogisticsShipmentEntity = exports.LogisticsShipmentEventSchema = exports.LogisticsShipmentEventEntity = void 0;
+exports.LogisticsShipmentEntity = exports.LogisticsShipmentTrackingSchema = exports.LogisticsShipmentTrackingEntity = exports.LogisticsShipmentEventSchema = exports.LogisticsShipmentEventEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
 const abstract_entity_1 = require("../../abstract.entity");
 const shipment_enum_1 = require("./shipment.enum");
 let LogisticsShipmentEventEntity = class LogisticsShipmentEventEntity {
-    at;
+    date;
     code;
     description;
     location;
@@ -25,7 +25,7 @@ exports.LogisticsShipmentEventEntity = LogisticsShipmentEventEntity;
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Date }),
     __metadata("design:type", Date)
-], LogisticsShipmentEventEntity.prototype, "at", void 0);
+], LogisticsShipmentEventEntity.prototype, "date", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ enum: shipment_enum_1.LogisticsTrackingEventCodeEnum, required: true, type: String }),
     __metadata("design:type", String)
@@ -42,54 +42,56 @@ exports.LogisticsShipmentEventEntity = LogisticsShipmentEventEntity = __decorate
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], LogisticsShipmentEventEntity);
 exports.LogisticsShipmentEventSchema = mongoose_1.SchemaFactory.createForClass(LogisticsShipmentEventEntity);
-let LogisticsShipmentEntity = class LogisticsShipmentEntity extends abstract_entity_1.AbstractEntity {
-    order;
-    purchase;
-    direction;
-    source;
-    trackingNumber;
+let LogisticsShipmentTrackingEntity = class LogisticsShipmentTrackingEntity {
+    number;
     carrier;
-    trackingUrl;
+    url;
+};
+exports.LogisticsShipmentTrackingEntity = LogisticsShipmentTrackingEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], LogisticsShipmentTrackingEntity.prototype, "number", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], LogisticsShipmentTrackingEntity.prototype, "carrier", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], LogisticsShipmentTrackingEntity.prototype, "url", void 0);
+exports.LogisticsShipmentTrackingEntity = LogisticsShipmentTrackingEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], LogisticsShipmentTrackingEntity);
+exports.LogisticsShipmentTrackingSchema = mongoose_1.SchemaFactory.createForClass(LogisticsShipmentTrackingEntity);
+let LogisticsShipmentEntity = class LogisticsShipmentEntity extends abstract_entity_1.AbstractEntity {
+    sale;
+    purchase;
+    source;
+    tracking;
     shippedAt;
     deliveredAt;
     receivedBy;
     events = [];
     status;
-    history = [];
 };
 exports.LogisticsShipmentEntity = LogisticsShipmentEntity;
 __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.order.sales, required: true, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)
-], LogisticsShipmentEntity.prototype, "order", void 0);
+], LogisticsShipmentEntity.prototype, "sale", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.purchases, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)
 ], LogisticsShipmentEntity.prototype, "purchase", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({
-        default: shipment_enum_1.LogisticsShipmentDirectionEnum.OUTBOUND,
-        enum: shipment_enum_1.LogisticsShipmentDirectionEnum,
-        type: String,
-    }),
-    __metadata("design:type", String)
-], LogisticsShipmentEntity.prototype, "direction", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ enum: shipment_enum_1.LogisticsShipmentSourceEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], LogisticsShipmentEntity.prototype, "source", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], LogisticsShipmentEntity.prototype, "trackingNumber", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], LogisticsShipmentEntity.prototype, "carrier", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], LogisticsShipmentEntity.prototype, "trackingUrl", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: exports.LogisticsShipmentTrackingSchema }),
+    __metadata("design:type", LogisticsShipmentTrackingEntity)
+], LogisticsShipmentEntity.prototype, "tracking", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
@@ -110,6 +112,15 @@ __decorate([
     (0, mongoose_1.Prop)({ default: () => [], type: [exports.LogisticsShipmentEventSchema] }),
     __metadata("design:type", Array)
 ], LogisticsShipmentEntity.prototype, "events", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        default: shipment_enum_1.LogisticsShipmentStatusEnum.PENDING,
+        enum: shipment_enum_1.LogisticsShipmentStatusEnum,
+        required: true,
+        type: String,
+    }),
+    __metadata("design:type", String)
+], LogisticsShipmentEntity.prototype, "status", void 0);
 exports.LogisticsShipmentEntity = LogisticsShipmentEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], LogisticsShipmentEntity);

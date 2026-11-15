@@ -9,13 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransactionEntity = exports.SYSTEM_USER = void 0;
+exports.TransactionEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const app_schemas_1 = require("./app.schemas");
 const user_entity_1 = require("./account/user/user.entity");
 const payment_entity_1 = require("./finance/payment/payment.entity");
 const abstract_entity_1 = require("./abstract.entity");
-exports.SYSTEM_USER = 'merkaly';
 const EDITABLE_STATUSES = new Set(['AWAITING_PAYMENT', 'TO_PLACE']);
 class TransactionEntity extends abstract_entity_1.AbstractEntity {
     user;
@@ -30,7 +29,7 @@ class TransactionEntity extends abstract_entity_1.AbstractEntity {
 }
 exports.TransactionEntity = TransactionEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.account.users, required: true, type: String }),
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.account.users, type: String }),
     __metadata("design:type", user_entity_1.AccountUserEntity)
 ], TransactionEntity.prototype, "user", void 0);
 __decorate([
@@ -43,7 +42,7 @@ __decorate([
             const items = this.items;
             const subtotal = items.reduce((sum, item) => sum + item.get('price.total'), 0);
             const units = items.reduce((sum, it) => sum + Number(it.quantity || 0), 0);
-            const shipping = Number(this.delivery?.fee) || 0;
+            const shipping = Number(this.delivery?.shippingPrice) || 0;
             const total = subtotal + shipping;
             return { shipping, subtotal, total, units };
         },

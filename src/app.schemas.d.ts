@@ -21,13 +21,11 @@ export declare abstract class AppSchemas {
         taxes: string;
         withdrawals: string;
     };
-    static get inventory(): {
-        catalog: {
-            brands: string;
-            categories: string;
-            products: string;
-            variants: string;
-        };
+    static get catalog(): {
+        brands: string;
+        categories: string;
+        products: string;
+        variants: string;
     };
     static get logistics(): {
         shipments: string;
@@ -39,10 +37,7 @@ export declare abstract class AppSchemas {
         sales: string;
     };
     static get integration(): {
-        payments: string;
         suppliers: string;
     };
-    static get settings(): {
-        organizations: string;
-    };
+    static get settings(): string;
 }

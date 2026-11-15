@@ -106,7 +106,7 @@ __decorate([
     __metadata("design:type", String)
 ], SaleDeliveryRecipientRequestValidator.prototype, "birthday", void 0);
 class SaleDeliveryAddressRequestValidator extends abstract_validator_1.AbstractRequestValidator {
-    postalCode;
+    zipCode;
     street;
     number;
     complement;
@@ -120,7 +120,7 @@ __decorate([
     (0, class_validator_1.Matches)(/^\d{8}$/, { message: '$property must be a CEP with 8 digits' }),
     (0, class_transformer_1.Transform)(transform_validator_1.digits),
     __metadata("design:type", String)
-], SaleDeliveryAddressRequestValidator.prototype, "postalCode", void 0);
+], SaleDeliveryAddressRequestValidator.prototype, "zipCode", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Length)(2, 200),

@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CatalogProductEntity = exports.CatalogProductPropertySchema = exports.CatalogProductPropertyEntity = void 0;
+exports.CatalogProductEntity = exports.CatalogProductSupplierSchema = exports.CatalogProductSupplierEntity = exports.CatalogProductPropertySchema = exports.CatalogProductPropertyEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
@@ -37,19 +37,47 @@ exports.CatalogProductPropertyEntity = CatalogProductPropertyEntity = __decorate
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], CatalogProductPropertyEntity);
 exports.CatalogProductPropertySchema = mongoose_1.SchemaFactory.createForClass(CatalogProductPropertyEntity);
+let CatalogProductSupplierEntity = class CatalogProductSupplierEntity {
+    productId;
+    handlingDays;
+    rating;
+    ratingCount;
+    soldCount;
+};
+exports.CatalogProductSupplierEntity = CatalogProductSupplierEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], CatalogProductSupplierEntity.prototype, "productId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductSupplierEntity.prototype, "handlingDays", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, max: 5, min: 1, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductSupplierEntity.prototype, "rating", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductSupplierEntity.prototype, "ratingCount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], CatalogProductSupplierEntity.prototype, "soldCount", void 0);
+exports.CatalogProductSupplierEntity = CatalogProductSupplierEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], CatalogProductSupplierEntity);
+exports.CatalogProductSupplierSchema = mongoose_1.SchemaFactory.createForClass(CatalogProductSupplierEntity);
 let CatalogProductEntity = class CatalogProductEntity extends abstract_entity_1.AbstractEntity {
     sku;
     name;
     description;
     active;
     vendor;
-    externalProductId;
-    handlingDays;
+    supplier;
     properties;
-    ratingValue;
-    ratingCount;
-    soldCount;
-    variant;
+    defaultVariant;
     supplierPrice;
     retailPrice;
     category;
@@ -82,41 +110,25 @@ __decorate([
     __metadata("design:type", Function)
 ], CatalogProductEntity.prototype, "vendor", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], CatalogProductEntity.prototype, "externalProductId", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "handlingDays", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: exports.CatalogProductSupplierSchema }),
+    __metadata("design:type", CatalogProductSupplierEntity)
+], CatalogProductEntity.prototype, "supplier", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: [], type: [exports.CatalogProductPropertySchema] }),
     __metadata("design:type", Array)
 ], CatalogProductEntity.prototype, "properties", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, max: 5, min: 1, type: Number }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "ratingValue", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "ratingCount", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
-    __metadata("design:type", Number)
-], CatalogProductEntity.prototype, "soldCount", void 0);
-__decorate([
     (0, mongoose_1.Prop)({
         required: true,
-        ref: app_schemas_1.AppSchemas.inventory.catalog.variants,
+        ref: app_schemas_1.AppSchemas.catalog.variants,
         type: mongoose_2.Schema.Types.ObjectId,
     }),
     __metadata("design:type", Function)
-], CatalogProductEntity.prototype, "variant", void 0);
+], CatalogProductEntity.prototype, "defaultVariant", void 0);
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.variant?.supplierPrice;
+            return this.defaultVariant?.price.cost;
         },
     }),
     __metadata("design:type", Number)
@@ -124,7 +136,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            return this.variant?.retailPrice;
+            return this.defaultVariant?.price.retail;
         },
     }),
     __metadata("design:type", Number)
@@ -132,7 +144,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({
         default: null,
-        ref: app_schemas_1.AppSchemas.inventory.catalog.categories,
+        ref: app_schemas_1.AppSchemas.catalog.categories,
         type: mongoose_2.Schema.Types.ObjectId,
     }),
     __metadata("design:type", Function)
@@ -140,7 +152,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({
         default: null,
-        ref: app_schemas_1.AppSchemas.inventory.catalog.brands,
+        ref: app_schemas_1.AppSchemas.catalog.brands,
         type: mongoose_2.Schema.Types.ObjectId,
     }),
     __metadata("design:type", Function)
@@ -154,7 +166,7 @@ __decorate([
         get: function () {
             const { poster, posterVariants } = this;
             const owned = (posterVariants ?? []).some((variant) => String(variant.product?._id ?? variant.product) === String(this._id));
-            return poster && owned ? poster : this.variant?.picture;
+            return poster && owned ? poster : this.defaultVariant?.picture;
         },
     }),
     __metadata("design:type", asset_entity_1.AssetEntity)
@@ -162,7 +174,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
-            const assets = [this.variant, ...(this.variants ?? [])]
+            const assets = [this.defaultVariant, ...(this.variants ?? [])]
                 .flatMap((variant) => variant?.assets ?? [])
                 .filter((asset) => asset && !(asset instanceof mongoose_2.Types.ObjectId));
             const seen = new Set();
@@ -181,7 +193,7 @@ __decorate([
     (0, mongoose_1.Virtual)({
         get: function () {
             const dimensions = new Map();
-            for (const variant of [this.variant, ...(this.variants ?? [])]) {
+            for (const variant of [this.defaultVariant, ...(this.variants ?? [])]) {
                 for (const option of variant?.options ?? []) {
                     const values = dimensions.get(option.name) ?? [];
                     if (!values.includes(option.value))
@@ -199,7 +211,7 @@ __decorate([
         options: {
             foreignField: 'product',
             localField: '_id',
-            ref: app_schemas_1.AppSchemas.inventory.catalog.variants,
+            ref: app_schemas_1.AppSchemas.catalog.variants,
         },
     }),
     __metadata("design:type", Array)

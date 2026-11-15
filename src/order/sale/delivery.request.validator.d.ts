@@ -10,7 +10,7 @@ export declare class SaleDeliveryRecipientRequestValidator extends AbstractReque
     birthday?: string;
 }
 export declare class SaleDeliveryAddressRequestValidator extends AbstractRequestValidator {
-    postalCode: string;
+    zipCode: string;
     street: string;
     number: string;
     complement?: string;

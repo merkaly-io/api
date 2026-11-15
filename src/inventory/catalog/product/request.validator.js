@@ -82,8 +82,8 @@ class UpdateProductRequestValidator extends ProductMetadataRequestValidator {
             this.active = product.active;
         if (product)
             this.posterId = product.posterId ? String(product.posterId) : null;
-        if (product?.variant)
-            this.variant = new UpdateProductVariantRequestValidator(product.variant);
+        if (product?.defaultVariant)
+            this.variant = new UpdateProductVariantRequestValidator(product.defaultVariant);
     }
 }
 exports.UpdateProductRequestValidator = UpdateProductRequestValidator;

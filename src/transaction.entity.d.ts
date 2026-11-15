@@ -9,9 +9,8 @@ export interface TransactionCapabilities {
     editItems: boolean;
     deleteItems: boolean;
 }
-export declare const SYSTEM_USER = "merkaly";
 export declare class TransactionEntity<S extends string> extends AbstractEntity implements ITransitionable<S> {
-    user: AccountUserEntity;
+    user?: AccountUserEntity | null;
     notes?: string;
     status: S;
     items: ItemEntity[];

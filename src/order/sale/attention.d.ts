@@ -8,5 +8,5 @@ export interface OrderSaleAttentionSummary {
 }
 export interface OrderSaleAttentionCutoffs {
     delayedBefore: Date;
-    retryLostBefore: Date;
+    autoOrderBefore: Date;
 }

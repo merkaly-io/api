@@ -1,6 +1,6 @@
 import type { LogisticsShipmentStatusEnum, LogisticsTrackingEventCodeEnum } from './shipment.enum';
 export interface LogisticsTrackingInput {
-    at: Date;
+    date: Date;
     description: string;
     location?: string;
 }

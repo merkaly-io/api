@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogisticsTrackingEventCodeEnum = exports.LogisticsShipmentSourceEnum = exports.LogisticsShipmentDirectionEnum = exports.LogisticsShipmentStatusEnum = void 0;
+exports.LogisticsTrackingEventCodeEnum = exports.LogisticsShipmentSourceEnum = exports.LogisticsShipmentStatusEnum = void 0;
 var LogisticsShipmentStatusEnum;
 (function (LogisticsShipmentStatusEnum) {
     LogisticsShipmentStatusEnum["PENDING"] = "PENDING";
@@ -8,11 +8,6 @@ var LogisticsShipmentStatusEnum;
     LogisticsShipmentStatusEnum["DELIVERED"] = "DELIVERED";
     LogisticsShipmentStatusEnum["EXCEPTION"] = "EXCEPTION";
 })(LogisticsShipmentStatusEnum || (exports.LogisticsShipmentStatusEnum = LogisticsShipmentStatusEnum = {}));
-var LogisticsShipmentDirectionEnum;
-(function (LogisticsShipmentDirectionEnum) {
-    LogisticsShipmentDirectionEnum["OUTBOUND"] = "OUTBOUND";
-    LogisticsShipmentDirectionEnum["RETURN"] = "RETURN";
-})(LogisticsShipmentDirectionEnum || (exports.LogisticsShipmentDirectionEnum = LogisticsShipmentDirectionEnum = {}));
 var LogisticsShipmentSourceEnum;
 (function (LogisticsShipmentSourceEnum) {
     LogisticsShipmentSourceEnum["SUPPLIER"] = "SUPPLIER";

@@ -9,14 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CatalogVariantOptionSchema = exports.CatalogVariantOptionEntity = void 0;
+exports.CatalogVariantOptionSchema = exports.CatalogVariantOptionEntity = exports.CatalogVariantOptionSourcingSchema = exports.CatalogVariantOptionSourcingEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+let CatalogVariantOptionSourcingEntity = class CatalogVariantOptionSourcingEntity {
+    nameId;
+    valueId;
+};
+exports.CatalogVariantOptionSourcingEntity = CatalogVariantOptionSourcingEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], CatalogVariantOptionSourcingEntity.prototype, "nameId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], CatalogVariantOptionSourcingEntity.prototype, "valueId", void 0);
+exports.CatalogVariantOptionSourcingEntity = CatalogVariantOptionSourcingEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], CatalogVariantOptionSourcingEntity);
+exports.CatalogVariantOptionSourcingSchema = mongoose_1.SchemaFactory.createForClass(CatalogVariantOptionSourcingEntity);
 let CatalogVariantOptionEntity = class CatalogVariantOptionEntity {
     name;
     value;
     label;
-    externalNameId;
-    externalValueId;
+    sourcing;
 };
 exports.CatalogVariantOptionEntity = CatalogVariantOptionEntity;
 __decorate([
@@ -32,13 +48,9 @@ __decorate([
     __metadata("design:type", String)
 ], CatalogVariantOptionEntity.prototype, "label", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
-], CatalogVariantOptionEntity.prototype, "externalNameId", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
-], CatalogVariantOptionEntity.prototype, "externalValueId", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: exports.CatalogVariantOptionSourcingSchema }),
+    __metadata("design:type", CatalogVariantOptionSourcingEntity)
+], CatalogVariantOptionEntity.prototype, "sourcing", void 0);
 exports.CatalogVariantOptionEntity = CatalogVariantOptionEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], CatalogVariantOptionEntity);

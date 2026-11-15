@@ -15,8 +15,8 @@ const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const abstract_entity_1 = require("../../../abstract.entity");
 const relation_status_enum_1 = require("../../../relation.status.enum");
-const productsRef = app_schemas_1.AppSchemas.inventory.catalog.products;
-const categoriesRef = app_schemas_1.AppSchemas.inventory.catalog.categories;
+const productsRef = app_schemas_1.AppSchemas.catalog.products;
+const categoriesRef = app_schemas_1.AppSchemas.catalog.categories;
 const assetsRef = app_schemas_1.AppSchemas.assets.files;
 let CatalogCategoryEntity = class CatalogCategoryEntity extends abstract_entity_1.AbstractEntity {
     name;

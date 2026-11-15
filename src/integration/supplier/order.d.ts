@@ -14,7 +14,7 @@ export interface SupplierOrderRecipient {
     birthday?: string;
 }
 export interface SupplierOrderAddress {
-    postalCode: string;
+    zipCode: string;
     street: string;
     number: string;
     complement?: string;
@@ -34,11 +34,18 @@ export interface SupplierOrderPlacement {
     status: OrderPurchaseStatusEnum;
     warning?: string;
 }
+export interface SupplierOrderChargedLine {
+    externalVariantId: string;
+    quantity: number;
+    paid: number;
+    shipping: number;
+}
 export interface SupplierOrderSnapshot {
     status?: OrderPurchaseStatusEnum;
     received: boolean;
     rawStatus: string;
     parcels: LogisticsParcelInput[];
+    charged?: SupplierOrderChargedLine[];
 }
 export interface SupplierOrderImportLine {
     externalProductId: string;
