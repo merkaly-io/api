@@ -154,7 +154,8 @@
         "validators/sale/quote.request.validator",
         "types/checkout",
         "enums/attention.enum",
-        "types/attention"
+        "types/attention",
+        "utils/receipt"
       ],
       "item": [
         "infrastructure/entities/item.entity"
