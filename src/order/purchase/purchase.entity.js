@@ -20,7 +20,7 @@ const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
 let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
     provider;
-    externalOrderIds = [];
+    orderIds = [];
     reference;
     rawStatus;
     placedAt;
@@ -36,7 +36,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ default: () => [], type: [String] }),
     __metadata("design:type", Array)
-], OrderPurchaseSupplierOrderEntity.prototype, "externalOrderIds", void 0);
+], OrderPurchaseSupplierOrderEntity.prototype, "orderIds", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: String }),
     __metadata("design:type", String)
@@ -67,9 +67,9 @@ exports.OrderPurchaseSupplierOrderEntity = OrderPurchaseSupplierOrderEntity = __
 exports.OrderPurchaseSupplierOrderSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseSupplierOrderEntity);
 let OrderPurchaseEntity = class OrderPurchaseEntity extends transaction_entity_1.TransactionEntity {
     vendor;
-    customerOrder;
+    sale;
     items = [];
-    freight;
+    shippingCost;
     supplierOrder;
 };
 exports.OrderPurchaseEntity = OrderPurchaseEntity;
@@ -80,7 +80,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.sales, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Function)
-], OrderPurchaseEntity.prototype, "customerOrder", void 0);
+], OrderPurchaseEntity.prototype, "sale", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: () => [],
@@ -100,7 +100,7 @@ __decorate([
         validate: { validator: (value) => value == null || Number.isInteger(value) },
     }),
     __metadata("design:type", Number)
-], OrderPurchaseEntity.prototype, "freight", void 0);
+], OrderPurchaseEntity.prototype, "shippingCost", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.OrderPurchaseSupplierOrderSchema }),
     __metadata("design:type", OrderPurchaseSupplierOrderEntity)

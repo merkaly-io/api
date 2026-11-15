@@ -34,14 +34,12 @@ class AppSchemas {
             withdrawals: 'finance.withdrawals',
         };
     }
-    static get inventory() {
+    static get catalog() {
         return {
-            catalog: {
-                brands: 'inventory.catalog.brands',
-                categories: 'inventory.catalog.categories',
-                products: 'inventory.catalog.products',
-                variants: 'inventory.catalog.variants',
-            },
+            brands: 'catalog.brands',
+            categories: 'catalog.categories',
+            products: 'catalog.products',
+            variants: 'catalog.variants',
         };
     }
     static get logistics() {
@@ -59,14 +57,11 @@ class AppSchemas {
     }
     static get integration() {
         return {
-            payments: 'integration.payments',
             suppliers: 'integration.suppliers',
         };
     }
     static get settings() {
-        return {
-            organizations: 'settings.organizations',
-        };
+        return 'settings';
     }
 }
 exports.AppSchemas = AppSchemas;

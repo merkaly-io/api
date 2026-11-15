@@ -15,7 +15,7 @@ const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../abstract.validator");
 const checkout_request_validator_1 = require("./checkout.request.validator");
 class CheckoutQuoteDestinationRequestValidator extends abstract_validator_1.AbstractRequestValidator {
-    postalCode;
+    zipCode;
     country;
 }
 exports.CheckoutQuoteDestinationRequestValidator = CheckoutQuoteDestinationRequestValidator;
@@ -23,7 +23,7 @@ __decorate([
     (0, class_validator_1.Matches)(/^\d{8}$/, { message: '$property must be a CEP with 8 digits' }),
     (0, class_transformer_1.Transform)(({ value }) => (typeof value === 'string' ? value.replace(/\D/g, '') : value)),
     __metadata("design:type", String)
-], CheckoutQuoteDestinationRequestValidator.prototype, "postalCode", void 0);
+], CheckoutQuoteDestinationRequestValidator.prototype, "zipCode", void 0);
 __decorate([
     (0, class_validator_1.IsISO31661Alpha2)(),
     (0, class_validator_1.IsNotEmpty)(),

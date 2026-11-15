@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleEntity = exports.OrderSaleAutoProcurementSchema = exports.OrderSaleAutoProcurementEntity = exports.OrderSaleDeliverySchema = exports.OrderSaleDeliveryEntity = exports.OrderSaleDeliveryLineSchema = exports.OrderSaleDeliveryLineEntity = exports.OrderSaleDeliveryDaysSchema = exports.OrderSaleDeliveryDaysEntity = exports.OrderSaleDeliveryAddressSchema = exports.OrderSaleDeliveryAddressEntity = exports.OrderSaleDeliveryRecipientSchema = exports.OrderSaleDeliveryRecipientEntity = void 0;
+exports.OrderSaleEntity = exports.OrderSaleDeliverySchema = exports.OrderSaleDeliveryEntity = exports.OrderSaleDeliveryLineSchema = exports.OrderSaleDeliveryLineEntity = exports.OrderSaleDeliveryDaysSchema = exports.OrderSaleDeliveryDaysEntity = exports.OrderSaleDeliveryAddressSchema = exports.OrderSaleDeliveryAddressEntity = exports.OrderSaleDeliveryRecipientSchema = exports.OrderSaleDeliveryRecipientEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
@@ -52,7 +52,7 @@ exports.OrderSaleDeliveryRecipientEntity = OrderSaleDeliveryRecipientEntity = __
 ], OrderSaleDeliveryRecipientEntity);
 exports.OrderSaleDeliveryRecipientSchema = mongoose_1.SchemaFactory.createForClass(OrderSaleDeliveryRecipientEntity);
 let OrderSaleDeliveryAddressEntity = class OrderSaleDeliveryAddressEntity {
-    postalCode;
+    zipCode;
     street;
     number;
     complement;
@@ -65,7 +65,7 @@ exports.OrderSaleDeliveryAddressEntity = OrderSaleDeliveryAddressEntity;
 __decorate([
     (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
-], OrderSaleDeliveryAddressEntity.prototype, "postalCode", void 0);
+], OrderSaleDeliveryAddressEntity.prototype, "zipCode", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
@@ -125,7 +125,7 @@ let OrderSaleDeliveryLineEntity = class OrderSaleDeliveryLineEntity {
 exports.OrderSaleDeliveryLineEntity = OrderSaleDeliveryLineEntity;
 __decorate([
     (0, mongoose_1.Prop)({
-        ref: app_schemas_1.AppSchemas.inventory.catalog.variants,
+        ref: app_schemas_1.AppSchemas.catalog.variants,
         required: true,
         type: mongoose_2.Schema.Types.ObjectId,
     }),
@@ -150,7 +150,7 @@ exports.OrderSaleDeliveryLineSchema = mongoose_1.SchemaFactory.createForClass(Or
 let OrderSaleDeliveryEntity = class OrderSaleDeliveryEntity {
     recipient;
     address;
-    fee;
+    shippingPrice;
     quotedAt;
     lines;
 };
@@ -166,7 +166,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, validate: { validator: isCents } }),
     __metadata("design:type", Number)
-], OrderSaleDeliveryEntity.prototype, "fee", void 0);
+], OrderSaleDeliveryEntity.prototype, "shippingPrice", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
@@ -179,40 +179,12 @@ exports.OrderSaleDeliveryEntity = OrderSaleDeliveryEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], OrderSaleDeliveryEntity);
 exports.OrderSaleDeliverySchema = mongoose_1.SchemaFactory.createForClass(OrderSaleDeliveryEntity);
-let OrderSaleAutoProcurementEntity = class OrderSaleAutoProcurementEntity {
-    attemptedAt;
-    error;
-    attempts;
-    retryAt;
-};
-exports.OrderSaleAutoProcurementEntity = OrderSaleAutoProcurementEntity;
-__decorate([
-    (0, mongoose_1.Prop)({ required: true, type: Date }),
-    __metadata("design:type", Date)
-], OrderSaleAutoProcurementEntity.prototype, "attemptedAt", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], OrderSaleAutoProcurementEntity.prototype, "error", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: 1, min: 1, type: Number }),
-    __metadata("design:type", Number)
-], OrderSaleAutoProcurementEntity.prototype, "attempts", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: Date }),
-    __metadata("design:type", Date)
-], OrderSaleAutoProcurementEntity.prototype, "retryAt", void 0);
-exports.OrderSaleAutoProcurementEntity = OrderSaleAutoProcurementEntity = __decorate([
-    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
-], OrderSaleAutoProcurementEntity);
-exports.OrderSaleAutoProcurementSchema = mongoose_1.SchemaFactory.createForClass(OrderSaleAutoProcurementEntity);
 let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.TransactionEntity {
     customer;
     items = [];
     delivery;
     cancelledAt;
     source;
-    autoProcurement;
     purchases;
     cost;
     profit;
@@ -246,13 +218,9 @@ __decorate([
     __metadata("design:type", String)
 ], OrderSaleEntity.prototype, "source", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: exports.OrderSaleAutoProcurementSchema }),
-    __metadata("design:type", OrderSaleAutoProcurementEntity)
-], OrderSaleEntity.prototype, "autoProcurement", void 0);
-__decorate([
     (0, mongoose_1.Virtual)({
         options: {
-            foreignField: 'customerOrder',
+            foreignField: 'sale',
             localField: '_id',
             ref: app_schemas_1.AppSchemas.order.purchases,
         },
@@ -269,7 +237,7 @@ __decorate([
             const live = this.purchases.filter((it) => !it.deletedAt && it.status !== purchase_enum_1.OrderPurchaseStatusEnum.CANCELLED);
             if (!live.length)
                 return null;
-            return live.reduce((sum, it) => sum + it.pricing.subtotal + (it.freight ?? 0), 0);
+            return live.reduce((sum, it) => sum + it.pricing.subtotal + (it.shippingCost ?? 0), 0);
         },
     }),
     __metadata("design:type", Number)

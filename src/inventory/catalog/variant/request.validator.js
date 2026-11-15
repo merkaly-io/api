@@ -19,7 +19,7 @@ class UpdateVariantRequestValidator extends abstract_validator_1.AbstractRequest
         super();
         if (!variant)
             return;
-        this.retailPrice = variant.retailPrice;
+        this.retailPrice = variant.price.retail;
         this.active = variant.active;
     }
 }
@@ -41,7 +41,7 @@ class CreateVariantRequestValidator extends UpdateVariantRequestValidator {
     constructor(variant) {
         super(variant);
         if (variant)
-            this.supplierPrice = variant.supplierPrice;
+            this.supplierPrice = variant.price.cost;
     }
 }
 exports.CreateVariantRequestValidator = CreateVariantRequestValidator;

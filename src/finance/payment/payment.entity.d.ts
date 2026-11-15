@@ -1,26 +1,16 @@
 import { Schema as MongoSchema } from 'mongoose';
 import { PaymentChargeAccountEnum } from '../../integration/payment/charge.enum';
-import { OrderPurchaseEntity } from '../../order/purchase/purchase.entity';
 import { OrderSaleEntity } from '../../order/sale/sale.entity';
 import { AbstractEntity } from '../../abstract.entity';
 import { StatusEntity } from '../../status.plugin';
 import { ITransitionable } from '../../transitionable.interface';
-import { FinancePaymentMethodEnum, FinancePaymentStatusEnum, FinancePaymentTypeEnum } from './payment.enum';
+import { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
 import type { PaymentChargeStatusEnum } from '../../integration/payment/charge.enum';
-export type OrderEntity = OrderSaleEntity | OrderPurchaseEntity;
-export declare class FinancePaymentGatewayPixEntity {
-    qrCode?: string | null;
-    qrCodeImage?: string | null;
+export interface FinancePaymentPixDetails {
+    qrCode: string | null;
+    qrImage: string | null;
 }
-export declare const FinancePaymentGatewayPixSchema: MongoSchema<FinancePaymentGatewayPixEntity, import("mongoose").Model<FinancePaymentGatewayPixEntity, any, any, any, import("mongoose").Document<unknown, any, FinancePaymentGatewayPixEntity, any, {}> & FinancePaymentGatewayPixEntity & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
-    __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentGatewayPixEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentGatewayPixEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentGatewayPixEntity> & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
-    __v: number;
-}>;
+export type FinancePaymentGatewayDetails = FinancePaymentPixDetails | Record<string, unknown>;
 export declare class FinancePaymentGatewayEntity {
     provider: string;
     reference?: string | null;
@@ -29,7 +19,7 @@ export declare class FinancePaymentGatewayEntity {
     status: string;
     attempt: number;
     amount: number;
-    pix?: FinancePaymentGatewayPixEntity | null;
+    details?: FinancePaymentGatewayDetails | null;
     expiresAt?: Date | null;
     syncedAt: Date;
 }
@@ -62,16 +52,29 @@ export declare const FinancePaymentAttemptSchema: MongoSchema<FinancePaymentAtte
 } & {
     __v: number;
 }>;
+export declare class FinancePaymentSplitEntity {
+    percentage: number;
+    debts: number;
+    status?: string | null;
+    error?: string | null;
+}
+export declare const FinancePaymentSplitSchema: MongoSchema<FinancePaymentSplitEntity, import("mongoose").Model<FinancePaymentSplitEntity, any, any, any, import("mongoose").Document<unknown, any, FinancePaymentSplitEntity, any, {}> & FinancePaymentSplitEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, FinancePaymentSplitEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<FinancePaymentSplitEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<FinancePaymentSplitEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
 export declare class FinancePaymentEntity extends AbstractEntity implements ITransitionable<FinancePaymentStatusEnum> {
-    type: FinancePaymentTypeEnum;
-    target: string;
-    order: OrderEntity;
+    order: OrderSaleEntity;
     amount: number;
     fee: number;
     method?: FinancePaymentMethodEnum | null;
     gateway?: FinancePaymentGatewayEntity | null;
     attempts?: FinancePaymentAttemptEntity[];
-    splitProblem?: string | null;
+    split?: FinancePaymentSplitEntity | null;
     status: FinancePaymentStatusEnum;
     history: StatusEntity<FinancePaymentStatusEnum>[];
     readonly number: string;

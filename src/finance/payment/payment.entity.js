@@ -9,29 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FinancePaymentEntity = exports.FinancePaymentAttemptSchema = exports.FinancePaymentAttemptEntity = exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = exports.FinancePaymentGatewayPixSchema = exports.FinancePaymentGatewayPixEntity = void 0;
+exports.FinancePaymentEntity = exports.FinancePaymentSplitSchema = exports.FinancePaymentSplitEntity = exports.FinancePaymentAttemptSchema = exports.FinancePaymentAttemptEntity = exports.FinancePaymentGatewaySchema = exports.FinancePaymentGatewayEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const app_schemas_1 = require("../../app.schemas");
 const charge_enum_1 = require("../../integration/payment/charge.enum");
+const sale_entity_1 = require("../../order/sale/sale.entity");
 const abstract_entity_1 = require("../../abstract.entity");
 const payment_enum_1 = require("./payment.enum");
-let FinancePaymentGatewayPixEntity = class FinancePaymentGatewayPixEntity {
-    qrCode;
-    qrCodeImage;
-};
-exports.FinancePaymentGatewayPixEntity = FinancePaymentGatewayPixEntity;
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentGatewayPixEntity.prototype, "qrCode", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentGatewayPixEntity.prototype, "qrCodeImage", void 0);
-exports.FinancePaymentGatewayPixEntity = FinancePaymentGatewayPixEntity = __decorate([
-    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
-], FinancePaymentGatewayPixEntity);
-exports.FinancePaymentGatewayPixSchema = mongoose_1.SchemaFactory.createForClass(FinancePaymentGatewayPixEntity);
 let FinancePaymentGatewayEntity = class FinancePaymentGatewayEntity {
     provider;
     reference;
@@ -40,7 +25,7 @@ let FinancePaymentGatewayEntity = class FinancePaymentGatewayEntity {
     status;
     attempt;
     amount;
-    pix;
+    details;
     expiresAt;
     syncedAt;
 };
@@ -74,9 +59,9 @@ __decorate([
     __metadata("design:type", Number)
 ], FinancePaymentGatewayEntity.prototype, "amount", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: exports.FinancePaymentGatewayPixSchema }),
-    __metadata("design:type", FinancePaymentGatewayPixEntity)
-], FinancePaymentGatewayEntity.prototype, "pix", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Mixed }),
+    __metadata("design:type", Object)
+], FinancePaymentGatewayEntity.prototype, "details", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Date }),
     __metadata("design:type", Date)
@@ -136,32 +121,49 @@ exports.FinancePaymentAttemptEntity = FinancePaymentAttemptEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], FinancePaymentAttemptEntity);
 exports.FinancePaymentAttemptSchema = mongoose_1.SchemaFactory.createForClass(FinancePaymentAttemptEntity);
+let FinancePaymentSplitEntity = class FinancePaymentSplitEntity {
+    percentage;
+    debts;
+    status;
+    error;
+};
+exports.FinancePaymentSplitEntity = FinancePaymentSplitEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: 100, max: 100, min: 0, type: Number }),
+    __metadata("design:type", Number)
+], FinancePaymentSplitEntity.prototype, "percentage", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number, validate: { validator: Number.isInteger } }),
+    __metadata("design:type", Number)
+], FinancePaymentSplitEntity.prototype, "debts", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinancePaymentSplitEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinancePaymentSplitEntity.prototype, "error", void 0);
+exports.FinancePaymentSplitEntity = FinancePaymentSplitEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], FinancePaymentSplitEntity);
+exports.FinancePaymentSplitSchema = mongoose_1.SchemaFactory.createForClass(FinancePaymentSplitEntity);
 let FinancePaymentEntity = class FinancePaymentEntity extends abstract_entity_1.AbstractEntity {
-    type;
-    target;
     order;
     amount;
     fee;
     method;
     gateway;
     attempts;
-    splitProblem;
+    split;
     status;
     history = [];
     number;
 };
 exports.FinancePaymentEntity = FinancePaymentEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ enum: payment_enum_1.FinancePaymentTypeEnum, required: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentEntity.prototype, "type", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentEntity.prototype, "target", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ refPath: 'target', required: true, type: mongoose_2.Schema.Types.ObjectId }),
-    __metadata("design:type", Object)
+    (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.order.sales, required: true, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", sale_entity_1.OrderSaleEntity)
 ], FinancePaymentEntity.prototype, "order", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number, default: 0, validate: { validator: Number.isInteger } }),
@@ -184,9 +186,9 @@ __decorate([
     __metadata("design:type", Array)
 ], FinancePaymentEntity.prototype, "attempts", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, select: false, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentEntity.prototype, "splitProblem", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: exports.FinancePaymentSplitSchema }),
+    __metadata("design:type", FinancePaymentSplitEntity)
+], FinancePaymentEntity.prototype, "split", void 0);
 exports.FinancePaymentEntity = FinancePaymentEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], FinancePaymentEntity);

@@ -19,19 +19,31 @@ export declare const CatalogProductPropertySchema: MongoSchema<CatalogProductPro
 } & {
     __v: number;
 }>;
+export declare class CatalogProductSupplierEntity {
+    productId?: string | null;
+    handlingDays?: number | null;
+    rating?: number | null;
+    ratingCount?: number | null;
+    soldCount?: number | null;
+}
+export declare const CatalogProductSupplierSchema: MongoSchema<CatalogProductSupplierEntity, import("mongoose").Model<CatalogProductSupplierEntity, any, any, any, import("mongoose").Document<unknown, any, CatalogProductSupplierEntity, any, {}> & CatalogProductSupplierEntity & {
+    _id: Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, CatalogProductSupplierEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<CatalogProductSupplierEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<CatalogProductSupplierEntity> & {
+    _id: Types.ObjectId;
+} & {
+    __v: number;
+}>;
 export declare class CatalogProductEntity extends AbstractEntity {
     sku?: string;
     name: string;
     description?: string;
     active: boolean;
     vendor?: ContactVendorEntity;
-    externalProductId?: string;
-    handlingDays?: number | null;
+    supplier?: CatalogProductSupplierEntity | null;
     properties?: CatalogProductPropertyEntity[];
-    ratingValue?: number | null;
-    ratingCount?: number | null;
-    soldCount?: number | null;
-    variant: CatalogVariantEntity;
+    defaultVariant: CatalogVariantEntity;
     readonly supplierPrice: number;
     readonly retailPrice: number;
     category?: CatalogCategoryEntity;

@@ -7,7 +7,7 @@ import { OrderPurchaseStatusEnum } from './purchase.enum';
 import type { OrderSaleEntity } from '../sale/sale.entity';
 export declare class OrderPurchaseSupplierOrderEntity {
     provider: SupplierProviderEnum;
-    externalOrderIds: string[];
+    orderIds: string[];
     reference?: string;
     rawStatus?: string;
     placedAt: Date;
@@ -26,8 +26,8 @@ export declare const OrderPurchaseSupplierOrderSchema: MongoSchema<OrderPurchase
 }>;
 export declare class OrderPurchaseEntity extends TransactionEntity<OrderPurchaseStatusEnum> {
     vendor?: ContactVendorEntity;
-    customerOrder?: OrderSaleEntity;
+    sale?: OrderSaleEntity;
     items: ItemEntity[];
-    freight?: number;
+    shippingCost?: number;
     supplierOrder?: OrderPurchaseSupplierOrderEntity;
 }

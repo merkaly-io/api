@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SettingsOrganizationEntity = void 0;
+exports.SettingsEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const organization_enum_1 = require("./organization.enum");
+const settings_enum_1 = require("./settings.enum");
 const abstract_entity_1 = require("../../abstract.entity");
-let SettingsOrganizationEntity = class SettingsOrganizationEntity extends abstract_entity_1.AbstractEntity {
+let SettingsEntity = class SettingsEntity extends abstract_entity_1.AbstractEntity {
     value;
 };
-exports.SettingsOrganizationEntity = SettingsOrganizationEntity;
+exports.SettingsEntity = SettingsEntity;
 __decorate([
-    (0, mongoose_1.Prop)({ enum: organization_enum_1.SettingsOrganizationEnum, lowercase: true, required: true, type: String }),
+    (0, mongoose_1.Prop)({ enum: settings_enum_1.SettingsKeyEnum, lowercase: true, required: true, type: String }),
     __metadata("design:type", String)
-], SettingsOrganizationEntity.prototype, "_id", void 0);
+], SettingsEntity.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: mongoose_2.Schema.Types.Mixed, required: true }),
     __metadata("design:type", Object)
-], SettingsOrganizationEntity.prototype, "value", void 0);
-exports.SettingsOrganizationEntity = SettingsOrganizationEntity = __decorate([
+], SettingsEntity.prototype, "value", void 0);
+exports.SettingsEntity = SettingsEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$subdocument)
-], SettingsOrganizationEntity);
-//# sourceMappingURL=organization.entity.js.map
+], SettingsEntity);
+//# sourceMappingURL=settings.entity.js.map

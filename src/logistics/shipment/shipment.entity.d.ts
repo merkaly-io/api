@@ -1,11 +1,10 @@
 import { Schema as MongoSchema } from 'mongoose';
 import { AbstractEntity } from '../../abstract.entity';
-import { LogisticsShipmentDirectionEnum, LogisticsShipmentSourceEnum, LogisticsShipmentStatusEnum, LogisticsTrackingEventCodeEnum } from './shipment.enum';
+import { LogisticsShipmentSourceEnum, LogisticsShipmentStatusEnum, LogisticsTrackingEventCodeEnum } from './shipment.enum';
 import type { OrderPurchaseEntity } from '../../order/purchase/purchase.entity';
 import type { OrderSaleEntity } from '../../order/sale/sale.entity';
-import type { StatusEntity } from '../../status.plugin';
 export declare class LogisticsShipmentEventEntity {
-    at: Date;
+    date: Date;
     code: LogisticsTrackingEventCodeEnum;
     description: string;
     location?: string | null;
@@ -19,18 +18,28 @@ export declare const LogisticsShipmentEventSchema: MongoSchema<LogisticsShipment
 } & {
     __v: number;
 }>;
-export declare class LogisticsShipmentEntity extends AbstractEntity {
-    order: OrderSaleEntity;
-    purchase?: OrderPurchaseEntity | null;
-    direction: LogisticsShipmentDirectionEnum;
-    source: LogisticsShipmentSourceEnum;
-    trackingNumber?: string | null;
+export declare class LogisticsShipmentTrackingEntity {
+    number?: string | null;
     carrier?: string | null;
-    trackingUrl?: string | null;
+    url?: string | null;
+}
+export declare const LogisticsShipmentTrackingSchema: MongoSchema<LogisticsShipmentTrackingEntity, import("mongoose").Model<LogisticsShipmentTrackingEntity, any, any, any, import("mongoose").Document<unknown, any, LogisticsShipmentTrackingEntity, any, {}> & LogisticsShipmentTrackingEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, LogisticsShipmentTrackingEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<LogisticsShipmentTrackingEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<LogisticsShipmentTrackingEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
+export declare class LogisticsShipmentEntity extends AbstractEntity {
+    sale: OrderSaleEntity;
+    purchase?: OrderPurchaseEntity | null;
+    source: LogisticsShipmentSourceEnum;
+    tracking?: LogisticsShipmentTrackingEntity | null;
     shippedAt?: Date | null;
     deliveredAt?: Date | null;
     receivedBy?: LogisticsShipmentSourceEnum | null;
     events: LogisticsShipmentEventEntity[];
     status: LogisticsShipmentStatusEnum;
-    history: StatusEntity<LogisticsShipmentStatusEnum>[];
 }

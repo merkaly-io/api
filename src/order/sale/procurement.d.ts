@@ -11,7 +11,7 @@ export interface ProcurementLine {
     retailUnit: number;
     storedUnitCost: number;
     quotedUnitCost?: number;
-    freight?: number;
+    shippingCost?: number;
     quote?: SupplierQuote;
 }
 export interface ProcurementGroup {
@@ -26,9 +26,9 @@ export interface ProcurementGroup {
     items: ProcurementLine[];
     totals: {
         retail: number;
-        shipping: number;
+        shippingPrice: number;
         cost: number;
-        freight: number;
+        shippingCost: number;
         margin: number;
     };
     available: boolean;

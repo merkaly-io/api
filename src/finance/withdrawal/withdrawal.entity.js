@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FinanceWithdrawalEntity = void 0;
+exports.FinanceWithdrawalEntity = exports.FinanceWithdrawalGatewaySchema = exports.FinanceWithdrawalGatewayEntity = exports.FinanceWithdrawalPixKeySchema = exports.FinanceWithdrawalPixKeyEntity = exports.FinanceWithdrawalHistorySchema = exports.FinanceWithdrawalHistoryEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
@@ -17,19 +17,77 @@ const account_enum_1 = require("../../integration/payment/account.enum");
 const abstract_entity_1 = require("../../abstract.entity");
 const withdrawal_enum_1 = require("./withdrawal.enum");
 const cents = { validate: { validator: Number.isInteger } };
+let FinanceWithdrawalHistoryEntity = class FinanceWithdrawalHistoryEntity {
+    date;
+    status;
+};
+exports.FinanceWithdrawalHistoryEntity = FinanceWithdrawalHistoryEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: mongoose_2.Schema.Types.Date }),
+    __metadata("design:type", Date)
+], FinanceWithdrawalHistoryEntity.prototype, "date", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ enum: withdrawal_enum_1.FinanceWithdrawalStatusEnum, required: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalHistoryEntity.prototype, "status", void 0);
+exports.FinanceWithdrawalHistoryEntity = FinanceWithdrawalHistoryEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], FinanceWithdrawalHistoryEntity);
+exports.FinanceWithdrawalHistorySchema = mongoose_1.SchemaFactory.createForClass(FinanceWithdrawalHistoryEntity);
+let FinanceWithdrawalPixKeyEntity = class FinanceWithdrawalPixKeyEntity {
+    type;
+    masked;
+};
+exports.FinanceWithdrawalPixKeyEntity = FinanceWithdrawalPixKeyEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, enum: [...Object.values(account_enum_1.PaymentPixKeyTypeEnum), null], type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalPixKeyEntity.prototype, "type", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalPixKeyEntity.prototype, "masked", void 0);
+exports.FinanceWithdrawalPixKeyEntity = FinanceWithdrawalPixKeyEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], FinanceWithdrawalPixKeyEntity);
+exports.FinanceWithdrawalPixKeySchema = mongoose_1.SchemaFactory.createForClass(FinanceWithdrawalPixKeyEntity);
+let FinanceWithdrawalGatewayEntity = class FinanceWithdrawalGatewayEntity {
+    provider;
+    reference;
+    status;
+    receiptUrl;
+};
+exports.FinanceWithdrawalGatewayEntity = FinanceWithdrawalGatewayEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalGatewayEntity.prototype, "provider", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalGatewayEntity.prototype, "reference", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalGatewayEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalGatewayEntity.prototype, "receiptUrl", void 0);
+exports.FinanceWithdrawalGatewayEntity = FinanceWithdrawalGatewayEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], FinanceWithdrawalGatewayEntity);
+exports.FinanceWithdrawalGatewaySchema = mongoose_1.SchemaFactory.createForClass(FinanceWithdrawalGatewayEntity);
 let FinanceWithdrawalEntity = class FinanceWithdrawalEntity extends abstract_entity_1.AbstractEntity {
     amount;
     fee;
     netAmount;
-    keyType;
-    keyMasked;
     status;
-    rawStatus;
-    failReason;
+    history = [];
+    error;
     requestedBy;
-    completedAt;
-    transferId;
-    receiptUrl;
+    pixKey;
+    gateway;
 };
 exports.FinanceWithdrawalEntity = FinanceWithdrawalEntity;
 __decorate([
@@ -49,41 +107,29 @@ __decorate([
     __metadata("design:type", Number)
 ], FinanceWithdrawalEntity.prototype, "netAmount", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, enum: [...Object.values(account_enum_1.PaymentPixKeyTypeEnum), null], type: String }),
-    __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "keyType", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "keyMasked", void 0);
-__decorate([
     (0, mongoose_1.Prop)({ enum: withdrawal_enum_1.FinanceWithdrawalStatusEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], FinanceWithdrawalEntity.prototype, "status", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "rawStatus", void 0);
+    (0, mongoose_1.Prop)({ default: () => [], type: [exports.FinanceWithdrawalHistorySchema] }),
+    __metadata("design:type", Array)
+], FinanceWithdrawalEntity.prototype, "history", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "failReason", void 0);
+], FinanceWithdrawalEntity.prototype, "error", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.account.users, type: String }),
     __metadata("design:type", Object)
 ], FinanceWithdrawalEntity.prototype, "requestedBy", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Date }),
-    __metadata("design:type", Date)
-], FinanceWithdrawalEntity.prototype, "completedAt", void 0);
+    (0, mongoose_1.Prop)({ default: null, type: exports.FinanceWithdrawalPixKeySchema }),
+    __metadata("design:type", FinanceWithdrawalPixKeyEntity)
+], FinanceWithdrawalEntity.prototype, "pixKey", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "transferId", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
-    __metadata("design:type", String)
-], FinanceWithdrawalEntity.prototype, "receiptUrl", void 0);
+    (0, mongoose_1.Prop)({ required: true, type: exports.FinanceWithdrawalGatewaySchema }),
+    __metadata("design:type", FinanceWithdrawalGatewayEntity)
+], FinanceWithdrawalEntity.prototype, "gateway", void 0);
 exports.FinanceWithdrawalEntity = FinanceWithdrawalEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], FinanceWithdrawalEntity);

@@ -21,7 +21,7 @@ export declare const OrderSaleDeliveryRecipientSchema: MongoSchema<OrderSaleDeli
     __v: number;
 }>;
 export declare class OrderSaleDeliveryAddressEntity {
-    postalCode: string;
+    zipCode: string;
     street: string;
     number: string;
     complement?: string;
@@ -70,7 +70,7 @@ export declare const OrderSaleDeliveryLineSchema: MongoSchema<OrderSaleDeliveryL
 export declare class OrderSaleDeliveryEntity {
     recipient: OrderSaleDeliveryRecipientEntity;
     address: OrderSaleDeliveryAddressEntity;
-    fee?: number;
+    shippingPrice?: number;
     quotedAt?: Date;
     lines?: OrderSaleDeliveryLineEntity[];
 }
@@ -83,28 +83,12 @@ export declare const OrderSaleDeliverySchema: MongoSchema<OrderSaleDeliveryEntit
 } & {
     __v: number;
 }>;
-export declare class OrderSaleAutoProcurementEntity {
-    attemptedAt: Date;
-    error?: string | null;
-    attempts?: number;
-    retryAt?: Date | null;
-}
-export declare const OrderSaleAutoProcurementSchema: MongoSchema<OrderSaleAutoProcurementEntity, import("mongoose").Model<OrderSaleAutoProcurementEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleAutoProcurementEntity, any, {}> & OrderSaleAutoProcurementEntity & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
-    __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderSaleAutoProcurementEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderSaleAutoProcurementEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<OrderSaleAutoProcurementEntity> & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
-    __v: number;
-}>;
 export declare class OrderSaleEntity extends TransactionEntity<OrderSaleStatusEnum> {
     customer: ContactCustomerEntity;
     items: ItemEntity[];
     delivery?: OrderSaleDeliveryEntity;
     cancelledAt?: Date | null;
     source: OrderSaleSourceEnum;
-    autoProcurement?: OrderSaleAutoProcurementEntity | null;
     readonly purchases: OrderPurchaseEntity[];
     readonly cost: number | null;
     readonly profit: number | null;

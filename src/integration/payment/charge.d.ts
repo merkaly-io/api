@@ -14,7 +14,7 @@ export interface PaymentCharge {
     method: StorePaymentMethod;
     paid: boolean;
     qrCode: string | null;
-    qrCodeImage: string | null;
+    qrImage: string | null;
     status: PaymentChargeStatusEnum;
     statusDetail: string | null;
 }

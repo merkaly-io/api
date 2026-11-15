@@ -4,10 +4,6 @@ export declare enum LogisticsShipmentStatusEnum {
     DELIVERED = "DELIVERED",
     EXCEPTION = "EXCEPTION"
 }
-export declare enum LogisticsShipmentDirectionEnum {
-    OUTBOUND = "OUTBOUND",
-    RETURN = "RETURN"
-}
 export declare enum LogisticsShipmentSourceEnum {
     SUPPLIER = "SUPPLIER",
     MERCHANT = "MERCHANT",
