@@ -63,7 +63,6 @@
       "payment": [
         "entities/payment.entity",
         "enums/payment.enum",
-        "validators/payment/request.validator",
         "transitions/payment.transition",
         "types/report",
         "validators/payment/report.request.validator"
@@ -91,8 +90,6 @@
         "supplier/types/sync"
       ],
       "payment": [
-        "payment/entities/payment.entity",
-        "payment/entities/payment.account.entity",
         "payment/enums/provider.enum",
         "payment/enums/account.enum",
         "payment/enums/charge.enum",
@@ -173,7 +170,8 @@
     "@/settings": {
       "organization": [
         "contracts/organization.contract",
-        "entities/organization.entity",
+        "entities/settings.entity",
+        "enums/settings.enum",
         "enums/organization.enum",
         "validators/organization/request.validator",
         "types/organization"
