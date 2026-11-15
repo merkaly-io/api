@@ -35,6 +35,7 @@ var OrderSaleHistoryEventEnum;
     OrderSaleHistoryEventEnum["CREATED"] = "CREATED";
     OrderSaleHistoryEventEnum["PAYMENT_CONFIRMED"] = "PAYMENT_CONFIRMED";
     OrderSaleHistoryEventEnum["PAYMENT_CANCELLED"] = "PAYMENT_CANCELLED";
+    OrderSaleHistoryEventEnum["PAYMENT_REFUND_PROCESSING"] = "PAYMENT_REFUND_PROCESSING";
     OrderSaleHistoryEventEnum["PAYMENT_REFUNDED"] = "PAYMENT_REFUNDED";
     OrderSaleHistoryEventEnum["PAYMENT_DISPUTED"] = "PAYMENT_DISPUTED";
     OrderSaleHistoryEventEnum["PAYMENT_CHARGED_BACK"] = "PAYMENT_CHARGED_BACK";

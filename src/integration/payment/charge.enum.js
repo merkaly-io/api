@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentChargeAccountEnum = exports.PaymentAsaasChargeStatusEnum = exports.PaymentChargeStatusEnum = void 0;
+exports.PaymentChargeAccountEnum = exports.PaymentAsaasRefundStatusEnum = exports.PaymentAsaasChargeStatusEnum = exports.PaymentChargeStatusEnum = void 0;
 var PaymentChargeStatusEnum;
 (function (PaymentChargeStatusEnum) {
     PaymentChargeStatusEnum["PENDING"] = "PENDING";
@@ -27,6 +27,14 @@ var PaymentAsaasChargeStatusEnum;
     PaymentAsaasChargeStatusEnum["REFUND_REQUESTED"] = "REFUND_REQUESTED";
     PaymentAsaasChargeStatusEnum["REFUNDED"] = "REFUNDED";
 })(PaymentAsaasChargeStatusEnum || (exports.PaymentAsaasChargeStatusEnum = PaymentAsaasChargeStatusEnum = {}));
+var PaymentAsaasRefundStatusEnum;
+(function (PaymentAsaasRefundStatusEnum) {
+    PaymentAsaasRefundStatusEnum["PENDING"] = "PENDING";
+    PaymentAsaasRefundStatusEnum["AWAITING_CRITICAL_ACTION_AUTHORIZATION"] = "AWAITING_CRITICAL_ACTION_AUTHORIZATION";
+    PaymentAsaasRefundStatusEnum["AWAITING_CUSTOMER_EXTERNAL_AUTHORIZATION"] = "AWAITING_CUSTOMER_EXTERNAL_AUTHORIZATION";
+    PaymentAsaasRefundStatusEnum["CANCELLED"] = "CANCELLED";
+    PaymentAsaasRefundStatusEnum["DONE"] = "DONE";
+})(PaymentAsaasRefundStatusEnum || (exports.PaymentAsaasRefundStatusEnum = PaymentAsaasRefundStatusEnum = {}));
 var PaymentChargeAccountEnum;
 (function (PaymentChargeAccountEnum) {
     PaymentChargeAccountEnum["MAIN"] = "MAIN";
