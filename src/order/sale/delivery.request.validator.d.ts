@@ -1,4 +1,4 @@
-import { AbstractRequestValidator } from "../../abstract.validator";
+import { AbstractRequestValidator } from '../../abstract.validator';
 import type { OrderSaleDeliveryEntity } from './sale.entity';
 export declare const BRAZIL_STATES: string[];
 export declare const FULL_NAME_MESSAGE = "recipient.name must be the full name as registered in the CPF";

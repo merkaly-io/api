@@ -10,6 +10,7 @@ export interface SupplierQuote extends SupplierQuoteRequest {
     stock?: number;
     unitCost?: number;
     freight?: number;
+    freightCode?: string;
     freightService?: string;
     deliveryDays?: {
         max?: number;

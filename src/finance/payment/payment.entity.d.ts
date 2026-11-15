@@ -1,12 +1,12 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { PaymentChargeAccountEnum } from "../../integration/payment/charge.enum";
-import { OrderPurchaseEntity } from "../../order/purchase/purchase.entity";
-import { OrderSaleEntity } from "../../order/sale/sale.entity";
-import { AbstractEntity } from "../../abstract.entity";
-import { StatusEntity } from "../../status.plugin";
-import { ITransitionable } from "../../transitionable.interface";
+import { PaymentChargeAccountEnum } from '../../integration/payment/charge.enum';
+import { OrderPurchaseEntity } from '../../order/purchase/purchase.entity';
+import { OrderSaleEntity } from '../../order/sale/sale.entity';
+import { AbstractEntity } from '../../abstract.entity';
+import { StatusEntity } from '../../status.plugin';
+import { ITransitionable } from '../../transitionable.interface';
 import { FinancePaymentMethodEnum, FinancePaymentStatusEnum, FinancePaymentTypeEnum } from './payment.enum';
-import type { PaymentChargeStatusEnum } from "../../integration/payment/charge.enum";
+import type { PaymentChargeStatusEnum } from '../../integration/payment/charge.enum';
 export type OrderEntity = OrderSaleEntity | OrderPurchaseEntity;
 export declare class FinancePaymentGatewayPixEntity {
     qrCode?: string | null;

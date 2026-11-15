@@ -6,3 +6,7 @@ export interface OrderSaleAttentionSummary {
     statuses: Record<OrderSaleStatusEnum, number>;
     shipmentDelayDays: number;
 }
+export interface OrderSaleAttentionCutoffs {
+    delayedBefore: Date;
+    retryLostBefore: Date;
+}

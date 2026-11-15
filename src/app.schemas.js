@@ -26,6 +26,7 @@ class AppSchemas {
     static get finance() {
         return {
             chargebacks: 'finance.chargebacks',
+            debts: 'finance.debts',
             payments: 'finance.payments',
             refunds: 'finance.refunds',
             subscriptions: 'finance.subscriptions',

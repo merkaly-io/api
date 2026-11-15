@@ -1,7 +1,7 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { ContactCustomerEntity } from "../../contact/customer/customer.entity";
-import { ItemEntity } from "../item/item.entity";
-import { TransactionEntity } from "../../transaction.entity";
+import { ContactCustomerEntity } from '../../contact/customer/customer.entity';
+import { ItemEntity } from '../item/item.entity';
+import { TransactionEntity } from '../../transaction.entity';
 import { OrderSaleSourceEnum, OrderSaleStatusEnum } from './sale.enum';
 import type { OrderPurchaseEntity } from '../purchase/purchase.entity';
 export declare class OrderSaleDeliveryRecipientEntity {
@@ -86,6 +86,8 @@ export declare const OrderSaleDeliverySchema: MongoSchema<OrderSaleDeliveryEntit
 export declare class OrderSaleAutoProcurementEntity {
     attemptedAt: Date;
     error?: string | null;
+    attempts?: number;
+    retryAt?: Date | null;
 }
 export declare const OrderSaleAutoProcurementSchema: MongoSchema<OrderSaleAutoProcurementEntity, import("mongoose").Model<OrderSaleAutoProcurementEntity, any, any, any, import("mongoose").Document<unknown, any, OrderSaleAutoProcurementEntity, any, {}> & OrderSaleAutoProcurementEntity & {
     _id: import("mongoose").Types.ObjectId;

@@ -3,6 +3,7 @@ export declare enum FinancePaymentStatusEnum {
     PAID = "PAID",
     CANCELLED = "CANCELLED",
     REFUNDED = "REFUNDED",
+    REFUND_PENDING = "REFUND_PENDING",
     DISPUTED = "DISPUTED",
     CHARGED_BACK = "CHARGED_BACK"
 }

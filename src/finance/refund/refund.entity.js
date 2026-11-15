@@ -23,6 +23,7 @@ let FinanceRefundEntity = class FinanceRefundEntity extends abstract_entity_1.Ab
     provider;
     reference;
     status;
+    error;
     at;
 };
 exports.FinanceRefundEntity = FinanceRefundEntity;
@@ -54,6 +55,10 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
     __metadata("design:type", String)
 ], FinanceRefundEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundEntity.prototype, "error", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: mongoose_2.Schema.Types.Date }),
     __metadata("design:type", Date)

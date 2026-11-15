@@ -1,6 +1,6 @@
-import { SettingsOrganizationEnum, SettingsOrganizationSocialEnum } from "./organization.enum";
-import type { PaymentAccountReadinessEnum } from "../../integration/payment/account.enum";
-import type { SupplierReadinessEnum } from "../../integration/supplier/provider.enum";
+import { SettingsOrganizationEnum, SettingsOrganizationSocialEnum } from './organization.enum';
+import type { PaymentAccountReadinessEnum } from '../../integration/payment/account.enum';
+import type { SupplierReadinessEnum } from '../../integration/supplier/provider.enum';
 export interface SettingsOrganizationLocationContract {
     lat?: number;
     lng?: number;
