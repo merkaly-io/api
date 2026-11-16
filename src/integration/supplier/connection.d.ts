@@ -9,3 +9,6 @@ export interface SupplierConnectionStatus {
     reconnectBy: Date | null;
     source: SupplierConnectionSource | null;
 }
+export interface SupplierConnectionCreateRequest {
+    code: string;
+}
