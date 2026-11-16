@@ -3,7 +3,7 @@ import { PaymentChargeAccountEnum } from '../../integration/payment/charge.enum'
 import { OrderSaleEntity } from '../../order/sale/sale.entity';
 import { AbstractEntity } from '../../abstract.entity';
 import { StatusEntity } from '../../status.plugin';
-import { ITransitionable } from '../../transitionable.interface';
+import { ITransitionable } from '../../transitionable.types';
 import { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
 import type { PaymentChargeStatusEnum } from '../../integration/payment/charge.enum';
 export interface FinancePaymentPixDetails {

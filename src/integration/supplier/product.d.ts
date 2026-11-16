@@ -62,3 +62,10 @@ export interface SupplierProductSource {
     product: SupplierProduct;
     offers: SupplierProductVariant[];
 }
+export interface SupplierProductImportRequest {
+    url: string;
+    markup?: number;
+}
+export interface SupplierProductSyncRequest {
+    product: string;
+}
