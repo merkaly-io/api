@@ -5,6 +5,7 @@ const sale_enum_1 = require("./sale.enum");
 var OrderBuyerStageEnum;
 (function (OrderBuyerStageEnum) {
     OrderBuyerStageEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
+    OrderBuyerStageEnum["RECEIVED"] = "RECEIVED";
     OrderBuyerStageEnum["IN_PREPARATION"] = "IN_PREPARATION";
     OrderBuyerStageEnum["SHIPPED"] = "SHIPPED";
     OrderBuyerStageEnum["DELIVERED"] = "DELIVERED";
@@ -12,11 +13,8 @@ var OrderBuyerStageEnum;
 })(OrderBuyerStageEnum || (exports.OrderBuyerStageEnum = OrderBuyerStageEnum = {}));
 exports.BUYER_STAGE_GROUPS = {
     [OrderBuyerStageEnum.AWAITING_PAYMENT]: [sale_enum_1.OrderSaleStatusEnum.AWAITING_PAYMENT],
-    [OrderBuyerStageEnum.IN_PREPARATION]: [
-        sale_enum_1.OrderSaleStatusEnum.TO_ORDER,
-        sale_enum_1.OrderSaleStatusEnum.ORDERED,
-        sale_enum_1.OrderSaleStatusEnum.SUPPLIER_CANCELLED,
-    ],
+    [OrderBuyerStageEnum.RECEIVED]: [sale_enum_1.OrderSaleStatusEnum.TO_ORDER, sale_enum_1.OrderSaleStatusEnum.SUPPLIER_CANCELLED],
+    [OrderBuyerStageEnum.IN_PREPARATION]: [sale_enum_1.OrderSaleStatusEnum.ORDERED],
     [OrderBuyerStageEnum.SHIPPED]: [sale_enum_1.OrderSaleStatusEnum.SHIPPED],
     [OrderBuyerStageEnum.DELIVERED]: [sale_enum_1.OrderSaleStatusEnum.DELIVERED],
     [OrderBuyerStageEnum.CANCELLED]: [sale_enum_1.OrderSaleStatusEnum.CANCELLED],
