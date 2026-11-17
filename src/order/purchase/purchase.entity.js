@@ -25,6 +25,7 @@ let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
     rawStatus;
     placedAt;
     syncedAt;
+    payExpiryDate;
     error;
     paidAfterCancelAt;
 };
@@ -53,6 +54,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
 ], OrderPurchaseSupplierOrderEntity.prototype, "syncedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderPurchaseSupplierOrderEntity.prototype, "payExpiryDate", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: String }),
     __metadata("design:type", String)

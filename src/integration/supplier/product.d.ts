@@ -69,3 +69,9 @@ export interface SupplierProductImportRequest {
 export interface SupplierProductSyncRequest {
     product: string;
 }
+export interface SupplierProductPreviewRequest {
+    url: string;
+}
+export interface SupplierProductReadRequest {
+    product: string;
+}
