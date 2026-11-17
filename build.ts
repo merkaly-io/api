@@ -18,11 +18,8 @@ const MANIFEST_FILE = path.resolve(__dirname, 'manifest.json');
 // =============================================================================
 
 interface ParsedExport {
-  names: string[];
   snapshotPath: string;
   sourcePath: string;
-  isTypeOnly: boolean;
-  isStar: boolean;
 }
 
 interface ModuleExports {
@@ -77,22 +74,6 @@ function getRelativeFilePath(fromFile: string, toFile: string): string {
   const fromDir = path.dirname(fromFile);
   const relative = path.relative(fromDir, toFile).replace(/\\/g, '/');
   return relative.startsWith('.') ? relative : './' + relative;
-}
-
-function isEnumExport(name: string): boolean {
-  return name.endsWith('Enum') || name.endsWith('Status') || name.endsWith('Type');
-}
-
-function isValidatorExport(name: string): boolean {
-  return name.endsWith('Validator');
-}
-
-function isTransitionExport(name: string): boolean {
-  return name.endsWith('Transition');
-}
-
-function isRuntimeExport(name: string): boolean {
-  return isEnumExport(name) || isValidatorExport(name) || isTransitionExport(name);
 }
 
 function transformCjsToEsm(content: string): string {
@@ -175,9 +156,6 @@ function collectManifestModules(
   if (Array.isArray(node)) {
     modules.push({
       exports: node.map((sourcePath) => ({
-        isStar: true,
-        isTypeOnly: false,
-        names: [],
         sourcePath: normalizeManifestSourcePath(sourceBase, sourcePath),
         snapshotPath: manifestSnapshotPath(publicPath, sourcePath),
       })),
@@ -407,10 +385,6 @@ function generateStarExportJs(fromPath: string): string {
   return `export * from '${fromPath}.js';`;
 }
 
-function generateNamedExportJs(fromPath: string, enumNames: string[]): string {
-  return `export { ${enumNames.join(', ')} } from '${fromPath}.js';`;
-}
-
 function createBarrel(destDir: string, exports: ParsedExport[]): void {
   const dtsLines: string[] = [];
   const jsLines: string[] = [];
@@ -425,34 +399,18 @@ function createBarrel(destDir: string, exports: ParsedExport[]): void {
 
     const fromPath = './' + fileName;
 
-    if (exp.isStar) {
-      dtsLines.push(`export * from '${fromPath}';`);
+    dtsLines.push(`export * from '${fromPath}';`);
 
-      const needsRuntime =
-        exp.sourcePath.includes('/enums/') ||
-        exp.sourcePath.includes('/validators/') ||
-        exp.sourcePath.endsWith('abstract.validator') ||
-        exp.sourcePath.includes('/transitions/') ||
-        exp.sourcePath.endsWith('abstract.transition') ||
-        exp.sourcePath.includes('/decorators/');
+    const needsRuntime =
+      exp.sourcePath.includes('/enums/') ||
+      exp.sourcePath.includes('/validators/') ||
+      exp.sourcePath.endsWith('abstract.validator') ||
+      exp.sourcePath.includes('/transitions/') ||
+      exp.sourcePath.endsWith('abstract.transition') ||
+      exp.sourcePath.includes('/decorators/');
 
-      if (needsRuntime) {
-        jsLines.push(generateStarExportJs(fromPath));
-      }
-      continue;
-    }
-
-    // Named exports
-    const runtimeNames = exp.names.filter(isRuntimeExport);
-    const typeNames = exp.names.filter((n) => !isRuntimeExport(n));
-
-    if (typeNames.length > 0) {
-      dtsLines.push(`export type { ${typeNames.join(', ')} } from '${fromPath}';`);
-    }
-
-    if (runtimeNames.length > 0) {
-      dtsLines.push(`export { ${runtimeNames.join(', ')} } from '${fromPath}';`);
-      jsLines.push(generateNamedExportJs(fromPath, runtimeNames));
+    if (needsRuntime) {
+      jsLines.push(generateStarExportJs(fromPath));
     }
   }
 
@@ -530,7 +488,7 @@ function buildModule(module: ModuleExports, importMap: Map<string, string>): voi
     const isTransition =
       exp.sourcePath.includes('/transitions/') || exp.sourcePath.endsWith('abstract.transition');
     const isDecorator = exp.sourcePath.includes('/decorators/');
-    if ((!isEnum && !isValidator && !isTransition && !isDecorator) || exp.isTypeOnly) continue;
+    if (!isEnum && !isValidator && !isTransition && !isDecorator) continue;
 
     const jsFileName = path.basename(exp.sourcePath) + '.js';
     const srcJs = getSourceJsPath(exp.snapshotPath);
