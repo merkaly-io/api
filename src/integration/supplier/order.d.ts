@@ -46,6 +46,7 @@ export interface SupplierOrderSnapshot {
     rawStatus: string;
     parcels: LogisticsParcelInput[];
     charged?: SupplierOrderChargedLine[];
+    payExpiryDate?: Date | null;
 }
 export interface SupplierOrderImportLine {
     externalProductId: string;

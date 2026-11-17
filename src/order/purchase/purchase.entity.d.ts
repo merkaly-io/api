@@ -12,6 +12,7 @@ export declare class OrderPurchaseSupplierOrderEntity {
     rawStatus?: string;
     placedAt: Date;
     syncedAt?: Date;
+    payExpiryDate?: Date;
     error?: string;
     paidAfterCancelAt?: Date;
 }
