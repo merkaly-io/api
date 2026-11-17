@@ -64,6 +64,7 @@
         "entities/payment.entity",
         "enums/payment.enum",
         "transitions/payment.transition",
+        "types/cash",
         "types/report",
         "validators/payment/report.request.validator"
       ],
