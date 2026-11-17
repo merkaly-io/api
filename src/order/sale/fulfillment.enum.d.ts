@@ -1,6 +1,7 @@
 import { OrderSaleStatusEnum as Status } from './sale.enum';
 export declare enum OrderBuyerStageEnum {
     AWAITING_PAYMENT = "AWAITING_PAYMENT",
+    RECEIVED = "RECEIVED",
     IN_PREPARATION = "IN_PREPARATION",
     SHIPPED = "SHIPPED",
     DELIVERED = "DELIVERED",

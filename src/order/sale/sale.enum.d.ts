@@ -1,6 +1,7 @@
 export declare enum OrderSaleStatusEnum {
     AWAITING_PAYMENT = "AWAITING_PAYMENT",
     TO_ORDER = "TO_ORDER",
+    TO_PAY = "TO_PAY",
     ORDERED = "ORDERED",
     SUPPLIER_CANCELLED = "SUPPLIER_CANCELLED",
     SHIPPED = "SHIPPED",
