@@ -5,6 +5,7 @@ var OrderSaleStatusEnum;
 (function (OrderSaleStatusEnum) {
     OrderSaleStatusEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
     OrderSaleStatusEnum["TO_ORDER"] = "TO_ORDER";
+    OrderSaleStatusEnum["TO_PAY"] = "TO_PAY";
     OrderSaleStatusEnum["ORDERED"] = "ORDERED";
     OrderSaleStatusEnum["SUPPLIER_CANCELLED"] = "SUPPLIER_CANCELLED";
     OrderSaleStatusEnum["SHIPPED"] = "SHIPPED";
@@ -14,6 +15,7 @@ var OrderSaleStatusEnum;
 exports.SALE_OPEN_STATUSES = [
     OrderSaleStatusEnum.AWAITING_PAYMENT,
     OrderSaleStatusEnum.TO_ORDER,
+    OrderSaleStatusEnum.TO_PAY,
     OrderSaleStatusEnum.ORDERED,
     OrderSaleStatusEnum.SUPPLIER_CANCELLED,
     OrderSaleStatusEnum.SHIPPED,
@@ -21,6 +23,7 @@ exports.SALE_OPEN_STATUSES = [
 exports.SALE_CANCELLABLE_STATUSES = [
     OrderSaleStatusEnum.AWAITING_PAYMENT,
     OrderSaleStatusEnum.TO_ORDER,
+    OrderSaleStatusEnum.TO_PAY,
     OrderSaleStatusEnum.ORDERED,
     OrderSaleStatusEnum.SUPPLIER_CANCELLED,
 ];

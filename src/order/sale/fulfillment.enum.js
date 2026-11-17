@@ -13,7 +13,7 @@ var OrderBuyerStageEnum;
 })(OrderBuyerStageEnum || (exports.OrderBuyerStageEnum = OrderBuyerStageEnum = {}));
 exports.BUYER_STAGE_GROUPS = {
     [OrderBuyerStageEnum.AWAITING_PAYMENT]: [sale_enum_1.OrderSaleStatusEnum.AWAITING_PAYMENT],
-    [OrderBuyerStageEnum.RECEIVED]: [sale_enum_1.OrderSaleStatusEnum.TO_ORDER, sale_enum_1.OrderSaleStatusEnum.SUPPLIER_CANCELLED],
+    [OrderBuyerStageEnum.RECEIVED]: [sale_enum_1.OrderSaleStatusEnum.TO_ORDER, sale_enum_1.OrderSaleStatusEnum.TO_PAY, sale_enum_1.OrderSaleStatusEnum.SUPPLIER_CANCELLED],
     [OrderBuyerStageEnum.IN_PREPARATION]: [sale_enum_1.OrderSaleStatusEnum.ORDERED],
     [OrderBuyerStageEnum.SHIPPED]: [sale_enum_1.OrderSaleStatusEnum.SHIPPED],
     [OrderBuyerStageEnum.DELIVERED]: [sale_enum_1.OrderSaleStatusEnum.DELIVERED],
