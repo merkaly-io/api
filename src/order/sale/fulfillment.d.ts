@@ -1,4 +1,5 @@
 import type { FinancePaymentStatusEnum } from '../../finance/payment/payment.enum';
+import type { FinanceRefundOriginEnum, FinanceRefundStatusEnum } from '../../finance/refund/refund.enum';
 import type { LogisticsShipmentEntity } from '../../logistics/shipment/shipment.entity';
 import type { LogisticsBuyerShipment } from '../../logistics/shipment/shipment';
 import type { OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from './fulfillment.enum';
@@ -31,6 +32,12 @@ export interface OrderSaleHistoryEntry {
     status?: OrderPurchaseStatusEnum;
     trackingNumber?: string;
 }
+export interface OrderSaleRefundSummary {
+    amount: number;
+    origin: FinanceRefundOriginEnum;
+    purchase: string | null;
+    status: FinanceRefundStatusEnum;
+}
 export interface OrderSaleSummary {
     currency: string;
     revenue: {
@@ -42,6 +49,8 @@ export interface OrderSaleSummary {
         source: OrderSaleCostSourceEnum;
     };
     profit: number;
+    refunded: number;
+    refunds: OrderSaleRefundSummary[];
     margin: number | null;
     estimate: OrderSaleEstimate;
     variance: number | null;

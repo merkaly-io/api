@@ -21,6 +21,7 @@ let FinanceRefundGatewayEntity = class FinanceRefundGatewayEntity {
     status;
     receiptUrl;
     details;
+    description;
 };
 exports.FinanceRefundGatewayEntity = FinanceRefundGatewayEntity;
 __decorate([
@@ -43,12 +44,17 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: mongoose_2.Schema.Types.Mixed }),
     __metadata("design:type", Object)
 ], FinanceRefundGatewayEntity.prototype, "details", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundGatewayEntity.prototype, "description", void 0);
 exports.FinanceRefundGatewayEntity = FinanceRefundGatewayEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], FinanceRefundGatewayEntity);
 exports.FinanceRefundGatewaySchema = mongoose_1.SchemaFactory.createForClass(FinanceRefundGatewayEntity);
 let FinanceRefundEntity = class FinanceRefundEntity extends abstract_entity_1.AbstractEntity {
     payment;
+    purchase;
     amount;
     isPartial;
     origin;
@@ -62,6 +68,10 @@ __decorate([
     (0, mongoose_1.Prop)({ ref: app_schemas_1.AppSchemas.finance.payments, required: true, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Object)
 ], FinanceRefundEntity.prototype, "payment", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.purchases, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", Object)
+], FinanceRefundEntity.prototype, "purchase", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ min: 0, required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
