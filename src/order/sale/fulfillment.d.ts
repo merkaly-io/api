@@ -79,6 +79,14 @@ export interface OrderBuyerPackage {
         status: FinanceRefundStatusEnum;
     } | null;
 }
+export interface OrderBuyerPricing {
+    shipping: number;
+    subtotal: number;
+    total: number;
+    units: number;
+    fee: number | null;
+    buyerTotal: number;
+}
 export interface OrderBuyerFulfillment {
     status: OrderSaleStatusEnum;
     packages: OrderBuyerPackage[];
