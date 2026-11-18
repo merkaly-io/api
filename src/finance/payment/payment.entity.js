@@ -123,7 +123,6 @@ exports.FinancePaymentAttemptEntity = FinancePaymentAttemptEntity = __decorate([
 exports.FinancePaymentAttemptSchema = mongoose_1.SchemaFactory.createForClass(FinancePaymentAttemptEntity);
 let FinancePaymentSplitEntity = class FinancePaymentSplitEntity {
     percentage;
-    debts;
     status;
     error;
 };
@@ -132,10 +131,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: 100, max: 100, min: 0, type: Number }),
     __metadata("design:type", Number)
 ], FinancePaymentSplitEntity.prototype, "percentage", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number, validate: { validator: Number.isInteger } }),
-    __metadata("design:type", Number)
-], FinancePaymentSplitEntity.prototype, "debts", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)

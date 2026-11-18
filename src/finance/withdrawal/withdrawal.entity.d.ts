@@ -2,7 +2,7 @@ import { Schema as MongoSchema } from 'mongoose';
 import { AccountUserEntity } from '../../account/user/user.entity';
 import { PaymentPixKeyTypeEnum } from '../../integration/payment/account.enum';
 import { AbstractEntity } from '../../abstract.entity';
-import { FinanceWithdrawalStatusEnum } from './withdrawal.enum';
+import { FinanceWithdrawalKindEnum, FinanceWithdrawalStatusEnum } from './withdrawal.enum';
 export declare class FinanceWithdrawalHistoryEntity {
     date: Date;
     status: FinanceWithdrawalStatusEnum;
@@ -49,6 +49,7 @@ export declare class FinanceWithdrawalEntity extends AbstractEntity {
     fee: number;
     readonly netAmount: number;
     status: FinanceWithdrawalStatusEnum;
+    kind: FinanceWithdrawalKindEnum;
     history: FinanceWithdrawalHistoryEntity[];
     error?: string | null;
     requestedBy?: AccountUserEntity | string | null;

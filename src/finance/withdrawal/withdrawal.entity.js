@@ -83,6 +83,7 @@ let FinanceWithdrawalEntity = class FinanceWithdrawalEntity extends abstract_ent
     fee;
     netAmount;
     status;
+    kind;
     history = [];
     error;
     requestedBy;
@@ -110,6 +111,10 @@ __decorate([
     (0, mongoose_1.Prop)({ enum: withdrawal_enum_1.FinanceWithdrawalStatusEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], FinanceWithdrawalEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ enum: withdrawal_enum_1.FinanceWithdrawalKindEnum, required: true, type: String }),
+    __metadata("design:type", String)
+], FinanceWithdrawalEntity.prototype, "kind", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: () => [], type: [exports.FinanceWithdrawalHistorySchema] }),
     __metadata("design:type", Array)

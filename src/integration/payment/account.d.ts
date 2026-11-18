@@ -60,6 +60,7 @@ export interface PaymentAccountBalance {
     balance: number;
     pending: PaymentAccountPending | null;
     withdrawable: number;
+    withdrawableBeforeDebts: number;
     retained: number;
     debts: number;
     reservedForRefunds: number;
@@ -74,6 +75,7 @@ export interface PaymentAccountTransfer {
     amount: number;
     fee: number;
     netAmount: number;
+    debtsCollected: number;
     status: string;
     failReason: string | null;
     createdAt: Date | null;

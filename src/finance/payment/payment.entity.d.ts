@@ -54,7 +54,6 @@ export declare const FinancePaymentAttemptSchema: MongoSchema<FinancePaymentAtte
 }>;
 export declare class FinancePaymentSplitEntity {
     percentage: number;
-    debts: number;
     status?: string | null;
     error?: string | null;
 }
