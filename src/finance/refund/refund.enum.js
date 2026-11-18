@@ -5,6 +5,7 @@ var FinanceRefundOriginEnum;
 (function (FinanceRefundOriginEnum) {
     FinanceRefundOriginEnum["MERKALY"] = "MERKALY";
     FinanceRefundOriginEnum["AUTOMATIC"] = "AUTOMATIC";
+    FinanceRefundOriginEnum["PURCHASE"] = "PURCHASE";
     FinanceRefundOriginEnum["EXTERNAL"] = "EXTERNAL";
 })(FinanceRefundOriginEnum || (exports.FinanceRefundOriginEnum = FinanceRefundOriginEnum = {}));
 var FinanceRefundStatusEnum;
