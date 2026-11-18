@@ -2,7 +2,7 @@ import type { FinancePaymentStatusEnum } from '../../finance/payment/payment.enu
 import type { FinanceRefundOriginEnum, FinanceRefundStatusEnum } from '../../finance/refund/refund.enum';
 import type { LogisticsShipmentEntity } from '../../logistics/shipment/shipment.entity';
 import type { LogisticsBuyerShipment } from '../../logistics/shipment/shipment';
-import type { OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from './fulfillment.enum';
+import type { OrderBuyerStageEnum, OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from './fulfillment.enum';
 import type { OrderPurchaseStatusEnum } from '../purchase/purchase.enum';
 import type { OrderSaleStatusEnum } from './sale.enum';
 import type { OrderSaleReceipt } from './receipt';
@@ -66,8 +66,22 @@ export interface OrderSaleSummary {
     nextActions: OrderFulfillmentActionEnum[];
     cancellable: boolean;
 }
+export interface OrderBuyerPackage {
+    items: string[];
+    stage: OrderBuyerStageEnum;
+    shipments: LogisticsBuyerShipment[];
+    deliveryDays: {
+        min: number;
+        max: number;
+    } | null;
+    refund: {
+        amount: number;
+        status: FinanceRefundStatusEnum;
+    } | null;
+}
 export interface OrderBuyerFulfillment {
     status: OrderSaleStatusEnum;
+    packages: OrderBuyerPackage[];
     shipments: LogisticsBuyerShipment[];
     orderedAt: Date | null;
     receipt: OrderSaleReceipt;
