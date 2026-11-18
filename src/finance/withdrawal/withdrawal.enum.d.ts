@@ -5,4 +5,8 @@ export declare enum FinanceWithdrawalStatusEnum {
     FAILED = "FAILED",
     CANCELLED = "CANCELLED"
 }
+export declare enum FinanceWithdrawalKindEnum {
+    WITHDRAWAL = "WITHDRAWAL",
+    DEBT = "DEBT"
+}
 export declare const FINANCE_WITHDRAWAL_OPEN_STATUSES: readonly FinanceWithdrawalStatusEnum[];

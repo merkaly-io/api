@@ -50,6 +50,7 @@ export interface OrderSaleSummary {
     };
     profit: number;
     refunded: number;
+    refundFees: number;
     refunds: OrderSaleRefundSummary[];
     margin: number | null;
     estimate: OrderSaleEstimate;
