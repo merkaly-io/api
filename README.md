@@ -10,6 +10,8 @@ and used by the frontends (admin, store, dashboard). The source of truth is
 2. `pnpm sync` here copies the `.d.ts`/`.js` files listed in `manifest.json` from that `dist/` into
    `src/`, rewriting imports between them.
 3. `pnpm build` here (`build.ts`) generates `dist/` with one barrel per entry point.
+   The `.js` files go from CommonJS to ESM: every `exports.x = x` must end as an
+   `export class|function|const x`, otherwise the build fails (the frontends would import `undefined`).
 
 ### `manifest.json`
 

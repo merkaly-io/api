@@ -104,6 +104,15 @@ function transformCjsToEsm(content: string): string {
     // Export function declarations
     const funcPattern = new RegExp(`(^|\\n)(function ${name}\\s*\\()`, 'g');
     result = result.replace(funcPattern, '$1export $2');
+    // Export variable declarations (e.g. arrow helpers: const trim = ...)
+    const varPattern = new RegExp(`(^|\\n)((?:const|let|var) ${name}\\s*=)`, 'g');
+    result = result.replace(varPattern, '$1export $2');
+  }
+
+  // A CommonJS export without its ESM declaration would reach the frontends as undefined
+  for (const name of exportedNames) {
+    const exported = new RegExp(`export (?:class|function|const|let|var) ${name}\\b`);
+    if (!exported.test(result)) throw new Error(`Export "${name}" lost in the ESM transform`);
   }
 
   // Step 5: Transform require() to import (for class-validator and other packages)
