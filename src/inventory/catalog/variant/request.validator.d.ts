@@ -5,8 +5,3 @@ export declare class UpdateVariantRequestValidator extends AbstractRequestValida
     active?: boolean;
     constructor(variant?: CatalogVariantEntity);
 }
-export declare class CreateVariantRequestValidator extends UpdateVariantRequestValidator {
-    supplierPrice: number;
-    retailPrice: number;
-    constructor(variant?: CatalogVariantEntity);
-}
