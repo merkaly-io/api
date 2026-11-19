@@ -1,4 +1,4 @@
-import { AbstractEntity } from '../../abstract.entity';
+import { AbstractEntity } from "../../abstract.entity";
 import { SupplierProviderEnum } from './provider.enum';
 import { IntegrationSupplierConnectionEntity } from './supplier.connection.entity';
 export declare class IntegrationSupplierEntity extends AbstractEntity {

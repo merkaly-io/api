@@ -1,4 +1,3 @@
-export type SupplierConnectionSource = 'merchant' | 'platform';
 export interface SupplierConnectionStatus {
     account: string | null;
     appKey: string | null;
@@ -7,7 +6,6 @@ export interface SupplierConnectionStatus {
     expiresAt: Date | null;
     expired: boolean;
     reconnectBy: Date | null;
-    source: SupplierConnectionSource | null;
 }
 export interface SupplierConnectionCreateRequest {
     code: string;

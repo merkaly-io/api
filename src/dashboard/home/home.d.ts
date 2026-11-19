@@ -1,8 +1,8 @@
-import type { PaymentAccountBalance, PaymentAccountStatus } from '../../integration/payment/account';
-import type { SupplierConnectionStatus } from '../../integration/supplier/connection';
-import type { OrderSaleAttentionEnum } from '../../order/sale/attention.enum';
-import type { OrderSaleStatusEnum } from '../../order/sale/sale.enum';
-import type { OrderSaleAttentionSummary } from '../../order/sale/attention';
+import type { PaymentAccountBalance, PaymentAccountStatus } from "../../integration/payment/account";
+import type { SupplierConnectionStatus } from "../../integration/supplier/connection";
+import type { OrderSaleAttentionEnum } from "../../order/sale/attention.enum";
+import type { OrderSaleStatusEnum } from "../../order/sale/sale.enum";
+import type { OrderSaleAttentionSummary } from "../../order/sale/attention";
 export interface DashboardHomeDay {
     date: string;
     orders: number;

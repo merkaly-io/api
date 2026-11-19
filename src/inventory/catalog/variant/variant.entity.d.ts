@@ -1,6 +1,6 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { AssetEntity } from '../../../assets/asset/asset.entity';
-import { AbstractEntity } from '../../../abstract.entity';
+import { AssetEntity } from "../../../assets/asset/asset.entity";
+import { AbstractEntity } from "../../../abstract.entity";
 import { CatalogVariantOptionEntity } from './variant.option.entity';
 import type { CatalogProductEntity } from '../product/product.entity';
 export declare class CatalogVariantPriceEntity {

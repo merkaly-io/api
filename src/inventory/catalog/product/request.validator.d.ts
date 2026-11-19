@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from '../../../abstract.validator';
-import { CreateVariantRequestValidator, UpdateVariantRequestValidator } from '../variant/request.validator';
+import { AbstractRequestValidator } from "../../../abstract.validator";
+import { UpdateVariantRequestValidator } from '../variant/request.validator';
 import type { CatalogProductEntity } from './product.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
 declare class ProductMetadataRequestValidator extends AbstractRequestValidator {
@@ -23,8 +23,5 @@ export declare class UpdateProductRequestValidator extends ProductMetadataReques
     variant?: UpdateProductVariantRequestValidator;
     variants?: UpdateProductVariantsItemRequestValidator[];
     constructor(product?: CatalogProductEntity);
-}
-export declare class CreateProductRequestValidator extends ProductMetadataRequestValidator {
-    variant: CreateVariantRequestValidator;
 }
 export {};

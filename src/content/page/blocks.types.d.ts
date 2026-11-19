@@ -1,4 +1,4 @@
-import type { ContentFeatureIconEnum } from './page.enum';
+import type { ContentFeatureIconEnum } from "./page.enum";
 export interface ContentImage {
     key: string;
     url: string;

@@ -1,7 +1,7 @@
-import { SettingsOrganizationSocialEnum } from './organization.enum';
-import { SettingsKeyEnum } from './settings.enum';
-import type { PaymentAccountReadinessEnum } from '../../integration/payment/account.enum';
-import type { SupplierReadinessEnum } from '../../integration/supplier/provider.enum';
+import { SettingsOrganizationSocialEnum } from "./organization.enum";
+import { SettingsKeyEnum } from "./settings.enum";
+import type { PaymentAccountReadinessEnum } from "../../integration/payment/account.enum";
+import type { SupplierReadinessEnum } from "../../integration/supplier/provider.enum";
 export interface SettingsOrganizationLocationContract {
     lat?: number;
     lng?: number;

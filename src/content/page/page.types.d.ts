@@ -1,7 +1,7 @@
-import type { CatalogBrandEntity } from '../../inventory/catalog/brand/brand.entity';
-import type { CatalogProductEntity } from '../../inventory/catalog/product/product.entity';
-import type { ContentPageEnum } from './page.enum';
-import type { ContentHomePage } from './home.page.types';
+import type { CatalogBrandEntity } from "../../inventory/catalog/brand/brand.entity";
+import type { CatalogProductEntity } from "../../inventory/catalog/product/product.entity";
+import type { ContentPageEnum } from "./page.enum";
+import type { ContentHomePage } from "./home.page.types";
 export interface ContentPageValues {
     [ContentPageEnum.HOME]: ContentHomePage;
 }

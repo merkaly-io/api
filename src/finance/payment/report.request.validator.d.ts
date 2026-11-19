@@ -1,4 +1,4 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
+import { AbstractRequestValidator } from "../../abstract.validator";
 import { FinancePaymentMethodEnum } from './payment.enum';
 import type { FinancePaymentReportStatus } from './report';
 export declare class FinancePaymentReportRangeRequestValidator extends AbstractRequestValidator {

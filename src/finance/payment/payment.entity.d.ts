@@ -1,12 +1,12 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { OrderSaleEntity } from '../../order/sale/sale.entity';
-import { AbstractEntity } from '../../abstract.entity';
-import { StatusEntity } from '../../status.plugin';
-import { ITransitionable } from '../../transitionable.types';
+import { OrderSaleEntity } from "../../order/sale/sale.entity";
+import { AbstractEntity } from "../../abstract.entity";
+import { StatusEntity } from "../../status.plugin";
+import { ITransitionable } from "../../transitionable.types";
 import { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
 import type { FinanceDebtEntity } from '../debt/debt.entity';
 import type { FinanceRefundEntity } from '../refund/refund.entity';
-import type { PaymentChargeStatusEnum } from '../../integration/payment/charge.enum';
+import type { PaymentChargeStatusEnum } from "../../integration/payment/charge.enum";
 export interface FinancePaymentPixDetails {
     qrCode: string | null;
     qrImage: string | null;

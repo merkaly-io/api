@@ -1,5 +1,5 @@
-import type { SupplierProviderEnum } from '../../integration/supplier/provider.enum';
-import type { SupplierQuote } from '../../integration/supplier/quote';
+import type { SupplierProviderEnum } from "../../integration/supplier/provider.enum";
+import type { SupplierQuote } from "../../integration/supplier/quote";
 export interface ProcurementLine {
     item: string;
     product: {
@@ -42,5 +42,4 @@ export interface ProcurementQuote {
         source: 'order' | 'market';
     };
     groups: ProcurementGroup[];
-    manual: ProcurementLine[];
 }

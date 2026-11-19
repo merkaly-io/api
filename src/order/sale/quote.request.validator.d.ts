@@ -1,4 +1,4 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
+import { AbstractRequestValidator } from "../../abstract.validator";
 import { CheckoutItemRequestValidator } from './checkout.request.validator';
 export declare class CheckoutQuoteDestinationRequestValidator extends AbstractRequestValidator {
     zipCode: string;

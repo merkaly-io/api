@@ -1,4 +1,4 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
+import { AbstractRequestValidator } from "../../abstract.validator";
 import { PaymentAccountCompanyTypeEnum, PaymentAccountTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
 export declare function isCnpj(value: unknown): boolean;
 export declare function IsCnpj(): PropertyDecorator;

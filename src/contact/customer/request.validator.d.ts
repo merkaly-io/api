@@ -1,6 +1,6 @@
-import { ContactCustomerTypeEnum } from './customer.enum';
-import { AbstractRequestValidator } from '../../abstract.validator';
-import type { ContactCustomerEntity } from './customer.entity';
+import { ContactCustomerTypeEnum } from "./customer.enum";
+import { AbstractRequestValidator } from "../../abstract.validator";
+import type { ContactCustomerEntity } from "./customer.entity";
 export declare class CreateContactCustomerRequestValidator extends AbstractRequestValidator {
     name: string;
     type: ContactCustomerTypeEnum;

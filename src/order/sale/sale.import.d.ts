@@ -1,4 +1,4 @@
-import type { OrderPurchaseStatusEnum } from '../purchase/purchase.enum';
+import type { OrderPurchaseStatusEnum } from "../purchase/purchase.enum";
 export interface SaleImportPreviewLine {
     externalProductId: string;
     externalVariantId: string;

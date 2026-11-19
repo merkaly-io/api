@@ -1,4 +1,4 @@
-import { AbstractEntity } from '../../abstract.entity';
+import { AbstractEntity } from "../../abstract.entity";
 export declare class AccountUserEntity extends AbstractEntity {
     _id: string;
     name: string;

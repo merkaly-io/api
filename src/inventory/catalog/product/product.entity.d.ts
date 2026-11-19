@@ -1,10 +1,10 @@
 import { Schema as MongoSchema, Types } from 'mongoose';
-import { AssetEntity } from '../../../assets/asset/asset.entity';
-import { AbstractEntity } from '../../../abstract.entity';
+import { AssetEntity } from "../../../assets/asset/asset.entity";
+import { AbstractEntity } from "../../../abstract.entity";
 import type { CatalogBrandEntity } from '../brand/brand.entity';
 import type { CatalogCategoryEntity } from '../category/category.entity';
 import type { CatalogVariantEntity } from '../variant/variant.entity';
-import type { ContactVendorEntity } from '../../../contact/vendor/vendor.entity';
+import type { ContactVendorEntity } from "../../../contact/vendor/vendor.entity";
 export declare class CatalogProductPropertyEntity {
     name: string;
     value: string;
