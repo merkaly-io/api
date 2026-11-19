@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProductRequestValidator = exports.UpdateProductRequestValidator = void 0;
+exports.UpdateProductRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const abstract_validator_1 = require("../../../abstract.validator");
@@ -114,14 +114,4 @@ __decorate([
     (0, class_transformer_1.Type)(() => UpdateProductVariantsItemRequestValidator),
     __metadata("design:type", Array)
 ], UpdateProductRequestValidator.prototype, "variants", void 0);
-class CreateProductRequestValidator extends ProductMetadataRequestValidator {
-    variant;
-}
-exports.CreateProductRequestValidator = CreateProductRequestValidator;
-__decorate([
-    (0, class_validator_1.IsDefined)(),
-    (0, class_validator_1.ValidateNested)(),
-    (0, class_transformer_1.Type)(() => request_validator_1.CreateVariantRequestValidator),
-    __metadata("design:type", request_validator_1.CreateVariantRequestValidator)
-], CreateProductRequestValidator.prototype, "variant", void 0);
 //# sourceMappingURL=request.validator.js.map

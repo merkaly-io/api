@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from '../../../abstract.validator';
-import type { CatalogCategoryEntity } from './category.entity';
+import { AbstractRequestValidator } from "../../../abstract.validator";
+import type { CatalogCategoryEntity } from "./category.entity";
 export declare class CreateCategoryRequestValidator extends AbstractRequestValidator {
     name: string;
     description?: string;
