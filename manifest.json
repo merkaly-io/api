@@ -60,6 +60,10 @@
         "entities/chargeback.entity",
         "enums/chargeback.enum"
       ],
+      "debt": [
+        "entities/debt.entity",
+        "enums/debt.enum"
+      ],
       "payment": [
         "entities/payment.entity",
         "enums/payment.enum",

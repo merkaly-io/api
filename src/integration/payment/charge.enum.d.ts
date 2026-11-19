@@ -29,7 +29,3 @@ export declare enum PaymentAsaasRefundStatusEnum {
     CANCELLED = "CANCELLED",
     DONE = "DONE"
 }
-export declare enum PaymentChargeAccountEnum {
-    MAIN = "MAIN",
-    SUBCONTA = "SUBCONTA"
-}
