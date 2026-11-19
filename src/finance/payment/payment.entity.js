@@ -13,14 +13,13 @@ exports.FinancePaymentEntity = exports.FinancePaymentSplitSchema = exports.Finan
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
-const charge_enum_1 = require("../../integration/payment/charge.enum");
 const sale_entity_1 = require("../../order/sale/sale.entity");
 const abstract_entity_1 = require("../../abstract.entity");
+const debt_enum_1 = require("../debt/debt.enum");
 const payment_enum_1 = require("./payment.enum");
 let FinancePaymentGatewayEntity = class FinancePaymentGatewayEntity {
     provider;
     reference;
-    account;
     method;
     status;
     attempt;
@@ -38,10 +37,6 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], FinancePaymentGatewayEntity.prototype, "reference", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ default: null, enum: charge_enum_1.PaymentChargeAccountEnum, type: String }),
-    __metadata("design:type", String)
-], FinancePaymentGatewayEntity.prototype, "account", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ enum: payment_enum_1.FinancePaymentMethodEnum, required: true, type: String }),
     __metadata("design:type", String)
@@ -154,6 +149,8 @@ let FinancePaymentEntity = class FinancePaymentEntity extends abstract_entity_1.
     status;
     history = [];
     number;
+    refunds;
+    refundFeeDebts;
 };
 exports.FinancePaymentEntity = FinancePaymentEntity;
 __decorate([
@@ -184,6 +181,28 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.FinancePaymentSplitSchema }),
     __metadata("design:type", FinancePaymentSplitEntity)
 ], FinancePaymentEntity.prototype, "split", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        options: {
+            foreignField: 'payment',
+            localField: '_id',
+            match: { deletedAt: null },
+            ref: app_schemas_1.AppSchemas.finance.refunds,
+        },
+    }),
+    __metadata("design:type", Array)
+], FinancePaymentEntity.prototype, "refunds", void 0);
+__decorate([
+    (0, mongoose_1.Virtual)({
+        options: {
+            foreignField: 'payment',
+            localField: '_id',
+            match: { deletedAt: null, reason: debt_enum_1.FinanceDebtReasonEnum.REFUND_FEE },
+            ref: app_schemas_1.AppSchemas.finance.debts,
+        },
+    }),
+    __metadata("design:type", Array)
+], FinancePaymentEntity.prototype, "refundFeeDebts", void 0);
 exports.FinancePaymentEntity = FinancePaymentEntity = __decorate([
     (0, mongoose_1.Schema)(abstract_entity_1.$collection)
 ], FinancePaymentEntity);

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentChargeAccountEnum = exports.PaymentAsaasRefundStatusEnum = exports.PaymentAsaasChargeStatusEnum = exports.PaymentChargeStatusEnum = void 0;
+exports.PaymentAsaasRefundStatusEnum = exports.PaymentAsaasChargeStatusEnum = exports.PaymentChargeStatusEnum = void 0;
 var PaymentChargeStatusEnum;
 (function (PaymentChargeStatusEnum) {
     PaymentChargeStatusEnum["PENDING"] = "PENDING";
@@ -35,9 +35,4 @@ var PaymentAsaasRefundStatusEnum;
     PaymentAsaasRefundStatusEnum["CANCELLED"] = "CANCELLED";
     PaymentAsaasRefundStatusEnum["DONE"] = "DONE";
 })(PaymentAsaasRefundStatusEnum || (exports.PaymentAsaasRefundStatusEnum = PaymentAsaasRefundStatusEnum = {}));
-var PaymentChargeAccountEnum;
-(function (PaymentChargeAccountEnum) {
-    PaymentChargeAccountEnum["MAIN"] = "MAIN";
-    PaymentChargeAccountEnum["SUBCONTA"] = "SUBCONTA";
-})(PaymentChargeAccountEnum || (exports.PaymentChargeAccountEnum = PaymentChargeAccountEnum = {}));
 //# sourceMappingURL=charge.enum.js.map
