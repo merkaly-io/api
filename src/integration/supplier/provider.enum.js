@@ -10,6 +10,7 @@ var SupplierErrorCodeEnum;
     SupplierErrorCodeEnum["ACCESS_DENIED"] = "SUPPLIER_ACCESS_DENIED";
     SupplierErrorCodeEnum["CONNECTION_EXPIRED"] = "SUPPLIER_CONNECTION_EXPIRED";
     SupplierErrorCodeEnum["CONNECTION_REQUIRED"] = "SUPPLIER_CONNECTION_REQUIRED";
+    SupplierErrorCodeEnum["RECIPIENT_DOCUMENT_INVALID"] = "SUPPLIER_RECIPIENT_DOCUMENT_INVALID";
     SupplierErrorCodeEnum["REQUEST_REJECTED"] = "SUPPLIER_REQUEST_REJECTED";
     SupplierErrorCodeEnum["UNAVAILABLE"] = "SUPPLIER_UNAVAILABLE";
 })(SupplierErrorCodeEnum || (exports.SupplierErrorCodeEnum = SupplierErrorCodeEnum = {}));
