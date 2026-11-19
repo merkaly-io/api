@@ -1,5 +1,5 @@
-import type { SupplierProviderEnum } from './provider.enum';
-import type { AssetType } from '../../assets/asset/asset.enum';
+import type { SupplierErrorCodeEnum, SupplierProviderEnum } from './provider.enum';
+import type { AssetType } from "../../assets/asset/asset.enum";
 export interface SupplierProductAsset {
     type: AssetType;
     url: string;
@@ -74,4 +74,8 @@ export interface SupplierProductPreviewRequest {
 }
 export interface SupplierProductReadRequest {
     product: string;
+}
+export interface SupplierProductReadError {
+    code?: SupplierErrorCodeEnum;
+    message: string;
 }
