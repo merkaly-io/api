@@ -1,4 +1,4 @@
-import type { AccountAuthOrganization, AccountAuthOrganizationInvitation, AccountAuthOrganizationMember } from '../../account/auth/auth';
+import type { AccountAuthOrganization, AccountAuthOrganizationInvitation, AccountAuthOrganizationMember } from "../../account/auth/auth";
 export interface DashboardClientList {
     items: AccountAuthOrganization[];
     total: number;

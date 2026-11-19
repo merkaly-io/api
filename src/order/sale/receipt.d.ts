@@ -1,5 +1,5 @@
 import { OrderSaleStatusEnum } from './sale.enum';
-import type { LogisticsShipmentEntity } from '../../logistics/shipment/shipment.entity';
+import type { LogisticsShipmentEntity } from "../../logistics/shipment/shipment.entity";
 type ReceiptShipment = Pick<LogisticsShipmentEntity, 'deliveredAt' | 'receivedBy'>;
 export interface OrderSaleReceipt {
     confirmable: boolean;

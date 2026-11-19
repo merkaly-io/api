@@ -1,5 +1,5 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
-import type { SettingsOrganizationAddressContract, SettingsOrganizationBillingContract, SettingsOrganizationBrandingContract, SettingsOrganizationContactContract, SettingsOrganizationIdentityContract, SettingsOrganizationLocalizationContract, SettingsOrganizationLocationContract, SettingsOrganizationProfileContract, SettingsOrganizationSocialContract } from './organization.contract';
+import { AbstractRequestValidator } from "../../abstract.validator";
+import type { SettingsOrganizationAddressContract, SettingsOrganizationBillingContract, SettingsOrganizationBrandingContract, SettingsOrganizationContactContract, SettingsOrganizationIdentityContract, SettingsOrganizationLocalizationContract, SettingsOrganizationLocationContract, SettingsOrganizationProfileContract, SettingsOrganizationSocialContract } from "./organization.contract";
 export declare class UpdateOrganizationLocationRequestValidator extends AbstractRequestValidator {
     lat?: number;
     lng?: number;

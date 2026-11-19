@@ -1,4 +1,4 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
+import { AbstractRequestValidator } from "../../abstract.validator";
 export declare class LinkIdentityRequestValidator extends AbstractRequestValidator {
     idToken: string;
 }

@@ -1,6 +1,6 @@
 import type { SupplierProductVariant } from './product';
-import type { CatalogProductEntity } from '../../inventory/catalog/product/product.entity';
-import type { CatalogVariantOptionEntity } from '../../inventory/catalog/variant/variant.option.entity';
+import type { CatalogProductEntity } from "../../inventory/catalog/product/product.entity";
+import type { CatalogVariantOptionEntity } from "../../inventory/catalog/variant/variant.option.entity";
 export interface SupplierProductSyncCostChange {
     variant: string;
     externalVariantId: string;

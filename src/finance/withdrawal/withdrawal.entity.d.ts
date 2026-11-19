@@ -1,7 +1,7 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { AccountUserEntity } from '../../account/user/user.entity';
-import { PaymentPixKeyTypeEnum } from '../../integration/payment/account.enum';
-import { AbstractEntity } from '../../abstract.entity';
+import { AccountUserEntity } from "../../account/user/user.entity";
+import { PaymentPixKeyTypeEnum } from "../../integration/payment/account.enum";
+import { AbstractEntity } from "../../abstract.entity";
 import { FinanceWithdrawalKindEnum, FinanceWithdrawalStatusEnum } from './withdrawal.enum';
 export declare class FinanceWithdrawalHistoryEntity {
     date: Date;

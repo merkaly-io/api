@@ -1,5 +1,5 @@
-import { AssetType } from './asset.enum';
-import { AbstractEntity } from '../../abstract.entity';
+import { AssetType } from "./asset.enum";
+import { AbstractEntity } from "../../abstract.entity";
 export declare class AssetEntity extends AbstractEntity {
     name: string;
     url: string;

@@ -1,4 +1,4 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
+import { AbstractRequestValidator } from "../../abstract.validator";
 export declare class UpdateSaleDeliveryRecipientRequestValidator extends AbstractRequestValidator {
     name?: string;
     email?: string;

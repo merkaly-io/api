@@ -1,6 +1,6 @@
 import type { PaymentChargeStatusEnum } from './charge.enum';
 import type { PaymentProviderEnum } from './provider.enum';
-import type { FinancePaymentMethodEnum } from '../../finance/payment/payment.enum';
+import type { FinancePaymentMethodEnum } from "../../finance/payment/payment.enum";
 export type StorePaymentMethod = FinancePaymentMethodEnum.PIX;
 export interface StorePaymentConfig {
     fees: Partial<Record<StorePaymentMethod, number>>;

@@ -1,5 +1,5 @@
-import type { LogisticsParcelInput } from '../../logistics/shipment/shipment';
-import type { OrderPurchaseStatusEnum } from '../../order/purchase/purchase.enum';
+import type { LogisticsParcelInput } from "../../logistics/shipment/shipment";
+import type { OrderPurchaseStatusEnum } from "../../order/purchase/purchase.enum";
 export interface SupplierOrderLine {
     externalProductId: string;
     externalVariantId: string;

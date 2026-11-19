@@ -1,8 +1,8 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { AbstractEntity } from '../../abstract.entity';
+import { AbstractEntity } from "../../abstract.entity";
 import { FinanceRefundOriginEnum, FinanceRefundStatusEnum } from './refund.enum';
 import { FinancePaymentEntity } from '../payment/payment.entity';
-import type { OrderPurchaseEntity } from '../../order/purchase/purchase.entity';
+import type { OrderPurchaseEntity } from "../../order/purchase/purchase.entity";
 export interface FinanceRefundPixDetails {
     bankReference: string | null;
 }

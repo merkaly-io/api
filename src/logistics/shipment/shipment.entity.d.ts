@@ -1,8 +1,8 @@
 import { Schema as MongoSchema } from 'mongoose';
-import { AbstractEntity } from '../../abstract.entity';
+import { AbstractEntity } from "../../abstract.entity";
 import { LogisticsShipmentSourceEnum, LogisticsShipmentStatusEnum, LogisticsTrackingEventCodeEnum } from './shipment.enum';
-import type { OrderPurchaseEntity } from '../../order/purchase/purchase.entity';
-import type { OrderSaleEntity } from '../../order/sale/sale.entity';
+import type { OrderPurchaseEntity } from "../../order/purchase/purchase.entity";
+import type { OrderSaleEntity } from "../../order/sale/sale.entity";
 export declare class LogisticsShipmentEventEntity {
     date: Date;
     code: LogisticsTrackingEventCodeEnum;

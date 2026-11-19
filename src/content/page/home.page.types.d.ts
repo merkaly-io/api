@@ -1,4 +1,4 @@
-import type { ContentBannerBlock, ContentBrandsBlock, ContentFeaturesBlock, ContentProductsBlock } from './blocks.types';
+import type { ContentBannerBlock, ContentBrandsBlock, ContentFeaturesBlock, ContentProductsBlock } from "./blocks.types";
 export interface ContentHomePage {
     brands?: ContentBrandsBlock;
     features?: ContentFeaturesBlock;

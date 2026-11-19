@@ -1,6 +1,6 @@
-import { AbstractRequestValidator } from '../../abstract.validator';
+import { AbstractRequestValidator } from "../../abstract.validator";
 import { SaleDeliveryRequestValidator } from './delivery.request.validator';
-import type { StorePaymentMethod } from '../../integration/payment/charge';
+import type { StorePaymentMethod } from "../../integration/payment/charge";
 export declare class CheckoutItemRequestValidator extends AbstractRequestValidator {
     product: string;
     variant: string;

@@ -1,4 +1,4 @@
-import type { AccountTeamAssignableRole } from './team.enum';
+import type { AccountTeamAssignableRole } from "./team.enum";
 export interface AccountAuthIdentity {
     connection: string;
     isSocial: boolean;

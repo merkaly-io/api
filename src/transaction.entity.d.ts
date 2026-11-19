@@ -1,6 +1,6 @@
-import { AccountUserEntity } from './account/user/user.entity';
-import { FinancePaymentEntity } from './finance/payment/payment.entity';
-import { AbstractEntity } from './abstract.entity';
+import { AccountUserEntity } from "./account/user/user.entity";
+import { FinancePaymentEntity } from "./finance/payment/payment.entity";
+import { AbstractEntity } from "./abstract.entity";
 import { StatusEntity } from './status.plugin';
 import { ITransitionable } from './transitionable.types';
 import { ItemEntity } from './order/item/item.entity';
