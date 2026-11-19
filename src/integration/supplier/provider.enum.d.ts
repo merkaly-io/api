@@ -1,6 +1,13 @@
 export declare enum SupplierProviderEnum {
     ALIEXPRESS = "aliexpress"
 }
+export declare enum SupplierErrorCodeEnum {
+    ACCESS_DENIED = "SUPPLIER_ACCESS_DENIED",
+    CONNECTION_EXPIRED = "SUPPLIER_CONNECTION_EXPIRED",
+    CONNECTION_REQUIRED = "SUPPLIER_CONNECTION_REQUIRED",
+    REQUEST_REJECTED = "SUPPLIER_REQUEST_REJECTED",
+    UNAVAILABLE = "SUPPLIER_UNAVAILABLE"
+}
 export declare enum SupplierReadinessEnum {
     NOT_CONNECTED = "NOT_CONNECTED",
     EXPIRED = "EXPIRED",
