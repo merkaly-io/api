@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderPurchaseEntity = exports.OrderPurchaseSupplierOrderSchema = exports.OrderPurchaseSupplierOrderEntity = void 0;
+exports.OrderPurchaseEntity = exports.OrderPurchaseSupplierOrderSchema = exports.OrderPurchaseSupplierOrderEntity = exports.OrderPurchaseSupplierErrorSchema = exports.OrderPurchaseSupplierErrorEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
@@ -18,6 +18,23 @@ const provider_enum_1 = require("../../integration/supplier/provider.enum");
 const purchase_item_schema_1 = require("../schemas/purchase.item.schema");
 const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
+let OrderPurchaseSupplierErrorEntity = class OrderPurchaseSupplierErrorEntity {
+    code;
+    message;
+};
+exports.OrderPurchaseSupplierErrorEntity = OrderPurchaseSupplierErrorEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, enum: provider_enum_1.SupplierErrorCodeEnum, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierErrorEntity.prototype, "code", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierErrorEntity.prototype, "message", void 0);
+exports.OrderPurchaseSupplierErrorEntity = OrderPurchaseSupplierErrorEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], OrderPurchaseSupplierErrorEntity);
+exports.OrderPurchaseSupplierErrorSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseSupplierErrorEntity);
 let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
     provider;
     orderIds = [];
@@ -59,8 +76,8 @@ __decorate([
     __metadata("design:type", Date)
 ], OrderPurchaseSupplierOrderEntity.prototype, "payExpiryDate", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: null, type: String }),
-    __metadata("design:type", String)
+    (0, mongoose_1.Prop)({ default: null, type: exports.OrderPurchaseSupplierErrorSchema }),
+    __metadata("design:type", OrderPurchaseSupplierErrorEntity)
 ], OrderPurchaseSupplierOrderEntity.prototype, "error", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
