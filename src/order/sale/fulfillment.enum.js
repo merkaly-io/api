@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = void 0;
+exports.OrderSaleHistoryEventEnum = exports.OrderSaleCostSourceEnum = exports.OrderFulfillmentActionEnum = exports.OrderBuyerCancellationActionEnum = exports.BUYER_STAGE_GROUPS = exports.OrderBuyerStageEnum = void 0;
 const sale_enum_1 = require("./sale.enum");
 var OrderBuyerStageEnum;
 (function (OrderBuyerStageEnum) {
@@ -19,6 +19,11 @@ exports.BUYER_STAGE_GROUPS = {
     [OrderBuyerStageEnum.DELIVERED]: [sale_enum_1.OrderSaleStatusEnum.DELIVERED],
     [OrderBuyerStageEnum.CANCELLED]: [sale_enum_1.OrderSaleStatusEnum.CANCELLED],
 };
+var OrderBuyerCancellationActionEnum;
+(function (OrderBuyerCancellationActionEnum) {
+    OrderBuyerCancellationActionEnum["CANCEL"] = "CANCEL";
+    OrderBuyerCancellationActionEnum["REFUND"] = "REFUND";
+})(OrderBuyerCancellationActionEnum || (exports.OrderBuyerCancellationActionEnum = OrderBuyerCancellationActionEnum = {}));
 var OrderFulfillmentActionEnum;
 (function (OrderFulfillmentActionEnum) {
     OrderFulfillmentActionEnum["PROCURE"] = "PROCURE";

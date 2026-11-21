@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleSourceEnum = exports.WITHDRAWAL_HOLD_MS = exports.WITHDRAWAL_HOLD_DAYS = exports.SALE_CANCELLABLE_STATUSES = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
+exports.OrderSaleSourceEnum = exports.WITHDRAWAL_HOLD_MS = exports.WITHDRAWAL_HOLD_DAYS = exports.SALE_REFUND_MS = exports.SALE_REFUND_DAYS = exports.OrderSaleCancelByEnum = exports.SALE_CANCELLABLE_STATUSES = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
 var OrderSaleStatusEnum;
 (function (OrderSaleStatusEnum) {
     OrderSaleStatusEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -27,6 +27,14 @@ exports.SALE_CANCELLABLE_STATUSES = [
     OrderSaleStatusEnum.ORDERED,
     OrderSaleStatusEnum.SUPPLIER_CANCELLED,
 ];
+var OrderSaleCancelByEnum;
+(function (OrderSaleCancelByEnum) {
+    OrderSaleCancelByEnum["BUYER"] = "BUYER";
+    OrderSaleCancelByEnum["MERCHANT"] = "MERCHANT";
+    OrderSaleCancelByEnum["SUPPLIER"] = "SUPPLIER";
+})(OrderSaleCancelByEnum || (exports.OrderSaleCancelByEnum = OrderSaleCancelByEnum = {}));
+exports.SALE_REFUND_DAYS = 7;
+exports.SALE_REFUND_MS = exports.SALE_REFUND_DAYS * 86_400_000;
 exports.WITHDRAWAL_HOLD_DAYS = 7;
 exports.WITHDRAWAL_HOLD_MS = exports.WITHDRAWAL_HOLD_DAYS * 86_400_000;
 var OrderSaleSourceEnum;

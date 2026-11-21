@@ -2,9 +2,9 @@ import type { FinancePaymentStatusEnum } from "../../finance/payment/payment.enu
 import type { FinanceRefundOriginEnum, FinanceRefundStatusEnum } from "../../finance/refund/refund.enum";
 import type { LogisticsShipmentEntity } from "../../logistics/shipment/shipment.entity";
 import type { LogisticsBuyerShipment } from "../../logistics/shipment/shipment";
-import type { OrderBuyerStageEnum, OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from "./fulfillment.enum";
+import type { OrderBuyerCancellationActionEnum, OrderBuyerStageEnum, OrderFulfillmentActionEnum, OrderSaleCostSourceEnum, OrderSaleHistoryEventEnum } from "./fulfillment.enum";
 import type { OrderPurchaseStatusEnum } from "../purchase/purchase.enum";
-import type { OrderSaleStatusEnum } from "./sale.enum";
+import type { OrderSaleCancelByEnum, OrderSaleStatusEnum } from "./sale.enum";
 import type { OrderSaleReceipt } from "./receipt";
 export interface OrderSaleCosts {
     products: number;
@@ -31,6 +31,7 @@ export interface OrderSaleHistoryEntry {
     purchase?: string;
     status?: OrderPurchaseStatusEnum;
     trackingNumber?: string;
+    cancelledBy?: OrderSaleCancelByEnum | null;
 }
 export interface OrderSaleRefundSummary {
     amount: number;
@@ -87,10 +88,15 @@ export interface OrderBuyerPricing {
     fee: number | null;
     buyerTotal: number;
 }
+export interface OrderBuyerCancellation {
+    action: OrderBuyerCancellationActionEnum | null;
+    until: Date | null;
+}
 export interface OrderBuyerFulfillment {
     status: OrderSaleStatusEnum;
     packages: OrderBuyerPackage[];
     shipments: LogisticsBuyerShipment[];
     orderedAt: Date | null;
     receipt: OrderSaleReceipt;
+    cancellation: OrderBuyerCancellation;
 }

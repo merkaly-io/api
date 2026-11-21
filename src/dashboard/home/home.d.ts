@@ -7,6 +7,19 @@ export interface DashboardHomeDay {
     date: string;
     orders: number;
     revenue: number;
+    profit: number;
+}
+export interface DashboardHomePeriodTotals {
+    orders: number;
+    revenue: number;
+    profit: number;
+}
+export interface DashboardHomeTopProduct {
+    product: string;
+    name: string;
+    image: string | null;
+    units: number;
+    revenue: number;
 }
 export interface DashboardHomePeriod {
     days: number;
@@ -18,6 +31,8 @@ export interface DashboardHomePeriod {
     margin: number | null;
     withoutCost: number;
     series: DashboardHomeDay[];
+    previous: DashboardHomePeriodTotals;
+    top: DashboardHomeTopProduct[];
 }
 export interface DashboardHomeSale {
     _id: string;

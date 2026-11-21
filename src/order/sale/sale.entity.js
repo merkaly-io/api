@@ -184,6 +184,7 @@ let OrderSaleEntity = class OrderSaleEntity extends transaction_entity_1.Transac
     items = [];
     delivery;
     cancelledAt;
+    cancelledBy;
     source;
     purchases;
     cost;
@@ -213,6 +214,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
 ], OrderSaleEntity.prototype, "cancelledAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, enum: sale_enum_1.OrderSaleCancelByEnum, type: String }),
+    __metadata("design:type", String)
+], OrderSaleEntity.prototype, "cancelledBy", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ enum: sale_enum_1.OrderSaleSourceEnum, required: true, type: String }),
     __metadata("design:type", String)

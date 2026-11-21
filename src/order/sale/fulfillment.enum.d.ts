@@ -8,6 +8,10 @@ export declare enum OrderBuyerStageEnum {
     CANCELLED = "CANCELLED"
 }
 export declare const BUYER_STAGE_GROUPS: Readonly<Record<OrderBuyerStageEnum, readonly Status[]>>;
+export declare enum OrderBuyerCancellationActionEnum {
+    CANCEL = "CANCEL",
+    REFUND = "REFUND"
+}
 export declare enum OrderFulfillmentActionEnum {
     PROCURE = "PROCURE",
     PLACE_SUPPLIER_ORDER = "PLACE_SUPPLIER_ORDER",
