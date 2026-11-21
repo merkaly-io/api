@@ -2,7 +2,7 @@ import { Schema as MongoSchema } from 'mongoose';
 import { ContactCustomerEntity } from "../../contact/customer/customer.entity";
 import { ItemEntity } from "../item/item.entity";
 import { TransactionEntity } from "../../transaction.entity";
-import { OrderSaleSourceEnum, OrderSaleStatusEnum } from './sale.enum';
+import { OrderSaleCancelByEnum, OrderSaleSourceEnum, OrderSaleStatusEnum } from './sale.enum';
 import type { OrderPurchaseEntity } from '../purchase/purchase.entity';
 export declare class OrderSaleDeliveryRecipientEntity {
     name: string;
@@ -88,6 +88,7 @@ export declare class OrderSaleEntity extends TransactionEntity<OrderSaleStatusEn
     items: ItemEntity[];
     delivery?: OrderSaleDeliveryEntity;
     cancelledAt?: Date | null;
+    cancelledBy?: OrderSaleCancelByEnum | null;
     source: OrderSaleSourceEnum;
     readonly purchases: OrderPurchaseEntity[];
     readonly cost: number | null;

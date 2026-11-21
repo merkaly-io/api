@@ -10,6 +10,13 @@ export declare enum OrderSaleStatusEnum {
 }
 export declare const SALE_OPEN_STATUSES: readonly OrderSaleStatusEnum[];
 export declare const SALE_CANCELLABLE_STATUSES: readonly OrderSaleStatusEnum[];
+export declare enum OrderSaleCancelByEnum {
+    BUYER = "BUYER",
+    MERCHANT = "MERCHANT",
+    SUPPLIER = "SUPPLIER"
+}
+export declare const SALE_REFUND_DAYS = 7;
+export declare const SALE_REFUND_MS: number;
 export declare const WITHDRAWAL_HOLD_DAYS = 7;
 export declare const WITHDRAWAL_HOLD_MS: number;
 export declare enum OrderSaleSourceEnum {
