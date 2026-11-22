@@ -32,6 +32,10 @@ export interface AccountIdentityProfile {
 export interface AccountAuthMembership {
     id: string;
     name: string;
+    domain: string | null;
+}
+export interface AccountAuthProfileMeta {
+    memberships: AccountAuthMembership[];
 }
 export interface OnboardingResult {
     organization: string;
