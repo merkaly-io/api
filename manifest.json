@@ -14,6 +14,7 @@
       "infrastructure/entities/contact.entity",
       "infrastructure/types/transitionable.types",
       "infrastructure/types/query.types",
+      "infrastructure/types/postal-code.types",
       "infrastructure/abstracts/abstract.entity",
       "infrastructure/abstracts/abstract.transition",
       "infrastructure/abstracts/abstract.validator",
