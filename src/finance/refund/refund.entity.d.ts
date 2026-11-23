@@ -27,6 +27,7 @@ export declare const FinanceRefundGatewaySchema: MongoSchema<FinanceRefundGatewa
 export declare class FinanceRefundEntity extends AbstractEntity {
     payment: FinancePaymentEntity | string;
     purchase?: OrderPurchaseEntity | string | null;
+    supplierOrderId?: string | null;
     amount: number;
     isPartial: boolean;
     origin: FinanceRefundOriginEnum;

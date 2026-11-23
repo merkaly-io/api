@@ -18,9 +18,55 @@ export declare const OrderPurchaseSupplierErrorSchema: MongoSchema<OrderPurchase
 } & {
     __v: number;
 }>;
+export declare class OrderPurchaseSupplierOrderItemEntity {
+    item: string;
+    quantity: number;
+}
+export declare const OrderPurchaseSupplierOrderItemSchema: MongoSchema<OrderPurchaseSupplierOrderItemEntity, import("mongoose").Model<OrderPurchaseSupplierOrderItemEntity, any, any, any, import("mongoose").Document<unknown, any, OrderPurchaseSupplierOrderItemEntity, any, {}> & OrderPurchaseSupplierOrderItemEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderPurchaseSupplierOrderItemEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderPurchaseSupplierOrderItemEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<OrderPurchaseSupplierOrderItemEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
+export declare class OrderPurchaseSupplierOrderPartEntity {
+    id: string;
+    status?: OrderPurchaseStatusEnum | null;
+    rawStatus?: string | null;
+    items: OrderPurchaseSupplierOrderItemEntity[];
+    productCost?: number | null;
+    shippingCost?: number | null;
+    taxCost?: number | null;
+    cancelledAt?: Date | null;
+}
+export declare const OrderPurchaseSupplierOrderPartSchema: MongoSchema<OrderPurchaseSupplierOrderPartEntity, import("mongoose").Model<OrderPurchaseSupplierOrderPartEntity, any, any, any, import("mongoose").Document<unknown, any, OrderPurchaseSupplierOrderPartEntity, any, {}> & OrderPurchaseSupplierOrderPartEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderPurchaseSupplierOrderPartEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderPurchaseSupplierOrderPartEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<OrderPurchaseSupplierOrderPartEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
+export declare class OrderPurchaseLogisticsEntity {
+    sku: string;
+    service: string;
+}
+export declare const OrderPurchaseLogisticsSchema: MongoSchema<OrderPurchaseLogisticsEntity, import("mongoose").Model<OrderPurchaseLogisticsEntity, any, any, any, import("mongoose").Document<unknown, any, OrderPurchaseLogisticsEntity, any, {}> & OrderPurchaseLogisticsEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, OrderPurchaseLogisticsEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<OrderPurchaseLogisticsEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<OrderPurchaseLogisticsEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
 export declare class OrderPurchaseSupplierOrderEntity {
     provider: SupplierProviderEnum;
     orderIds: string[];
+    orders?: OrderPurchaseSupplierOrderPartEntity[];
     reference?: string;
     rawStatus?: string;
     placedAt: Date;
@@ -45,5 +91,6 @@ export declare class OrderPurchaseEntity extends TransactionEntity<OrderPurchase
     shippingCost?: number;
     taxCost?: number;
     chargedAt?: Date;
+    logistics?: OrderPurchaseLogisticsEntity[];
     supplierOrder?: OrderPurchaseSupplierOrderEntity;
 }

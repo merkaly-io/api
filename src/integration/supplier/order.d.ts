@@ -41,12 +41,22 @@ export interface SupplierOrderChargedLine {
     shipping: number;
     tax: number;
 }
+export interface SupplierOrderPart {
+    externalOrderId: string;
+    status?: OrderPurchaseStatusEnum;
+    rawStatus: string;
+    lines: SupplierOrderChargedLine[];
+    charged: boolean;
+}
+export interface SupplierOrderParcel extends LogisticsParcelInput {
+    externalOrderIds: string[];
+}
 export interface SupplierOrderSnapshot {
     status?: OrderPurchaseStatusEnum;
     received: boolean;
     rawStatus: string;
-    parcels: LogisticsParcelInput[];
-    charged?: SupplierOrderChargedLine[];
+    orders: SupplierOrderPart[];
+    parcels: SupplierOrderParcel[];
     payExpiryDate?: Date | null;
 }
 export interface SupplierOrderImportLine {

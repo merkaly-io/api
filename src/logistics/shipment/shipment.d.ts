@@ -10,6 +10,11 @@ export interface LogisticsParcelInput {
     trackingUrl?: string;
     events: LogisticsTrackingInput[];
     received?: boolean;
+    items?: LogisticsShipmentItem[];
+}
+export interface LogisticsShipmentItem {
+    item: string;
+    quantity: number;
 }
 export interface LogisticsBuyerShipment {
     status: LogisticsShipmentStatusEnum;
@@ -23,4 +28,5 @@ export interface LogisticsBuyerShipment {
         code: LogisticsTrackingEventCodeEnum;
         location?: string;
     }[];
+    items: LogisticsShipmentItem[];
 }

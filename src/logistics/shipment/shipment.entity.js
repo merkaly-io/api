@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogisticsShipmentEntity = exports.LogisticsShipmentTrackingSchema = exports.LogisticsShipmentTrackingEntity = exports.LogisticsShipmentEventSchema = exports.LogisticsShipmentEventEntity = void 0;
+exports.LogisticsShipmentEntity = exports.LogisticsShipmentItemSchema = exports.LogisticsShipmentItemEntity = exports.LogisticsShipmentTrackingSchema = exports.LogisticsShipmentTrackingEntity = exports.LogisticsShipmentEventSchema = exports.LogisticsShipmentEventEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
@@ -64,10 +64,28 @@ exports.LogisticsShipmentTrackingEntity = LogisticsShipmentTrackingEntity = __de
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], LogisticsShipmentTrackingEntity);
 exports.LogisticsShipmentTrackingSchema = mongoose_1.SchemaFactory.createForClass(LogisticsShipmentTrackingEntity);
+let LogisticsShipmentItemEntity = class LogisticsShipmentItemEntity {
+    item;
+    quantity;
+};
+exports.LogisticsShipmentItemEntity = LogisticsShipmentItemEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", String)
+], LogisticsShipmentItemEntity.prototype, "item", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ min: 1, required: true, type: Number }),
+    __metadata("design:type", Number)
+], LogisticsShipmentItemEntity.prototype, "quantity", void 0);
+exports.LogisticsShipmentItemEntity = LogisticsShipmentItemEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], LogisticsShipmentItemEntity);
+exports.LogisticsShipmentItemSchema = mongoose_1.SchemaFactory.createForClass(LogisticsShipmentItemEntity);
 let LogisticsShipmentEntity = class LogisticsShipmentEntity extends abstract_entity_1.AbstractEntity {
     sale;
     purchase;
     source;
+    items = [];
     tracking;
     shippedAt;
     deliveredAt;
@@ -88,6 +106,10 @@ __decorate([
     (0, mongoose_1.Prop)({ enum: shipment_enum_1.LogisticsShipmentSourceEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], LogisticsShipmentEntity.prototype, "source", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: () => [], type: [exports.LogisticsShipmentItemSchema] }),
+    __metadata("design:type", Array)
+], LogisticsShipmentEntity.prototype, "items", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.LogisticsShipmentTrackingSchema }),
     __metadata("design:type", LogisticsShipmentTrackingEntity)
