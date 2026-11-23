@@ -7,6 +7,10 @@ export interface ProcurementLine {
         name: string;
     };
     variant: string;
+    vendor: {
+        id: string;
+        name: string;
+    };
     quantity: number;
     retailUnit: number;
     storedUnitCost: number;
@@ -20,10 +24,10 @@ export interface ProcurementGroup {
         id: string;
         provider: SupplierProviderEnum;
     };
-    vendor: {
+    vendors: {
         id: string;
         name: string;
-    } | null;
+    }[];
     items: ProcurementLine[];
     totals: {
         retail: number;

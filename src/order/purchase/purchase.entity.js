@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderPurchaseEntity = exports.OrderPurchaseSupplierOrderSchema = exports.OrderPurchaseSupplierOrderEntity = exports.OrderPurchaseSupplierErrorSchema = exports.OrderPurchaseSupplierErrorEntity = void 0;
+exports.OrderPurchaseEntity = exports.OrderPurchaseSupplierOrderSchema = exports.OrderPurchaseSupplierOrderEntity = exports.OrderPurchaseLogisticsSchema = exports.OrderPurchaseLogisticsEntity = exports.OrderPurchaseSupplierOrderPartSchema = exports.OrderPurchaseSupplierOrderPartEntity = exports.OrderPurchaseSupplierOrderItemSchema = exports.OrderPurchaseSupplierOrderItemEntity = exports.OrderPurchaseSupplierErrorSchema = exports.OrderPurchaseSupplierErrorEntity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
@@ -18,6 +18,8 @@ const provider_enum_1 = require("../../integration/supplier/provider.enum");
 const purchase_item_schema_1 = require("../schemas/purchase.item.schema");
 const abstract_entity_1 = require("../../abstract.entity");
 const transaction_entity_1 = require("../../transaction.entity");
+const purchase_enum_1 = require("./purchase.enum");
+const isCentsOrNull = (value) => value == null || Number.isInteger(value);
 let OrderPurchaseSupplierErrorEntity = class OrderPurchaseSupplierErrorEntity {
     code;
     message;
@@ -35,9 +37,91 @@ exports.OrderPurchaseSupplierErrorEntity = OrderPurchaseSupplierErrorEntity = __
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], OrderPurchaseSupplierErrorEntity);
 exports.OrderPurchaseSupplierErrorSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseSupplierErrorEntity);
+let OrderPurchaseSupplierOrderItemEntity = class OrderPurchaseSupplierOrderItemEntity {
+    item;
+    quantity;
+};
+exports.OrderPurchaseSupplierOrderItemEntity = OrderPurchaseSupplierOrderItemEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: mongoose_2.Schema.Types.ObjectId }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderItemEntity.prototype, "item", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ min: 1, required: true, type: Number }),
+    __metadata("design:type", Number)
+], OrderPurchaseSupplierOrderItemEntity.prototype, "quantity", void 0);
+exports.OrderPurchaseSupplierOrderItemEntity = OrderPurchaseSupplierOrderItemEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], OrderPurchaseSupplierOrderItemEntity);
+exports.OrderPurchaseSupplierOrderItemSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseSupplierOrderItemEntity);
+let OrderPurchaseSupplierOrderPartEntity = class OrderPurchaseSupplierOrderPartEntity {
+    id;
+    status;
+    rawStatus;
+    items = [];
+    productCost;
+    shippingCost;
+    taxCost;
+    cancelledAt;
+};
+exports.OrderPurchaseSupplierOrderPartEntity = OrderPurchaseSupplierOrderPartEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "id", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, enum: [...Object.values(purchase_enum_1.OrderPurchaseStatusEnum), null], type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "rawStatus", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: () => [], type: [exports.OrderPurchaseSupplierOrderItemSchema] }),
+    __metadata("design:type", Array)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "items", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, validate: { validator: isCentsOrNull } }),
+    __metadata("design:type", Number)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "productCost", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, validate: { validator: isCentsOrNull } }),
+    __metadata("design:type", Number)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "shippingCost", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, validate: { validator: isCentsOrNull } }),
+    __metadata("design:type", Number)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "taxCost", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderPurchaseSupplierOrderPartEntity.prototype, "cancelledAt", void 0);
+exports.OrderPurchaseSupplierOrderPartEntity = OrderPurchaseSupplierOrderPartEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], OrderPurchaseSupplierOrderPartEntity);
+exports.OrderPurchaseSupplierOrderPartSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseSupplierOrderPartEntity);
+let OrderPurchaseLogisticsEntity = class OrderPurchaseLogisticsEntity {
+    sku;
+    service;
+};
+exports.OrderPurchaseLogisticsEntity = OrderPurchaseLogisticsEntity;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseLogisticsEntity.prototype, "sku", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, type: String }),
+    __metadata("design:type", String)
+], OrderPurchaseLogisticsEntity.prototype, "service", void 0);
+exports.OrderPurchaseLogisticsEntity = OrderPurchaseLogisticsEntity = __decorate([
+    (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
+], OrderPurchaseLogisticsEntity);
+exports.OrderPurchaseLogisticsSchema = mongoose_1.SchemaFactory.createForClass(OrderPurchaseLogisticsEntity);
 let OrderPurchaseSupplierOrderEntity = class OrderPurchaseSupplierOrderEntity {
     provider;
     orderIds = [];
+    orders = [];
     reference;
     rawStatus;
     placedAt;
@@ -55,6 +139,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: () => [], type: [String] }),
     __metadata("design:type", Array)
 ], OrderPurchaseSupplierOrderEntity.prototype, "orderIds", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: () => [], type: [exports.OrderPurchaseSupplierOrderPartSchema] }),
+    __metadata("design:type", Array)
+], OrderPurchaseSupplierOrderEntity.prototype, "orders", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: String }),
     __metadata("design:type", String)
@@ -94,6 +182,7 @@ let OrderPurchaseEntity = class OrderPurchaseEntity extends transaction_entity_1
     shippingCost;
     taxCost;
     chargedAt;
+    logistics = [];
     supplierOrder;
 };
 exports.OrderPurchaseEntity = OrderPurchaseEntity;
@@ -138,6 +227,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)
 ], OrderPurchaseEntity.prototype, "chargedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: () => [], type: [exports.OrderPurchaseLogisticsSchema] }),
+    __metadata("design:type", Array)
+], OrderPurchaseEntity.prototype, "logistics", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.OrderPurchaseSupplierOrderSchema }),
     __metadata("design:type", OrderPurchaseSupplierOrderEntity)
