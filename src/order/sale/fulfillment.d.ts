@@ -9,6 +9,7 @@ import type { OrderSaleReceipt } from "./receipt";
 export interface OrderSaleCosts {
     products: number;
     shippingCost: number;
+    taxCost: number;
     total: number;
 }
 export interface OrderSaleEstimate extends OrderSaleCosts {
@@ -39,11 +40,24 @@ export interface OrderSaleRefundSummary {
     purchase: string | null;
     status: FinanceRefundStatusEnum;
 }
+export interface OrderSaleSupplierCharges {
+    shipping: {
+        paid: number;
+        charged: number;
+    };
+    taxes: {
+        paid: number;
+        charged: number;
+    };
+    balance: number;
+    real: boolean;
+}
 export interface OrderSaleSummary {
     currency: string;
     revenue: {
         subtotal: number;
         shipping: number;
+        taxes: number;
         total: number;
     };
     costs: OrderSaleCosts & {
@@ -56,6 +70,7 @@ export interface OrderSaleSummary {
     margin: number | null;
     estimate: OrderSaleEstimate;
     variance: number | null;
+    supplierCharges: OrderSaleSupplierCharges | null;
     items: OrderSaleItemSummary[];
     history: OrderSaleHistoryEntry[];
     warnings: string[];
@@ -83,6 +98,7 @@ export interface OrderBuyerPackage {
 export interface OrderBuyerPricing {
     shipping: number;
     subtotal: number;
+    taxes: number;
     total: number;
     units: number;
     fee: number | null;

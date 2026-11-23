@@ -18,6 +18,7 @@ export declare class TransactionEntity<S extends string> extends AbstractEntity 
     readonly pricing: {
         shipping: number;
         subtotal: number;
+        taxes: number;
         total: number;
         units: number;
     };

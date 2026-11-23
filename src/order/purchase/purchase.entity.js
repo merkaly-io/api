@@ -92,6 +92,8 @@ let OrderPurchaseEntity = class OrderPurchaseEntity extends transaction_entity_1
     sale;
     items = [];
     shippingCost;
+    taxCost;
+    chargedAt;
     supplierOrder;
 };
 exports.OrderPurchaseEntity = OrderPurchaseEntity;
@@ -123,6 +125,19 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], OrderPurchaseEntity.prototype, "shippingCost", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        default: null,
+        min: 0,
+        type: Number,
+        validate: { validator: (value) => value == null || Number.isInteger(value) },
+    }),
+    __metadata("design:type", Number)
+], OrderPurchaseEntity.prototype, "taxCost", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], OrderPurchaseEntity.prototype, "chargedAt", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: exports.OrderPurchaseSupplierOrderSchema }),
     __metadata("design:type", OrderPurchaseSupplierOrderEntity)

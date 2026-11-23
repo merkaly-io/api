@@ -18,6 +18,7 @@ export interface CheckoutQuoteItem {
     unitPrice: number;
     total: number;
     shipping: CheckoutQuoteShipping;
+    taxes: number;
 }
 export interface CheckoutQuote {
     currency: string;
@@ -26,5 +27,6 @@ export interface CheckoutQuote {
     items: CheckoutQuoteItem[];
     subtotal: number;
     shipping: number;
+    taxes: number;
     total: number;
 }

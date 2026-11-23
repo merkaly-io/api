@@ -39,6 +39,7 @@ export interface SupplierOrderChargedLine {
     quantity: number;
     paid: number;
     shipping: number;
+    tax: number;
 }
 export interface SupplierOrderSnapshot {
     status?: OrderPurchaseStatusEnum;

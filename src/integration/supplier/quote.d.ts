@@ -3,6 +3,10 @@ export interface SupplierQuoteRequest {
     externalVariantId: string;
     quantity: number;
 }
+export interface SupplierImportTaxBracket {
+    rate: number;
+    upTo: number | null;
+}
 export interface SupplierQuote extends SupplierQuoteRequest {
     available: boolean;
     currency: string;
@@ -12,6 +16,7 @@ export interface SupplierQuote extends SupplierQuoteRequest {
     freight?: number;
     freightCode?: string;
     freightService?: string;
+    taxBrackets?: SupplierImportTaxBracket[];
     deliveryDays?: {
         max?: number;
         min?: number;

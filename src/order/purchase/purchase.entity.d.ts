@@ -43,5 +43,7 @@ export declare class OrderPurchaseEntity extends TransactionEntity<OrderPurchase
     sale?: OrderSaleEntity;
     items: ItemEntity[];
     shippingCost?: number;
+    taxCost?: number;
+    chargedAt?: Date;
     supplierOrder?: OrderPurchaseSupplierOrderEntity;
 }

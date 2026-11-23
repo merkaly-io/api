@@ -55,6 +55,7 @@ export declare const OrderSaleDeliveryDaysSchema: MongoSchema<OrderSaleDeliveryD
 export declare class OrderSaleDeliveryLineEntity {
     variant: string;
     amount: number;
+    taxes?: number;
     method?: string;
     deliveryDays?: OrderSaleDeliveryDaysEntity;
 }
@@ -71,6 +72,7 @@ export declare class OrderSaleDeliveryEntity {
     recipient: OrderSaleDeliveryRecipientEntity;
     address: OrderSaleDeliveryAddressEntity;
     shippingPrice?: number;
+    taxes?: number;
     quotedAt?: Date;
     lines?: OrderSaleDeliveryLineEntity[];
 }
