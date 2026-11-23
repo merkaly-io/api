@@ -55,6 +55,7 @@ exports.FinanceRefundGatewaySchema = mongoose_1.SchemaFactory.createForClass(Fin
 let FinanceRefundEntity = class FinanceRefundEntity extends abstract_entity_1.AbstractEntity {
     payment;
     purchase;
+    supplierOrderId;
     amount;
     isPartial;
     origin;
@@ -72,6 +73,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, ref: app_schemas_1.AppSchemas.order.purchases, type: mongoose_2.Schema.Types.ObjectId }),
     __metadata("design:type", Object)
 ], FinanceRefundEntity.prototype, "purchase", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinanceRefundEntity.prototype, "supplierOrderId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ min: 0, required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)
