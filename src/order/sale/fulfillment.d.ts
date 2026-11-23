@@ -39,6 +39,7 @@ export interface OrderSaleRefundSummary {
     origin: FinanceRefundOriginEnum;
     purchase: string | null;
     status: FinanceRefundStatusEnum;
+    supplierOrderId: string | null;
 }
 export interface OrderSaleSupplierCharges {
     shipping: {
