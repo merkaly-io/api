@@ -119,6 +119,7 @@ exports.OrderSaleDeliveryDaysSchema = mongoose_1.SchemaFactory.createForClass(Or
 let OrderSaleDeliveryLineEntity = class OrderSaleDeliveryLineEntity {
     variant;
     amount;
+    taxes;
     method;
     deliveryDays;
 };
@@ -136,6 +137,10 @@ __decorate([
     __metadata("design:type", Number)
 ], OrderSaleDeliveryLineEntity.prototype, "amount", void 0);
 __decorate([
+    (0, mongoose_1.Prop)({ default: 0, min: 0, type: Number, validate: { validator: isCents } }),
+    __metadata("design:type", Number)
+], OrderSaleDeliveryLineEntity.prototype, "taxes", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
 ], OrderSaleDeliveryLineEntity.prototype, "method", void 0);
@@ -151,6 +156,7 @@ let OrderSaleDeliveryEntity = class OrderSaleDeliveryEntity {
     recipient;
     address;
     shippingPrice;
+    taxes;
     quotedAt;
     lines;
 };
@@ -167,6 +173,10 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, validate: { validator: isCents } }),
     __metadata("design:type", Number)
 ], OrderSaleDeliveryEntity.prototype, "shippingPrice", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, min: 0, type: Number, validate: { validator: isCents } }),
+    __metadata("design:type", Number)
+], OrderSaleDeliveryEntity.prototype, "taxes", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: null, type: Date }),
     __metadata("design:type", Date)

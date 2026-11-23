@@ -12,6 +12,7 @@ export interface ProcurementLine {
     storedUnitCost: number;
     quotedUnitCost?: number;
     shippingCost?: number;
+    taxCost?: number;
     quote?: SupplierQuote;
 }
 export interface ProcurementGroup {
@@ -27,8 +28,10 @@ export interface ProcurementGroup {
     totals: {
         retail: number;
         shippingPrice: number;
+        taxPrice: number;
         cost: number;
         shippingCost: number;
+        taxCost: number;
         margin: number;
     };
     available: boolean;
