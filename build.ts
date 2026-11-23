@@ -416,7 +416,8 @@ function createBarrel(destDir: string, exports: ParsedExport[]): void {
       exp.sourcePath.endsWith('abstract.validator') ||
       exp.sourcePath.includes('/transitions/') ||
       exp.sourcePath.endsWith('abstract.transition') ||
-      exp.sourcePath.includes('/decorators/');
+      exp.sourcePath.includes('/decorators/') ||
+      exp.sourcePath.includes('/utils/');
 
     if (needsRuntime) {
       jsLines.push(generateStarExportJs(fromPath));
@@ -497,7 +498,8 @@ function buildModule(module: ModuleExports, importMap: Map<string, string>): voi
     const isTransition =
       exp.sourcePath.includes('/transitions/') || exp.sourcePath.endsWith('abstract.transition');
     const isDecorator = exp.sourcePath.includes('/decorators/');
-    if (!isEnum && !isValidator && !isTransition && !isDecorator) continue;
+    const isUtil = exp.sourcePath.includes('/utils/'); // runtime helpers imported by validators
+    if (!isEnum && !isValidator && !isTransition && !isDecorator && !isUtil) continue;
 
     const jsFileName = path.basename(exp.sourcePath) + '.js';
     const srcJs = getSourceJsPath(exp.snapshotPath);

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PAGINATION_MAX_LIMIT = exports.SearchValidator = exports.ReadValidator = exports.AbstractRequestValidator = void 0;
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
+const json_1 = require("./json");
 class PaginationValidator {
     limit = 10;
     page = 1;
@@ -240,13 +241,8 @@ function transformStructuredValue(key, value) {
 function transformJoinsIntoPopulate(value) {
     function transform(value) {
         if ((0, class_validator_1.isString)(value)) {
-            try {
-                const parsed = JSON.parse(value);
-                return transform(parsed);
-            }
-            catch {
-                return [{ path: value }];
-            }
+            const parsed = (0, json_1.parseJson)(value);
+            return parsed === undefined ? [{ path: value }] : transform(parsed);
         }
         if ((0, class_validator_1.isArray)(value)) {
             return value.flatMap(transform);

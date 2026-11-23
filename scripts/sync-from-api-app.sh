@@ -376,7 +376,8 @@ function isRuntimeSource(sourcePath) {
     sourcePath.endsWith('abstracts/abstract.validator.ts') ||
     sourcePath.includes('/transitions/') ||
     sourcePath.endsWith('abstracts/abstract.transition.ts') ||
-    sourcePath.includes('/decorators/');
+    sourcePath.includes('/decorators/') ||
+    sourcePath.includes('/utils/');
 }
 
 function sanitizeCopiedImports(packageRoot, copiedFiles, targetBySourcePath) {
