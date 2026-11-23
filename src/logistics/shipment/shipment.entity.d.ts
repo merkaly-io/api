@@ -32,10 +32,24 @@ export declare const LogisticsShipmentTrackingSchema: MongoSchema<LogisticsShipm
 } & {
     __v: number;
 }>;
+export declare class LogisticsShipmentItemEntity {
+    item: string;
+    quantity: number;
+}
+export declare const LogisticsShipmentItemSchema: MongoSchema<LogisticsShipmentItemEntity, import("mongoose").Model<LogisticsShipmentItemEntity, any, any, any, import("mongoose").Document<unknown, any, LogisticsShipmentItemEntity, any, {}> & LogisticsShipmentItemEntity & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, LogisticsShipmentItemEntity, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<LogisticsShipmentItemEntity>, {}, import("mongoose").DefaultSchemaOptions> & import("mongoose").FlatRecord<LogisticsShipmentItemEntity> & {
+    _id: import("mongoose").Types.ObjectId;
+} & {
+    __v: number;
+}>;
 export declare class LogisticsShipmentEntity extends AbstractEntity {
     sale: OrderSaleEntity;
     purchase?: OrderPurchaseEntity | null;
     source: LogisticsShipmentSourceEnum;
+    items: LogisticsShipmentItemEntity[];
     tracking?: LogisticsShipmentTrackingEntity | null;
     shippedAt?: Date | null;
     deliveredAt?: Date | null;
