@@ -5,3 +5,8 @@ export interface CatalogProductSummary {
     underCost: number;
     supplier: Record<CatalogProductSupplierStateEnum, number>;
 }
+export interface CatalogProductCount {
+    total: number;
+    active: number;
+}
+export type CatalogProductCountsMeta = Record<string, CatalogProductCount>;
