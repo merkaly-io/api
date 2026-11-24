@@ -59,6 +59,27 @@ function getSourceJsPath(sourcePath: string): string {
   return path.join(API_DIST, sourcePath.replace(/^src\//, '') + '.js');
 }
 
+function hasRuntimeConstants(exp: ParsedExport): boolean {
+  if (!exp.sourcePath.includes('/types/')) return false; // types files may export constants too
+  const srcJs = getSourceJsPath(exp.snapshotPath);
+  if (!fs.existsSync(srcJs)) return false;
+  return /^exports\.\w+ = (?!void 0)/m.test(fs.readFileSync(srcJs, 'utf8'));
+}
+
+function needsRuntime(exp: ParsedExport): boolean {
+  const { sourcePath } = exp;
+  return (
+    sourcePath.includes('/enums/') ||
+    sourcePath.includes('/validators/') ||
+    sourcePath.endsWith('abstract.validator') ||
+    sourcePath.includes('/transitions/') ||
+    sourcePath.endsWith('abstract.transition') ||
+    sourcePath.includes('/decorators/') ||
+    sourcePath.includes('/utils/') || // runtime helpers imported by validators
+    hasRuntimeConstants(exp)
+  );
+}
+
 function getRelativePath(fromFile: string, toDir: string): string {
   const fromDir = path.dirname(fromFile);
   const relative = path.relative(fromDir, toDir);
@@ -410,16 +431,7 @@ function createBarrel(destDir: string, exports: ParsedExport[]): void {
 
     dtsLines.push(`export * from '${fromPath}';`);
 
-    const needsRuntime =
-      exp.sourcePath.includes('/enums/') ||
-      exp.sourcePath.includes('/validators/') ||
-      exp.sourcePath.endsWith('abstract.validator') ||
-      exp.sourcePath.includes('/transitions/') ||
-      exp.sourcePath.endsWith('abstract.transition') ||
-      exp.sourcePath.includes('/decorators/') ||
-      exp.sourcePath.includes('/utils/');
-
-    if (needsRuntime) {
+    if (needsRuntime(exp)) {
       jsLines.push(generateStarExportJs(fromPath));
     }
   }
@@ -490,16 +502,7 @@ function buildModule(module: ModuleExports, importMap: Map<string, string>): voi
       copiedFiles.add(dtsFileName);
     }
 
-    // Copy .js file for enums, validators, and transitions (they need runtime)
-    // Only include abstract.validator and abstract.transition (not entity/repository which have backend deps)
-    const isEnum = exp.sourcePath.includes('/enums/');
-    const isValidator =
-      exp.sourcePath.includes('/validators/') || exp.sourcePath.endsWith('abstract.validator');
-    const isTransition =
-      exp.sourcePath.includes('/transitions/') || exp.sourcePath.endsWith('abstract.transition');
-    const isDecorator = exp.sourcePath.includes('/decorators/');
-    const isUtil = exp.sourcePath.includes('/utils/'); // runtime helpers imported by validators
-    if (!isEnum && !isValidator && !isTransition && !isDecorator && !isUtil) continue;
+    if (!needsRuntime(exp)) continue; // only files with runtime code get a .js
 
     const jsFileName = path.basename(exp.sourcePath) + '.js';
     const srcJs = getSourceJsPath(exp.snapshotPath);
