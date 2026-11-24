@@ -1,0 +1,14 @@
+export declare enum FinanceMovementBucketEnum {
+    AVAILABLE = "AVAILABLE",
+    RETAINED = "RETAINED",
+    RECEIVABLE = "RECEIVABLE",
+    SUPPLIER = "SUPPLIER"
+}
+export declare enum FinanceMovementKindEnum {
+    SALE_RETAINED = "SALE_RETAINED",
+    SALE_RELEASED = "SALE_RELEASED",
+    SALE_RECEIVABLE = "SALE_RECEIVABLE",
+    SUPPLIER_COST = "SUPPLIER_COST",
+    WITHDRAWAL = "WITHDRAWAL",
+    REFUND_FEE = "REFUND_FEE"
+}

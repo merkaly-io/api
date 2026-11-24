@@ -1,5 +1,6 @@
 import { Schema as MongoSchema, Types } from 'mongoose';
 import { AssetEntity } from "../../../assets/asset/asset.entity";
+import { CatalogProductSupplierStateEnum } from "./product.supplier.enum";
 import { AbstractEntity } from "../../../abstract.entity";
 import type { CatalogBrandEntity } from '../brand/brand.entity';
 import type { CatalogCategoryEntity } from '../category/category.entity';
@@ -25,6 +26,9 @@ export declare class CatalogProductSupplierEntity {
     rating?: number | null;
     ratingCount?: number | null;
     soldCount?: number | null;
+    state?: CatalogProductSupplierStateEnum | null;
+    checkedAt?: Date | null;
+    syncedAt?: Date | null;
 }
 export declare const CatalogProductSupplierSchema: MongoSchema<CatalogProductSupplierEntity, import("mongoose").Model<CatalogProductSupplierEntity, any, any, any, import("mongoose").Document<unknown, any, CatalogProductSupplierEntity, any, {}> & CatalogProductSupplierEntity & {
     _id: Types.ObjectId;

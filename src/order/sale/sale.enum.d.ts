@@ -9,6 +9,7 @@ export declare enum OrderSaleStatusEnum {
     CANCELLED = "CANCELLED"
 }
 export declare const SALE_OPEN_STATUSES: readonly OrderSaleStatusEnum[];
+export declare const SALE_PAID_STATUSES: readonly OrderSaleStatusEnum[];
 export declare const SALE_CANCELLABLE_STATUSES: readonly OrderSaleStatusEnum[];
 export declare enum OrderSaleCancelByEnum {
     BUYER = "BUYER",
@@ -27,3 +28,4 @@ export declare enum OrderSaleSourceEnum {
 export declare enum OrderCheckoutErrorCodeEnum {
     TOTAL_CHANGED = "CHECKOUT_TOTAL_CHANGED"
 }
+export declare const ORDER_SALE_NUMBER_PREFIX = "SLS";

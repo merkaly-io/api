@@ -7,6 +7,7 @@ export declare abstract class AppSchemas {
     };
     static get contact(): {
         customers: string;
+        newsletterSubscriptions: string;
         vendors: string;
     };
     static get content(): {

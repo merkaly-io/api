@@ -1,5 +1,6 @@
 import type { PaymentAccountApprovalEnum, PaymentAccountCompanyTypeEnum, PaymentAccountDocumentStatusEnum, PaymentAccountReadinessEnum, PaymentAccountTypeEnum, PaymentPixKeyTypeEnum } from './account.enum';
 import type { PaymentProviderEnum } from './provider.enum';
+import type { FinanceBalanceMeta } from "../../finance/movement/movement";
 export interface PaymentAccountApproval {
     general: PaymentAccountApprovalEnum;
     commercialInfo: PaymentAccountApprovalEnum;
@@ -64,6 +65,10 @@ export interface PaymentAccountBalance {
     retained: number;
     debts: number;
     reservedForRefunds: number;
+}
+export interface PaymentAccountBalanceRead {
+    balance: PaymentAccountBalance;
+    meta: FinanceBalanceMeta;
 }
 export interface PaymentWithdrawableLedger {
     released: number;

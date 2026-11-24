@@ -1,11 +1,15 @@
-import type { ContentBannerBlock, ContentBrandsBlock, ContentFeaturesBlock, ContentProductsBlock } from "./blocks.types";
+import type { ContentAnnouncementBlock, ContentBannerBlock, ContentBrandsBlock, ContentCollectionsBlock, ContentFeaturesBlock, ContentFooterBlock, ContentHeroBlock, ContentNewsletterBlock, ContentProductsBlock } from "./blocks.types";
 export interface ContentHomePage {
+    announcement?: ContentAnnouncementBlock;
     brands?: ContentBrandsBlock;
+    collections?: ContentCollectionsBlock;
     features?: ContentFeaturesBlock;
-    hero?: ContentBannerBlock;
+    footer?: ContentFooterBlock;
+    hero?: ContentHeroBlock;
     newArrivals?: ContentProductsBlock & {
         banner?: ContentBannerBlock;
     };
+    newsletter?: ContentNewsletterBlock;
     offers?: ContentProductsBlock & {
         endsAt?: Date;
     };

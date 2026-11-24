@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContentFeatureIconEnum = exports.ContentPageImageEnum = exports.ContentPageEnum = void 0;
+exports.ContentFooterBadgeEnum = exports.ContentFeatureIconEnum = exports.ContentPageImageEnum = exports.ContentPageEnum = void 0;
 var ContentPageEnum;
 (function (ContentPageEnum) {
     ContentPageEnum["HOME"] = "home";
@@ -27,4 +27,11 @@ var ContentFeatureIconEnum;
     ContentFeatureIconEnum["TAG"] = "tag";
     ContentFeatureIconEnum["TRUCK"] = "truck";
 })(ContentFeatureIconEnum || (exports.ContentFeatureIconEnum = ContentFeatureIconEnum = {}));
+var ContentFooterBadgeEnum;
+(function (ContentFooterBadgeEnum) {
+    ContentFooterBadgeEnum["CARD"] = "card";
+    ContentFooterBadgeEnum["PIX"] = "pix";
+    ContentFooterBadgeEnum["SECURE"] = "secure";
+    ContentFooterBadgeEnum["TRACKING"] = "tracking";
+})(ContentFooterBadgeEnum || (exports.ContentFooterBadgeEnum = ContentFooterBadgeEnum = {}));
 //# sourceMappingURL=page.enum.js.map

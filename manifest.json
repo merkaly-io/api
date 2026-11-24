@@ -46,6 +46,9 @@
       ],
       "vendor": [
         "vendor/entities/vendor.entity"
+      ],
+      "newsletter": [
+        "newsletter/entities/subscription.entity"
       ]
     },
     "@/dashboard": {
@@ -81,6 +84,10 @@
       "withdrawal": [
         "entities/withdrawal.entity",
         "enums/withdrawal.enum"
+      ],
+      "movement": [
+        "enums/movement.enum",
+        "types/movement"
       ]
     },
     "@/integration": {
@@ -118,7 +125,9 @@
         ],
         "product": [
           "domain/catalog/entities/product.entity",
-          "domain/catalog/validators/product/request.validator"
+          "domain/catalog/validators/product/request.validator",
+          "domain/catalog/enums/product.supplier.enum",
+          "domain/catalog/types/product"
         ],
         "variant": [
           "domain/catalog/entities/variant.entity",

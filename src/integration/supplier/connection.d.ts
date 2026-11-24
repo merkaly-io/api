@@ -7,6 +7,11 @@ export interface SupplierConnectionStatus {
     expired: boolean;
     reconnectBy: Date | null;
 }
+export interface SupplierConnectionActivity {
+    importedAt: Date | null;
+    orderedAt: Date | null;
+    syncedAt: Date | null;
+}
 export interface SupplierConnectionCreateRequest {
     code: string;
 }

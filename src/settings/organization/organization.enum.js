@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SettingsOrganizationSocialEnum = exports.SettingsOrganizationBrandingAssetEnum = void 0;
+exports.SettingsOrganizationStoreNameReasonEnum = exports.SettingsOrganizationSocialEnum = exports.SettingsOrganizationBrandingAssetEnum = void 0;
 var SettingsOrganizationBrandingAssetEnum;
 (function (SettingsOrganizationBrandingAssetEnum) {
     SettingsOrganizationBrandingAssetEnum["FAVICON"] = "favicon";
@@ -17,4 +17,11 @@ var SettingsOrganizationSocialEnum;
     SettingsOrganizationSocialEnum["X"] = "x";
     SettingsOrganizationSocialEnum["YOUTUBE"] = "youtube";
 })(SettingsOrganizationSocialEnum || (exports.SettingsOrganizationSocialEnum = SettingsOrganizationSocialEnum = {}));
+var SettingsOrganizationStoreNameReasonEnum;
+(function (SettingsOrganizationStoreNameReasonEnum) {
+    SettingsOrganizationStoreNameReasonEnum["INVALID"] = "invalid";
+    SettingsOrganizationStoreNameReasonEnum["RESERVED"] = "reserved";
+    SettingsOrganizationStoreNameReasonEnum["SAME"] = "same";
+    SettingsOrganizationStoreNameReasonEnum["TAKEN"] = "taken";
+})(SettingsOrganizationStoreNameReasonEnum || (exports.SettingsOrganizationStoreNameReasonEnum = SettingsOrganizationStoreNameReasonEnum = {}));
 //# sourceMappingURL=organization.enum.js.map

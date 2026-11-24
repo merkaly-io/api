@@ -11,6 +11,7 @@ export interface SupplierQuote extends SupplierQuoteRequest {
     available: boolean;
     currency: string;
     issue?: string;
+    delisted?: boolean;
     stock?: number;
     unitCost?: number;
     freight?: number;

@@ -12,3 +12,9 @@ export declare enum SettingsOrganizationSocialEnum {
     X = "x",
     YOUTUBE = "youtube"
 }
+export declare enum SettingsOrganizationStoreNameReasonEnum {
+    INVALID = "invalid",
+    RESERVED = "reserved",
+    SAME = "same",
+    TAKEN = "taken"
+}
