@@ -3,9 +3,11 @@ import { AssetEntity } from "../../../assets/asset/asset.entity";
 import { AbstractEntity } from "../../../abstract.entity";
 import { CatalogVariantOptionEntity } from './variant.option.entity';
 import type { CatalogProductEntity } from '../product/product.entity';
+export declare const DEFAULT_MARKUP_BPS = 1000;
 export declare class CatalogVariantPriceEntity {
     cost: number;
     retail: number;
+    markup: number;
 }
 export declare const CatalogVariantPriceSchema: MongoSchema<CatalogVariantPriceEntity, import("mongoose").Model<CatalogVariantPriceEntity, any, any, any, import("mongoose").Document<unknown, any, CatalogVariantPriceEntity, any, {}> & CatalogVariantPriceEntity & {
     _id: import("mongoose").Types.ObjectId;

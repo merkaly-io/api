@@ -8,6 +8,7 @@ export interface SupplierProductOption {
     name: string;
     value: string;
     label?: string;
+    unclear?: boolean;
     externalNameId: string;
     externalValueId: string;
 }

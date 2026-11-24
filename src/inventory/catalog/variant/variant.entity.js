@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CatalogVariantEntity = exports.CatalogVariantSourcingSchema = exports.CatalogVariantSourcingEntity = exports.CatalogVariantShipsFromSchema = exports.CatalogVariantShipsFromEntity = exports.CatalogVariantPriceSchema = exports.CatalogVariantPriceEntity = void 0;
+exports.CatalogVariantEntity = exports.CatalogVariantSourcingSchema = exports.CatalogVariantSourcingEntity = exports.CatalogVariantShipsFromSchema = exports.CatalogVariantShipsFromEntity = exports.CatalogVariantPriceSchema = exports.CatalogVariantPriceEntity = exports.DEFAULT_MARKUP_BPS = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
@@ -22,9 +22,11 @@ const cents = {
     type: Number,
     validate: { validator: Number.isSafeInteger },
 };
+exports.DEFAULT_MARKUP_BPS = 1000;
 let CatalogVariantPriceEntity = class CatalogVariantPriceEntity {
     cost;
     retail;
+    markup;
 };
 exports.CatalogVariantPriceEntity = CatalogVariantPriceEntity;
 __decorate([
@@ -35,6 +37,16 @@ __decorate([
     (0, mongoose_1.Prop)(cents),
     __metadata("design:type", Number)
 ], CatalogVariantPriceEntity.prototype, "retail", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({
+        default: exports.DEFAULT_MARKUP_BPS,
+        min: -10_000,
+        required: true,
+        type: Number,
+        validate: { validator: Number.isSafeInteger },
+    }),
+    __metadata("design:type", Number)
+], CatalogVariantPriceEntity.prototype, "markup", void 0);
 exports.CatalogVariantPriceEntity = CatalogVariantPriceEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], CatalogVariantPriceEntity);
