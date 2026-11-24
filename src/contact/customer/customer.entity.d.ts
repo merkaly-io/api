@@ -11,3 +11,6 @@ export interface ContactCustomerStats {
     attention: number;
 }
 export type ContactCustomerStatsMeta = Record<string, ContactCustomerStats>;
+export interface ContactCustomerReadMeta {
+    stats: ContactCustomerStats | null;
+}
