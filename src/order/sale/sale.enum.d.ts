@@ -24,3 +24,6 @@ export declare enum OrderSaleSourceEnum {
     ADMIN = "ADMIN",
     IMPORT = "IMPORT"
 }
+export declare enum OrderCheckoutErrorCodeEnum {
+    TOTAL_CHANGED = "CHECKOUT_TOTAL_CHANGED"
+}

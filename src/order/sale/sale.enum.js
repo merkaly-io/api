@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderSaleSourceEnum = exports.WITHDRAWAL_HOLD_MS = exports.WITHDRAWAL_HOLD_DAYS = exports.SALE_REFUND_MS = exports.SALE_REFUND_DAYS = exports.OrderSaleCancelByEnum = exports.SALE_CANCELLABLE_STATUSES = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
+exports.OrderCheckoutErrorCodeEnum = exports.OrderSaleSourceEnum = exports.WITHDRAWAL_HOLD_MS = exports.WITHDRAWAL_HOLD_DAYS = exports.SALE_REFUND_MS = exports.SALE_REFUND_DAYS = exports.OrderSaleCancelByEnum = exports.SALE_CANCELLABLE_STATUSES = exports.SALE_OPEN_STATUSES = exports.OrderSaleStatusEnum = void 0;
 var OrderSaleStatusEnum;
 (function (OrderSaleStatusEnum) {
     OrderSaleStatusEnum["AWAITING_PAYMENT"] = "AWAITING_PAYMENT";
@@ -43,4 +43,8 @@ var OrderSaleSourceEnum;
     OrderSaleSourceEnum["ADMIN"] = "ADMIN";
     OrderSaleSourceEnum["IMPORT"] = "IMPORT";
 })(OrderSaleSourceEnum || (exports.OrderSaleSourceEnum = OrderSaleSourceEnum = {}));
+var OrderCheckoutErrorCodeEnum;
+(function (OrderCheckoutErrorCodeEnum) {
+    OrderCheckoutErrorCodeEnum["TOTAL_CHANGED"] = "CHECKOUT_TOTAL_CHANGED";
+})(OrderCheckoutErrorCodeEnum || (exports.OrderCheckoutErrorCodeEnum = OrderCheckoutErrorCodeEnum = {}));
 //# sourceMappingURL=sale.enum.js.map

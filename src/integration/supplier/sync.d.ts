@@ -6,6 +6,10 @@ export interface SupplierProductSyncCostChange {
     externalVariantId: string;
     from: number;
     to: number;
+    retail: {
+        from: number;
+        to: number;
+    };
 }
 export interface SupplierProductSyncMissingVariant {
     variant: string;

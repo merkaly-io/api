@@ -10,5 +10,6 @@ export declare class CreateCheckoutRequestValidator extends AbstractRequestValid
     items: CheckoutItemRequestValidator[];
     delivery: SaleDeliveryRequestValidator;
     notes?: string;
+    quotedTotal: number;
     method?: StorePaymentMethod;
 }

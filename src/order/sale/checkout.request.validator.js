@@ -39,6 +39,7 @@ class CreateCheckoutRequestValidator extends abstract_validator_1.AbstractReques
     items = [];
     delivery = new delivery_request_validator_1.SaleDeliveryRequestValidator();
     notes;
+    quotedTotal;
     method;
 }
 exports.CreateCheckoutRequestValidator = CreateCheckoutRequestValidator;
@@ -62,6 +63,12 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateCheckoutRequestValidator.prototype, "notes", void 0);
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    (0, class_validator_1.Max)(Number.MAX_SAFE_INTEGER),
+    __metadata("design:type", Number)
+], CreateCheckoutRequestValidator.prototype, "quotedTotal", void 0);
 __decorate([
     (0, class_validator_1.IsIn)([payment_enum_1.FinancePaymentMethodEnum.PIX]),
     (0, class_validator_1.IsOptional)(),
