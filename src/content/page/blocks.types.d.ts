@@ -1,4 +1,4 @@
-import type { ContentFeatureIconEnum } from "./page.enum";
+import type { ContentFeatureIconEnum, ContentFooterBadgeEnum } from "./page.enum";
 export interface ContentImage {
     key: string;
     url: string;
@@ -13,6 +13,9 @@ export interface ContentBannerBlock {
     image?: ContentImage;
     subtitle?: string;
     title?: string;
+}
+export interface ContentHeroBlock extends ContentBannerBlock {
+    secondaryAction?: ContentAction;
 }
 export interface ContentProductsBlock {
     enabled?: boolean;
@@ -30,4 +33,20 @@ export interface ContentFeaturesBlock {
 export interface ContentBrandsBlock {
     brands?: string[];
     enabled?: boolean;
+}
+export interface ContentAnnouncementBlock {
+    enabled?: boolean;
+    messages?: string[];
+}
+export interface ContentCollectionsBlock {
+    categories?: string[];
+    enabled?: boolean;
+}
+export interface ContentNewsletterBlock {
+    enabled?: boolean;
+    text?: string;
+    title?: string;
+}
+export interface ContentFooterBlock {
+    badges?: ContentFooterBadgeEnum[];
 }

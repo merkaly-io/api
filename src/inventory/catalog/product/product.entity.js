@@ -14,6 +14,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../../app.schemas");
 const asset_entity_1 = require("../../../assets/asset/asset.entity");
+const product_supplier_enum_1 = require("./product.supplier.enum");
 const abstract_entity_1 = require("../../../abstract.entity");
 let CatalogProductPropertyEntity = class CatalogProductPropertyEntity {
     name;
@@ -43,6 +44,9 @@ let CatalogProductSupplierEntity = class CatalogProductSupplierEntity {
     rating;
     ratingCount;
     soldCount;
+    state;
+    checkedAt;
+    syncedAt;
 };
 exports.CatalogProductSupplierEntity = CatalogProductSupplierEntity;
 __decorate([
@@ -65,6 +69,18 @@ __decorate([
     (0, mongoose_1.Prop)({ default: null, min: 0, type: Number }),
     __metadata("design:type", Number)
 ], CatalogProductSupplierEntity.prototype, "soldCount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, enum: product_supplier_enum_1.CatalogProductSupplierStateEnum, type: String }),
+    __metadata("design:type", String)
+], CatalogProductSupplierEntity.prototype, "state", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], CatalogProductSupplierEntity.prototype, "checkedAt", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, type: Date }),
+    __metadata("design:type", Date)
+], CatalogProductSupplierEntity.prototype, "syncedAt", void 0);
 exports.CatalogProductSupplierEntity = CatalogProductSupplierEntity = __decorate([
     (0, mongoose_1.Schema)({ _id: false, timestamps: false, versionKey: false })
 ], CatalogProductSupplierEntity);

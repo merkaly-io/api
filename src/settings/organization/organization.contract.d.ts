@@ -1,4 +1,4 @@
-import { SettingsOrganizationSocialEnum } from "./organization.enum";
+import { SettingsOrganizationSocialEnum, SettingsOrganizationStoreNameReasonEnum } from "./organization.enum";
 import { SettingsKeyEnum } from "./settings.enum";
 import type { PaymentAccountReadinessEnum } from "../../integration/payment/account.enum";
 import type { SupplierReadinessEnum } from "../../integration/supplier/provider.enum";
@@ -77,8 +77,18 @@ export interface SettingsOrganizationPaymentsContract {
 export type SettingsOrganizationSecurityContract = Record<string, unknown>;
 export type SettingsOrganizationSequenceContract = Record<string, unknown>;
 export interface SettingsOrganizationStoreContract {
+    name: string;
+    domain: string;
     host: string;
     url: string;
+}
+export interface SettingsOrganizationStorePayload {
+    name: string;
+}
+export interface SettingsOrganizationStoreAvailabilityContract {
+    name: string;
+    available: boolean;
+    reason?: SettingsOrganizationStoreNameReasonEnum;
 }
 export interface SettingsOrganizationProfileContract {
     address: SettingsOrganizationAddressContract;

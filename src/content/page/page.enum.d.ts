@@ -21,3 +21,9 @@ export declare enum ContentFeatureIconEnum {
     TAG = "tag",
     TRUCK = "truck"
 }
+export declare enum ContentFooterBadgeEnum {
+    CARD = "card",
+    PIX = "pix",
+    SECURE = "secure",
+    TRACKING = "tracking"
+}

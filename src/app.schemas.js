@@ -15,6 +15,7 @@ class AppSchemas {
     static get contact() {
         return {
             customers: 'contact.customers',
+            newsletterSubscriptions: 'contact.newsletter.subscriptions',
             vendors: 'contact.vendors',
         };
     }
