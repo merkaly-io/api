@@ -44,11 +44,9 @@ export interface AccountAuthPasswordTicket {
     ticket: string;
 }
 export interface AccountAuthOrganizationMetadata {
-    CONTACT_EMAIL?: string | null;
     email?: string | null;
     ORG_COUNTRY?: string | null;
     ORG_CURRENCY?: string | null;
-    ORG_EMAIL?: string | null;
     ORG_SIZE?: string | null;
     ORG_TYPE?: string | null;
     [key: string]: string | null | undefined;

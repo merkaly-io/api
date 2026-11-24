@@ -174,7 +174,7 @@ __decorate([
     __metadata("design:type", FinancePaymentGatewayEntity)
 ], FinancePaymentEntity.prototype, "gateway", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: undefined, type: [exports.FinancePaymentAttemptSchema] }),
+    (0, mongoose_1.Prop)({ default: [], type: [exports.FinancePaymentAttemptSchema] }),
     __metadata("design:type", Array)
 ], FinancePaymentEntity.prototype, "attempts", void 0);
 __decorate([
