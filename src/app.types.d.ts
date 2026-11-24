@@ -12,7 +12,7 @@ export interface Auth0JwtPayload {
     };
 }
 export interface AppAuth {
-    clientId?: string;
+    clientId: string;
     expiresAt: Date;
     issuedAt: Date;
     orgId?: string;

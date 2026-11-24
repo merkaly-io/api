@@ -43,7 +43,6 @@ export interface SupplierProduct {
     assets: SupplierProductAsset[];
     currency: string;
     handlingDays?: number | null;
-    deliveryDays?: number | null;
     properties: SupplierProductProperty[];
     ratingValue: number | null;
     ratingCount: number | null;
