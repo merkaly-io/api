@@ -63,6 +63,7 @@ export interface SettingsOrganizationPaymentsContract {
         id: string;
         walletId: string;
         apiKey: string | null;
+        pixAddressKey: string | null;
         approval: {
             general: string;
             commercialInfo: string;

@@ -17,7 +17,9 @@ export interface SupplierQuote extends SupplierQuoteRequest {
     freightCode?: string;
     freightService?: string;
     platformShipping?: boolean;
+    freeShippingThreshold?: number;
     taxBrackets?: SupplierImportTaxBracket[];
+    shipsFrom?: string;
     deliveryDays?: {
         max?: number;
         min?: number;
