@@ -22,6 +22,11 @@ export interface SettingsOrganizationStoreCompany extends SettingsOrganizationSt
         available: boolean;
     };
 }
+export interface SettingsOrganizationStoreReadiness {
+    products: number;
+    payments: boolean;
+    ready: boolean;
+}
 export declare const SETTINGS_STORE_NAME_MIN = 3;
 export declare const SETTINGS_STORE_NAME_MAX = 50;
 export declare const SETTINGS_STORE_NAME_PATTERN: RegExp;
