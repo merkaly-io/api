@@ -13,6 +13,7 @@ exports.FinancePaymentEntity = exports.FinancePaymentSplitSchema = exports.Finan
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const app_schemas_1 = require("../../app.schemas");
+const charge_enum_1 = require("../../integration/payment/charge.enum");
 const sale_entity_1 = require("../../order/sale/sale.entity");
 const abstract_entity_1 = require("../../abstract.entity");
 const debt_enum_1 = require("../debt/debt.enum");
@@ -22,6 +23,7 @@ let FinancePaymentGatewayEntity = class FinancePaymentGatewayEntity {
     reference;
     method;
     status;
+    providerStatus;
     attempt;
     amount;
     details;
@@ -42,9 +44,13 @@ __decorate([
     __metadata("design:type", String)
 ], FinancePaymentGatewayEntity.prototype, "method", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    (0, mongoose_1.Prop)({ enum: charge_enum_1.PaymentChargeStatusEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], FinancePaymentGatewayEntity.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
+    __metadata("design:type", String)
+], FinancePaymentGatewayEntity.prototype, "providerStatus", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ default: 1, min: 1, type: Number }),
     __metadata("design:type", Number)
@@ -73,7 +79,7 @@ let FinancePaymentAttemptEntity = class FinancePaymentAttemptEntity {
     reference;
     method;
     status;
-    rawStatus;
+    providerStatus;
     amount;
     expiresAt;
     createdAt;
@@ -89,13 +95,13 @@ __decorate([
     __metadata("design:type", String)
 ], FinancePaymentAttemptEntity.prototype, "method", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    (0, mongoose_1.Prop)({ enum: charge_enum_1.PaymentChargeStatusEnum, required: true, type: String }),
     __metadata("design:type", String)
 ], FinancePaymentAttemptEntity.prototype, "status", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, trim: true, type: String }),
+    (0, mongoose_1.Prop)({ default: null, trim: true, type: String }),
     __metadata("design:type", String)
-], FinancePaymentAttemptEntity.prototype, "rawStatus", void 0);
+], FinancePaymentAttemptEntity.prototype, "providerStatus", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true, type: Number, validate: { validator: Number.isInteger } }),
     __metadata("design:type", Number)

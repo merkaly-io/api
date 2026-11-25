@@ -62,8 +62,8 @@ export interface SettingsOrganizationPaymentsContract {
         provider: string;
         id: string;
         walletId: string;
-        apiKey: string | null;
-        pixAddressKey: string | null;
+        credentials: string | null;
+        pixAddressKey: 'ACTIVE' | 'PENDING' | null;
         approval: {
             general: string;
             commercialInfo: string;

@@ -1,6 +1,6 @@
-import type { FinancePaymentAttemptStatus } from './payment.entity';
 import type { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
-export type FinancePaymentReportStatus = FinancePaymentAttemptStatus;
+import type { PaymentChargeStatusEnum } from "../../integration/payment/charge.enum";
+export type FinancePaymentReportStatus = PaymentChargeStatusEnum;
 export interface FinancePaymentReportTotal {
     amount: number;
     count: number;

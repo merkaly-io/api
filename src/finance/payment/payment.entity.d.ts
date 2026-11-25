@@ -1,4 +1,5 @@
 import { Schema as MongoSchema } from 'mongoose';
+import { PaymentChargeStatusEnum } from "../../integration/payment/charge.enum";
 import { OrderSaleEntity } from "../../order/sale/sale.entity";
 import { AbstractEntity } from "../../abstract.entity";
 import { StatusEntity } from "../../status.plugin";
@@ -6,7 +7,6 @@ import { ITransitionable } from "../../transitionable.types";
 import { FinancePaymentMethodEnum, FinancePaymentStatusEnum } from './payment.enum';
 import type { FinanceDebtEntity } from '../debt/debt.entity';
 import type { FinanceRefundEntity } from '../refund/refund.entity';
-import type { PaymentChargeStatusEnum } from "../../integration/payment/charge.enum";
 export interface FinancePaymentPixDetails {
     qrCode: string | null;
     qrImage: string | null;
@@ -16,7 +16,8 @@ export declare class FinancePaymentGatewayEntity {
     provider: string;
     reference?: string | null;
     method: FinancePaymentMethodEnum;
-    status: string;
+    status: PaymentChargeStatusEnum;
+    providerStatus?: string | null;
     attempt: number;
     amount: number;
     details?: FinancePaymentGatewayDetails | null;
@@ -32,12 +33,11 @@ export declare const FinancePaymentGatewaySchema: MongoSchema<FinancePaymentGate
 } & {
     __v: number;
 }>;
-export type FinancePaymentAttemptStatus = PaymentChargeStatusEnum | 'UNKNOWN';
 export declare class FinancePaymentAttemptEntity {
     reference?: string | null;
     method: FinancePaymentMethodEnum;
-    status: FinancePaymentAttemptStatus;
-    rawStatus: string;
+    status: PaymentChargeStatusEnum;
+    providerStatus?: string | null;
     amount: number;
     expiresAt?: Date | null;
     createdAt: Date;

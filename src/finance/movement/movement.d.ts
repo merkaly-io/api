@@ -31,5 +31,4 @@ export interface FinanceMovementsMeta {
 export interface FinanceMovementRules {
     holdMs: number;
     now: Date;
-    unsettledStatuses: readonly string[];
 }

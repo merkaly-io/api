@@ -35,6 +35,11 @@ export interface PaymentAccountStatus {
     warnings: string[];
     accountError: string | null;
 }
+export interface PaymentAccountHolder {
+    name: string;
+    document: string;
+    birthDate?: string;
+}
 export interface PaymentAccountReadiness {
     canSell: boolean;
     payments: PaymentAccountReadinessEnum;

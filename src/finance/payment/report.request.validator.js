@@ -15,10 +15,6 @@ const class_validator_1 = require("class-validator");
 const charge_enum_1 = require("../../integration/payment/charge.enum");
 const abstract_validator_1 = require("../../abstract.validator");
 const payment_enum_1 = require("./payment.enum");
-const REPORT_STATUSES = [
-    ...Object.values(charge_enum_1.PaymentChargeStatusEnum),
-    'UNKNOWN',
-];
 class FinancePaymentReportRangeRequestValidator extends abstract_validator_1.AbstractRequestValidator {
     from;
     to;
@@ -46,7 +42,7 @@ __decorate([
     __metadata("design:type", String)
 ], FinancePaymentReportSearchRequestValidator.prototype, "org", void 0);
 __decorate([
-    (0, class_validator_1.IsIn)(REPORT_STATUSES),
+    (0, class_validator_1.IsEnum)(charge_enum_1.PaymentChargeStatusEnum),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], FinancePaymentReportSearchRequestValidator.prototype, "status", void 0);
