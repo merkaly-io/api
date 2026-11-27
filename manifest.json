@@ -147,8 +147,7 @@
       "purchase": [
         "entities/purchase.entity",
         "enums/purchase.enum",
-        "transitions/purchase.transition",
-        "validators/purchase/supplier.order.request.validator"
+        "transitions/purchase.transition"
       ],
       "sale": [
         "entities/sale.entity",
