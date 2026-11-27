@@ -39,6 +39,8 @@ export interface SupplierOrderChargedLine {
     quantity: number;
     paid: number;
     shipping: number;
+    shippingFee?: number;
+    shippingDiscount?: number;
     tax: number;
 }
 export interface SupplierOrderPart {
